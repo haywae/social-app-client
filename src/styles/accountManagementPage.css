@@ -1,0 +1,48 @@
+/* Add this to your existing file */
+.settings-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--primary-bg);
+}
+
+.settings-form-section {
+    padding: 1.5rem;
+    border: 1px solid var(--grey-6);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: var(--background);
+}
+
+.settings-form-section h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--grey-1);
+    border-bottom: 1px solid var(--grey-6);
+    padding-bottom: 1rem;
+}
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-success {
+    color: #00ba7c; /* A nice green for success messages */
+    font-weight: 500;
+}
+
+/* Dark Theme Adjustments */
+@media (prefers-color-scheme: dark) {
+    .settings-form-section {
+        border-color: var(--grey-3);
+    }
+    .settings-form-section h3 {
+        color: var(--grey-7);
+        border-color: var(--grey-3);
+    }
+}

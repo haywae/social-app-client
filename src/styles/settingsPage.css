@@ -1,0 +1,179 @@
+/* -----------------------------------------------------------------------------
+Description: Styles for the user settings page and its components.
+-----------------------------------------------------------------------------
+*/
+
+/* --- Main Page & Header --- */
+.settings-page {
+    margin: 0 auto;
+    background-color: var(--primary);
+    color: var(--grey-1);
+    min-height: 100vh;
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--grey-6);
+    position: sticky;
+    top: 0;
+    background-color: var(--background);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+}
+
+.settings-header h1 {
+    font-size: 1.25rem;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; /* Allows the title to center properly */
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: var(--grey-1);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* --- Settings Menu --- */
+.settings-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--grey-6);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s;
+}
+
+.settings-card:hover {
+    background-color: var(--grey-7);
+}
+
+.card-info h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+}
+
+.card-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--grey-4);
+}
+
+.card-arrow {
+    font-size: 1.5rem;
+    color: var(--grey-5);
+}
+
+/* --- Settings Forms --- */
+.settings-form {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.settings-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.settings-form-group label {
+    font-weight: 600;
+    color: var(--grey-2);
+}
+
+.settings-form-group input,
+.settings-form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--grey-5);
+    border-radius: 12px;
+    color: var(--grey-4);
+    font-size: 1rem;
+    background-color: var(--primary-bg);
+    font-size: smaller;
+}
+
+.settings-form-group input:focus,
+.settings-form-group textarea:focus {
+    outline: none;
+    border-color: var(--grey-2);
+    box-shadow: 0 0 0 2px var(--base-alpha);
+    color: var(--grey-1);
+    background-color: var(--background);
+    font-size: small;
+}
+
+.settings-form-group input:disabled {
+    background-color: var(--grey-6);
+    cursor: not-allowed;
+}
+
+.settings-form-error {
+    color: var(--danger);
+    text-align: center;
+}
+
+/* --- Messages --- */
+.settings-message {
+    padding: 2rem;
+    text-align: center;
+    color: var(--grey-4);
+}
+.settings-message.error { color: var(--danger); }
+.settings-link-button{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    width: 100%;
+}
+
+/* --- Dark Theme --- */
+@media (prefers-color-scheme: dark) {
+    .settings-page { background-color: var(--background-dark); color: var(--grey-7); }
+    .settings-header, .settings-card { border-color: var(--grey-3); }
+    .settings-header { background-color: var(--background-dark-alpha); }
+    .close-button { color: var(--grey-7); }
+    .settings-card:hover { background-color: var(--grey-2); }
+    .card-info p { color: var(--grey-5); }
+    .settings-form-group label { color: var(--grey-6); }
+    .settings-form-group input, .form-group textarea { background-color: var(--grey-2); border-color: var(--grey-4); color: var(--grey-7); }
+    .settings-form-group input:disabled { background-color: var(--grey-3); }
+}
+
+/* Add these styles to your existing settingsPage.css file */
+
+.settings-content .section-description {
+    color: var(--grey-4);
+    font-size: 0.95rem;
+    margin: 0;
+    padding-bottom: 1rem;
+}
+
+.btn-danger {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--danger-outline);
+    border-radius: 999px;
+    background-color: var(--danger);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+    background-color: #c81e2e; /* A slightly darker red */
+}

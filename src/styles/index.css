@@ -1,0 +1,167 @@
+/* src/index.css */
+/* --- Final version with all shared styles and LIGHT MODE as the default --- */
+
+:root {
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+}
+
+
+/* --- Variables --- */
+:root {
+  --base: #00875A;
+  --base-dark: #006F4A;
+  --accent-color: #1877f2;
+  --background: #ffffff;
+  --primary-bg: #f0f2f5;
+  --text-primary: #1c1e21;
+  --text-secondary: #65676b;
+  --border-color: #dddfe2;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  --grey-1: #1A1A1A;
+  --grey-2: #2E2E2E;
+  --grey-3: #4D4D4D;
+  --grey-4: #696969;
+  --grey-5: #B2B2B2;
+  --grey-6: #D3D3D3;
+  --grey-7: #EDEDED;
+  --danger: #F44336;
+  --danger-dark: #c53030;
+  --like: #f91880;
+  --bg-blue-100: #dbeafe;
+  --bg-blue-50: #eff6ff;
+
+  /* For filled backgrounds (like error banners) */
+  --danger-fill: #FEF2F2; 
+
+  /* For hover states on filled backgrounds */
+  --danger-fill-dark: #FDE8E8; 
+
+  /* For borders and outlines */
+  --danger-outline: #FCA5A5; 
+
+  /* For hover states on outlines */
+  --danger-outline-dark: #F87171; 
+
+  /* For text associated with danger states */
+  --danger-text: #DC2626; 
+
+  /* For filled backgrounds (like success banners) */
+  --success-fill: #F0FDF4;
+
+  /* For hover states on filled backgrounds */
+  --success-fill-dark: #DCFCE7;
+
+  /* For borders and outlines */
+  --success-outline: #86EFAC;
+
+  /* For hover states on outlines */
+  --success-outline-dark: #22C55E;
+
+  /* For text associated with success states */
+  --success-text: #16A34A;
+}
+
+:root {
+  --left-sidebar-width: 275px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+/* --- Base & Reset Styles --- */
+body {
+  margin: 0;
+}
+
+#root {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 100vh;
+  min-width: 320px;
+}
+
+a {
+  font-weight: 500;
+  color: var(--grey-3);
+  text-decoration: inherit;
+  transition: color 0.25s;
+}
+a:hover {
+  opacity: 0.8;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--background);
+  cursor: pointer;
+}
+
+textarea{
+  font-family: sans-serif;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background-color: var(--base);
+  color: var(--background);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--base-dark);
+}
+
+.btn-primary:disabled {
+  background-color: var(--grey-6);
+  color: var(--grey-4);
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* ================================================= */
+/* THEME & RESPONSIVE STYLES                         */
+/* ================================================= */
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  }
+  a:hover {
+    color: #535bf2;
+  }
+  button {
+    background-color: #1a1a1a;
+  }
+  button:hover {
+    border-color: #646cff;
+  }
+  .btn-primary:disabled {
+    background-color: var(--grey-3);
+    color: var(--grey-5);
+  }
+}

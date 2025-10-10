@@ -1,0 +1,178 @@
+/* src/components/Post/Post.css */
+
+.post-container {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--grey-6);
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column; /* Main layout is now a column of rows */
+    gap: 0.25rem; /* Vertical space between rows */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.post-container:hover {
+    background-color: var(--primary-bg);
+}
+
+/* --- ROW 1: HEADER --- */
+.post-header {
+    display: flex;
+    flex-direction: row; /* Header is a row of columns */
+    align-items: center;
+    gap: 0.75rem; /* Space between header columns */
+}
+
+/* Col 1: Avatar */
+.post-avatar-container {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0; /* Prevents the container from shrinking */
+}
+
+/* Ensure the Link tag fills the container */
+.post-avatar-container a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Col 2: Author Meta */
+.post-author-meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Style the second line containing username and timestamp */
+.author-meta-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between username and the dot */
+    line-height: 1.3;
+}
+
+.author-name-link { text-decoration: none; }
+.author-display-name { font-weight: 700; color: var(--grey-1); }
+.author-name-link:hover .author-display-name { text-decoration: underline; }
+.author-username { color: var(--grey-4); font-size: 0.95rem; }
+
+
+.post-timestamp::before {
+    content: "·";          /* Inserts a middle dot character */
+    padding-right: 0.5rem; /* Creates space between the dot and the timestamp text */
+    color: var(--grey-4);  /* Ensures the dot has the same color as the text */
+}
+.post-timestamp {
+    color: var(--grey-4);
+    font-size: 0.95rem;
+}
+
+/* Col 3: Header Actions */
+.post-header-actions {
+    flex-shrink: 0; /* Prevents this column from shrinking */
+    margin-left: auto;
+    position: relative;
+}
+.post-header-actions .icon-action-button {
+    padding: 0;
+    margin: 0;
+}
+
+
+.post-header-actions .post-options-button:hover {
+    color: var(--base-dark);
+    background-color: rgba(29, 155, 240, 0.1);
+}
+
+/* --- ROW 2: MAIN CONTENT --- */
+.post-content p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--grey-2);
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.post-detailed-info time {
+    font-size: 0.95rem;
+    color: var(--grey-4);
+}
+
+/* --- Adjustments for Post component when on the detail page --- */
+.detail-page-container .post-container.detailed-view {
+    border-bottom: none; /* Avoids a double border with the section below */
+    padding-bottom: 0.5rem;
+    cursor: default; /* The post is no longer clickable */
+}
+
+.detail-page-container .post-container.detailed-view:hover {
+    background-color: var(--background); /* Disable hover effect */
+}
+
+/* --- ROW 3: FOOTER ACTIONS --- */
+.post-actions {
+    display: flex;
+    gap: 1rem;
+    max-width: 425px;
+
+}
+
+.icon-action-button {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--grey-4);
+    font-size: 0.8rem;
+    padding: 0;
+    border-radius: 999px;
+    margin: -8px;
+    padding: 8px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.icon-action-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.action-share svg{
+    width: 16px;
+    height: 16px;;
+}
+
+.action-reply:hover { color: var(--base-dark); background-color: rgba(29, 155, 240, 0.1); }
+.action-repost:hover { color: var(--base-dark); background-color: rgba(0, 186, 124, 0.1); }
+.action-like:hover { color: var(--like); background-color: rgba(249, 24, 128, 0.1); }
+
+
+.comment-container {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 0.25rem;
+    border-bottom: none; /* Make thread feel connected */
+    border-radius: 16px 0 0 16px;
+}
+
+/* --- DARK THEME --- */
+@media (prefers-color-scheme: dark) {
+    .post-container { background-color: var(--background); border-color: var(--grey-3); }
+    .post-container:hover { background-color: var(--grey-2); }
+    .author-display-name { color: var(--grey-7); }
+    .author-username, .post-timestamp { color: var(--grey-5); }
+    .post-content p { color: var(--grey-6); }
+    .icon-action-button { color: var(--grey-5); }
+        .post-detailed-info {
+        border-color: var(--grey-3);
+    }
+    .post-detailed-info time {
+        color: var(--grey-5);
+    }
+    .detail-page-container .post-container.detailed-view:hover {
+        background-color: var(--background);
+    }
+}

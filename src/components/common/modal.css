@@ -1,0 +1,99 @@
+/* --- The semi-transparent background overlay --- */
+.modal-overlay {
+  /* Positioning to cover the entire screen */
+  position: fixed;
+  inset: 0; /* A modern shorthand for top, right, bottom, left = 0 */
+  
+  /* Stacking on top of all other content */
+  z-index: 1000;
+
+  /* Centering the modal content box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* The dark, semi-transparent background color */
+  background-color: rgba(91, 112, 131, 0.4);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* The main content box of the modal */
+.modal-content {
+  position: relative;
+  background: var(--background);
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 450px; /* A bit wider for better layout */
+  max-height: 90vh;
+  display: flex; /* Use flexbox to structure header, body, footer */
+  flex-direction: column;
+  overflow: hidden; /* Hide overflow and rely on internal scrolling */
+}
+
+/* --- Modal Header --- */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem ;
+  border-bottom: 1px solid var(--grey-6);
+  flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--grey-1);
+  margin: 0;
+}
+
+.modal-body {
+  padding: 1rem;
+  overflow-y: auto; /* Allows the body content to scroll */
+}
+
+.modal-close-button {
+  position: static; /* No longer needs absolute positioning */
+  background: none;
+  border: none;
+  color: var(--grey-4);
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: 1rem; /* Add some space between title and button */
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-button:hover {
+  background-color: var(--grey-7);
+  color: var(--grey-1);
+}
+
+.modal-close-button svg {
+    width: 22px;
+    height: 22px;
+}
+
+.modal-body textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  font-size: 1rem;
+  min-height: 120px;
+  outline: none; /* Removes the focus border */
+  color: var(--grey-4);
+  background-color: var(--primary-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: border-color 0.2s;
+}
+
+.modal-body textarea:focus {
+  border: 1px solid var(--base);
+  background-color: var(--background);
+}

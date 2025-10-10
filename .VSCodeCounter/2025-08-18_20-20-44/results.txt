@@ -1,0 +1,168 @@
+Date : 2025-08-18 20:20:44
+Directory : /home/haywae/projects/wxc/wxc-client
+Total : 101 files,  11067 codes, 796 comments, 1047 blanks, all 12910 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          4 |      5,188 |          4 |          8 |      5,200 |
+| TypeScript JSX     |         31 |      2,167 |        300 |        408 |      2,875 |
+| TypeScript         |         43 |      1,965 |        368 |        352 |      2,685 |
+| PostCSS            |         18 |      1,654 |        124 |        265 |      2,043 |
+| Markdown           |          1 |         45 |          0 |         10 |         55 |
+| JavaScript         |          1 |         27 |          0 |          2 |         29 |
+| HTML               |          1 |         13 |          0 |          1 |         14 |
+| JSON with Comments |          1 |          7 |          0 |          1 |          8 |
+| Properties         |          1 |          1 |          0 |          0 |          1 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                    | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                       |        101 |     11,067 |        796 |      1,047 |     12,910 |
+| . (Files)                                                                               |         11 |      5,304 |          8 |         24 |      5,336 |
+| src                                                                                     |         90 |      5,763 |        788 |      1,023 |      7,574 |
+| src (Files)                                                                             |          4 |        147 |         10 |         18 |        175 |
+| src/assets                                                                              |          1 |         86 |          1 |         26 |        113 |
+| src/components                                                                          |         21 |      1,536 |        144 |        240 |      1,920 |
+| src/components/common                                                                   |          3 |         74 |         23 |         22 |        119 |
+| src/components/layout                                                                   |          6 |        567 |         40 |         81 |        688 |
+| src/components/notifications                                                            |          2 |        126 |          3 |         22 |        151 |
+| src/components/posts                                                                    |          8 |        667 |         78 |        103 |        848 |
+| src/components/settings                                                                 |          2 |        102 |          0 |         12 |        114 |
+| src/configs                                                                             |          6 |         73 |         10 |          8 |         91 |
+| src/data                                                                                |          1 |         13 |          1 |          0 |         14 |
+| src/pages                                                                               |         10 |        714 |        124 |        120 |        958 |
+| src/pages (Files)                                                                       |          6 |        226 |         21 |         48 |        295 |
+| src/pages/authPages                                                                     |          4 |        488 |        103 |         72 |        663 |
+| src/slices                                                                              |          7 |        466 |         70 |         42 |        578 |
+| src/slices/auth                                                                         |          1 |        102 |         15 |          9 |        126 |
+| src/slices/notification                                                                 |          1 |         45 |          1 |          5 |         51 |
+| src/slices/posts                                                                        |          1 |        122 |         21 |          7 |        150 |
+| src/slices/settings                                                                     |          1 |         45 |          0 |          4 |         49 |
+| src/slices/user                                                                         |          3 |        152 |         33 |         17 |        202 |
+| src/styles                                                                              |          8 |        768 |         68 |        130 |        966 |
+| src/tests                                                                               |         13 |      1,301 |        259 |        324 |      1,884 |
+| src/tests (Files)                                                                       |          4 |        510 |        159 |        139 |        808 |
+| src/tests/components                                                                    |          1 |         78 |         14 |         19 |        111 |
+| src/tests/mocks                                                                         |          1 |         21 |          5 |          5 |         31 |
+| src/tests/pages                                                                         |          4 |        461 |         59 |        115 |        635 |
+| src/tests/slices                                                                        |          3 |        231 |         22 |         46 |        299 |
+| src/thunks                                                                              |         17 |        603 |         84 |        100 |        787 |
+| src/thunks/authThunks                                                                   |          4 |        166 |         34 |         24 |        224 |
+| src/thunks/notificationThunks                                                           |          1 |         34 |          4 |          6 |         44 |
+| src/thunks/postsThunks                                                                  |          6 |        219 |         30 |         41 |        290 |
+| src/thunks/settingsThunks                                                               |          2 |         68 |          0 |          9 |         77 |
+| src/thunks/userThunks                                                                   |          4 |        116 |         16 |         20 |        152 |
+| src/utils                                                                               |          2 |         56 |         17 |         15 |         88 |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                | language           | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /home/haywae/projects/wxc/wxc-client/.env                                               | Properties         |          1 |          0 |          0 |          1 |
+| /home/haywae/projects/wxc/wxc-client/README.md                                          | Markdown           |         45 |          0 |         10 |         55 |
+| /home/haywae/projects/wxc/wxc-client/default.css                                        | PostCSS            |         10 |          0 |          1 |         11 |
+| /home/haywae/projects/wxc/wxc-client/eslint.config.js                                   | JavaScript         |         27 |          0 |          2 |         29 |
+| /home/haywae/projects/wxc/wxc-client/index.html                                         | HTML               |         13 |          0 |          1 |         14 |
+| /home/haywae/projects/wxc/wxc-client/package-lock.json                                  | JSON               |      5,101 |          0 |          1 |      5,102 |
+| /home/haywae/projects/wxc/wxc-client/package.json                                       | JSON               |         43 |          0 |          1 |         44 |
+| /home/haywae/projects/wxc/wxc-client/src/App.tsx                                        | TypeScript JSX     |         48 |          8 |          8 |         64 |
+| /home/haywae/projects/wxc/wxc-client/src/assets/icons.tsx                               | TypeScript JSX     |         86 |          1 |         26 |        113 |
+| /home/haywae/projects/wxc/wxc-client/src/components/common/globalLoading.css            | PostCSS            |         35 |          2 |          5 |         42 |
+| /home/haywae/projects/wxc/wxc-client/src/components/common/globalLoading.tsx            | TypeScript JSX     |         18 |          9 |          6 |         33 |
+| /home/haywae/projects/wxc/wxc-client/src/components/common/withAuth.tsx                 | TypeScript JSX     |         21 |         12 |         11 |         44 |
+| /home/haywae/projects/wxc/wxc-client/src/components/layout/header.css                   | PostCSS            |         88 |          6 |         13 |        107 |
+| /home/haywae/projects/wxc/wxc-client/src/components/layout/header.tsx                   | TypeScript JSX     |         57 |          5 |          8 |         70 |
+| /home/haywae/projects/wxc/wxc-client/src/components/layout/leftSideBar.css              | PostCSS            |        130 |         10 |         20 |        160 |
+| /home/haywae/projects/wxc/wxc-client/src/components/layout/leftSideBar.tsx              | TypeScript JSX     |         61 |          3 |          5 |         69 |
+| /home/haywae/projects/wxc/wxc-client/src/components/layout/rightSideBar.css             | PostCSS            |        170 |          6 |         27 |        203 |
+| /home/haywae/projects/wxc/wxc-client/src/components/layout/rightSideBar.tsx             | TypeScript JSX     |         61 |         10 |          8 |         79 |
+| /home/haywae/projects/wxc/wxc-client/src/components/notifications/notificationItem.css  | PostCSS            |         80 |          2 |         13 |         95 |
+| /home/haywae/projects/wxc/wxc-client/src/components/notifications/notificationItem.tsx  | TypeScript JSX     |         46 |          1 |          9 |         56 |
+| /home/haywae/projects/wxc/wxc-client/src/components/posts/createPostModal.css           | PostCSS            |        106 |         10 |         13 |        129 |
+| /home/haywae/projects/wxc/wxc-client/src/components/posts/createPostModal.tsx           | TypeScript JSX     |         63 |          3 |          9 |         75 |
+| /home/haywae/projects/wxc/wxc-client/src/components/posts/post.css                      | PostCSS            |        129 |          8 |         22 |        159 |
+| /home/haywae/projects/wxc/wxc-client/src/components/posts/post.tsx                      | TypeScript JSX     |         83 |         24 |         14 |        121 |
+| /home/haywae/projects/wxc/wxc-client/src/components/posts/postFeed.css                  | PostCSS            |         14 |          1 |          3 |         18 |
+| /home/haywae/projects/wxc/wxc-client/src/components/posts/postFeed.tsx                  | TypeScript JSX     |         59 |         20 |         15 |         94 |
+| /home/haywae/projects/wxc/wxc-client/src/components/posts/postOptionsMenu.css           | PostCSS            |        124 |         11 |         18 |        153 |
+| /home/haywae/projects/wxc/wxc-client/src/components/posts/postOptionsMenu.tsx           | TypeScript JSX     |         89 |          1 |          9 |         99 |
+| /home/haywae/projects/wxc/wxc-client/src/components/settings/accountSettings.tsx        | TypeScript JSX     |         49 |          0 |          6 |         55 |
+| /home/haywae/projects/wxc/wxc-client/src/components/settings/profileSettings.tsx        | TypeScript JSX     |         53 |          0 |          6 |         59 |
+| /home/haywae/projects/wxc/wxc-client/src/configs/appConfig.ts                           | TypeScript         |          1 |          0 |          0 |          1 |
+| /home/haywae/projects/wxc/wxc-client/src/configs/authTypes.ts                           | TypeScript         |          9 |          1 |          1 |         11 |
+| /home/haywae/projects/wxc/wxc-client/src/configs/notificationsTypes.ts                  | TypeScript         |         19 |          2 |          1 |         22 |
+| /home/haywae/projects/wxc/wxc-client/src/configs/postsTypes.ts                          | TypeScript         |         19 |          6 |          2 |         27 |
+| /home/haywae/projects/wxc/wxc-client/src/configs/settingsTypes.ts                       | TypeScript         |          7 |          0 |          0 |          7 |
+| /home/haywae/projects/wxc/wxc-client/src/configs/userTypes.ts                           | TypeScript         |         18 |          1 |          4 |         23 |
+| /home/haywae/projects/wxc/wxc-client/src/data/countries.ts                              | TypeScript         |         13 |          1 |          0 |         14 |
+| /home/haywae/projects/wxc/wxc-client/src/main.tsx                                       | TypeScript JSX     |         77 |          0 |          4 |         81 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/authPages/forgotPassword.tsx             | TypeScript JSX     |         82 |         20 |         12 |        114 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/authPages/login.tsx                      | TypeScript JSX     |         93 |         31 |         17 |        141 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/authPages/register.tsx                   | TypeScript JSX     |        209 |         30 |         21 |        260 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/authPages/resetPassword.tsx              | TypeScript JSX     |        104 |         22 |         22 |        148 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/dashboard.tsx                            | TypeScript JSX     |         20 |          0 |          5 |         25 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/notFound.tsx                             | TypeScript JSX     |         23 |          4 |          2 |         29 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/notificationsPage.tsx                    | TypeScript JSX     |         31 |          1 |          8 |         40 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/settingsPage.tsx                         | TypeScript JSX     |         43 |          4 |          6 |         53 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/singlePostPage.tsx                       | TypeScript JSX     |         42 |          4 |         11 |         57 |
+| /home/haywae/projects/wxc/wxc-client/src/pages/userProfilePage.tsx                      | TypeScript JSX     |         67 |          8 |         16 |         91 |
+| /home/haywae/projects/wxc/wxc-client/src/slices/auth/authSlice.ts                       | TypeScript         |        102 |         15 |          9 |        126 |
+| /home/haywae/projects/wxc/wxc-client/src/slices/notification/notificationSlice.ts       | TypeScript         |         45 |          1 |          5 |         51 |
+| /home/haywae/projects/wxc/wxc-client/src/slices/posts/postsSlice.ts                     | TypeScript         |        122 |         21 |          7 |        150 |
+| /home/haywae/projects/wxc/wxc-client/src/slices/settings/settingsSlice.ts               | TypeScript         |         45 |          0 |          4 |         49 |
+| /home/haywae/projects/wxc/wxc-client/src/slices/user/passwordResetSlice.ts              | TypeScript         |         63 |         14 |          6 |         83 |
+| /home/haywae/projects/wxc/wxc-client/src/slices/user/resgitrationSlice.ts               | TypeScript         |         37 |         11 |          5 |         53 |
+| /home/haywae/projects/wxc/wxc-client/src/slices/user/userProfileSlice.ts                | TypeScript         |         52 |          8 |          6 |         66 |
+| /home/haywae/projects/wxc/wxc-client/src/store.ts                                       | TypeScript         |         22 |          1 |          5 |         28 |
+| /home/haywae/projects/wxc/wxc-client/src/styles/App.css                                 | PostCSS            |         50 |         21 |         15 |         86 |
+| /home/haywae/projects/wxc/wxc-client/src/styles/auth-container.css                      | PostCSS            |        177 |          8 |         22 |        207 |
+| /home/haywae/projects/wxc/wxc-client/src/styles/index.css                               | PostCSS            |        108 |          9 |         14 |        131 |
+| /home/haywae/projects/wxc/wxc-client/src/styles/not-found.css                           | PostCSS            |         49 |          5 |          8 |         62 |
+| /home/haywae/projects/wxc/wxc-client/src/styles/notificationsPage.css                   | PostCSS            |         35 |          1 |          7 |         43 |
+| /home/haywae/projects/wxc/wxc-client/src/styles/settingsPage.css                        | PostCSS            |        160 |         11 |         28 |        199 |
+| /home/haywae/projects/wxc/wxc-client/src/styles/singlePostPage.css                      | PostCSS            |         46 |         11 |         12 |         69 |
+| /home/haywae/projects/wxc/wxc-client/src/styles/userProfilePage.css                     | PostCSS            |        143 |          2 |         24 |        169 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/components/component.test.tsx            | TypeScript JSX     |         78 |         14 |         19 |        111 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/icons.test.tsx                           | TypeScript JSX     |         43 |          6 |         10 |         59 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/mocks/server.ts                          | TypeScript         |         21 |          5 |          5 |         31 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/pages/forgotPassword.test.tsx            | TypeScript JSX     |        113 |         13 |         30 |        156 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/pages/login.test.tsx                     | TypeScript JSX     |        119 |         17 |         36 |        172 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/pages/register.test.tsx                  | TypeScript JSX     |         95 |         19 |         22 |        136 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/pages/restPassword.test.tsx              | TypeScript JSX     |        134 |         10 |         27 |        171 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/setupTests.ts                            | TypeScript         |          6 |          3 |          3 |         12 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/slices/authSlice.test.ts                 | TypeScript         |        101 |          2 |         15 |        118 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/slices/passwordResetSlice.test.ts        | TypeScript         |         80 |          1 |         11 |         92 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/slices/registrationSlice.test.ts         | TypeScript         |         50 |         19 |         20 |         89 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/userThunk.test.ts                        | TypeScript         |        373 |        121 |         97 |        591 |
+| /home/haywae/projects/wxc/wxc-client/src/tests/utils.test.ts                            | TypeScript         |         88 |         29 |         29 |        146 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/authThunks/authCheckThunk.ts            | TypeScript         |         45 |         11 |          7 |         63 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/authThunks/loginThunk.ts                | TypeScript         |         53 |          8 |          6 |         67 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/authThunks/logoutThunk.ts               | TypeScript         |         34 |          6 |          3 |         43 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/authThunks/refreshTokenThunk.ts         | TypeScript         |         34 |          9 |          8 |         51 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/notificationThunks/notificationThunk.ts | TypeScript         |         34 |          4 |          6 |         44 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/postsThunks/createPostThunk.ts          | TypeScript         |         39 |          6 |          6 |         51 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/postsThunks/deletePostThunk.ts          | TypeScript         |         31 |          6 |          6 |         43 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/postsThunks/fetchPostsThunk.ts          | TypeScript         |         39 |          4 |         10 |         53 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/postsThunks/fetchSinglePostThunk.ts     | TypeScript         |         32 |          4 |          6 |         42 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/postsThunks/fetchUserPostsThunk.ts      | TypeScript         |         39 |          6 |          6 |         51 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/postsThunks/updatePostThunk.ts          | TypeScript         |         39 |          4 |          7 |         50 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/settingsThunks/fetchSettingsThunk.ts    | TypeScript         |         30 |          0 |          4 |         34 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/settingsThunks/updateSettingsThunk.ts   | TypeScript         |         38 |          0 |          5 |         43 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/userThunks/fetchUserProfile.ts          | TypeScript         |         31 |          3 |          5 |         39 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/userThunks/registerThunk.ts             | TypeScript         |         33 |          4 |          4 |         41 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/userThunks/requestPasswordResetThunk.ts | TypeScript         |         26 |          3 |          6 |         35 |
+| /home/haywae/projects/wxc/wxc-client/src/thunks/userThunks/resetPasswordThunk.ts        | TypeScript         |         26 |          6 |          5 |         37 |
+| /home/haywae/projects/wxc/wxc-client/src/utils/authUtils.ts                             | TypeScript         |         51 |         17 |         14 |         82 |
+| /home/haywae/projects/wxc/wxc-client/src/utils/hooks.ts                                 | TypeScript         |          5 |          0 |          1 |          6 |
+| /home/haywae/projects/wxc/wxc-client/src/vite-env.d.ts                                  | TypeScript         |          0 |          1 |          1 |          2 |
+| /home/haywae/projects/wxc/wxc-client/tsconfig.app.json                                  | JSON               |         23 |          2 |          3 |         28 |
+| /home/haywae/projects/wxc/wxc-client/tsconfig.json                                      | JSON with Comments |          7 |          0 |          1 |          8 |
+| /home/haywae/projects/wxc/wxc-client/tsconfig.node.json                                 | JSON               |         21 |          2 |          3 |         26 |
+| /home/haywae/projects/wxc/wxc-client/vite.config.ts                                     | TypeScript         |         13 |          4 |          1 |         18 |
+| Total                                                                                   |                    |     11,067 |        796 |      1,047 |     12,910 |
++-----------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

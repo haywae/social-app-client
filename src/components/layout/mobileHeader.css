@@ -1,0 +1,170 @@
+/* --- Base Header Styles (for both auth and no-auth) --- */
+.main-header-no-auth,
+.main-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 900;
+    box-sizing: border-box;
+    padding: 0 1rem;
+}
+
+/* --- Unauthenticated Header --- */
+.main-header-no-auth {
+    background-color: var(--background);
+    border-bottom: 2px solid var(--primary-bg);
+}
+
+.header-content-no-auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+/* --- Authenticated Mobile Header --- */
+.main-header {
+    /* glassy background effect */
+    background-color: var(--background-alpha);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--grey-6);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.header-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--base);
+    margin: 0;
+}
+
+.header-logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--base);
+    text-decoration: none;
+}
+
+
+.header-logo {
+    display: flex; /* Use flex to easily center the image if needed */
+    align-items: center;
+    text-decoration: none;
+}
+
+.header-logo img {
+    height: 32px; /* A standard, clean height for a mobile logo */
+    width: auto;  /* Maintain aspect ratio */
+    display: block;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+/* --- Mobile Bottom Navigation --- */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--background);
+    border-top: 1px solid var(--grey-6);
+    z-index: 900;
+}
+
+.bottom-nav a {
+    color: var(--grey-4);
+    text-decoration: none;
+    transition: color 0.2s; /* Add a smooth transition */
+    position: relative;
+}
+
+/* Style the active link using the .active class from NavLink */
+.bottom-nav a.active {
+    color: var(--base);
+}
+
+/* A wrapper for icons that might have an indicator */
+.nav-icon-wrapper {
+    position: relative;
+    align-items: center;
+}
+
+/* The style for the notification indicator */
+.notification-indicator {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+
+    /* Sizing & Shape */
+    height: 20px;
+    min-width: 20px; /* Ensures single digits are in a circle */
+    padding: 0 5px;   /* Allows width to expand for 2+ digits */
+    border-radius: 10px; /* Creates the circle/pill shape */
+    
+    /* Color & Border */
+    background-color: var(--danger); /* Use red for high visibility */
+    border: 2px solid var(--background); /* Helps it stand out from the icon */
+    
+    /* Text Styles */
+    color: var(--background); /* White text for high contrast */
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1; /* Ensures text is vertically centered */
+    
+    /* Flexbox for perfect centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Make icons larger for better touch targets */
+.bottom-nav a svg {
+    width: 28px;
+    height: 28px;
+    
+}
+
+
+/* --- Hide Mobile Elements on Desktop --- */
+@media (min-width: 768px) {
+    .main-header,
+    .bottom-nav {
+        display: none;
+    }
+}
+
+/* --- Dark Theme Adjustments --- */
+@media (prefers-color-scheme: dark) {
+    .main-header-no-auth,
+    .bottom-nav {
+        background-color: var(--grey-2);
+        border-color: var(--grey-3);
+    }
+    .main-header {
+        background-color: var(--background-dark-alpha);
+        border-color: var(--grey-3);
+    }
+    .header-title {
+        color: var(--grey-7);
+    }
+    .notification-indicator {
+        border-color: var(--grey-2); /* Adjust border color for dark mode */
+    }
+}

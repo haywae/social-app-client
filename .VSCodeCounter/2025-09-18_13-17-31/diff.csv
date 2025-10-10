@@ -1,0 +1,181 @@
+"filename", "language", "TypeScript", "TypeScript JSX", "JSON", "PostCSS", "XML", "JSON with Comments", "comment", "blank", "total"
+"/home/haywae/projects/wxc/wxc-client/package-lock.json", "JSON", 0, 0, 234, 0, 0, 0, 0, 0, 234
+"/home/haywae/projects/wxc/wxc-client/package.json", "JSON", 0, 0, 2, 0, 0, 0, 0, 0, 2
+"/home/haywae/projects/wxc/wxc-client/src/App.tsx", "TypeScript JSX", 0, 1, 0, 0, 0, 0, 0, 5, 6
+"/home/haywae/projects/wxc/wxc-client/src/appConfig.ts", "TypeScript", 4, 0, 0, 0, 0, 0, 0, 3, 7
+"/home/haywae/projects/wxc/wxc-client/src/assets/countries.ts", "TypeScript", 21, 0, 0, 0, 0, 0, 6, 6, 33
+"/home/haywae/projects/wxc/wxc-client/src/assets/currencies.ts", "TypeScript", 183, 0, 0, 0, 0, 0, 0, 3, 186
+"/home/haywae/projects/wxc/wxc-client/src/assets/default-avatar.svg", "XML", 0, 0, 0, 0, 3, 0, 0, 0, 3
+"/home/haywae/projects/wxc/wxc-client/src/assets/icons.tsx", "TypeScript JSX", 0, 43, 0, 0, 0, 0, 25, 0, 68
+"/home/haywae/projects/wxc/wxc-client/src/assets/text.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/home/haywae/projects/wxc/wxc-client/src/components/comments/comment.css", "PostCSS", 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/home/haywae/projects/wxc/wxc-client/src/components/comments/comment.tsx", "TypeScript JSX", 0, 91, 0, 0, 0, 0, 4, 15, 110
+"/home/haywae/projects/wxc/wxc-client/src/components/comments/commentOptionsMenu.tsx", "TypeScript JSX", 0, 98, 0, 0, 0, 0, 3, 9, 110
+"/home/haywae/projects/wxc/wxc-client/src/components/common/cDropdown.css", "PostCSS", 0, 0, 0, 60, 0, 0, 0, 8, 68
+"/home/haywae/projects/wxc/wxc-client/src/components/common/countryDropdown.tsx", "TypeScript JSX", 0, 67, 0, 0, 0, 0, 12, 10, 89
+"/home/haywae/projects/wxc/wxc-client/src/components/common/globalLoading.tsx", "TypeScript JSX", 0, 1, 0, 0, 0, 0, -1, 0, 0
+"/home/haywae/projects/wxc/wxc-client/src/components/common/modal.css", "PostCSS", 0, 0, 0, 40, 0, 0, 0, 5, 45
+"/home/haywae/projects/wxc/wxc-client/src/components/common/modal.tsx", "TypeScript JSX", 0, 35, 0, 0, 0, 0, 1, 4, 40
+"/home/haywae/projects/wxc/wxc-client/src/components/common/withAuth.tsx", "TypeScript JSX", 0, 4, 0, 0, 0, 0, 1, -1, 4
+"/home/haywae/projects/wxc/wxc-client/src/components/exchange/converter.tsx", "TypeScript JSX", 0, 111, 0, 0, 0, 0, 25, 8, 144
+"/home/haywae/projects/wxc/wxc-client/src/components/exchange/currencyDropdown.tsx", "TypeScript JSX", 0, 68, 0, 0, 0, 0, 25, 8, 101
+"/home/haywae/projects/wxc/wxc-client/src/components/exchange/currencyInput.tsx", "TypeScript JSX", 0, 57, 0, 0, 0, 0, 34, 8, 99
+"/home/haywae/projects/wxc/wxc-client/src/components/exchange/editExchangeModal.tsx", "TypeScript JSX", 0, 63, 0, 0, 0, 0, 1, 7, 71
+"/home/haywae/projects/wxc/wxc-client/src/components/exchange/ratesCardSkeleton.css", "PostCSS", 0, 0, 0, 30, 0, 0, 6, 8, 44
+"/home/haywae/projects/wxc/wxc-client/src/components/exchange/ratesCardSkeleton.tsx", "TypeScript JSX", 0, 23, 0, 0, 0, 0, 3, 3, 29
+"/home/haywae/projects/wxc/wxc-client/src/components/exchange/ratesTable.tsx", "TypeScript JSX", 0, 67, 0, 0, 0, 0, 16, 3, 86
+"/home/haywae/projects/wxc/wxc-client/src/components/layout/header.css", "PostCSS", 0, 0, 0, -88, 0, 0, -6, -13, -107
+"/home/haywae/projects/wxc/wxc-client/src/components/layout/header.tsx", "TypeScript JSX", 0, -57, 0, 0, 0, 0, -5, -8, -70
+"/home/haywae/projects/wxc/wxc-client/src/components/layout/leftSideBar.css", "PostCSS", 0, 0, 0, -4, 0, 0, 0, 0, -4
+"/home/haywae/projects/wxc/wxc-client/src/components/layout/leftSideBar.tsx", "TypeScript JSX", 0, -1, 0, 0, 0, 0, 0, 1, 0
+"/home/haywae/projects/wxc/wxc-client/src/components/layout/mobileHeader.css", "PostCSS", 0, 0, 0, 92, 0, 0, 9, 16, 117
+"/home/haywae/projects/wxc/wxc-client/src/components/layout/mobileHeader.tsx", "TypeScript JSX", 0, 62, 0, 0, 0, 0, 8, 11, 81
+"/home/haywae/projects/wxc/wxc-client/src/components/layout/pageHeader.css", "PostCSS", 0, 0, 0, 48, 0, 0, 2, 6, 56
+"/home/haywae/projects/wxc/wxc-client/src/components/layout/pageHeader.tsx", "TypeScript JSX", 0, 22, 0, 0, 0, 0, 0, 4, 26
+"/home/haywae/projects/wxc/wxc-client/src/components/notifications/notificationItem.css", "PostCSS", 0, 0, 0, -2, 0, 0, 0, -1, -3
+"/home/haywae/projects/wxc/wxc-client/src/components/notifications/notificationItem.tsx", "TypeScript JSX", 0, 8, 0, 0, 0, 0, -1, -2, 5
+"/home/haywae/projects/wxc/wxc-client/src/components/posts/createPostModal.css", "PostCSS", 0, 0, 0, -106, 0, 0, -10, -13, -129
+"/home/haywae/projects/wxc/wxc-client/src/components/posts/createPostModal.tsx", "TypeScript JSX", 0, -63, 0, 0, 0, 0, -3, -9, -75
+"/home/haywae/projects/wxc/wxc-client/src/components/posts/post.css", "PostCSS", 0, 0, 0, -12, 0, 0, 5, -2, -9
+"/home/haywae/projects/wxc/wxc-client/src/components/posts/post.tsx", "TypeScript JSX", 0, 4, 0, 0, 0, 0, 6, 9, 19
+"/home/haywae/projects/wxc/wxc-client/src/components/posts/postFeed.css", "PostCSS", 0, 0, 0, 23, 0, 0, 1, 5, 29
+"/home/haywae/projects/wxc/wxc-client/src/components/posts/postFeed.tsx", "TypeScript JSX", 0, 8, 0, 0, 0, 0, -1, -1, 6
+"/home/haywae/projects/wxc/wxc-client/src/components/posts/postOptionsMenu.css", "PostCSS", 0, 0, 0, -1, 0, 0, 0, 0, -1
+"/home/haywae/projects/wxc/wxc-client/src/components/posts/postOptionsMenu.tsx", "TypeScript JSX", 0, 13, 0, 0, 0, 0, 5, 1, 19
+"/home/haywae/projects/wxc/wxc-client/src/components/search/postResult.css", "PostCSS", 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/home/haywae/projects/wxc/wxc-client/src/components/search/postResult.tsx", "TypeScript JSX", 0, 22, 0, 0, 0, 0, 3, 6, 31
+"/home/haywae/projects/wxc/wxc-client/src/components/search/searchOverlay.css", "PostCSS", 0, 0, 0, 11, 0, 0, 2, 2, 15
+"/home/haywae/projects/wxc/wxc-client/src/components/search/searchOverlay.tsx", "TypeScript JSX", 0, 19, 0, 0, 0, 0, 6, 5, 30
+"/home/haywae/projects/wxc/wxc-client/src/components/search/searchResultContent.tsx", "TypeScript JSX", 0, 41, 0, 0, 0, 0, 7, 6, 54
+"/home/haywae/projects/wxc/wxc-client/src/components/search/tabbedResultComponent.tsx", "TypeScript JSX", 0, 38, 0, 0, 0, 0, 3, 5, 46
+"/home/haywae/projects/wxc/wxc-client/src/components/search/userResult.css", "PostCSS", 0, 0, 0, 72, 0, 0, 3, 12, 87
+"/home/haywae/projects/wxc/wxc-client/src/components/search/userResult.tsx", "TypeScript JSX", 0, 51, 0, 0, 0, 0, 1, 8, 60
+"/home/haywae/projects/wxc/wxc-client/src/components/settings/accountSettings.tsx", "TypeScript JSX", 0, -49, 0, 0, 0, 0, 0, -6, -55
+"/home/haywae/projects/wxc/wxc-client/src/components/settings/changeEmailForm.tsx", "TypeScript JSX", 0, 47, 0, 0, 0, 0, 0, 5, 52
+"/home/haywae/projects/wxc/wxc-client/src/components/settings/changePasswordForm.tsx", "TypeScript JSX", 0, 57, 0, 0, 0, 0, 0, 7, 64
+"/home/haywae/projects/wxc/wxc-client/src/components/settings/changeUsernameForm.tsx", "TypeScript JSX", 0, 47, 0, 0, 0, 0, 0, 4, 51
+"/home/haywae/projects/wxc/wxc-client/src/components/settings/deleteAccountModal.css", "PostCSS", 0, 0, 0, 45, 0, 0, 1, 5, 51
+"/home/haywae/projects/wxc/wxc-client/src/components/settings/deleteAccountModal.tsx", "TypeScript JSX", 0, 58, 0, 0, 0, 0, 2, 6, 66
+"/home/haywae/projects/wxc/wxc-client/src/components/settings/profileSettings.tsx", "TypeScript JSX", 0, -53, 0, 0, 0, 0, 0, -6, -59
+"/home/haywae/projects/wxc/wxc-client/src/components/userProfile/liveRatesTab.css", "PostCSS", 0, 0, 0, 103, 0, 0, 10, 20, 133
+"/home/haywae/projects/wxc/wxc-client/src/components/userProfile/liveRatesTab.tsx", "TypeScript JSX", 0, 42, 0, 0, 0, 0, 3, 4, 49
+"/home/haywae/projects/wxc/wxc-client/src/configs/appConfig.ts", "TypeScript", -1, 0, 0, 0, 0, 0, 0, 0, -1
+"/home/haywae/projects/wxc/wxc-client/src/configs/authTypes.ts", "TypeScript", -9, 0, 0, 0, 0, 0, -1, -1, -11
+"/home/haywae/projects/wxc/wxc-client/src/configs/notificationsTypes.ts", "TypeScript", -19, 0, 0, 0, 0, 0, -2, -1, -22
+"/home/haywae/projects/wxc/wxc-client/src/configs/postsTypes.ts", "TypeScript", -19, 0, 0, 0, 0, 0, -6, -2, -27
+"/home/haywae/projects/wxc/wxc-client/src/configs/settingsTypes.ts", "TypeScript", -7, 0, 0, 0, 0, 0, 0, 0, -7
+"/home/haywae/projects/wxc/wxc-client/src/configs/userTypes.ts", "TypeScript", -18, 0, 0, 0, 0, 0, -1, -4, -23
+"/home/haywae/projects/wxc/wxc-client/src/data/countries.ts", "TypeScript", -13, 0, 0, 0, 0, 0, -1, 0, -14
+"/home/haywae/projects/wxc/wxc-client/src/main.tsx", "TypeScript JSX", 0, 32, 0, 0, 0, 0, 1, 1, 34
+"/home/haywae/projects/wxc/wxc-client/src/pages/accountManagementPage.tsx", "TypeScript JSX", 0, 24, 0, 0, 0, 0, 0, 3, 27
+"/home/haywae/projects/wxc/wxc-client/src/pages/authPages/login.tsx", "TypeScript JSX", 0, 1, 0, 0, 0, 0, -1, 0, 0
+"/home/haywae/projects/wxc/wxc-client/src/pages/authPages/register.tsx", "TypeScript JSX", 0, -1, 0, 0, 0, 0, 4, 4, 7
+"/home/haywae/projects/wxc/wxc-client/src/pages/createPostPage.tsx", "TypeScript JSX", 0, 67, 0, 0, 0, 0, 27, 11, 105
+"/home/haywae/projects/wxc/wxc-client/src/pages/dashboard.tsx", "TypeScript JSX", 0, -20, 0, 0, 0, 0, 0, -5, -25
+"/home/haywae/projects/wxc/wxc-client/src/pages/errorPage.tsx", "TypeScript JSX", 0, 23, 0, 0, 0, 0, 1, 4, 28
+"/home/haywae/projects/wxc/wxc-client/src/pages/exchangePage.tsx", "TypeScript JSX", 0, 177, 0, 0, 0, 0, 37, 35, 249
+"/home/haywae/projects/wxc/wxc-client/src/pages/home.tsx", "TypeScript JSX", 0, 25, 0, 0, 0, 0, 2, 5, 32
+"/home/haywae/projects/wxc/wxc-client/src/pages/notificationsPage.tsx", "TypeScript JSX", 0, 12, 0, 0, 0, 0, -1, 2, 13
+"/home/haywae/projects/wxc/wxc-client/src/pages/postDetailPage.tsx", "TypeScript JSX", 0, 99, 0, 0, 0, 0, 2, 15, 116
+"/home/haywae/projects/wxc/wxc-client/src/pages/profileSettingsPage.tsx", "TypeScript JSX", 0, 128, 0, 0, 0, 0, 6, 18, 152
+"/home/haywae/projects/wxc/wxc-client/src/pages/searchPage.tsx", "TypeScript JSX", 0, 70, 0, 0, 0, 0, 9, 11, 90
+"/home/haywae/projects/wxc/wxc-client/src/pages/securityPrivacyPage.tsx", "TypeScript JSX", 0, 34, 0, 0, 0, 0, 0, 3, 37
+"/home/haywae/projects/wxc/wxc-client/src/pages/settingsPage.tsx", "TypeScript JSX", 0, 11, 0, 0, 0, 0, 12, 1, 24
+"/home/haywae/projects/wxc/wxc-client/src/pages/singlePostPage.tsx", "TypeScript JSX", 0, -42, 0, 0, 0, 0, -4, -11, -57
+"/home/haywae/projects/wxc/wxc-client/src/pages/userProfilePage.tsx", "TypeScript JSX", 0, 76, 0, 0, 0, 0, 4, 9, 89
+"/home/haywae/projects/wxc/wxc-client/src/slices/auth/authSlice.ts", "TypeScript", 77, 0, 0, 0, 0, 0, 0, 6, 83
+"/home/haywae/projects/wxc/wxc-client/src/slices/comments/commentsSlice.ts", "TypeScript", 91, 0, 0, 0, 0, 0, 1, 5, 97
+"/home/haywae/projects/wxc/wxc-client/src/slices/exchange/exchangeSlice.ts", "TypeScript", 194, 0, 0, 0, 0, 0, 61, 19, 274
+"/home/haywae/projects/wxc/wxc-client/src/slices/exchange/localStorageMiddleware.ts", "TypeScript", 24, 0, 0, 0, 0, 0, 14, 4, 42
+"/home/haywae/projects/wxc/wxc-client/src/slices/notification/notificationSlice.ts", "TypeScript", 24, 0, 0, 0, 0, 0, 0, 0, 24
+"/home/haywae/projects/wxc/wxc-client/src/slices/posts/postsSlice.ts", "TypeScript", 53, 0, 0, 0, 0, 0, 5, 3, 61
+"/home/haywae/projects/wxc/wxc-client/src/slices/search/searchSlice.ts", "TypeScript", 124, 0, 0, 0, 0, 0, 15, 8, 147
+"/home/haywae/projects/wxc/wxc-client/src/slices/settings/settingsSlice.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 1, 2, 20
+"/home/haywae/projects/wxc/wxc-client/src/slices/user/resgitrationSlice.ts", "TypeScript", 0, 0, 0, 0, 0, 0, -1, 0, -1
+"/home/haywae/projects/wxc/wxc-client/src/slices/user/userProfileSlice.ts", "TypeScript", 27, 0, 0, 0, 0, 0, 3, 0, 30
+"/home/haywae/projects/wxc/wxc-client/src/store.ts", "TypeScript", 8, 0, 0, 0, 0, 0, 0, 1, 9
+"/home/haywae/projects/wxc/wxc-client/src/styles/App.css", "PostCSS", 0, 0, 0, 6, 0, 0, 0, 1, 7
+"/home/haywae/projects/wxc/wxc-client/src/styles/accountManagementPage.css", "PostCSS", 0, 0, 0, 39, 0, 0, 2, 6, 47
+"/home/haywae/projects/wxc/wxc-client/src/styles/auth-container.css", "PostCSS", 0, 0, 0, -34, 0, 0, 0, -5, -39
+"/home/haywae/projects/wxc/wxc-client/src/styles/createPostPage.css", "PostCSS", 0, 0, 0, 99, 0, 0, 4, 21, 124
+"/home/haywae/projects/wxc/wxc-client/src/styles/errorPage.css", "PostCSS", 0, 0, 0, 21, 0, 0, 0, 2, 23
+"/home/haywae/projects/wxc/wxc-client/src/styles/exchangePage.css", "PostCSS", 0, 0, 0, 240, 0, 0, 6, 38, 284
+"/home/haywae/projects/wxc/wxc-client/src/styles/icons.css", "PostCSS", 0, 0, 0, 17, 0, 0, 1, 3, 21
+"/home/haywae/projects/wxc/wxc-client/src/styles/index.css", "PostCSS", 0, 0, 0, 9, 0, 0, 3, 2, 14
+"/home/haywae/projects/wxc/wxc-client/src/styles/notificationsPage.css", "PostCSS", 0, 0, 0, -8, 0, 0, 0, -3, -11
+"/home/haywae/projects/wxc/wxc-client/src/styles/postDetailPage.css", "PostCSS", 0, 0, 0, 123, 0, 0, 12, 17, 152
+"/home/haywae/projects/wxc/wxc-client/src/styles/profileSettingsPage.css", "PostCSS", 0, 0, 0, 42, 0, 0, 4, 7, 53
+"/home/haywae/projects/wxc/wxc-client/src/styles/searchPage.css", "PostCSS", 0, 0, 0, 317, 0, 0, 15, 53, 385
+"/home/haywae/projects/wxc/wxc-client/src/styles/settingsPage.css", "PostCSS", 0, 0, 0, -23, 0, 0, -1, -5, -29
+"/home/haywae/projects/wxc/wxc-client/src/styles/singlePostPage.css", "PostCSS", 0, 0, 0, -46, 0, 0, -11, -12, -69
+"/home/haywae/projects/wxc/wxc-client/src/styles/userProfilePage.css", "PostCSS", 0, 0, 0, -57, 0, 0, 4, -9, -62
+"/home/haywae/projects/wxc/wxc-client/src/tests/assets/icons.test.tsx", "TypeScript JSX", 0, 42, 0, 0, 0, 0, 6, 9, 57
+"/home/haywae/projects/wxc/wxc-client/src/tests/components/component.test.tsx", "TypeScript JSX", 0, -78, 0, 0, 0, 0, -14, -19, -111
+"/home/haywae/projects/wxc/wxc-client/src/tests/components/converter.test.tsx", "TypeScript JSX", 0, 134, 0, 0, 0, 0, 13, 36, 183
+"/home/haywae/projects/wxc/wxc-client/src/tests/components/countryDropdown.test.tsx", "TypeScript JSX", 0, 78, 0, 0, 0, 0, 26, 32, 136
+"/home/haywae/projects/wxc/wxc-client/src/tests/components/currencyDropdown.test.tsx", "TypeScript JSX", 0, 109, 0, 0, 0, 0, 11, 22, 142
+"/home/haywae/projects/wxc/wxc-client/src/tests/components/currencyInput.test.tsx", "TypeScript JSX", 0, 81, 0, 0, 0, 0, 8, 16, 105
+"/home/haywae/projects/wxc/wxc-client/src/tests/components/withAuth.test.tsx", "TypeScript JSX", 0, 60, 0, 0, 0, 0, 11, 16, 87
+"/home/haywae/projects/wxc/wxc-client/src/tests/icons.test.tsx", "TypeScript JSX", 0, -43, 0, 0, 0, 0, -6, -10, -59
+"/home/haywae/projects/wxc/wxc-client/src/tests/mocks/server.ts", "TypeScript", -21, 0, 0, 0, 0, 0, -5, -5, -31
+"/home/haywae/projects/wxc/wxc-client/src/tests/pages/auth/forgotPassword.test.tsx", "TypeScript JSX", 0, 110, 0, 0, 0, 0, 13, 30, 153
+"/home/haywae/projects/wxc/wxc-client/src/tests/pages/auth/login.test.tsx", "TypeScript JSX", 0, 138, 0, 0, 0, 0, 6, 32, 176
+"/home/haywae/projects/wxc/wxc-client/src/tests/pages/auth/register.test.tsx", "TypeScript JSX", 0, 121, 0, 0, 0, 0, 28, 35, 184
+"/home/haywae/projects/wxc/wxc-client/src/tests/pages/auth/resetPassword.test.tsx", "TypeScript JSX", 0, 134, 0, 0, 0, 0, 10, 27, 171
+"/home/haywae/projects/wxc/wxc-client/src/tests/pages/forgotPassword.test.tsx", "TypeScript JSX", 0, -113, 0, 0, 0, 0, -13, -30, -156
+"/home/haywae/projects/wxc/wxc-client/src/tests/pages/home.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/home/haywae/projects/wxc/wxc-client/src/tests/pages/login.test.tsx", "TypeScript JSX", 0, -119, 0, 0, 0, 0, -17, -36, -172
+"/home/haywae/projects/wxc/wxc-client/src/tests/pages/register.test.tsx", "TypeScript JSX", 0, -95, 0, 0, 0, 0, -19, -22, -136
+"/home/haywae/projects/wxc/wxc-client/src/tests/pages/restPassword.test.tsx", "TypeScript JSX", 0, -134, 0, 0, 0, 0, -10, -27, -171
+"/home/haywae/projects/wxc/wxc-client/src/tests/server.ts", "TypeScript", 32, 0, 0, 0, 0, 0, 5, 9, 46
+"/home/haywae/projects/wxc/wxc-client/src/tests/slices/authSlice.test.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/home/haywae/projects/wxc/wxc-client/src/tests/slices/exchangeSlice.test.ts", "TypeScript", 91, 0, 0, 0, 0, 0, 5, 13, 109
+"/home/haywae/projects/wxc/wxc-client/src/tests/thunks/authThunk.test.ts", "TypeScript", 221, 0, 0, 0, 0, 0, 69, 62, 352
+"/home/haywae/projects/wxc/wxc-client/src/tests/thunks/exchangeThunk.test.ts", "TypeScript", 175, 0, 0, 0, 0, 0, 32, 45, 252
+"/home/haywae/projects/wxc/wxc-client/src/tests/thunks/userThunk.test.ts", "TypeScript", 163, 0, 0, 0, 0, 0, 48, 43, 254
+"/home/haywae/projects/wxc/wxc-client/src/tests/userThunk.test.ts", "TypeScript", -373, 0, 0, 0, 0, 0, -121, -97, -591
+"/home/haywae/projects/wxc/wxc-client/src/tests/utils.test.ts", "TypeScript", -88, 0, 0, 0, 0, 0, -29, -29, -146
+"/home/haywae/projects/wxc/wxc-client/src/tests/utils/authUtils.test.ts", "TypeScript", 84, 0, 0, 0, 0, 0, 29, 31, 144
+"/home/haywae/projects/wxc/wxc-client/src/thunks/authThunks/authCheckThunk.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 1, 3, 11
+"/home/haywae/projects/wxc/wxc-client/src/thunks/authThunks/loginThunk.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 2, 4, 8
+"/home/haywae/projects/wxc/wxc-client/src/thunks/authThunks/refreshTokenThunk.ts", "TypeScript", 5, 0, 0, 0, 0, 0, 0, 1, 6
+"/home/haywae/projects/wxc/wxc-client/src/thunks/commentsThunks/createCommentThunk.ts", "TypeScript", 39, 0, 0, 0, 0, 0, 1, 4, 44
+"/home/haywae/projects/wxc/wxc-client/src/thunks/commentsThunks/deleteCommentThunk.ts", "TypeScript", 27, 0, 0, 0, 0, 0, 0, 3, 30
+"/home/haywae/projects/wxc/wxc-client/src/thunks/commentsThunks/fetchCommentsThunk.ts", "TypeScript", 47, 0, 0, 0, 0, 0, 3, 9, 59
+"/home/haywae/projects/wxc/wxc-client/src/thunks/commentsThunks/toggleCommentLikeThunk.ts", "TypeScript", 32, 0, 0, 0, 0, 0, 1, 5, 38
+"/home/haywae/projects/wxc/wxc-client/src/thunks/commentsThunks/updateCommentThunk.ts", "TypeScript", 39, 0, 0, 0, 0, 0, 0, 4, 43
+"/home/haywae/projects/wxc/wxc-client/src/thunks/exchangeThunks/fetchExchangeDataThunk.ts", "TypeScript", 59, 0, 0, 0, 0, 0, 4, 8, 71
+"/home/haywae/projects/wxc/wxc-client/src/thunks/exchangeThunks/fetchUserExchangeDataThunk.ts", "TypeScript", 58, 0, 0, 0, 0, 0, 5, 7, 70
+"/home/haywae/projects/wxc/wxc-client/src/thunks/exchangeThunks/updateExchangeDetailsThunk.ts", "TypeScript", 66, 0, 0, 0, 0, 0, 6, 11, 83
+"/home/haywae/projects/wxc/wxc-client/src/thunks/exchangeThunks/updateExchangeRatesThunk.ts", "TypeScript", 64, 0, 0, 0, 0, 0, 8, 13, 85
+"/home/haywae/projects/wxc/wxc-client/src/thunks/notificationThunks/notificationListThunk.ts", "TypeScript", 37, 0, 0, 0, 0, 0, 1, 5, 43
+"/home/haywae/projects/wxc/wxc-client/src/thunks/notificationThunks/notificationThunk.ts", "TypeScript", -34, 0, 0, 0, 0, 0, -4, -6, -44
+"/home/haywae/projects/wxc/wxc-client/src/thunks/postsThunks/fetchUserPostsThunk.ts", "TypeScript", 0, 0, 0, 0, 0, 0, -1, 1, 0
+"/home/haywae/projects/wxc/wxc-client/src/thunks/postsThunks/toggleLikeThunk.ts", "TypeScript", 36, 0, 0, 0, 0, 0, 3, 8, 47
+"/home/haywae/projects/wxc/wxc-client/src/thunks/postsThunks/updatePostThunk.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/haywae/projects/wxc/wxc-client/src/thunks/searchThunks/fetchDiscoveryThunk.ts", "TypeScript", 57, 0, 0, 0, 0, 0, 3, 8, 68
+"/home/haywae/projects/wxc/wxc-client/src/thunks/searchThunks/fetchResultsThunk.ts", "TypeScript", 82, 0, 0, 0, 0, 0, 3, 7, 92
+"/home/haywae/projects/wxc/wxc-client/src/thunks/settingsThunks/deleteAccountThunk.ts", "TypeScript", 39, 0, 0, 0, 0, 0, 7, 7, 53
+"/home/haywae/projects/wxc/wxc-client/src/thunks/settingsThunks/requestEmailChangeThunk.ts", "TypeScript", 35, 0, 0, 0, 0, 0, 0, 4, 39
+"/home/haywae/projects/wxc/wxc-client/src/thunks/settingsThunks/updatePasswordThunk.ts", "TypeScript", 35, 0, 0, 0, 0, 0, 0, 4, 39
+"/home/haywae/projects/wxc/wxc-client/src/thunks/settingsThunks/updateUsernameThunk.ts", "TypeScript", 41, 0, 0, 0, 0, 0, 1, 6, 48
+"/home/haywae/projects/wxc/wxc-client/src/thunks/settingsThunks/uploadProfilePictureThunk.ts", "TypeScript", 35, 0, 0, 0, 0, 0, 1, 7, 43
+"/home/haywae/projects/wxc/wxc-client/src/thunks/userThunks/fetchUserProfile.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 1, 3, 11
+"/home/haywae/projects/wxc/wxc-client/src/thunks/userThunks/followUserThunk.ts", "TypeScript", 37, 0, 0, 0, 0, 0, 8, 10, 55
+"/home/haywae/projects/wxc/wxc-client/src/thunks/userThunks/registerThunk.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 4, 1, 12
+"/home/haywae/projects/wxc/wxc-client/src/thunks/userThunks/requestPasswordResetThunk.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 0, 0, 2
+"/home/haywae/projects/wxc/wxc-client/src/thunks/userThunks/resetPasswordThunk.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 1, 1, 8
+"/home/haywae/projects/wxc/wxc-client/src/types/exchange.ts", "TypeScript", 18, 0, 0, 0, 0, 0, 3, 4, 25
+"/home/haywae/projects/wxc/wxc-client/src/types/settings.ts", "TypeScript", 15, 0, 0, 0, 0, 0, 0, 1, 16
+"/home/haywae/projects/wxc/wxc-client/src/types/user.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 5, 1, 12
+"/home/haywae/projects/wxc/wxc-client/src/types/userProfile.ts", "TypeScript", 12, 0, 0, 0, 0, 0, 0, 0, 12
+"/home/haywae/projects/wxc/wxc-client/src/utils/commentUtils.ts", "TypeScript", 26, 0, 0, 0, 0, 0, 4, 2, 32
+"/home/haywae/projects/wxc/wxc-client/src/utils/exchangeUtils.ts", "TypeScript", 54, 0, 0, 0, 0, 0, 37, 12, 103
+"/home/haywae/projects/wxc/wxc-client/src/utils/notification_util.ts", "TypeScript", 46, 0, 0, 0, 0, 0, 4, 8, 58
+"/home/haywae/projects/wxc/wxc-client/src/utils/searchUtils.ts", "TypeScript", 24, 0, 0, 0, 0, 0, 7, 5, 36
+"/home/haywae/projects/wxc/wxc-client/src/utils/tagsUtils.ts", "TypeScript", 8, 0, 0, 0, 0, 0, 8, 2, 18
+"/home/haywae/projects/wxc/wxc-client/src/vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 8, 0, 8
+"/home/haywae/projects/wxc/wxc-client/tsconfig.app.json", "JSON", 0, 0, 0, 0, 0, 0, 6, 1, 7
+"/home/haywae/projects/wxc/wxc-client/tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 0, 0, 3, 0, 3
+"/home/haywae/projects/wxc/wxc-client/tsconfig.node.json", "JSON", 0, 0, 0, 0, 0, 0, 7, 0, 7
+"Total", "-", 2122, 2186, 236, 1056, 3, 0, 675, 823, 7101

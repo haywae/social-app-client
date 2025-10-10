@@ -1,0 +1,60 @@
+/* in postOptionsMenu.css */
+
+.options-popover-container {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow-lg); /* Use a more prominent shadow for popovers */
+    z-index: 10;
+    min-width: 220px; /* Increased min-width to better accommodate text */
+    max-width: 300px; /* Added max-width to prevent extreme widening */
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.menu-option-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-option-item {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Increased gap for better spacing */
+    padding: 10px 12px; /* Increased padding for better touch targets and visuals */
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    /* This is the key fix: keeps icon and text on a single line */
+    white-space: nowrap; 
+}
+
+.menu-option-item:hover {
+    background-color: var(--primary-bg);
+}
+
+.menu-option-item svg {
+    width: 20px;
+    height: 20px;
+    color: var(--text-secondary); /* Standardize icon color */
+    /* This is the second key fix: prevents the icon from being squished */
+    flex-shrink: 0; 
+}
+
+.menu-option-item.menu-option-danger {
+    color: var(--danger); /* Use the main danger color for text */
+}
+
+.menu-option-item.menu-option-danger svg {
+    color: var(--danger); /* Also color the icon for consistency */
+}
+
+.menu-option-item.menu-option-danger:hover {
+    background-color: var(--danger-fill);
+    color: var(--danger-text); /* Ensure text color contrasts with hover background */
+}

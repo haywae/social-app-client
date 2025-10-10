@@ -1,0 +1,68 @@
+.error-toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background-color: var(--danger-fill-dark);
+    color: var(--danger-text);
+    border: 1px solid var(--danger-outline);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    z-index: 2000;
+    animation: slideDown 0.5s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.error-toast-icon {
+    flex-shrink: 0;
+}
+
+.error-toast-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.error-toast-message {
+    flex-grow: 1;
+    margin: 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.error-toast-close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--danger-text);
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.error-toast-close-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.error-toast-close-button svg {
+    width: 20px;
+    height: 20px;
+}
+

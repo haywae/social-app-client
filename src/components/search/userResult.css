@@ -1,0 +1,53 @@
+/* --- User Result Card --- */
+.user-result-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem; /* A bit more padding for better spacing */
+    border-bottom: 1px solid var(--grey-6);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s;
+}
+
+.user-result-card:hover {
+    background-color: var(--grey-7);
+}
+.user-result-info {
+    flex-grow: 1;
+}
+
+.user-result-displayname {
+    display: block;
+    font-weight: 700;
+    color: var(--grey-1);
+}
+
+.user-result-username {
+    display: block;
+    color: var(--grey-4);
+    margin-bottom: 0.25rem; /* Add space below username */
+}
+
+.user-result-bio {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--grey-1);
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 3; /* Show a maximum of 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* --- Dark Theme --- */
+@media (prefers-color-scheme: dark) {
+    .user-result-card { border-color: var(--grey-3); }
+    .user-result-card:hover { background-color: var(--grey-2); }
+    .user-result-displayname { color: var(--grey-7); }
+    .user-result-username { color: var(--grey-5); }
+    .user-result-bio { color: var(--grey-6); }
+}

@@ -1,0 +1,46 @@
+/* Add this to your postDetailPage.css or a shared component stylesheet */
+
+/* Optional: To make the last reply's border connect cleanly */
+.comment-replies-container > *:last-child > .comment-container {
+    border-bottom: none;
+}
+
+
+.comment-thread-container {
+  /* This container helps with layout if you add connecting lines later */
+  width: 100%;
+}
+
+.comment-replies-container {
+  /* Indent replies to show nesting */
+  margin-left: 20px;
+}
+
+.is-reply {
+  padding-left: 0.5rem; /* Creates space between the border and the comment content */
+  border-left: 1px solid var(--grey-5);
+}
+
+.comment-replies-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns buttons to the left */
+  gap: 2px; /* Adds a bit of space between the buttons */
+  padding-left: 3rem;
+  padding-bottom: 8px;
+}
+
+.view-replies-button {
+  background: none;
+  border: none;
+  color: var(--grey-4); /* Use your app's primary color */
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 0;
+}
+
+.view-replies-button:hover {
+  text-decoration: underline;
+  color: var(--grey-2);
+}

@@ -1,0 +1,197 @@
+/* src/components/common/LeftSidebar.css */
+
+/* --- Default: Hidden on Mobile --- */
+.left-sidebar {
+    display: none;
+}
+
+/* --- Desktop Styles --- */
+@media (min-width: 768px) {
+    .left-sidebar {
+        display: flex;
+        flex-direction: column;
+        width: var(--left-sidebar-width);
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 1rem;
+        box-sizing: border-box;
+        transition: left 0.2s ease-in-out;
+    }
+
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%; /* Use 100% to fill the sidebar */
+    }
+
+    .sidebar-logo {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--base);
+        text-decoration: none;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .sidebar-nav a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--grey-2);
+        font-size: 1.2rem;
+        font-weight: 500;
+        transition: background-color 0.2s;
+    }
+
+    .sidebar-nav a:hover {
+        background-color: var(--primary-bg);
+    }
+
+    /* --- Notification Indicator Styles --- */
+    .nav-icon-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .notification-indicator {
+        position: absolute;
+        top: -4px;
+        right: -6px;
+        height: 20px;
+        min-width: 20px;
+        padding: 0 5px;
+        border-radius: 10px;
+        background-color: var(--danger);
+        border: 2px solid var(--background);
+        color: var(--background);
+        font-size: 0.7rem;
+        font-weight: 700;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    /* --- Footer pushed to the bottom --- */
+    .sidebar-footer {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* --- Styles for the new user actions block --- */
+    .sidebar-user-actions {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-profile-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--grey-1);
+        transition: background-color 0.2s;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .sidebar-profile-link:hover {
+        background-color: var(--grey-7);
+    }
+
+    .sidebar-profile-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-profile-info span {
+        font-weight: 700;
+    }
+
+    .sidebar-profile-info small {
+        color: var(--grey-4);
+    }
+
+    .sidebar-logout-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        color: var(--grey-3);
+        gap: 1rem;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.2s;
+        border-radius: 8px;
+        margin-top: 0.25rem;
+    }
+
+    .sidebar-logout-button:hover {
+        color: var(--danger);
+        background-color: rgba(255, 0, 0, 0.1);
+    }
+
+    .sidebar-logout-button svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* --- WIDE SCREEN ADJUSTMENT --- */
+@media (min-width: 1280px) {
+    .left-sidebar {
+        left: calc(50% - 600px);
+    }
+}
+
+/* --- Dark Theme Adjustments --- */
+@media (prefers-color-scheme: dark) {
+    @media (min-width: 768px) {
+        .left-sidebar {
+            background-color: var(--grey-2);
+            border-color: var(--grey-3);
+        }
+        .sidebar-nav a {
+            color: var(--grey-7);
+        }
+        .sidebar-nav a:hover {
+            background-color: var(--grey-3);
+        }
+        .notification-indicator {
+            border-color: var(--grey-2);
+        }
+        .sidebar-profile-link {
+            color: var(--grey-7);
+        }
+        .sidebar-profile-link:hover {
+            background-color: var(--grey-3);
+        }
+        .sidebar-profile-info small {
+            color: var(--grey-5);
+        }
+        .sidebar-logout-button {
+            color: var(--grey-5);
+        }
+    }
+}

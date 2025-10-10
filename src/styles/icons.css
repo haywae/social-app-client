@@ -1,0 +1,21 @@
+svg {
+    width: 28px;
+    height: 28px;
+    transition: color 0.2s ease-in-out;
+}
+
+.heart-icon, .chat-icon, .repost-icon{
+    width: 20px;
+    height: 20px
+}
+.settings-icon{
+    color: var(--grey-3);
+}
+
+
+/* --- Dark Theme Adjustments --- */
+@media (prefers-color-scheme: dark) {
+    .home-icon, .bank-note-icon, .search-icon, .create-post-icon, .notifications-icon, .profile-icons{
+        color: var(--grey-5);
+    }
+}

@@ -1,0 +1,77 @@
+/* src/components/modals/editPostModal.css */
+
+/* --- Edit Post Modal Specific Styles --- */
+
+.edit-post-form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows form to fill available space in modal */
+}
+
+.edit-post-modal-footer{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.edit-post-btn-primary,
+.edit-post-btn-secondary {
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px; /* Pill shape */
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* Disabled state for both buttons */
+.edit-post-btn-primary:disabled,
+.edit-post-btn-secondary:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+/* --- Primary Button (e.g., Save) --- */
+.edit-post-btn-primary {
+    background-color: var(--grey-1);
+    color: var(--background);
+    border-color: var(--grey-1);
+}
+
+.edit-post-btn-primary:hover:not(:disabled) {
+    background-color: var(--grey-3);
+    border-color: var(--grey-3);
+}
+
+/* --- Secondary Button (e.g., Cancel) --- */
+.edit-post-btn-secondary {
+    background-color: transparent;
+    color: var(--grey-2);
+    border-color: var(--grey-5);
+}
+
+.edit-post-btn-secondary:hover:not(:disabled) {
+    background-color: var(--grey-7);
+}
+
+/* --- Dark Theme Adjustments --- */
+@media (prefers-color-scheme: dark) {
+    .edit-post-btn-primary {
+        background-color: var(--grey-7);
+        color: var(--grey-1);
+        border-color: var(--grey-7);
+    }
+    .edit-post-btn-primary:hover:not(:disabled) {
+        background-color: var(--grey-6);
+        border-color: var(--grey-6);
+    }
+    .edit-post-btn-secondary {
+        color: var(--grey-6);
+        border-color: var(--grey-4);
+    }
+    .edit-post-btn-secondary:hover:not(:disabled) {
+        background-color: var(--grey-3);
+    }
+}

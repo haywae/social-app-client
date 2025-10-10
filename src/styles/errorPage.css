@@ -1,0 +1,23 @@
+.error-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    background-color: var(--background);
+    color: var(--grey-2);
+}
+
+.error-content {
+    max-width: 500px;
+}
+
+.error-message {
+    background-color: var(--grey-7);
+    color: var(--danger);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    font-family: monospace;
+}

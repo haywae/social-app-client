@@ -1,0 +1,174 @@
+/* ================================================= */
+/* SHARED Reusable Form & Component Styles within the auth pages */
+/* ================================================= */
+.auth-container {
+    /* --- Mobile First Styles (Default) --- */
+    margin: 10px auto; /* Center the container */
+    padding: 24px;
+    background-color: var(--background);
+    border: 1px solid var(--grey-6);
+    border-radius: 12px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    width: 90%; /* Use a percentage width for flexibility */
+    max-width: 450px; /* Prevent it from becoming too wide on landscape mobile */
+}
+
+.auth-container-title {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: var(--grey-1);
+}
+
+.auth-container-subtitle {
+    margin-bottom: 20px;
+    font-size: 1em;
+    color: var(--grey-4);
+}
+
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.auth-container .form-group {
+    text-align: left;
+    position: relative;
+}
+
+.auth-container .form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 1em;
+    color: var(--grey-3);
+}
+
+.auth-container .form-group input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--grey-7);
+    border: 1px solid var(--grey-6);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--grey-3);
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-container .form-group input:focus {
+    outline: none;
+    border-color: var(--base);
+    color: var(--grey-1);
+}
+
+/* --- Show/Hide Password Button --- */
+.auth-container .form-group button {
+    position: absolute;
+    top: 30px; 
+    right: 5px;
+    background: transparent;
+    border: none;
+    padding: 0.5em;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--grey-4);
+    cursor: pointer;
+}
+
+.auth-container .form-group button:hover {
+    color: var(--base);
+    border-color: transparent;
+}
+
+.auth-container .fg-danger {
+    color: var(--danger);
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.auth-container .links {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 10px;
+}
+
+.auth-container .success-message {
+    padding: 1rem;
+    background-color: rgba(29, 206, 136, 0.15);
+    color: #108d62;
+    border-radius: 8px;
+    text-align: left;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/*------ The Registration Dropdown -------*/
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+.auth-container svg {
+    top: 10%;
+    right: 1%;
+}
+
+.auth-container .dropdown-selected{
+    padding: 8px;
+    border-radius: 8px;
+}
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+    .auth-container {
+        background-color: var(--grey-2);
+        border-color: var(--grey-3);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    .auth-container-title {
+        color: var(--grey-7);
+    }
+    .auth-container .form-group label {
+      color: var(--grey-5);
+    }
+    .auth-container .form-group input {
+        background-color: var(--grey-1);
+        border-color: var(--grey-3);
+        color: var(--grey-7);
+    }
+    .auth-container .success-message {
+        color: var(--base);
+        background-color: rgba(29, 206, 136, 0.1);
+    }
+    .dropdown-selected {
+        background-color: var(--grey-1);
+        border-color: var(--grey-3);
+        color: var(--grey-7);
+    }
+    .dropdown-arrow {
+        color: var(--grey-5);
+    }
+    .dropdown-list {
+        background-color: var(--grey-2);
+        border-color: var(--grey-3);
+    }
+    .dropdown-list li {
+        color: var(--grey-6);
+    }
+    .dropdown-list li:hover {
+        background-color: var(--grey-3);
+        color: var(--grey-7);
+    }
+}
+
+/* --- Tablet Overrides --- */
+@media (min-width: 768px) {
+    .auth-container {
+        margin: 50px auto;
+    }
+}

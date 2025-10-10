@@ -1,0 +1,56 @@
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--grey-6);
+    
+    /* Sticky styles for a persistent header */
+    position: sticky;
+    top: 0;
+    background-color: var(--background-alpha);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+}
+
+.page-header-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.page-header-back-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--grey-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.page-header-back-button:hover {
+    background-color: var(--grey-7);
+}
+
+.page-header-back-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- Dark Theme --- */
+@media (prefers-color-scheme: dark) {
+    .page-header {
+        border-color: var(--grey-3);
+        background-color: var(--background-dark-alpha);
+    }
+    .page-header-back-button {
+        color: var(--grey-7);
+    }
+    .page-header-back-button:hover {
+        background-color: var(--grey-2);
+    }
+}

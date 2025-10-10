@@ -1,0 +1,39 @@
+/* --- {L1} Search Overlay --- */
+.search-overlay {
+    position: fixed;
+    top: 60px; /* Height of the header */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 60px);
+    background-color: var(--background);
+    z-index: 890; /* Below header, above content */
+    overflow-y: auto;
+}
+
+/* --- {L2} Search Overlay Action, Search Overlay Action Hover --- */
+.search-overlay-action {
+    padding: 0.25rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    cursor: pointer;
+    border-bottom: 1px solid var(--grey-6);
+    transition: background-color 0.2s;
+}
+
+.search-overlay-action:hover {
+    background-color: var(--grey-6);
+}
+
+
+/* --- Dark Theme Adjustments --- */
+@media (prefers-color-scheme: dark) {
+    .search-overlay {
+        background-color: var(--grey-2);
+    }
+    .search-overlay-action {
+        border-color: var(--grey-3);
+    }
+    .search-overlay-action:hover {
+        background-color: var(--grey-3);
+    }
+}

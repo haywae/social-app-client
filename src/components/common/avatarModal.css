@@ -1,0 +1,50 @@
+
+/* This is a highly specific selector that will ONLY apply when
+   both .modal-content and .avatar-viewer classes are present. */
+.modal-content.avatar-viewer {
+  /* Override the default modal styles */
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  max-width: none; /* Let the image define the width */
+  width: auto;
+  overflow: visible; /* Allow the image to be fully visible */
+  border-radius: 16px; /* Apply radius to the container */
+}
+
+/* Hide the default header since we don't pass a title */
+.modal-content.avatar-viewer .modal-header {
+  display: none;
+}
+
+.modal-content.avatar-viewer .modal-body {
+  padding: 0;
+  overflow: visible; /* Prevents this container from creating a scrollbar */
+  line-height: 0; /* Good practice to remove extra space around the image */
+}
+
+.avatar-modal-content img {
+  /* Ensure the image is large but doesn't exceed the viewport */
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: 16px;   
+  cursor: default;   /* Prevent clicking the image from closing the modal */
+}
+
+/* Override the generic close button to be more visible on a dark overlay */
+.avatar-modal-content + .modal-close-button {
+    color: rgba(255, 255, 255, 0.8);
+}
+.avatar-modal-content + .modal-close-button:hover {
+    color: white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.avatar-modal-content {
+    animation: fadeIn 0.3s ease-out;
+}

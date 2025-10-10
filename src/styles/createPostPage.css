@@ -1,0 +1,124 @@
+/* Main container for the pop-up/page */
+.create-post-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid var(--grey-7);
+    border-radius: 8px;
+    background-color: var(--primary-bg);
+    min-height: calc(100vh - 60px);
+}
+
+/* Header: "Close" and "Post" button */
+.create-post-header {
+    display: flex;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--grey-6);
+    margin-bottom: 10px;
+    background-color: var(--background);
+}
+
+.create-post-header h2{
+    font-size: medium;
+    margin: auto;
+}
+
+
+/* Body: Avatar and Text Area */
+.create-post-body {
+    padding: 12px;
+    border: solid 1px var(--grey-6);
+    border-radius: 8px;
+    margin: 0 10px;
+    background-color: var(--background);
+}
+
+.user-info{
+    display: flex;
+    gap: 5px;
+    border-bottom: 1px solid var(--grey-6);
+    padding-bottom: 8px;
+    align-items: center;
+}
+
+
+.text-content {
+    width: 100%;
+}
+
+.text-content textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 1rem;
+    min-height: 120px;
+    outline: none; /* Removes the focus border */
+    margin-top: 10px;
+    color: var(--grey-4);
+    background-color: var(--background);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.text-content textarea::placeholder {
+    font-size: small;
+}
+
+
+.text-content textarea:focus {
+    color: var(--grey-1);
+}
+
+
+
+/* Shared Dropdown Styles */
+.select-visibility, .select-who-can-reply {
+    position: relative; /* Needed for dropdown positioning */
+    display: inline-block;
+    cursor: pointer;
+    
+    border: 1px solid var(--grey-4);
+    padding: 4px 10px;
+    border-radius: 20px;
+    height: fit-content;
+    margin: auto 0;
+}
+
+.create-post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.char-counter {
+    font-size: 0.9rem;
+    color: var(--grey-4);
+}
+
+
+.submit-post-button {
+    background-color: var(--grey-1);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-post-button:hover {
+    background-color: var(--base);
+}
+
+.submit-post-button:disabled {
+    background-color: var(--base-light);
+    cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+    .create-post-container {
+        min-height: 100vh;
+    }
+}

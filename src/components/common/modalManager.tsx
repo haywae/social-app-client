@@ -1,0 +1,116 @@
+import { useAppSelector, useAppDispatch } from '../../utils/hooks';
+import { closeModal } from '../../slices/ui/uiSlice';
+import ReplyModal from './replyModal';
+import AvatarModal from './avatarModal';
+import ConfirmPostDeleteModal from '../posts/confirmPostDeleteModal';
+import ConfirmCommentDeleteModal from '../comments/confirmCommentDeleteModal';
+import EditPostModal from '../posts/editPostModal';
+import EditCommentModal from '../comments/editCommentModal';
+import DeleteAccountModal from '../settings/deleteAccountModal';
+import { EditExchangeModal } from '../exchange/editExchangeModal';
+import { DEVELOPMENT_MODE } from '../../appConfig';
+
+const ModalManager = () => {
+  const dispatch = useAppDispatch();
+  const { modalType, modalProps } = useAppSelector((state) => state.ui);
+
+  const handleClose = () => dispatch(closeModal());
+
+  switch (modalType) {
+    case 'REPLY': {
+      if ('target' in modalProps && 'postId' in modalProps) {
+        return <ReplyModal
+          isOpen={true}
+          onClose={handleClose}
+          target={modalProps.target}
+          postId={modalProps.postId}
+        />;
+      }
+      DEVELOPMENT_MODE && console.error('REPLY modal opened without target or postId.');
+      return null;
+    }
+
+    case 'VIEW_AVATAR': {
+      if ('src' in modalProps && 'alt' in modalProps) {
+        return <AvatarModal
+          isOpen={true}
+          onClose={handleClose}
+          src={modalProps.src}
+          alt={modalProps.alt}
+        />;
+      }
+      DEVELOPMENT_MODE && console.error('VIEW_AVATAR modal opened without src or alt.');
+      return null;
+    }
+
+    case 'EDIT_POST': {
+      if ('post' in modalProps) {
+        return <EditPostModal
+          isOpen={true}
+          onClose={handleClose}
+          post={modalProps.post}
+        />;
+      }
+      DEVELOPMENT_MODE && console.error('EDIT_POST modal opened without a post prop.');
+      return null;
+    }
+
+    case 'CONFIRM_DELETE_POST': {
+      if ('post' in modalProps) {
+        return <ConfirmPostDeleteModal
+          isOpen={true}
+          onClose={handleClose}
+          post={modalProps.post}
+        />;
+      }
+      DEVELOPMENT_MODE && console.error('CONFIRM_DELETE_POST modal opened without a post prop.');
+      return null;
+    }
+
+    case 'EDIT_COMMENT': {
+      if ('comment' in modalProps) {
+        return <EditCommentModal
+          isOpen={true}
+          onClose={handleClose}
+          comment={modalProps.comment}
+        />;
+      }
+      DEVELOPMENT_MODE && console.error('EDIT_COMMENT modal opened without a comment prop.');
+      return null;
+    }
+
+    case 'CONFIRM_DELETE_COMMENT': {
+      if ('comment' in modalProps && 'postId' in modalProps) {
+        return <ConfirmCommentDeleteModal
+          isOpen={true}
+          onClose={handleClose}
+          comment={modalProps.comment}
+          postId={modalProps.postId}
+        />;
+      }
+      DEVELOPMENT_MODE && console.error('CONFIRM_DELETE_COMMENT modal opened without comment or postId.');
+      return null;
+    }
+
+    case 'EDIT_EXCHANGE_DETAILS': {
+      if ('exchangeData' in modalProps) {
+        return <EditExchangeModal
+          isOpen={true}
+          onClose={handleClose}
+          exchangeData={modalProps.exchangeData}
+        />;
+      }
+      DEVELOPMENT_MODE && console.error('EDIT_EXCHANGE_DETAILS modal opened without exchangeData.');
+      return null;
+    }
+
+    case 'CONFIRM_DELETE_ACCOUNT': {
+      return <DeleteAccountModal isOpen={true} onClose={handleClose} />;
+    }
+
+    default:
+      return null;
+  }
+};
+
+export default ModalManager;
