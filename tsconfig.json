@@ -1,10 +1,15 @@
 /**
-* This file acts as a master file that amanages the projesct's other TyepScript configurations.
+* This file acts as a master file that amanages the project's other TyepScript configurations.
 */
 {
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
+  ],
+  // This part to be removed later
+  "exclude": [
+    "node_modules",
+    "src/tests" 
   ]
 }
