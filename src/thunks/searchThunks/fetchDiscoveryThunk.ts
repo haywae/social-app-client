@@ -15,6 +15,7 @@ interface ApiUser {
     is_following: boolean;
     profile_picture_url: string;
     username: string;
+    is_self: boolean
 }
 
 interface ApiHashtag {
@@ -52,6 +53,7 @@ export const fetchDiscoveryData = createAsyncThunk<
                     isFollowing: user.is_following,
                     profilePictureUrl: user.profile_picture_url,
                     username: user.username,
+                    isSelf: user.is_self
                 })),
                 trendingTopics: data.trending_hashtags.map(hashtag => hashtag.tag_name),
             };
