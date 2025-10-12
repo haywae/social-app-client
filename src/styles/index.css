@@ -165,3 +165,22 @@ textarea{
     color: var(--grey-5);
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #121212;
+    --primary-bg: #1e1e1e;
+    --text-primary: #f5f5f5;
+    --text-secondary: #cccccc;
+    --border-color: #333333;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+
+    --grey-1: #f5f5f5;
+    --grey-2: #e0e0e0;
+    --grey-3: #bdbdbd;
+    --grey-4: #9e9e9e;
+    --grey-5: #757575;
+    --grey-6: #616161;
+    --grey-7: #424242;
+  }
+}

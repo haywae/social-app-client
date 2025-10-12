@@ -104,22 +104,60 @@
     background-color: var(--base);
 }
 
-/* --- Dark Theme Adjustments --- */
+/* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
-    .exchange-edit-modal-body .save-button {
-        background-color: var(--grey-7);
-        color: var(--grey-1);
-        border-color: var(--grey-7);
-    }
-    .exchange-edit-modal-body .save-button:hover {
-        background-color: var(--grey-6);
-        border-color: var(--grey-6);
-    }
-    .exchange-edit-modal-body .cancel-button {
-        color: var(--grey-6);
-        border-color: var(--grey-4);
-    }
-    .exchange-edit-modal-body .cancel-button:hover {
-        background-color: var(--grey-3);
-    }
+  .exchange-edit-modal-content {
+    background-color: var(--background-dark);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .exchange-edit-modal-header {
+    border-bottom-color: var(--grey-3);
+  }
+
+  .exchange-edit-modal-title {
+    color: var(--grey-7);
+  }
+
+  .exchange-edit-modal-close-button {
+    color: var(--grey-5);
+  }
+
+  .exchange-edit-modal-close-button:hover {
+    color: var(--grey-7);
+  }
+
+  .exchange-edit-modal-body label {
+    color: var(--grey-5);
+  }
+
+  .exchange-edit-modal-body .form-input {
+    background-color: var(--grey-2);
+    color: var(--grey-7);
+    border-color: var(--grey-4);
+  }
+
+  .exchange-edit-modal-body .form-input:focus {
+    background-color: var(--grey-3);
+  }
+
+  .exchange-edit-modal-body .save-button {
+    background-color: var(--grey-7);
+    color: var(--grey-1);
+    border-color: var(--grey-7);
+  }
+
+  .exchange-edit-modal-body .save-button:hover {
+    background-color: var(--grey-6);
+    border-color: var(--grey-6);
+  }
+
+  .exchange-edit-modal-body .cancel-button {
+    color: var(--grey-6);
+    border-color: var(--grey-4);
+  }
+
+  .exchange-edit-modal-body .cancel-button:hover {
+    background-color: var(--grey-3);
+  }
 }

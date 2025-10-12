@@ -44,3 +44,18 @@
   text-decoration: underline;
   color: var(--grey-2);
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .is-reply {
+    border-left-color: var(--grey-4);
+  }
+
+  .view-replies-button {
+    color: var(--grey-5);
+  }
+
+  .view-replies-button:hover {
+    color: var(--grey-7);
+  }
+}

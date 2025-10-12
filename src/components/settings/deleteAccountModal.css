@@ -55,8 +55,25 @@
 
 /* --- Dark Theme overrides for this specific modal's content --- */
 @media (prefers-color-scheme: dark) {
-    .delete-account-modal h2 { color: var(--grey-7); }
-    .delete-account-modal p { color: var(--grey-5); }
-    
-    /* You can add more specific dark theme overrides here if needed */
+  .delete-account-modal h2 {
+    color: var(--grey-7);
+  }
+
+  .delete-account-modal p {
+    color: var(--grey-5);
+  }
+
+  .delete-account-modal .form-group label {
+    color: var(--grey-5);
+  }
+
+  .delete-account-modal .form-group input {
+    background-color: var(--grey-2);
+    border-color: var(--grey-4);
+    color: var(--grey-7);
+  }
+
+  .delete-account-modal .form-group input:focus {
+    background-color: var(--grey-3);
+  }
 }

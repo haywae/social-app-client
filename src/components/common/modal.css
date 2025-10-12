@@ -97,3 +97,42 @@
   border: 1px solid var(--base);
   background-color: var(--background);
 }
+
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .modal-overlay {
+    background-color: rgba(20, 20, 20, 0.6);
+  }
+
+  .modal-content {
+    background: var(--background-dark);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-header {
+    border-bottom-color: var(--grey-3);
+  }
+
+  .modal-title {
+    color: var(--grey-7);
+  }
+
+  .modal-close-button {
+    color: var(--grey-5);
+  }
+
+  .modal-close-button:hover {
+    background-color: var(--grey-3);
+    color: var(--grey-7);
+  }
+
+  .modal-body textarea {
+    background-color: var(--grey-2);
+    color: var(--grey-7);
+  }
+
+  .modal-body textarea:focus {
+    background-color: var(--grey-3);
+  }
+}

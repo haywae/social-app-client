@@ -216,51 +216,75 @@ Description: Styles for the single post view page.
         height: 100vh;
     }
 }
-/* --- Dark Theme --- */
+
+
+/* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
-    .detail-page-container,
-    .detail-header,
-    .create-comment-section {
-        border-color: var(--grey-3);
-        background-color: var(--background-dark);
-        border-top-color: var(--grey-3);
-    }
-    .detail-header {
-        background-color: var(--background-dark-alpha);
-    }
-    .back-button {
-        color: var(--grey-7);
-    }
-    .back-button:hover {
-        background-color: var(--grey-2);
-    }
-    .create-comment-section textarea {
-        background-color: var(--grey-2);
-        border-color: var(--grey-3);
-        color: var(--grey-7);
-    }
-    .replying-to-banner {
-        background-color: var(--grey-2);
-        color: var(--grey-5);
-    }
-    .cancel-reply-button {
-        color: var(--grey-5);
-    }
-    .cancel-reply-button:hover {
-        color: var(--grey-7);
-    }
-    .load-more-button {
-        border-color: var(--grey-4);
-        color: var(--grey-7);
-    }
-    .load-more-button:hover:not(:disabled) {
-        background-color: var(--grey-2);
-    }
-    .comments-header {
-        color: var(--grey-6);
-        border-color: var(--grey-3);
-    }
-    .comment-container {
-        border-color: var(--grey-3);
-    }
+  .detail-page-container,
+  .detail-scroll-area,
+  .create-comment-section,
+  .parent-comment-link {
+    background-color: var(--primary-bg);
+    border-color: var(--grey-3);
+  }
+
+  .detail-header {
+    background-color: var(--background-alpha);
+    border-bottom-color: var(--grey-3);
+  }
+
+  .back-button {
+    color: var(--grey-7);
+  }
+
+  .back-button:hover {
+    background-color: var(--grey-2);
+  }
+
+  .comment-textarea {
+    background-color: var(--primary-bg);
+    border-color: var(--grey-3);
+    color: var(--grey-7);
+  }
+
+  .replying-to-banner {
+    background-color: var(--grey-2);
+    color: var(--grey-5);
+  }
+
+  .cancel-reply-button {
+    color: var(--grey-5);
+  }
+
+  .cancel-reply-button:hover {
+    color: var(--grey-7);
+  }
+
+  .comments-header {
+    background-color: var(--background);
+    color: var(--grey-6);
+    border-top-color: var(--grey-3);
+    border-bottom-color: var(--grey-3);
+  }
+
+  .detail-message {
+    color: var(--grey-5);
+  }
+
+  .detail-message.error {
+    color: var(--danger-text);
+  }
+
+  .load-more-button {
+    border-color: var(--grey-4);
+    color: var(--grey-7);
+  }
+
+  .load-more-button:hover:not(:disabled) {
+    background-color: var(--grey-2);
+  }
+
+  .load-more-button:disabled {
+    color: var(--grey-5);
+  }
 }

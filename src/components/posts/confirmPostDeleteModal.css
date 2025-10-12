@@ -30,4 +30,13 @@
 
 /* --- Dark Theme Adjustments --- */
 @media (prefers-color-scheme: dark) {
+  .button-danger {
+    background-color: var(--danger-fill-dark);
+    color: var(--background);
+    border-color: var(--danger-fill-dark);
+  }
+
+  .button-danger:hover:not(:disabled) {
+    background-color: var(--danger-dark);
+  }
 }

@@ -54,6 +54,26 @@
 
 }
 
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .tabbed-header {
+    background-color: var(--background-dark-alpha);
+    border-bottom-color: var(--grey-3);
+  }
+
+  .tab-link {
+    color: var(--grey-5);
+  }
+
+  .tab-link:hover {
+    background-color: var(--primary-bg);
+    color: var(--grey-7);
+  }
+
+  .tab-link.active {
+    color: var(--grey-7);
+  }
+}
 
 /* Important Note: For position: sticky to work correctly, 
     none of its parent containers (like .main-content or .main-layout) 

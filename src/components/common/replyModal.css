@@ -38,3 +38,12 @@
     transform: scale(1);
   }
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .original-comment-content {
+    color: var(--grey-5);
+    border-left-color: var(--grey-4);
+    background-color: var(--primary-bg);
+  }
+}

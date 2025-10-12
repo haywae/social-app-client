@@ -58,3 +58,29 @@
     background-color: var(--danger-fill);
     color: var(--danger-text); /* Ensure text color contrasts with hover background */
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .options-popover-container {
+    background-color: var(--background-dark);
+    border-color: var(--grey-4);
+    box-shadow: var(--box-shadow-lg-dark);
+  }
+
+  .menu-option-item:hover {
+    background-color: var(--grey-3);
+  }
+
+  .menu-option-item svg {
+    color: var(--grey-5);
+  }
+
+  .menu-option-item.menu-option-danger:hover {
+    background-color: var(--danger-fill-dark);
+    color: var(--danger-text);
+  }
+
+  .menu-option-item.menu-option-danger svg {
+    color: var(--danger-text);
+  }
+}

@@ -80,20 +80,40 @@
     flex-shrink: 0; /* Prevents the button from shrinking */
 }
 
-/* --- Dark Theme Adjustments --- */
-@media (prefers-color-scheme: dark) {
-    .search-input {
-       background-color: var(--grey-3);
-       color: var(--base);
-    }
-    .search-input:focus {
-        background-color: var(--grey-4);
-    }
-}
-
 /* --- Utility --- */
 .loading-text, .no-results-text {
     text-align: center;
     padding: 2.5rem 0;
     color: #6b7280; /* text-gray-500 */
+}
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .search-page-container {
+    background-color: var(--primary-bg);
+  }
+
+  .search-bar {
+    background-color: var(--background);
+    border-bottom-color: var(--grey-3);
+  }
+
+  .search-input-wrapper .search-bar-icon,
+  .search-input-wrapper .search-clear-icon {
+    color: var(--grey-5);
+  }
+
+  .search-input {
+    background-color: var(--grey-3);
+    color: var(--base);
+  }
+
+  .search-input:focus {
+    background-color: var(--grey-4);
+  }
+
+  .loading-text,
+  .no-results-text {
+    color: var(--grey-5);
+  }
 }

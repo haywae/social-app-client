@@ -27,3 +27,18 @@
     font-size: 15px;
     color: var(--base);
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .trend-item:hover {
+    background-color: var(--grey-2);
+  }
+
+  .trend-context {
+    color: var(--grey-5);
+  }
+
+  .trend-name {
+    color: var(--base);
+  }
+}

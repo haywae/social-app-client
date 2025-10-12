@@ -76,3 +76,41 @@
 .select{
     margin: auto;
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .dropdown-selected {
+    border-color: var(--grey-4);
+  }
+
+  .dropdown-portal-menu {
+    background-color: var(--background);
+    border-color: var(--grey-4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .dropdown-arrow {
+    color: var(--grey-5);
+  }
+
+  .dropdown-search {
+    border-color: var(--grey-4);
+    background-color: var(--primary-bg);
+    color: var(--grey-7);
+  }
+
+  .dropdown-list {
+    background-color: var(--primary-bg);
+    border-color: var(--grey-4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .dropdown-list li {
+    color: var(--grey-5);
+  }
+
+  .dropdown-list li:hover {
+    background-color: var(--grey-3);
+    color: var(--grey-7);
+  }
+}

@@ -126,6 +126,9 @@
 
 /* --- Dark Theme Adjustments --- */
 @media (prefers-color-scheme: dark) {
+    .live-rates-container {
+        background-color: var(--background-dark);
+    }
     .live-rates-header,
     .rates-table,
     .live-rates-footer,

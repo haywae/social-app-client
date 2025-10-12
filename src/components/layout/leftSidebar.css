@@ -193,5 +193,8 @@
         .sidebar-logout-button {
             color: var(--grey-5);
         }
+        .sidebar-logout-button:hover {
+            background-color: rgba(255, 0, 0, 0.2); /* Slightly stronger contrast for dark mode */
+        }
     }
 }

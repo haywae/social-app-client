@@ -45,3 +45,18 @@
 .feed-error {
     color: var(--danger);
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .feed-loading div {
+    background-color: var(--grey-5);
+  }
+
+  .feed-message {
+    color: var(--grey-5);
+  }
+
+  .feed-error {
+    color: var(--danger);
+  }
+}

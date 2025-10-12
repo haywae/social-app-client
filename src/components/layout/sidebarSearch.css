@@ -21,3 +21,14 @@
     padding: 12px 0;
     font-size: 15px;
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .sidebar-search-bar {
+    background-color: var(--grey-2);
+  }
+
+  .sidebar-search-input {
+    color: var(--grey-7);
+  }
+}

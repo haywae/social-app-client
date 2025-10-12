@@ -47,16 +47,19 @@
 
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
-    .not-found-page {
-        background-color: var(--grey-1);
-    }
-    .not-found-title {
-        color: var(--grey-7);
-    }
-    .not-found-subtitle {
-        color: var(--grey-6);
-    }
-    .not-found-text {
-        color: var(--grey-5);
-    }
+  .not-found-page {
+    background-color: var(--background);
+  }
+
+  .not-found-title {
+    color: var(--grey-7);
+  }
+
+  .not-found-subtitle {
+    color: var(--grey-5);
+  }
+
+  .not-found-text {
+    color: var(--grey-4);
+  }
 }

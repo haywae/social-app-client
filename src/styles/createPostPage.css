@@ -122,3 +122,57 @@
         min-height: 100vh;
     }
 }
+
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .create-post-container {
+    background-color: var(--primary-bg);
+    border-color: var(--grey-6);
+  }
+
+  .create-post-header {
+    background-color: var(--background);
+    border-bottom-color: var(--grey-6);
+  }
+
+  .create-post-body {
+    background-color: var(--background);
+    border-color: var(--grey-6);
+  }
+
+  .user-info {
+    border-bottom-color: var(--grey-6);
+  }
+
+  .text-content textarea {
+    background-color: var(--background);
+    color: var(--grey-4);
+  }
+
+  .text-content textarea:focus {
+    color: var(--grey-1);
+  }
+
+  .select-visibility,
+  .select-who-can-reply {
+    border-color: var(--grey-4);
+  }
+
+  .char-counter {
+    color: var(--grey-4);
+  }
+
+  .submit-post-button {
+    background-color: var(--grey-1);
+    color: var(--background);
+  }
+
+  .submit-post-button:hover {
+    background-color: var(--base);
+  }
+
+  .submit-post-button:disabled {
+    background-color: var(--base-light);
+  }
+}

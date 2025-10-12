@@ -67,7 +67,19 @@
     .load-more-button:hover:not(:disabled) {
         background-color: var(--grey-2);
     }
+    .notifications-list {
+        background-color: var(--primary-bg);
+    }
+
+    .notifications-message {
+        color: var(--grey-5);
+    }
+
+    .notifications-message.error {
+        color: var(--danger-text);
+    }
 }
+
 
 
 @media (min-width: 768px) {

@@ -42,3 +42,16 @@
     background-position: calc(200px + 100%) 0;
   }
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background-color: #3a3a3a;
+    background-image: linear-gradient(
+      90deg,
+      #3a3a3a,
+      #4a4a4a,
+      #3a3a3a
+    );
+  }
+}

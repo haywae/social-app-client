@@ -36,4 +36,16 @@
     .search-overlay-action:hover {
         background-color: var(--grey-3);
     }
+    .search-overlay {
+    background-color: var(--grey-2);
+  }
+
+  .search-overlay-action {
+    border-color: var(--grey-3);
+    color: var(--primary-blue-light); /* Ensures contrast on dark background */
+  }
+
+  .search-overlay-action:hover {
+    background-color: var(--grey-3);
+  }
 }

@@ -141,18 +141,7 @@ Description: Styles for the user settings page and its components.
     width: 100%;
 }
 
-/* --- Dark Theme --- */
-@media (prefers-color-scheme: dark) {
-    .settings-page { background-color: var(--background-dark); color: var(--grey-7); }
-    .settings-header, .settings-card { border-color: var(--grey-3); }
-    .settings-header { background-color: var(--background-dark-alpha); }
-    .close-button { color: var(--grey-7); }
-    .settings-card:hover { background-color: var(--grey-2); }
-    .card-info p { color: var(--grey-5); }
-    .settings-form-group label { color: var(--grey-6); }
-    .settings-form-group input, .form-group textarea { background-color: var(--grey-2); border-color: var(--grey-4); color: var(--grey-7); }
-    .settings-form-group input:disabled { background-color: var(--grey-3); }
-}
+
 
 /* Add these styles to your existing settingsPage.css file */
 
@@ -176,4 +165,34 @@ Description: Styles for the user settings page and its components.
 
 .btn-danger:hover {
     background-color: #c81e2e; /* A slightly darker red */
+}
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .settings-content .section-description {
+    color: var(--grey-5);
+  }
+
+  .btn-danger {
+    border-color: var(--danger-outline-dark);
+    background-color: var(--danger-dark);
+    color: white;
+  }
+
+  .btn-danger:hover {
+    background-color: #a61a26; /* Slightly darker red for dark mode hover */
+  }
+}
+
+/* --- Dark Theme --- */
+@media (prefers-color-scheme: dark) {
+    .settings-page { background-color: var(--background-dark); color: var(--grey-7); }
+    .settings-header, .settings-card { border-color: var(--grey-3); }
+    .settings-header { background-color: var(--background-dark-alpha); }
+    .close-button { color: var(--grey-7); }
+    .settings-card:hover { background-color: var(--grey-2); }
+    .card-info p { color: var(--grey-5); }
+    .settings-form-group label { color: var(--grey-6); }
+    .settings-form-group input, .form-group textarea { background-color: var(--grey-2); border-color: var(--grey-4); color: var(--grey-7); }
+    .settings-form-group input:disabled { background-color: var(--grey-3); }
 }

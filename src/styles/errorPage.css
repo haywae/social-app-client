@@ -21,3 +21,17 @@
     margin: 1.5rem 0;
     font-family: monospace;
 }
+
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .error-page-container {
+    background-color: var(--background);
+    color: var(--grey-5);
+  }
+
+  .error-message {
+    background-color: var(--grey-2);
+    color: var(--danger-text);
+  }
+}

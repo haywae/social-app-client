@@ -175,4 +175,7 @@
     .detail-page-container .post-container.detailed-view:hover {
         background-color: var(--background);
     }
+  .post-header-actions .post-options-button:hover {
+    background-color: rgba(29, 155, 240, 0.2);
+  }
 }

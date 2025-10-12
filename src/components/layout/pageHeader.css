@@ -54,3 +54,8 @@
         background-color: var(--grey-2);
     }
 }
+@media (prefers-color-scheme: dark) {
+  .page-header-title {
+    color: var(--grey-7);
+  }
+}

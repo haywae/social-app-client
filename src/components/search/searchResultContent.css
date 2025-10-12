@@ -32,3 +32,19 @@
 .topic-tag:hover {
     background-color: var(--bg-blue-100); /* hover:bg-blue-100 */
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .section-title {
+    color: var(--grey-7);
+  }
+
+  .topic-tag {
+    background-color: var(--bg-blue-dark-50);
+    color: var(--base);
+  }
+
+  .topic-tag:hover {
+    background-color: var(--bg-blue-dark-100);
+  }
+}

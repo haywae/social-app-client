@@ -48,3 +48,18 @@
 .avatar-modal-content {
     animation: fadeIn 0.3s ease-out;
 }
+
+/* --- Dark Theme Overrides --- */
+@media (prefers-color-scheme: dark) {
+  .modal-content.avatar-viewer {
+    background: none;
+  }
+
+  .avatar-modal-content + .modal-close-button {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .avatar-modal-content + .modal-close-button:hover {
+    color: #ffffff;
+  }
+}

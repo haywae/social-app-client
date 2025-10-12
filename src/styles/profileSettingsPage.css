@@ -30,16 +30,22 @@
 }
 
 
-/* Dark Theme Adjustments */
+/* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
-    .profile-preview-image {
-        border-color: var(--grey-4);
-    }
-    .btn-secondary {
-        color: var(--grey-7);
-        border-color: var(--grey-4);
-    }
-    .btn-secondary:hover {
-        background-color: var(--grey-3);
-    }
+  .profile-picture-uploader {
+    background-color: var(--primary-bg);
+  }
+
+  .profile-preview-image {
+    border-color: var(--grey-4);
+  }
+
+  .btn-secondary {
+    color: var(--grey-7);
+    border-color: var(--grey-4);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--grey-3);
+  }
 }
