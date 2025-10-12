@@ -100,39 +100,40 @@
 
 
 /* --- Dark Theme Overrides --- */
+
 @media (prefers-color-scheme: dark) {
   .modal-overlay {
     background-color: rgba(20, 20, 20, 0.6);
   }
 
   .modal-content {
-    background: var(--background-dark);
+    background: var(--background); /* FIX: Was --background-dark */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
   }
 
   .modal-header {
-    border-bottom-color: var(--grey-3);
+    border-bottom-color: var(--grey-6);
   }
 
   .modal-title {
-    color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Was --grey-7 (dark) */
   }
 
   .modal-close-button {
-    color: var(--grey-5);
+    color: var(--grey-4);
   }
 
   .modal-close-button:hover {
-    background-color: var(--grey-3);
-    color: var(--grey-7);
+    background-color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Was --grey-7 (dark) */
   }
 
   .modal-body textarea {
-    background-color: var(--grey-2);
-    color: var(--grey-7);
+    background-color: var(--grey-7);
+    color: var(--grey-1);
   }
 
   .modal-body textarea:focus {
-    background-color: var(--grey-3);
+    background-color: var(--background);
   }
 }

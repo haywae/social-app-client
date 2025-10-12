@@ -47,16 +47,18 @@
 }
 
 /* --- Dark Theme Overrides --- */
+/* src/components/rightSidebar/followSuggestionItem.css */
+
 @media (prefers-color-scheme: dark) {
   .follow-suggestion:hover {
-    background-color: var(--grey-2);
+    background-color: var(--grey-7); /* FIX: Use a dark hover color */
   }
 
   .follow-suggestion-user-info-nav strong {
-    color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Was --grey-7 (dark text) */
   }
 
   .follow-suggestion-user-info-nav small {
-    color: var(--grey-5);
+    color: var(--grey-4); /* A slightly better grey for contrast */
   }
 }

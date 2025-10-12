@@ -29,14 +29,16 @@
 }
 
 /* --- Dark Theme Adjustments --- */
+
 @media (prefers-color-scheme: dark) {
   .button-danger {
-    background-color: var(--danger-fill-dark);
-    color: var(--background);
-    border-color: var(--danger-fill-dark);
+    background-color: var(--danger); /* FIX: Use the standard danger color */
+    color: var(--grey-1); /* FIX: Use light text */
+    border-color: var(--danger);
   }
 
   .button-danger:hover:not(:disabled) {
-    background-color: var(--danger-dark);
+    /* A slightly darker version of the standard danger color */
+    background-color: #d93448; 
   }
 }

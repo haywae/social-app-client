@@ -48,33 +48,18 @@
 @media (prefers-color-scheme: dark) {
     @media (min-width: 1280px) {
         .right-sidebar-container {
-            border-color: var(--grey-3);
+            border-color: var(--grey-6);
             background-color: var(--background);
         }
-
         .sidebar-module {
-            background-color: var(--grey-2);
+            background-color: var(--primary-bg); /* FIX: Use dark module background */
         }
-        
         .sidebar-module-title {
-            color: var(--grey-7);
-            border-color: var(--grey-3);
+            color: var(--grey-1); /* FIX: Use light text */
+            border-color: var(--grey-6);
         }
-
         .sidebar-empty-text {
-            color: var(--grey-5);
-        }
-
-        .suggestion-item:hover {
-            background-color: var(--grey-3);
-        }
-
-        .suggestion-user-info .display-name {
-            color: var(--grey-7);
-        }
-
-        .suggestion-user-info .username {
-            color: var(--grey-5);
+            color: var(--grey-4);
         }
     }
 }

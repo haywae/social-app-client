@@ -57,21 +57,22 @@
 }
 
 /* --- Dark Theme Adjustments --- */
+
 @media (prefers-color-scheme: dark) {
     .edit-post-btn-primary {
-        background-color: var(--grey-7);
-        color: var(--grey-1);
-        border-color: var(--grey-7);
+        background-color: var(--grey-1);
+        color: var(--background);
+        border-color: var(--grey-1);
     }
     .edit-post-btn-primary:hover:not(:disabled) {
-        background-color: var(--grey-6);
-        border-color: var(--grey-6);
+        background-color: var(--grey-2);
+        border-color: var(--grey-2);
     }
     .edit-post-btn-secondary {
-        color: var(--grey-6);
-        border-color: var(--grey-4);
+        color: var(--grey-1); /* FIX: Use light text */
+        border-color: var(--grey-6);
     }
     .edit-post-btn-secondary:hover:not(:disabled) {
-        background-color: var(--grey-3);
+        background-color: var(--grey-7); /* FIX: Use dark hover */
     }
 }

@@ -77,40 +77,40 @@
     margin: auto;
 }
 
-/* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   .dropdown-selected {
-    border-color: var(--grey-4);
+    border-color: var(--grey-6);
   }
 
   .dropdown-portal-menu {
     background-color: var(--background);
-    border-color: var(--grey-4);
+    border-color: var(--grey-6);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 
   .dropdown-arrow {
-    color: var(--grey-5);
+    color: var(--grey-4);
   }
 
   .dropdown-search {
-    border-color: var(--grey-4);
+    border-color: var(--grey-6);
     background-color: var(--primary-bg);
-    color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Was dark text */
   }
-
+  
+  /* These rules now apply to the list inside the portal */
   .dropdown-list {
-    background-color: var(--primary-bg);
-    border-color: var(--grey-4);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    background-color: transparent; /* The portal menu now provides the background */
+    border: none;
+    box-shadow: none;
   }
-
+  
   .dropdown-list li {
-    color: var(--grey-5);
+    color: var(--grey-2); /* FIX: A lighter, more readable grey */
   }
 
   .dropdown-list li:hover {
-    background-color: var(--grey-3);
-    color: var(--grey-7);
+    background-color: var(--grey-7); /* FIX: Use a dark hover color */
+    color: var(--grey-1); /* FIX: Use a light text color on hover */
   }
 }

@@ -166,35 +166,36 @@
 }
 
 /* --- Dark Theme Adjustments --- */
+/* src/components/layout/leftSidebar.css */
+
 @media (prefers-color-scheme: dark) {
     @media (min-width: 768px) {
         .left-sidebar {
-            background-color: var(--grey-2);
-            border-color: var(--grey-3);
+            background-color: var(--background); /* FIX: Use dark background */
         }
         .sidebar-nav a {
-            color: var(--grey-7);
+            color: var(--grey-1); /* FIX: Use light text */
         }
         .sidebar-nav a:hover {
-            background-color: var(--grey-3);
+            background-color: var(--grey-7); /* FIX: Use dark hover */
         }
         .notification-indicator {
-            border-color: var(--grey-2);
+            border-color: var(--background); /* Match the new sidebar background */
         }
         .sidebar-profile-link {
-            color: var(--grey-7);
+            color: var(--grey-1); /* FIX: Use light text */
         }
         .sidebar-profile-link:hover {
-            background-color: var(--grey-3);
+            background-color: var(--grey-7); /* FIX: Use dark hover */
         }
         .sidebar-profile-info small {
-            color: var(--grey-5);
+            color: var(--grey-4);
         }
         .sidebar-logout-button {
-            color: var(--grey-5);
+            color: var(--grey-2);
         }
         .sidebar-logout-button:hover {
-            background-color: rgba(255, 0, 0, 0.2); /* Slightly stronger contrast for dark mode */
+            background-color: rgba(255, 0, 0, 0.2);
         }
     }
 }

@@ -131,27 +131,31 @@
 }
 
 
-/* --- Dark Theme Overrides --- */
+/* src/styles/auth-container.css */
+
+/* --- Dark Theme Overrides for Auth Components --- */
 @media (prefers-color-scheme: dark) {
-    .settings-content {
-        background-color: var(--primary-bg);
+    .auth-container {
+        background-color: var(--background); /* Use the main dark background */
+        border-color: var(--grey-6);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
-
-    .settings-form-section {
-        background-color: var(--background);
-        border-color: var(--grey-3);
+    .auth-container-title {
+        color: var(--grey-1); /* Use the primary light text color */
     }
-
-    .settings-form-section h3 {
-        color: var(--grey-7);
-        border-bottom-color: var(--grey-3);
+    .auth-container .form-group label {
+      color: var(--grey-4); /* A lighter grey for better contrast */
     }
-
-    .form-footer {
-        color: var(--grey-5);
+    .auth-container .form-group input {
+        background-color: var(--grey-7); /* Use a dark color for the input background */
+        border-color: var(--grey-6);
+        color: var(--grey-1); /* Use a light color for the input text */
     }
-
-    .form-success {
-        color: #00e08a; /* Brighter green for dark mode */
+    .auth-container .form-group input:focus {
+        border-color: var(--base);
+    }
+    .auth-container .success-message {
+        color: var(--base);
+        background-color: rgba(29, 206, 136, 0.1);
     }
 }

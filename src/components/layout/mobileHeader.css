@@ -151,31 +151,28 @@
 }
 
 /* --- Dark Theme Adjustments --- */
+
 @media (prefers-color-scheme: dark) {
     .main-header-no-auth,
     .bottom-nav {
-        background-color: var(--primary-bg);
-        border-color: var(--grey-7);
+        background-color: var(--background); /* Use solid dark background */
+        border-color: var(--grey-6);
     }
     .main-header {
-        background-color: var(--background-dark-alpha);
-        border-color: var(--grey-3);
+        background-color: var(--background-alpha); /* FIX: Use correct alpha variable */
+        border-color: var(--grey-6);
     }
-    .header-title {
-        color: var(--grey-7);
+    .header-title,
+    .header-content-no-auth { /* This includes the logo text */
+        color: var(--grey-1); /* FIX: Use light text */
     }
     .notification-indicator {
-        border-color: var(--grey-2); /* Adjust border color for dark mode */
+        border-color: var(--background); /* FIX: Match the bottom nav background */
     }
-      .header-content-no-auth {
-        color: var(--grey-7);
-    }
-
     .bottom-nav a {
-        color: var(--grey-5);
+        color: var(--grey-4);
     }
-
     .bottom-nav a.active {
         color: var(--base);
-  }
+    }
 }

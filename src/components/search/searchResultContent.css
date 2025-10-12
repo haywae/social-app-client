@@ -36,9 +36,10 @@
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   .section-title {
-    color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Use a light text color */
   }
 
+  /* The topic-tag styles are likely fine, but ensure the bg variables are defined */
   .topic-tag {
     background-color: var(--bg-blue-dark-50);
     color: var(--base);

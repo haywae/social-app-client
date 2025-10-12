@@ -104,34 +104,36 @@
 
 
 /* --- Dark Theme --- */
+
 @media (prefers-color-scheme: dark) {
   .notification-item {
-    border-color: var(--grey-3);
+    border-color: var(--grey-6);
   }
 
   .notification-item:hover {
-    background-color: var(--grey-2);
+    background-color: var(--grey-7); /* FIX: Use a dark hover color */
   }
 
   .notification-item.unread {
-    background-color: var(--base-dark-ultralight);
+    /* FIX: Use a semi-transparent version of the base color */
+    background-color: rgba(29, 155, 240, 0.1); 
   }
 
   .notification-text {
-    color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Use a light text color */
   }
 
   .notification-post-snippet {
-    color: var(--grey-5);
-    border-color: var(--grey-4);
+    color: var(--grey-4);
+    border-color: var(--grey-6);
   }
 
   .notification-timestamp {
-    color: var(--grey-5);
+    color: var(--grey-4);
   }
 
   .notification-icon-container {
-    border-right-color: var(--grey-4);
+    border-right-color: var(--grey-6);
   }
 }
 

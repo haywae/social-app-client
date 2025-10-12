@@ -101,11 +101,11 @@
 /* --- DARK THEME --- */
 @media (prefers-color-scheme: dark) {
     .profile-page-container, .profile-header, .profile-tabs { border-color: var(--grey-3); }
-    .profile-stats .stat strong { color: var(--grey-7); }
-    .profile-display-name { color: var(--grey-7); }
+    .profile-stats .stat strong { color: var(--grey-1); }
+    .profile-display-name { color: var(--grey-1); }
     .profile-username, .profile-bio, .profile-joined-date { color: var(--grey-5); }
     .profile-tab-button { color: var(--grey-5); }
-    .profile-tab-button.active { color: var(--grey-7); }
+    .profile-tab-button.active { color: var(--grey-1); }
     .profile-tab-button:hover { background-color: var(--grey-2); }
     .edit-profile-button {
         background-color: var(--base);

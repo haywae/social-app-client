@@ -234,7 +234,7 @@ Description: Styles for the single post view page.
   }
 
   .back-button {
-    color: var(--grey-7);
+    color: var(--grey-1);
   }
 
   .back-button:hover {
@@ -244,7 +244,7 @@ Description: Styles for the single post view page.
   .comment-textarea {
     background-color: var(--primary-bg);
     border-color: var(--grey-3);
-    color: var(--grey-7);
+    color: var(--grey-1);
   }
 
   .replying-to-banner {
@@ -262,7 +262,7 @@ Description: Styles for the single post view page.
 
   .comments-header {
     background-color: var(--background);
-    color: var(--grey-6);
+    color: var(--grey-2);
     border-top-color: var(--grey-3);
     border-bottom-color: var(--grey-3);
   }
@@ -277,7 +277,7 @@ Description: Styles for the single post view page.
 
   .load-more-button {
     border-color: var(--grey-4);
-    color: var(--grey-7);
+    color: var(--grey-1);
   }
 
   .load-more-button:hover:not(:disabled) {

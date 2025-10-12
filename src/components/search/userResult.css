@@ -45,9 +45,19 @@
 
 /* --- Dark Theme --- */
 @media (prefers-color-scheme: dark) {
-    .user-result-card { border-color: var(--grey-3); }
-    .user-result-card:hover { background-color: var(--grey-2); }
-    .user-result-displayname { color: var(--grey-7); }
-    .user-result-username { color: var(--grey-5); }
-    .user-result-bio { color: var(--grey-6); }
+    .user-result-card { 
+        border-color: var(--grey-6); 
+    }
+    .user-result-card:hover { 
+        background-color: var(--grey-7); /* FIX: Use a dark hover color */
+    }
+    .user-result-displayname { 
+        color: var(--grey-1); /* FIX: Use a light text color */
+    }
+    .user-result-username { 
+        color: var(--grey-4); 
+    }
+    .user-result-bio { 
+        color: var(--grey-2); /* FIX: Use a lighter grey for readability */
+    }
 }

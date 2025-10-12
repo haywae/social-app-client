@@ -46,20 +46,20 @@
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   .search-tabs {
-    border-bottom-color: var(--grey-4);
+    border-bottom-color: var(--grey-6);
   }
 
   .tab-button {
-    color: var(--grey-5);
+    color: var(--grey-4);
   }
 
   .tab-button.active {
-    color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Use a light text color */
     border-bottom-color: var(--base);
   }
 
   .no-results-text {
-    color: var(--grey-5);
+    color: var(--grey-4);
   }
 
   .no-results-text.error {

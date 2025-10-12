@@ -125,35 +125,36 @@
 
 
 /* --- Dark Theme Adjustments --- */
+/* src/components/userProfile/liveRatesTab.css */
+
 @media (prefers-color-scheme: dark) {
     .live-rates-container {
-        background-color: var(--background-dark);
+        /* This rule seems unnecessary if the parent container already has the right background */
     }
     .live-rates-header,
     .rates-table,
     .live-rates-footer,
     .rates-table tbody tr,
     .rates-table thead th {
-        border-color: var(--grey-3);
+        border-color: var(--grey-6);
     }
 
     .live-rates-header h3,
     .live-rates-header p strong,
     .rates-table tbody td {
-        color: var(--grey-7);
+        color: var(--grey-1); /* FIX: Use a light text color */
     }
 
     .live-rates-header p,
     .rates-table thead th {
-        color: var(--grey-5);
+        color: var(--grey-4);
     }
 
     .rates-table tbody tr:hover {
-        background-color: var(--grey-2);
+        background-color: var(--grey-7); /* FIX: Use a dark hover color */
     }
 
     .live-rates-footer p {
         color: var(--grey-4);
     }
 }
-

@@ -55,23 +55,24 @@
 }
 
 /* --- Dark Theme Overrides --- */
+
 @media (prefers-color-scheme: dark) {
   .tabbed-header {
-    background-color: var(--background-dark-alpha);
-    border-bottom-color: var(--grey-3);
+    background-color: var(--background-alpha); /* FIX: Use the correct variable */
+    border-bottom-color: var(--grey-6);
   }
 
   .tab-link {
-    color: var(--grey-5);
+    color: var(--grey-4);
   }
 
   .tab-link:hover {
-    background-color: var(--primary-bg);
-    color: var(--grey-7);
+    background-color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Was --grey-7 (dark) */
   }
 
   .tab-link.active {
-    color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Was --grey-7 (dark) */
   }
 }
 

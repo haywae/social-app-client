@@ -48,14 +48,14 @@
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   .is-reply {
-    border-left-color: var(--grey-4);
+    border-left-color: var(--grey-6);
   }
 
   .view-replies-button {
-    color: var(--grey-5);
+    color: var(--grey-4);
   }
 
   .view-replies-button:hover {
-    color: var(--grey-7);
+    color: var(--grey-1); /* FIX: Use a light text color */
   }
 }

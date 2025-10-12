@@ -29,13 +29,15 @@
 }
 
 /* --- Dark Theme Overrides --- */
+/* src/components/rightSidebar/trendsList.css */
+
 @media (prefers-color-scheme: dark) {
   .trend-item:hover {
-    background-color: var(--grey-2);
+    background-color: var(--grey-7); /* FIX: Was --grey-2 (light color) */
   }
 
   .trend-context {
-    color: var(--grey-5);
+    color: var(--grey-4); /* A lighter grey for better contrast */
   }
 
   .trend-name {

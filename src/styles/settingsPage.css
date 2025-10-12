@@ -141,8 +141,6 @@ Description: Styles for the user settings page and its components.
     width: 100%;
 }
 
-
-
 /* Add these styles to your existing settingsPage.css file */
 
 .settings-content .section-description {
@@ -167,32 +165,37 @@ Description: Styles for the user settings page and its components.
     background-color: #c81e2e; /* A slightly darker red */
 }
 
-/* --- Dark Theme Overrides --- */
+/* settingsPage.css */
+
 @media (prefers-color-scheme: dark) {
-  .settings-content .section-description {
-    color: var(--grey-5);
-  }
-
-  .btn-danger {
-    border-color: var(--danger-outline-dark);
-    background-color: var(--danger-dark);
-    color: white;
-  }
-
-  .btn-danger:hover {
-    background-color: #a61a26; /* Slightly darker red for dark mode hover */
-  }
-}
-
-/* --- Dark Theme --- */
-@media (prefers-color-scheme: dark) {
-    .settings-page { background-color: var(--background-dark); color: var(--grey-7); }
-    .settings-header, .settings-card { border-color: var(--grey-3); }
-    .settings-header { background-color: var(--background-dark-alpha); }
-    .close-button { color: var(--grey-7); }
-    .settings-card:hover { background-color: var(--grey-2); }
-    .card-info p { color: var(--grey-5); }
-    .settings-form-group label { color: var(--grey-6); }
-    .settings-form-group input, .form-group textarea { background-color: var(--grey-2); border-color: var(--grey-4); color: var(--grey-7); }
-    .settings-form-group input:disabled { background-color: var(--grey-3); }
+    .settings-page { 
+        background-color: var(--primary-bg); /* Use dark primary background */
+        color: var(--grey-1); /* Use light primary text color */
+    }
+    .settings-header, .settings-card { 
+        border-color: var(--grey-6); 
+    }
+    .settings-header { 
+        background-color: var(--background); 
+    }
+    .close-button { 
+        color: var(--grey-1); /* Light color for icon */
+    }
+    .settings-card:hover { 
+        background-color: var(--grey-7); /* Dark hover color */
+    }
+    .card-info p { 
+        color: var(--grey-4); 
+    }
+    .settings-form-group label { 
+        color: var(--grey-2); /* Light color for labels */
+    }
+    .settings-form-group input, .settings-form-group textarea { 
+        background-color: var(--grey-7); /* Dark background for inputs */
+        border-color: var(--grey-6); 
+        color: var(--grey-1); /* Light text for inputs */
+    }
+    .settings-form-group input:disabled { 
+        background-color: var(--grey-6); 
+    }
 }
