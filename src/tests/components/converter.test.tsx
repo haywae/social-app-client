@@ -4,7 +4,7 @@ import { calculateConversion } from '../../utils/exchangeUtils';
 
 // The component to test
 import Converter from '../../components/exchange/converter';
-import { type ConversionRow, type Rate } from '../../components/exchange/converter';
+import type { ConversionRow, Rate } from '../../types/exchange';
 
 // Mock child components and utility functions
 vi.mock('../../components/exchange/currencyDropdown', () => ({
