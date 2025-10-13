@@ -77,6 +77,7 @@
     margin: auto;
 }
 
+
 @media (prefers-color-scheme: dark) {
   .dropdown-selected {
     border-color: var(--grey-6);
@@ -95,22 +96,15 @@
   .dropdown-search {
     border-color: var(--grey-6);
     background-color: var(--primary-bg);
-    color: var(--grey-1); /* FIX: Was dark text */
-  }
-  
-  /* These rules now apply to the list inside the portal */
-  .dropdown-list {
-    background-color: transparent; /* The portal menu now provides the background */
-    border: none;
-    box-shadow: none;
+    color: var(--grey-1);
   }
   
   .dropdown-list li {
-    color: var(--grey-2); /* FIX: A lighter, more readable grey */
+    color: var(--grey-2);
   }
 
   .dropdown-list li:hover {
-    background-color: var(--grey-7); /* FIX: Use a dark hover color */
-    color: var(--grey-1); /* FIX: Use a light text color on hover */
+    background-color: var(--grey-7);
+    color: var(--grey-1);
   }
 }

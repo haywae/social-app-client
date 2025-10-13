@@ -52,10 +52,10 @@
             background-color: var(--background);
         }
         .sidebar-module {
-            background-color: var(--primary-bg); /* FIX: Use dark module background */
+            background-color: var(--primary-bg);
         }
         .sidebar-module-title {
-            color: var(--grey-1); /* FIX: Use light text */
+            color: var(--grey-1); 
             border-color: var(--grey-6);
         }
         .sidebar-empty-text {

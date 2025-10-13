@@ -30,7 +30,6 @@
     cursor: pointer;
     border-radius: 8px;
     transition: background-color 0.2s;
-    /* This is the key fix: keeps icon and text on a single line */
     white-space: nowrap; 
 }
 
@@ -42,7 +41,6 @@
     width: 20px;
     height: 20px;
     color: var(--text-secondary); /* Standardize icon color */
-    /* This is the second key fix: prevents the icon from being squished */
     flex-shrink: 0; 
 }
 
@@ -62,13 +60,13 @@
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   .options-popover-container {
-    background-color: var(--background); /* FIX: Was --background-dark */
+    background-color: var(--background);
     border-color: var(--grey-6);
-    box-shadow: var(--box-shadow-lg); /* Use the standard shadow */
+    box-shadow: var(--box-shadow-lg);
   }
 
   .menu-option-item:hover {
-    background-color: var(--grey-7); /* FIX: Use a dark hover color */
+    background-color: var(--grey-7);
   }
 
   .menu-option-item svg {

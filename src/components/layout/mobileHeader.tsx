@@ -13,7 +13,7 @@ const activeLinkStyle = { color: 'var(--base)', fontWeight: '700' };
 
 // Config for page titles that supports dynamic paths
 const routeConfig = [
-    { path: "/", title: "Wolexchange", exact: true },
+    { path: "/", title: "WolexChange", exact: true },
     { path: "/exchange", title: "Exchange" },
     { path: "/search", title: "Search" },
     { path: "/notifications", title: "Notifications" },

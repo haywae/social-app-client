@@ -159,15 +159,15 @@
         border-color: var(--grey-6);
     }
     .main-header {
-        background-color: var(--background-alpha); /* FIX: Use correct alpha variable */
+        background-color: var(--background-alpha);
         border-color: var(--grey-6);
     }
     .header-title,
     .header-content-no-auth { /* This includes the logo text */
-        color: var(--grey-1); /* FIX: Use light text */
+        color: var(--grey-1); 
     }
     .notification-indicator {
-        border-color: var(--background); /* FIX: Match the bottom nav background */
+        border-color: var(--background);
     }
     .bottom-nav a {
         color: var(--grey-4);

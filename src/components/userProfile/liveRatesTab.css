@@ -128,9 +128,6 @@
 /* src/components/userProfile/liveRatesTab.css */
 
 @media (prefers-color-scheme: dark) {
-    .live-rates-container {
-        /* This rule seems unnecessary if the parent container already has the right background */
-    }
     .live-rates-header,
     .rates-table,
     .live-rates-footer,
@@ -142,7 +139,7 @@
     .live-rates-header h3,
     .live-rates-header p strong,
     .rates-table tbody td {
-        color: var(--grey-1); /* FIX: Use a light text color */
+        color: var(--grey-1);
     }
 
     .live-rates-header p,
@@ -151,7 +148,7 @@
     }
 
     .rates-table tbody tr:hover {
-        background-color: var(--grey-7); /* FIX: Use a dark hover color */
+        background-color: var(--grey-7);
     }
 
     .live-rates-footer p {

@@ -33,7 +33,7 @@
 
 @media (prefers-color-scheme: dark) {
   .trend-item:hover {
-    background-color: var(--grey-7); /* FIX: Was --grey-2 (light color) */
+    background-color: var(--grey-7);
   }
 
   .trend-context {

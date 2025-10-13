@@ -1,7 +1,8 @@
 import { type JSX } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../utils/hooks';
-import { setSearchTerm, submitSearch } from '../../slices/search/searchSlice';
+import { submitSearch } from '../../slices/search/searchSlice';
+import { fetchSearchResults } from '../../thunks/searchThunks/fetchResultsThunk';
 import './trendsList.css'
 
 interface TrendsListProps {
@@ -16,8 +17,12 @@ export const TrendsList = ({ topics }: TrendsListProps): JSX.Element => {
     const navigate = useNavigate();
 
     const handleTopicClick = (topic: string) => {
-        dispatch(setSearchTerm(topic));
-        dispatch(submitSearch());
+        // This is the correct, efficient pattern:
+        // 1. Set both search terms and update the UI state in one action.
+        dispatch(submitSearch(topic));
+        // 2. Immediately fetch the results for that topic.
+        dispatch(fetchSearchResults(topic));
+        // 3. Navigate to the search page to display the results.
         navigate('/search');
     };
     return (

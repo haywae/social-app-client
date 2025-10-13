@@ -80,7 +80,7 @@ const PostFeed = ({ username }: PostFeedProps): JSX.Element => {
                 if (posts.length === index + 1) {
                     return (
                         <div ref={lastPostElementRef} key={post.id}>
-                            <Post post={post} />
+                            <Post post={post} isGateway={true}/>
                         </div>
                     );
                 } else {

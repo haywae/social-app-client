@@ -49,15 +49,15 @@
         border-color: var(--grey-6); 
     }
     .user-result-card:hover { 
-        background-color: var(--grey-7); /* FIX: Use a dark hover color */
+        background-color: var(--grey-7);
     }
     .user-result-displayname { 
-        color: var(--grey-1); /* FIX: Use a light text color */
+        color: var(--grey-1);
     }
     .user-result-username { 
         color: var(--grey-4); 
     }
     .user-result-bio { 
-        color: var(--grey-2); /* FIX: Use a lighter grey for readability */
+        color: var(--grey-2);
     }
 }

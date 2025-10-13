@@ -107,7 +107,7 @@
   }
 
   .modal-content {
-    background: var(--background); /* FIX: Was --background-dark */
+    background: var(--background);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
   }
 
@@ -116,7 +116,7 @@
   }
 
   .modal-title {
-    color: var(--grey-1); /* FIX: Was --grey-7 (dark) */
+    color: var(--grey-1);
   }
 
   .modal-close-button {
@@ -125,7 +125,7 @@
 
   .modal-close-button:hover {
     background-color: var(--grey-7);
-    color: var(--grey-1); /* FIX: Was --grey-7 (dark) */
+    color: var(--grey-1);
   }
 
   .modal-body textarea {

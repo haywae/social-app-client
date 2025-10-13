@@ -51,14 +51,14 @@
 
 @media (prefers-color-scheme: dark) {
   .follow-suggestion:hover {
-    background-color: var(--grey-7); /* FIX: Use a dark hover color */
+    background-color: var(--grey-7);
   }
 
   .follow-suggestion-user-info-nav strong {
-    color: var(--grey-1); /* FIX: Was --grey-7 (dark text) */
+    color: var(--grey-1);
   }
 
   .follow-suggestion-user-info-nav small {
-    color: var(--grey-4); /* A slightly better grey for contrast */
+    color: var(--grey-4);
   }
 }

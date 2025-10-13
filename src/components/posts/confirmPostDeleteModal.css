@@ -32,8 +32,8 @@
 
 @media (prefers-color-scheme: dark) {
   .button-danger {
-    background-color: var(--danger); /* FIX: Use the standard danger color */
-    color: var(--grey-1); /* FIX: Use light text */
+    background-color: var(--danger); 
+    color: var(--grey-1);
     border-color: var(--danger);
   }
 

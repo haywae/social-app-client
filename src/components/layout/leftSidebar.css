@@ -171,22 +171,22 @@
 @media (prefers-color-scheme: dark) {
     @media (min-width: 768px) {
         .left-sidebar {
-            background-color: var(--background); /* FIX: Use dark background */
+            background-color: var(--background);
         }
         .sidebar-nav a {
-            color: var(--grey-1); /* FIX: Use light text */
+            color: var(--grey-1);
         }
         .sidebar-nav a:hover {
-            background-color: var(--grey-7); /* FIX: Use dark hover */
+            background-color: var(--grey-7);
         }
         .notification-indicator {
             border-color: var(--background); /* Match the new sidebar background */
         }
         .sidebar-profile-link {
-            color: var(--grey-1); /* FIX: Use light text */
+            color: var(--grey-1);
         }
         .sidebar-profile-link:hover {
-            background-color: var(--grey-7); /* FIX: Use dark hover */
+            background-color: var(--grey-7);
         }
         .sidebar-profile-info small {
             color: var(--grey-4);

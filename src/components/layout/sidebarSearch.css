@@ -1,34 +1,39 @@
 /* Search Bar Specifics */
 .sidebar-search-bar {
-    display: flex;
-    align-items: center;
-    background-color: #eff3f4;
-    border-radius: 9999px; /* Pill shape */
-    padding: 0 12px;
+  display: flex;
+  align-items: center;
+  background-color: #eff3f4;
+  border-radius: 9999px; /* Pill shape */
+  padding: 0 12px;
 }
 
 .sidebar-search-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
 }
 
 .sidebar-search-input {
-    border: none;
-    background: transparent;
-    outline: none;
-    width: 100%;
-    padding: 12px 0;
-    font-size: 15px;
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 15px;
 }
 
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   .sidebar-search-bar {
-    background-color: var(--grey-2);
+    background-color: var(--grey-7);
   }
 
   .sidebar-search-input {
-    color: var(--grey-7);
+
+    color: var(--grey-1);
+  }
+
+  .sidebar-search-input::placeholder {
+    color: var(--grey-4);
   }
 }

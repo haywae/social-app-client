@@ -69,10 +69,10 @@
         border-color: var(--grey-2);
     }
     .edit-post-btn-secondary {
-        color: var(--grey-1); /* FIX: Use light text */
+        color: var(--grey-1);
         border-color: var(--grey-6);
     }
     .edit-post-btn-secondary:hover:not(:disabled) {
-        background-color: var(--grey-7); /* FIX: Use dark hover */
+        background-color: var(--grey-7);
     }
 }

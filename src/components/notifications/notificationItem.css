@@ -111,16 +111,15 @@
   }
 
   .notification-item:hover {
-    background-color: var(--grey-7); /* FIX: Use a dark hover color */
+    background-color: var(--grey-7);
   }
 
-  .notification-item.unread {
-    /* FIX: Use a semi-transparent version of the base color */
+.notification-item.unread {
     background-color: rgba(29, 155, 240, 0.1); 
   }
 
   .notification-text {
-    color: var(--grey-1); /* FIX: Use a light text color */
+    color: var(--grey-1);
   }
 
   .notification-post-snippet {

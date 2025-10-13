@@ -54,7 +54,7 @@
   }
 
   .tab-button.active {
-    color: var(--grey-1); /* FIX: Use a light text color */
+    color: var(--grey-1);
     border-bottom-color: var(--base);
   }
 

@@ -166,16 +166,16 @@
         border-color: var(--grey-6); 
     }
     .post-container:hover { 
-        background-color: var(--grey-7); /* FIX: Use a dark hover color */
+        background-color: var(--grey-7);
     }
     .author-display-name { 
-        color: var(--grey-1); /* FIX: Use a light text color */
+        color: var(--grey-1);
     }
     .author-username, .post-timestamp { 
         color: var(--grey-4); 
     }
     .post-content p { 
-        color: var(--grey-2); /* FIX: Use a lighter grey for readability */
+        color: var(--grey-2);
     }
     .icon-action-button { 
         color: var(--grey-4); 

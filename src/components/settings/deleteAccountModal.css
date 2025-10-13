@@ -58,7 +58,7 @@
 
 @media (prefers-color-scheme: dark) {
   .delete-account-modal h2 {
-    color: var(--grey-1); /* FIX: Use a light text color */
+    color: var(--grey-1);
   }
 
   .delete-account-modal p {
@@ -70,9 +70,9 @@
   }
 
   .delete-account-modal .form-group input {
-    background-color: var(--grey-7); /* FIX: Use a dark background */
+    background-color: var(--grey-7);
     border-color: var(--grey-6);
-    color: var(--grey-1); /* FIX: Use light text */
+    color: var(--grey-1);
   }
 
   .delete-account-modal .form-group input:focus {
