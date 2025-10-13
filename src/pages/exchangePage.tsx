@@ -20,7 +20,6 @@ import { setConverterMode, addConverterRow, updateConverterValue, updateConverte
 import type { Rate } from "../types/exchange";
 import "../styles/exchangePage.css";
 
-import { parseTags } from "../utils/tagsUtils"; //For posting Rates
 
 import { MINIMUM_RATE_ROWS } from "../appConfig";
 import { DEFAULT_AVATAR_URL } from "../appConfig";
