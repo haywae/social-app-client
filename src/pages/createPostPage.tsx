@@ -4,7 +4,6 @@ import { parseTags } from "../utils/tagsUtils";
 import { useNavigate } from "react-router-dom";
 import { CloseIcon, EmojiIcon } from "../assets/icons";
 import { createPost  } from "../thunks/postsThunks/createPostThunk";
-import { fetchDiscoveryData } from "../thunks/searchThunks/fetchDiscoveryThunk";
 import { resetCreatePostStatus, setCreatePostContent } from "../slices/posts/postsSlice";
 import { setError } from "../slices/ui/uiSlice";
 import "../styles/createPostPage.css"
