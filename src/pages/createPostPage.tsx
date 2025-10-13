@@ -76,7 +76,6 @@ const CreatePostPage = () : JSX.Element | null => {
         // The thunk will handle success/failure and update the state
         try {
             await dispatch(createPost({ content: createPostContent, tags})).unwrap();
-            await dispatch(fetchDiscoveryData())
         } catch(err: any) {
             dispatch(setError(err))
         }
