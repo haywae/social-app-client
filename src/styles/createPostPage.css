@@ -90,6 +90,26 @@
     align-items: center;
 }
 
+.create-post-footer .post-actions {
+  position: relative;
+}
+
+.emoji-picker-wrapper {
+  position: absolute;
+  /* FIX: Use a specific value instead of 100%. 
+     45px is a good starting point for the height of an icon button row. 
+     You can adjust this value as needed. */
+  top: 90%; 
+  left: 1.1rem;
+  z-index: 10;
+  
+  /* Optional but recommended: Add styling to the picker's container */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden; /* Ensures the picker respects the border-radius */
+}
+
+
 .char-counter {
     font-size: 0.9rem;
     color: var(--grey-4);

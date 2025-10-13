@@ -1,14 +1,15 @@
 // src/components/exchange/ExchangeOptionsMenu.tsx
 import { useEffect, useRef, type JSX } from 'react';
-import { EditIcon, LinkIcon } from '../../assets/icons';
+import { EditIcon, LinkIcon, CreatePostIcon } from '../../assets/icons';
 
 interface ExchangeOptionsMenuProps {
     username: string | undefined;
     onClose: () => void;
     onEditClick: () => void;
+    onPostRatesClick: () => void;
 }
 
-const ExchangeOptionsMenu = ({ username, onClose, onEditClick }: ExchangeOptionsMenuProps): JSX.Element => {
+const ExchangeOptionsMenu = ({ username, onClose, onEditClick,onPostRatesClick }: ExchangeOptionsMenuProps): JSX.Element => {
     const menuRef = useRef<HTMLDivElement>(null);
     const exchangeUrl = `${window.location.origin}/view?exchange=${username}`;
 
@@ -34,6 +35,10 @@ const ExchangeOptionsMenu = ({ username, onClose, onEditClick }: ExchangeOptions
                 <li className="menu-option-item" onClick={onEditClick}>
                     <EditIcon />
                     <span>Edit Exchange Details</span>
+                </li>
+                <li className="menu-option-item" onClick={onPostRatesClick}>
+                    <CreatePostIcon />
+                    <span>Post My Rates</span>
                 </li>
                 <li className="menu-option-item" onClick={handleCopyLink}>
                     <LinkIcon />

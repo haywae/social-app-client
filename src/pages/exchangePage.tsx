@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 import { useAppSelector, useAppDispatch } from "../utils/hooks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
 import withAuth from "../components/common/withAuth";
 import { openModal } from "../slices/ui/uiSlice";
@@ -14,10 +14,13 @@ import { allCurrencies, type CurrencyItem } from "../assets/currencies";
 import { AddIcon, CloudArrowDownIcon, EllipseIcon } from "../assets/icons";
 import { fetchExchangeData } from "../thunks/exchangeThunks/fetchExchangeDataThunk";
 import { updateExchangeRates } from "../thunks/exchangeThunks/updateExchangeRatesThunk";
+import { createPost } from "../thunks/postsThunks/createPostThunk";
 import { updateDisplayRate, addDisplayRateRow, removeDisplayRateRow, resetDisplayRateRow } from "../slices/exchange/exchangeSlice";
 import { setConverterMode, addConverterRow, updateConverterValue, updateConverterCurrency, resetConverterRow, removeConverterRow } from "../slices/exchange/exchangeSlice";
 import type { Rate } from "../types/exchange";
 import "../styles/exchangePage.css";
+
+import { parseTags } from "../utils/tagsUtils"; //For posting Rates
 
 import { MINIMUM_RATE_ROWS } from "../appConfig";
 import { DEFAULT_AVATAR_URL } from "../appConfig";
@@ -26,6 +29,7 @@ const ExchangePage = (): JSX.Element => {
     const { exchangeData, loading, displayRates, converterMode, converterState } = useAppSelector((state) => state.exchange)
     const user = useAppSelector((state) => state.auth.user)
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [latestRate, setLatestRate] = useState<'idle' | 'pending' | 'failed' | 'succeeded'>('idle');
@@ -158,6 +162,36 @@ const ExchangePage = (): JSX.Element => {
         }, 3000);
     };
 
+        // --- HANDLER FOR POSTING RATES ---
+    const handlePostRates = async () => {
+        setIsMenuOpen(false);
+        const validRates = displayRates.filter(rate => rate.currency && rate.buy > 0 && rate.sell > 0);
+
+        if (validRates.length === 0) {
+            dispatch(setError("You have no valid rates to post."));
+            return;
+        }
+        // 1. Format the rates into a string
+        const ratesText = validRates.map(rate => 
+            `📊 ${rate.currency}\nBuy: ${rate.buy.toFixed(2)} | Sell: ${rate.sell.toFixed(2)}`
+        ).join('\n');
+        // 2. Create the hashtags
+        const allCurrencies = [baseCurrencyCode, ...validRates.map(r => r.currency)];
+        const uniqueCurrencies = [...new Set(allCurrencies)]; // Remove duplicates
+        const hashtags = uniqueCurrencies.map(c => `#${c}`).join(' ');
+        // 3. Combine everything into the final post content
+        const postContent = `${exchangeData?.name} - Rates (${baseCurrencyCode}):\n\n${ratesText}\n\n${hashtags}`;
+        try {
+            // 4. Dispatch the createPost thunk
+            const result = await dispatch(createPost({ content: postContent, tags:uniqueCurrencies })).unwrap();
+            dispatch(setSuccess("Rates posted successfully!"));
+            // 5. Navigate to the new post's detail page
+            navigate(`/post/${result.id}`); 
+        } catch (err) {
+            dispatch(setError("Failed to post rates. Please try again."));
+        }
+    };
+
     //========== CONVERTER SECTION HANDLERS ==========
 
     /** Dispatches an action to set the converter's active mode ('convert' or 'findOut'). */
@@ -219,6 +253,7 @@ const ExchangePage = (): JSX.Element => {
                                     <ExchangeOptionsMenu username={user?.username}
                                         onClose={() => setIsMenuOpen(false)}
                                         onEditClick={handleOpenEditModal}
+                                        onPostRatesClick={handlePostRates}
                                     />
                                 )}
                             </div>

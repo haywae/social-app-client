@@ -20,15 +20,13 @@ const SearchPage = () => {
     const { searchTerm, submittedSearchTerm } = useAppSelector((state) => state.search);
     const navigate = useNavigate();
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
-
+    
     // --- Effects for Data Fetching and Cleanup ---
     useEffect(() => {
-
         if(!searchTerm && !submittedSearchTerm){
         // Fetch initial discovery data when the page loads
             dispatch(fetchDiscoveryData());
         }
-
     }, [dispatch]);
 
     // --- Effect for debounced Search Actions ---

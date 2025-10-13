@@ -19,7 +19,7 @@ export const SearchResultsContent = () => {
         dispatch(submitSearch(topic));
         dispatch(fetchSearchResults(topic));
     };
-
+    
     // --- Submitted Search Results View ---
     if (submittedSearchTerm) {
         return <TabbedResults />

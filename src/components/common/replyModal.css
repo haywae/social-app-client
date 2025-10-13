@@ -39,6 +39,11 @@
   }
 }
 
+/* This is the anchor for the emoji picker */
+.reply-modal-footer .post-actions {
+  position: relative;
+}
+
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   .original-comment-content {

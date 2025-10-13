@@ -16,6 +16,7 @@
     "@floating-ui/react": "^0.27.16",
     "browser-image-compression": "^2.0.2",
     "country-list-js": "^3.1.8",
+    "emoji-picker-react": "^4.14.0",
     "react": "^19.1.0",
     "react-datepicker": "^8.7.0",
     "react-dom": "^19.1.0",

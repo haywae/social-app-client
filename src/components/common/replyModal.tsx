@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { createComment } from '../../thunks/commentsThunks/createCommentThunk';
 import { setError } from '../../slices/ui/uiSlice';
 import { type PostData } from '../../types/postType';
 import { type CommentData } from '../../types/commentType';
+import { EmojiIcon } from '../../assets/icons';
+import EmojiPicker, {type EmojiClickData, Theme } from "emoji-picker-react";
 import Modal from './modal';
 import './replyModal.css';
 
@@ -24,6 +26,15 @@ const ReplyModal = ({ target, postId, onClose, isOpen }: ReplyModalProps) => {
     const loggedInUser = useAppSelector((state) => state.auth.user);
     const [content, setContent] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showPicker, setShowPicker] = useState(false)
+
+    // Detects user's system theme
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+
+    // --- Refs for detecting outside clicks ---
+    const pickerRef = useRef<HTMLDivElement>(null);
+    const emojiButtonRef = useRef<HTMLButtonElement>(null);
 
     // Clear content when the modal is closed to prevent stale text
     useEffect(() => {
@@ -31,6 +42,29 @@ const ReplyModal = ({ target, postId, onClose, isOpen }: ReplyModalProps) => {
             setContent('');
         }
     }, [isOpen]);
+
+        // --- useEffect to handle clicks outside the picker ---
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                pickerRef.current && !pickerRef.current.contains(event.target as Node) &&
+                emojiButtonRef.current && !emojiButtonRef.current.contains(event.target as Node)
+            ) {
+                setShowPicker(false);
+            }
+        };
+        if (showPicker) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [showPicker]);
+
+    const handleEmojiClick = (emojiData: EmojiClickData) => {
+        setContent(prevContent => prevContent + emojiData.emoji);
+    };
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -73,7 +107,19 @@ const ReplyModal = ({ target, postId, onClose, isOpen }: ReplyModalProps) => {
                     autoFocus
                     disabled={isSubmitting}
                 />
-            <div className="modal-footer">
+            <div className="reply-modal-footer">
+                <div className="post-actions">
+                    <button ref={emojiButtonRef} className="icon-action-button" onClick={() => setShowPicker(val => !val)}>
+                        <EmojiIcon />
+                    </button>
+                    {showPicker && (
+                        <div ref={pickerRef} className="emoji-picker-wrapper">
+                            <EmojiPicker onEmojiClick={handleEmojiClick} height={350} width={300}                                     skinTonesDisabled
+                                previewConfig={{ showPreview: false }} theme={isDarkMode ? Theme.DARK : Theme.LIGHT }
+                            />
+                        </div>
+                    )}
+                </div>
                 <button onClick={handleSubmit} className="btn-primary" disabled={!content.trim() || isSubmitting}>
                     {isSubmitting ? 'Replying...' : 'Reply'}
                 </button>
