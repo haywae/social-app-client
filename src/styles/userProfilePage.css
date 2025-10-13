@@ -3,8 +3,6 @@
     margin: 0 auto;
     background-color: var(--background-alpha);
     backdrop-filter: blur(8px);
-    border-right: 1px solid var(--grey-6);
-    border-left: 1px solid var(--grey-6)
 }
 
 .profile-header {
@@ -106,7 +104,7 @@
     .profile-username, .profile-bio, .profile-joined-date { color: var(--grey-5); }
     .profile-tab-button { color: var(--grey-5); }
     .profile-tab-button.active { color: var(--grey-1); }
-    .profile-tab-button:hover { background-color: var(--grey-2); }
+    .profile-tab-button:hover { background-color: var(--grey-7); }
     .edit-profile-button {
         background-color: var(--base);
         color: var(--background);
