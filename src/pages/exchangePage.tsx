@@ -24,7 +24,6 @@ import "../styles/exchangePage.css";
 import { MINIMUM_RATE_ROWS } from "../appConfig";
 import { DEFAULT_AVATAR_URL } from "../appConfig";
 import { fetchDiscoveryData } from "../thunks/searchThunks/fetchDiscoveryThunk";
-import { getFlagEmoji } from "../utils/exchangeUtils";
 
 const ExchangePage = (): JSX.Element => {
     const { exchangeData, loading, displayRates, converterMode, converterState } = useAppSelector((state) => state.exchange)
