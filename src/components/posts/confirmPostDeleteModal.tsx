@@ -16,7 +16,6 @@ interface ConfirmDeleteModalProps {
 
 const ConfirmPostDeleteModal = ({ post, isOpen, onClose }: ConfirmDeleteModalProps): JSX.Element => {
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleDelete = async () => {
