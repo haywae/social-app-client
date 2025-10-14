@@ -18,7 +18,7 @@
 }
 
 .not-found-title {
-    font-size: 3.75rem; /* 60px */
+    font-size: 3.75rem;
     line-height: 1;
     font-weight: 700;
     color: var(--grey-1);

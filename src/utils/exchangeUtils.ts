@@ -123,3 +123,22 @@ export const transformRatesForApi = (updateData: {rates:Rate[]}) => {
   // Return a new object with the transformed rates
   return { rates: transformedRates };
 };
+
+
+
+/**
+ * Converts a two-letter country code (ISO 3166-1 alpha-2) to a flag emoji.
+ * @param iso2 - The two-letter country code (e.g., "US", "NG").
+ * @returns The flag emoji string (e.g., "🇺🇸", "🇳🇬").
+ */
+export const getFlagEmoji = (iso2: string): string => {
+    if (!iso2 || iso2.length !== 2) {
+        return '🏳️'; // Return a default white flag for invalid codes
+    }
+    // Converts each letter to its corresponding Regional Indicator Symbol
+    return iso2
+        .toUpperCase()
+        .split('')
+        .map(char => String.fromCodePoint(char.charCodeAt(0) + 127397))
+        .join('');
+};

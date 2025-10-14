@@ -11,7 +11,7 @@
 }
 
 .header-included{
-    margin-top: 60px; /*Ensures the page has a margin to give space for the header*/
+    margin-top: var(--main-header-height); /*Ensures the page has a margin to give space for the header*/
 }
 
 /* --- Main Content Feed --- */
@@ -24,11 +24,11 @@
 }
 
 .guest-content {
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - var(--main-header-height));
 }
 
 .main-content{
-    margin-bottom: 60px; /*Ensures the page has a margin to give space for the bottom nav;*/
+    margin-bottom: var(--bottom-nav-height); /*Ensures the page has a margin to give space for the bottom nav;*/
 }
 
 .follow-button {
@@ -120,11 +120,11 @@
         max-width: var(--breakpoint-md); /* Ensures guest layout doesn't exceed the main layout width */
         min-width: var(--breakpoint-sm);
         width: auto;
-        margin: 60px auto 0 auto;
+        margin: var(--main-header-height) auto 0 auto;
     }
 
     .main-content{
-        min-height: calc(100vh - 60px - 1rem);
+        min-height: calc(100vh - var(--main-header-height) - 1rem);
         margin-bottom: 0;
         border-right: 1px solid var(--grey-6);
         border-left: 1px solid var(--grey-6);
@@ -190,9 +190,9 @@
     background-color: var(--grey-6);
   }
 
-  .main-layout,
+  /* .main-layout,
   .guest-layout,
   .header-included {
     background-color: var(--primary-bg);
-  }
+  } */
 }

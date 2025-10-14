@@ -23,6 +23,8 @@ import "../styles/exchangePage.css";
 
 import { MINIMUM_RATE_ROWS } from "../appConfig";
 import { DEFAULT_AVATAR_URL } from "../appConfig";
+import { fetchDiscoveryData } from "../thunks/searchThunks/fetchDiscoveryThunk";
+import { getFlagEmoji } from "../utils/exchangeUtils";
 
 const ExchangePage = (): JSX.Element => {
     const { exchangeData, loading, displayRates, converterMode, converterState } = useAppSelector((state) => state.exchange)
@@ -161,29 +163,34 @@ const ExchangePage = (): JSX.Element => {
         }, 3000);
     };
 
-        // --- HANDLER FOR POSTING RATES ---
+    // --- HANDLER FOR POSTING RATES ---
     const handlePostRates = async () => {
         setIsMenuOpen(false);
         const validRates = displayRates.filter(rate => rate.currency && rate.buy > 0 && rate.sell > 0);
-
         if (validRates.length === 0) {
             dispatch(setError("You have no valid rates to post."));
             return;
         }
-        // 1. Format the rates into a string
-        const ratesText = validRates.map(rate => 
-            `📊 ${rate.currency}\nBuy: ${rate.buy.toFixed(2)} | Sell: ${rate.sell.toFixed(2)}`
-        ).join('\n');
+        
+        // 1. Format the rates into a string, now with dynamic flag emojis
+        const ratesText = validRates.map(rate => {
+            const currencyToDisplay = converterCurrencyOptions.find(currency => currency.iso3 === rate.currency)
+            return `${currencyToDisplay?.symbol} ${rate.currency}\nBuy: ${rate.buy.toFixed(2)} | Sell: ${rate.sell.toFixed(2)}`;
+        }).join('\n\n'); // Use double newline for better spacing
+
         // 2. Create the hashtags
         const allCurrencies = [baseCurrencyCode, ...validRates.map(r => r.currency)];
-        const uniqueCurrencies = [...new Set(allCurrencies)]; // Remove duplicates
+        const uniqueCurrencies = [...new Set(allCurrencies)];
         const hashtags = uniqueCurrencies.map(c => `#${c}`).join(' ');
+
         // 3. Combine everything into the final post content
         const postContent = `${exchangeData?.name} - Rates (${baseCurrencyCode}):\n\n${ratesText}\n\n${hashtags}`;
+
         try {
             // 4. Dispatch the createPost thunk
             const result = await dispatch(createPost({ content: postContent, tags:uniqueCurrencies })).unwrap();
             dispatch(setSuccess("Rates posted successfully!"));
+            dispatch(fetchDiscoveryData())
             // 5. Navigate to the new post's detail page
             navigate(`/post/${result.id}`); 
         } catch (err) {

@@ -14,6 +14,13 @@ interface TabbedHeaderProps {
 }
 
 const TabbedHeader = ({ tabs }: TabbedHeaderProps): JSX.Element => {
+
+    const handleTabClick = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Optional: for a smooth scrolling effect
+        });
+    };
     return (
         <div className="tabbed-header">
             <nav className="tab-nav">
@@ -24,6 +31,7 @@ const TabbedHeader = ({ tabs }: TabbedHeaderProps): JSX.Element => {
                         className={({ isActive }) => 
                             isActive ? "tab-link active" : "tab-link"
                         }
+                        onClick={handleTabClick}
                         end // Use 'end' for the root path to prevent it from matching sub-paths
                     >
                         {tab.label}

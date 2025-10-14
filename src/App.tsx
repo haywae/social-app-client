@@ -4,12 +4,14 @@ import { checkAuth } from "./thunks/authThunks/authCheckThunk";
 import { fetchSettings } from "./thunks/settingsThunks/fetchSettingsThunk";
 import { fetchNotifications } from "./thunks/notificationThunks/notificationListThunk";
 import { useAppSelector, useAppDispatch } from "./utils/hooks";
+import { setAuthFromSync } from "./slices/auth/authSlice";
 import MobileHeader from "./components/layout/mobileHeader";
 import RightSidebar from "./components/layout/rightSidebar";
 import LeftSidebar from "./components/layout/leftSidebar";
 import { ErrorToast } from "./components/common/errorToast";
 import { SuccessToast } from "./components/common/successToast";
 import ModalManager from "./components/common/modalManager";
+import { DEVELOPMENT_MODE } from "./appConfig";
 import "./styles/App.css";
 
 /** Custom hook to manage global authentication side-effects. */
@@ -17,13 +19,29 @@ const useAuthEffects = () => {
     const dispatch = useAppDispatch();
     const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-    // EFFECT 1: For the initial authentication check
+    // EFFECT 1: For Syncing the Auth State Across Tabs
+    useEffect(() => {
+        const handleStorageChange = (event: StorageEvent) => {
+            // Check if the event is our specific auth-sync event
+            if (event.key === 'auth-sync' && event.newValue) {
+                DEVELOPMENT_MODE && console.log('Auth state synced from another tab.');
+                const newAuthState = JSON.parse(event.newValue);
+                dispatch(setAuthFromSync(newAuthState));
+            }
+        };
+        window.addEventListener('storage', handleStorageChange);
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, [dispatch]);
+
+    // EFFECT 2: For the initial authentication check
     useEffect(() => {
         
         dispatch(checkAuth());
     }, [dispatch]);
 
-    // EFFECT 2: to fetch initial data for authenticated users
+    // EFFECT 3: To fetch initial data for authenticated users
     useEffect(() => {
         if (isAuthenticated) {
             dispatch(fetchNotifications({ page: 1 }));

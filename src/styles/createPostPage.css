@@ -6,7 +6,7 @@
     border: 1px solid var(--grey-7);
     border-radius: 8px;
     background-color: var(--primary-bg);
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - var(--main-header-height));
 }
 
 /* Header: "Close" and "Post" button */

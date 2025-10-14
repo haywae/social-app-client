@@ -1,10 +1,10 @@
 /* --- {L1} Search Overlay --- */
 .search-overlay {
     position: fixed;
-    top: 60px; /* Height of the header */
+    top: var(--main-header-height); /* Height of the header */
     left: 0;
     width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100% - var(--main-header-height));
     background-color: var(--background);
     z-index: 890; /* Below header, above content */
     overflow-y: auto;

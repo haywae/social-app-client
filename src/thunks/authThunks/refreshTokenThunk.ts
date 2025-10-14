@@ -47,6 +47,12 @@ export const refreshToken = createAsyncThunk< RefreshTokenSuccess, void, { dispa
             localStorage.setItem('csrfRefreshToken', data.csrf_refresh_token);
             localStorage.setItem('accessTokenExp', data.access_token_exp);
 
+            localStorage.setItem('auth-sync', JSON.stringify({
+                csrfAccessToken: data.csrf_access_token,
+                csrfRefreshToken: data.csrf_refresh_token,
+                accessTokenExp: data.access_token_exp,
+            }));
+
             // 5. ----- After a successful refresh, schedule the next one using the new expiration time. -----
             if (data.access_token_exp) {
                 scheduleProactiveRefresh(dispatch, data.access_token_exp);

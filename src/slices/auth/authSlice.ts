@@ -30,6 +30,13 @@ interface AuthPayload {
     access_token_exp: string;
 }
 
+// Define a type for the sync payload
+interface AuthSyncPayload {
+    csrfAccessToken: string;
+    csrfRefreshToken: string;
+    accessTokenExp: string;
+}
+
 const initialState: AuthState = {
     user: null,
     isAuthenticated: false,
@@ -53,6 +60,11 @@ const authSlice = createSlice({
             state.isAuthenticated = true;
             state.loading = 'succeeded';
             state.error = null;
+        },
+        setAuthFromSync: (state, action: PayloadAction<AuthSyncPayload>) => {
+            state.csrfAccessToken = action.payload.csrfAccessToken;
+            state.csrfRefreshToken = action.payload.csrfRefreshToken;
+            state.accessTokenExp = action.payload.accessTokenExp;
         },
         clearAuth: (state) => {
             state.user = null;
@@ -204,5 +216,5 @@ const authSlice = createSlice({
     }
 });
 
-export const { setAuthUser, clearAuth, resetUserError } = authSlice.actions;
+export const { setAuthUser, clearAuth, resetUserError, setAuthFromSync } = authSlice.actions;
 export default authSlice.reducer;

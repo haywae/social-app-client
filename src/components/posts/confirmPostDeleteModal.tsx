@@ -1,5 +1,6 @@
 // src/components/modals/ConfirmDeleteModal.tsx
 import { useState, type JSX } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../utils/hooks';
 import { deletePost } from '../../thunks/postsThunks/deletePostThunk';
 import type { PostData as Post } from '../../types/postType';
@@ -15,6 +16,7 @@ interface ConfirmDeleteModalProps {
 
 const ConfirmPostDeleteModal = ({ post, isOpen, onClose }: ConfirmDeleteModalProps): JSX.Element => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleDelete = async () => {

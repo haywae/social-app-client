@@ -98,6 +98,11 @@
     background-color: var(--primary-bg);
     color: var(--grey-1);
   }
+
+  .dropdown-list {
+    background-color: var(--primary-bg);
+    border-color: var(--grey-6);
+  }
   
   .dropdown-list li {
     color: var(--grey-2);

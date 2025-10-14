@@ -20,14 +20,21 @@ const SearchPage = () => {
     const { searchTerm, submittedSearchTerm } = useAppSelector((state) => state.search);
     const navigate = useNavigate();
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+    const { loading: authLoading } = useAppSelector((state) => state.auth);
+
     
     // --- Effects for Data Fetching and Cleanup ---
     useEffect(() => {
-        if(!searchTerm && !submittedSearchTerm){
-        // Fetch initial discovery data when the page loads
-            dispatch(fetchDiscoveryData());
+        // This effect now waits for the initial authentication check to complete.
+        // It will only run when authLoading changes to 'succeeded' or 'failed'.
+        if (authLoading === 'succeeded' || authLoading === 'failed') {
+            if(!searchTerm && !submittedSearchTerm){
+                dispatch(fetchDiscoveryData());
+            }
         }
-    }, [dispatch]);
+    }, [authLoading, dispatch, searchTerm, submittedSearchTerm]); // Add authLoading to the dependency array
+
 
     // --- Effect for debounced Search Actions ---
     useEffect(() => {

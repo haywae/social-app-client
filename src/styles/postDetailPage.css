@@ -8,7 +8,7 @@ Description: Styles for the single post view page.
 .detail-page-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 60px); /* Full height */
+  height: calc(100vh - var(--bottom-nav-height)); /* Full height */
   border-left: 1px solid var(--grey-6);
   border-right: 1px solid var(--grey-6);
 }

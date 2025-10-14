@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../apiInterceptor';
 import type { UserSearchResult } from '../../slices/search/searchSlice';
+import type { RootState } from '../../store'; 
 
 // Interface for the data structure we want in our Redux store
 interface DiscoveryData {
@@ -30,10 +31,10 @@ interface ApiDiscoveryResponse {
 export const fetchDiscoveryData = createAsyncThunk<
     DiscoveryData,
     void,
-    { rejectValue: string }
+    { state: RootState, rejectValue: string }
 >(
     'search/fetchDiscoveryData',
-    async (_, { rejectWithValue }) => {
+    async (_, { getState, rejectWithValue }) => {
         try {
             const response = await api('/discover', {
                 method: 'GET',
@@ -46,8 +47,16 @@ export const fetchDiscoveryData = createAsyncThunk<
 
             const data: ApiDiscoveryResponse = await response.json();
 
+            // 1. Get the current user's username from the Redux state.
+            const loggedInUsername = getState().auth.user?.username;
+
+            // 2. Filter the suggested users to exclude the current user.
+            const filteredSuggestedUsers = data.suggested_users.filter(
+                user => user.username !== loggedInUsername
+            );
+
             const transformedData: DiscoveryData = {
-                suggestedUsers: data.suggested_users.map(user => ({
+                suggestedUsers: filteredSuggestedUsers.map(user => ({
                     bio: user.bio,
                     displayName: user.display_name,
                     isFollowing: user.is_following,
