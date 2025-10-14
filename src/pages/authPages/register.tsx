@@ -113,11 +113,11 @@ const Signup = (): JSX.Element => {
             // On success, reset state and navigate
             dispatch(resetRegistrationState());
             setFormData({
+                ...formData,
                 displayName: '',
                 username: '',
                 password: '',
                 confirmPassword: '',
-                email: '',
                 date_of_birth: '',
                 country: ''
             });
