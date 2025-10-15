@@ -63,7 +63,31 @@ const SettingsPage = (): JSX.Element => {
                     description="Blocked users, delete account"
                     to="/settings/security"
                 />
-
+                <SettingsCard
+                    title="About Us"
+                    description="Learn more about WolexChange"
+                    to="/about"
+                />
+                <SettingsCard
+                    title='Privacy Policy'
+                    description='Read our privacy policy'
+                    to='/privacy-policy'
+                />
+                <SettingsCard
+                    title='Terms and Conditions'
+                    description='Read our terms and conditions'
+                    to='/terms-and-conditions'
+                />
+                <SettingsCard
+                    title='Cookie Policy'
+                    description='Read our cookie policy'
+                    to='/cookie-policy'
+                />
+                <SettingsCard
+                    title='Contact Us'
+                    description='Get in touch with us'
+                    to='/contact'
+                />
                 <p>
                     <button className="settings-link-button" onClick={handleLogout}>
                         <span>Logout</span> 

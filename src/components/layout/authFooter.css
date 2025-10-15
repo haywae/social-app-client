@@ -1,21 +1,20 @@
 /* AuthFooter.css */
 
 .auth-footer {
-    background-color: transparent; /* Assumes parent has the correct background */
-    margin-top: auto; /* Pushes the footer to the bottom if the main content is short */
+    width: 100%;
+    padding: 0 2rem;
+    background-color: var(--background); /* Using var(--background) as it's common for footers */
+    text-align: center;
+    margin-top: auto; /* This is the key property that pushes the footer to the bottom */
     box-sizing: border-box;
-     width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 900;
-    box-sizing: border-box;
-    padding: 0 1rem;
+    flex-shrink: 1; /* Prevents the footer from shrinking if content is too long */
+    height: var(--footer-height); /* Fixed height for the footer */
 }
+
 
 .auth-footer-content {
     max-width: 900px;
-    margin: 0.5rem auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,18 +30,18 @@
 
 .auth-footer-links a {
     font-size: 0.9rem;
-    color: #595959; /* A medium gray for good readability */
+    color: var(--grey-4); /* A medium gray for good readability */
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .auth-footer-links a:hover {
-    color: #00875A; /* Your primary brand color */
+    color: var(--base);
     text-decoration: underline;
 }
 
 .auth-footer-copyright {
     font-size: 0.85rem;
-    color: #888; /* A lighter gray for the copyright text */
+    color: var(--grey-3); /* A lighter gray for the copyright text */
 }
 

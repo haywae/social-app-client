@@ -12,6 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: scroll;
+  justify-self: center;
 }
 
 
@@ -82,6 +83,7 @@
 :root {
   --bottom-nav-height: 40px;
   --main-header-height: 60px;
+  --footer-height: 50px;
 }
 /* --- Base & Reset Styles --- */
 body {

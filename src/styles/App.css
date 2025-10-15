@@ -1,5 +1,8 @@
 /* src/styles/App.css */
-
+.guest-page-wrapper {
+    display: flex;
+    flex-direction: column;
+}
 /* --- Layout Containers --- */
 /* Base styles for both authenticated and guest views */
 .main-layout,
@@ -24,7 +27,7 @@
 }
 
 .guest-content {
-    min-height: calc(100vh - var(--main-header-height));
+    min-height: calc(100vh - var(--main-header-height) - var(--footer-height));
 }
 
 .main-content{

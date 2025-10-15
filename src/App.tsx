@@ -38,7 +38,7 @@ const useAuthEffects = () => {
 
     // EFFECT 2: For the initial authentication check
     useEffect(() => {
-        
+
         dispatch(checkAuth());
     }, [dispatch]);
 
@@ -46,7 +46,7 @@ const useAuthEffects = () => {
     useEffect(() => {
         if (isAuthenticated) {
             dispatch(fetchNotifications({ page: 1 }));
-            dispatch(fetchSettings()); 
+            dispatch(fetchSettings());
         }
     }, [isAuthenticated, dispatch]);
 };
@@ -63,12 +63,12 @@ function App(): JSX.Element {
     const showAppChrome = !noAppChromeRoutes.some(route => matchPath(route, location.pathname));
 
     // Authenticated routes that should have a special, minimal header or no header
-    const minimalHeaderRoutes = ['/settings', '/post/:postId', '/settings/:pageName', '/post', '/search', 'profile/:username', 
+    const minimalHeaderRoutes = ['/settings', '/post/:postId', '/settings/:pageName', '/post', '/search', 'profile/:username',
         '/posts/:postId/thread/:commentId', '/view'
     ]
 
     const showMainHeader = !minimalHeaderRoutes.some(route => matchPath(route, location.pathname));
-    
+
     // Checks if there is a pending authentication
     const isAuthCheckComplete = authLoading !== 'idle' && authLoading !== 'pending';
 
@@ -78,8 +78,8 @@ function App(): JSX.Element {
             <SuccessToast />
             <ModalManager />
             {/* Pass the correctly calculated variable to the header. */}
-            { isAuthCheckComplete && <MobileHeader showHeader={showMainHeader} />}
-            
+            {isAuthCheckComplete && <MobileHeader showHeader={showMainHeader} />}
+
             {showAppChrome && isAuthenticated ? (
                 <>
                     <LeftSidebar />
@@ -92,13 +92,15 @@ function App(): JSX.Element {
                 </>
             ) : (
                 // This renders the simpler layout for auth pages or unauthenticated users.
-                <div className="guest-layout header-included">
-                    <main className="guest-content">
-                        <Outlet />
-                    </main>
+                <div className="guest-page-wrapper">
+                    <div className="guest-layout header-included">
+                        <main className="guest-content">
+                            <Outlet />
+                        </main>
+                    </div>
+                    {!showAppChrome && <AuthFooter />}
                 </div>
-            )}            
-            {noAppChromeRoutes && <AuthFooter/>}
+            )}
         </>
     );
 }
