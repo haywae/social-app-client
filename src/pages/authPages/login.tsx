@@ -109,7 +109,7 @@ const Login = ({ redirectPath }: LoginProps): JSX.Element => {
                     </button>   
                 </div>
                 <button type="submit" className="btn-primary" disabled={isLoading}>
-                    {isLoading ? 'Logging in...' : 'Log in'}
+                    {'Log in'}
                 </button>
             </form>
             <div className="links">

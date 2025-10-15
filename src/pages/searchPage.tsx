@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../utils/hooks';
 import { useDebounce } from '../utils/searchUtils';
 import { fetchDiscoveryData } from '../thunks/searchThunks/fetchDiscoveryThunk';
 import { fetchSearchResults } from '../thunks/searchThunks/fetchResultsThunk';
-import { clearSearchResults, setSearchTerm , submitSearch} from '../slices/search/searchSlice';
+import { clearSearchResults, setSearchTerm, submitSearch } from '../slices/search/searchSlice';
 import { SearchResultsContent } from '../components/search/searchResultContent';
 import { SearchOverlay } from '../components/search/searchOverlay';
 import { TabbedResults } from '../components/search/tabbedResultComponent';
@@ -23,13 +23,13 @@ const SearchPage = () => {
 
     const { loading: authLoading } = useAppSelector((state) => state.auth);
 
-    
+
     // --- Effects for Data Fetching and Cleanup ---
     useEffect(() => {
         // This effect now waits for the initial authentication check to complete.
         // It will only run when authLoading changes to 'succeeded' or 'failed'.
         if (authLoading === 'succeeded' || authLoading === 'failed') {
-            if(!searchTerm && !submittedSearchTerm){
+            if (!searchTerm && !submittedSearchTerm) {
                 dispatch(fetchDiscoveryData());
             }
         }
@@ -71,26 +71,29 @@ const SearchPage = () => {
     };
 
     return (
-        <div className="search-page-container">
-            <form onSubmit={handleSearchSubmit} className="search-bar">
-                <div className='search-input-wrapper'>
-                    <SearchIcon className="search-bar-icon"/>
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="search-input"
-                        value={searchTerm}
-                        onChange={(e) => dispatch(setSearchTerm(e.target.value))}
-                        autoFocus
-                    />
-                    { searchTerm && <CloseIcon className="search-clear-icon" onClick={() => dispatch(setSearchTerm(''))} /> }
+        <>
+            <title>Search - WolexChange</title>
+            <div className="search-page-container">
+                <form onSubmit={handleSearchSubmit} className="search-bar">
+                    <div className='search-input-wrapper'>
+                        <SearchIcon className="search-bar-icon" />
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="search-input"
+                            value={searchTerm}
+                            onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+                            autoFocus
+                        />
+                        {searchTerm && <CloseIcon className="search-clear-icon" onClick={() => dispatch(setSearchTerm(''))} />}
+                    </div>
+                    <button type="button" onClick={() => navigate(-1)} className="search-cancel-button">Cancel</button>
+                </form>
+                <div className="search-page-content">
+                    {renderContent()}
                 </div>
-                <button type="button" onClick={() => navigate(-1)} className="search-cancel-button">Cancel</button>
-            </form>
-            <div className="search-page-content">
-                {renderContent()}
             </div>
-        </div>
+        </>
     );
 };
 

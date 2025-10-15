@@ -21,9 +21,9 @@ const ForgotPassword = (): JSX.Element => {
             dispatch(resetPasswordResetState());
         };
     }, [dispatch]); // The dependency array ensures this effect is set up once
-    
+
     // Use the typed selector to get state and infer types automatically
-    const { isEmailSent, loading } = useAppSelector( (state) => state.passwordReset );
+    const { isEmailSent, loading } = useAppSelector((state) => state.passwordReset);
     const { isAuthenticated } = useAppSelector((state) => state.auth);
 
     // Redirect if already authenticated ---
@@ -47,13 +47,13 @@ const ForgotPassword = (): JSX.Element => {
      */
     const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
-        
+
         // --- Checks if an email was entered ---
         if (!email) {
             dispatch(setError('Please enter your email address.'));
             return;
         }
-        
+
         try {
             // --- Executes the request-password-reset function ---
             await dispatch(requestPasswordReset(email)).unwrap();
@@ -63,6 +63,8 @@ const ForgotPassword = (): JSX.Element => {
     }
 
     return (
+        <>
+        <title>Forgot Password - WolexChange</title>
         <div className="auth-container">
             <h2 className="auth-container-title">Forgot Password</h2>
             {isEmailSent ? (
@@ -84,7 +86,7 @@ const ForgotPassword = (): JSX.Element => {
                     </div>
                     {/* Submit button */}
                     <button type="submit" className="btn-primary" disabled={loading}>
-                        {loading ? 'Sending link...' : 'Send Reset Link'}
+                        {'Send Reset Link'}
                     </button>
                 </form>
             )}
@@ -94,6 +96,7 @@ const ForgotPassword = (): JSX.Element => {
                 </Link>
             </div>
         </div>
+        </>
     );
 }
 

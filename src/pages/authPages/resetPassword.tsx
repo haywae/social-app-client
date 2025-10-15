@@ -122,7 +122,7 @@ const ResetPassword = (): JSX.Element => {
                 </div>
                 {/* Submit Button */}
                 <button type="submit" className="btn-primary" disabled={loading}>
-                    {loading ? 'Resetting Password...' : 'Reset Password'}
+                    {'Reset Password'}
                 </button>
             </form>
         </div>

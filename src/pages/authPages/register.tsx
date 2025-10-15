@@ -255,7 +255,7 @@ const Signup = (): JSX.Element => {
                 </div>
                 {/* Submit Button */}
                 <button type="submit" className="btn-primary" disabled={loading}>
-                    {loading ? 'Signing Up...' : 'Sign Up'}
+                    {'Sign Up'}
                 </button>
             </form>
             <div className="links">

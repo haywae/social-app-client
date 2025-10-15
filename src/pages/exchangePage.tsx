@@ -170,7 +170,7 @@ const ExchangePage = (): JSX.Element => {
             dispatch(setError("You have no valid rates to post."));
             return;
         }
-        
+
         // 1. Format the rates into a string, now with dynamic flag emojis
         const ratesText = validRates.map(rate => {
             const currencyToDisplay = converterCurrencyOptions.find(currency => currency.iso3 === rate.currency)
@@ -187,11 +187,11 @@ const ExchangePage = (): JSX.Element => {
 
         try {
             // 4. Dispatch the createPost thunk
-            const result = await dispatch(createPost({ content: postContent, tags:uniqueCurrencies })).unwrap();
+            const result = await dispatch(createPost({ content: postContent, tags: uniqueCurrencies })).unwrap();
             dispatch(setSuccess("Rates posted successfully!"));
             dispatch(fetchDiscoveryData())
             // 5. Navigate to the new post's detail page
-            navigate(`/post/${result.id}`); 
+            navigate(`/post/${result.id}`);
         } catch (err) {
             dispatch(setError("Failed to post rates. Please try again."));
         }
@@ -230,76 +230,79 @@ const ExchangePage = (): JSX.Element => {
     };
 
     return (
-        <div className="exchange-page-container">
-            {/*Rates Section*/}
-            <section className="rates-section card">
-                {loading === 'pending' && !exchangeData ? (
-                    <RatesCardSkeleton />
-                ) : (
-                    <>
-                        <h2 className="rates-title">Rates</h2>
+        <>
+            <title>Exchange - WolexChange</title>
+            <div className="exchange-page-container">
+                {/*Rates Section*/}
+                <section className="rates-section card">
+                    {loading === 'pending' && !exchangeData ? (
+                        <RatesCardSkeleton />
+                    ) : (
+                        <>
+                            <h2 className="rates-title">Rates</h2>
 
-                        {/* Rates Header */}
-                        <div className="rates-header">
-                            <img src={user?.profilePictureUrl || DEFAULT_AVATAR_URL} alt="user-avatar" className="user-avatar avatar-md" />
-                            <div className="exchange-info">
-                                <Link to="#" className="profile-link">
-                                    {baseCountry && <span className="country">
-                                        <img src={`https://flagcdn.com/w20/${baseCountry?.iso2.toLowerCase()}.png`} alt={`${baseCountry?.name} flag`} className="flag-img" />
-                                    </span>}
-                                    <span className="display-name">{exchangeData?.name}</span>
-                                </Link>
+                            {/* Rates Header */}
+                            <div className="rates-header">
+                                <img src={user?.profilePictureUrl || DEFAULT_AVATAR_URL} alt="user-avatar" className="user-avatar avatar-md" />
+                                <div className="exchange-info">
+                                    <Link to="#" className="profile-link">
+                                        {baseCountry && <span className="country">
+                                            <img src={`https://flagcdn.com/w20/${baseCountry?.iso2.toLowerCase()}.png`} alt={`${baseCountry?.name} flag`} className="flag-img" />
+                                        </span>}
+                                        <span className="display-name">{exchangeData?.name}</span>
+                                    </Link>
+                                </div>
+                                <div className="options-menu-container">
+                                    <button className="icon-action-button" onClick={() => setIsMenuOpen(true)}>
+                                        <EllipseIcon />
+                                    </button>
+                                    {isMenuOpen && (
+                                        <ExchangeOptionsMenu username={user?.username}
+                                            onClose={() => setIsMenuOpen(false)}
+                                            onEditClick={handleOpenEditModal}
+                                            onPostRatesClick={handlePostRates}
+                                        />
+                                    )}
+                                </div>
                             </div>
-                            <div className="options-menu-container">
-                                <button className="icon-action-button" onClick={() => setIsMenuOpen(true)}>
-                                    <EllipseIcon />
-                                </button>
-                                {isMenuOpen && (
-                                    <ExchangeOptionsMenu username={user?.username}
-                                        onClose={() => setIsMenuOpen(false)}
-                                        onEditClick={handleOpenEditModal}
-                                        onPostRatesClick={handlePostRates}
-                                    />
-                                )}
+
+                            {/* Rates Table */}
+                            <RatesTable
+                                displayRates={displayRates} handleCurrencyChange={handleCurrencyChange} handleRateChange={handleRateChange}
+                                resetRateRow={resetRateRow} removeRateRow={removeRateRow} addRateRow={addRateRow}
+                                rateCurrencyOptions={rateCurrencyOptions} MINIMUM_RATE_ROWS={MINIMUM_RATE_ROWS}
+                            />
+
+                            {/* Rates Footer */}
+                            <div className="footer-section">
+                                <span>Last Updated at: {exchangeData?.last_updated ? new Date(exchangeData.last_updated).toLocaleString() : ''}</span>
+                                <span className="refresh-rate">
+                                    {latestRate === 'pending' && 'Refreshing...'}
+                                    {(latestRate === 'idle') && <CloudArrowDownIcon onClick={fetchLatestRates} />}
+                                </span>
                             </div>
+                        </>)}
+                </section>
+
+                {/* Converter Section */}
+                <section className="converter-section card">
+                    <div className="converter-header">
+                        <div className="converter-tabs">
+                            <span className={converterMode === 'convert' ? 'active' : ''} onClick={() => handleSetConverterMode('convert')}>Convert</span>
+                            <span className={converterMode === 'findOut' ? 'active' : ''} onClick={() => handleSetConverterMode('findOut')}>Find Out</span>
                         </div>
-
-                        {/* Rates Table */}
-                        <RatesTable
-                            displayRates={displayRates} handleCurrencyChange={handleCurrencyChange} handleRateChange={handleRateChange}
-                            resetRateRow={resetRateRow} removeRateRow={removeRateRow} addRateRow={addRateRow}
-                            rateCurrencyOptions={rateCurrencyOptions} MINIMUM_RATE_ROWS={MINIMUM_RATE_ROWS}
-                        />
-
-                        {/* Rates Footer */}
-                        <div className="footer-section">
-                            <span>Last Updated at: {exchangeData?.last_updated ? new Date(exchangeData.last_updated).toLocaleString() : ''}</span>
-                            <span className="refresh-rate">
-                                {latestRate === 'pending' && 'Refreshing...'}
-                                {(latestRate === 'idle') && <CloudArrowDownIcon onClick={fetchLatestRates} />}
-                            </span>
+                        <div className="converter-actions add-row-icon">
+                            <AddIcon onClick={handleAddConverterRow} />
                         </div>
-                    </>)}
-            </section>
-
-            {/* Converter Section */}
-            <section className="converter-section card">
-                <div className="converter-header">
-                    <div className="converter-tabs">
-                        <span className={converterMode === 'convert' ? 'active' : ''} onClick={() => handleSetConverterMode('convert')}>Convert</span>
-                        <span className={converterMode === 'findOut' ? 'active' : ''} onClick={() => handleSetConverterMode('findOut')}>Find Out</span>
                     </div>
-                    <div className="converter-actions add-row-icon">
-                        <AddIcon onClick={handleAddConverterRow} />
-                    </div>
-                </div>
-                <Converter
-                    mode={converterMode} rows={converterState[converterMode]} availableCurrencies={converterCurrencyOptions}
-                    onValueChange={handleConverterValueChange} onCurrencyChange={handleConverterCurrencyChange}
-                    onRemoveRow={handleRemoveConverterRow} onResetRow={handleResetConverterRow}
-                />
-            </section>
-        </div>
+                    <Converter
+                        mode={converterMode} rows={converterState[converterMode]} availableCurrencies={converterCurrencyOptions}
+                        onValueChange={handleConverterValueChange} onCurrencyChange={handleConverterCurrencyChange}
+                        onRemoveRow={handleRemoveConverterRow} onResetRow={handleResetConverterRow}
+                    />
+                </section>
+            </div>
+        </>
     )
 };
 

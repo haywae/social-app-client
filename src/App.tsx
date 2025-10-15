@@ -11,6 +11,7 @@ import LeftSidebar from "./components/layout/leftSidebar";
 import { ErrorToast } from "./components/common/errorToast";
 import { SuccessToast } from "./components/common/successToast";
 import ModalManager from "./components/common/modalManager";
+import AuthFooter from "./components/layout/authFooter";
 import { DEVELOPMENT_MODE } from "./appConfig";
 import "./styles/App.css";
 
@@ -96,7 +97,8 @@ function App(): JSX.Element {
                         <Outlet />
                     </main>
                 </div>
-            )}
+            )}            
+            {noAppChromeRoutes && <AuthFooter/>}
         </>
     );
 }
