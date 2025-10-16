@@ -1,12 +1,24 @@
 import './termsAndConditions.css'
 import { useNavigate } from 'react-router-dom';
 import { LeftArrowIcon } from '../../assets/icons';
+import { useLocation } from 'react-router-dom';
 
 
 
 
 const TermsAndConditions = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleNavigate = () => {
+        // Check if the user was navigated to this page from within the app
+        if (location.key !== 'default') {
+            // If there's a history stack, go back one step
+            navigate(-1);
+        } else {
+            navigate('/'); // The public homepage
+        }
+    };
     return (
         <>
             <meta charSet="UTF-8" />
@@ -17,7 +29,7 @@ const TermsAndConditions = () => {
             <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
             <main className="terms-and-conditions-container">
                 <header>
-                    <button onClick={() => navigate('/')} className="legal-back-button"><LeftArrowIcon /></button>
+                    <button onClick={handleNavigate} className="legal-back-button"><LeftArrowIcon /></button>
                     <h1>TERMS AND CONDITIONS</h1>
                     <p className="last-updated">Last updated October 15, 2025</p>
                 </header>

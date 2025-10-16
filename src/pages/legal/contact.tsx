@@ -1,6 +1,7 @@
 import { useState, useEffect, type JSX, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+import { useLocation } from 'react-router-dom';
 import { submitContactForm } from '../../thunks/legalThunks/contactFormThunk';
 import { resetContactState } from '../../slices/ui/uiSlice';
 import { LeftArrowIcon } from '../../assets/icons';
@@ -10,6 +11,7 @@ import './legalPages.css';
 const ContactPage = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Get the form's loading and error state from the Redux store
     const { loading, error } = useAppSelector((state) => state.ui);
@@ -37,10 +39,21 @@ const ContactPage = (): JSX.Element => {
         }
     }, [loading, dispatch]);
 
+
+    const handleNavigate = () => {
+        // Check if the user was navigated to this page from within the app
+        if (location.key !== 'default') {
+            // If there's a history stack, go back one step
+            navigate(-1);
+        } else {
+            navigate('/'); // The public homepage
+        }
+    };
+
     // Handle the form submission by dispatching the thunk
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        
+
         try {
             // Dispatch the thunk with the form data and unwrap the result
             await dispatch(submitContactForm({ name, email, subject, message })).unwrap();
@@ -56,7 +69,7 @@ const ContactPage = (): JSX.Element => {
             <title>Contact Us - WolexChange</title>
             <div className="legal-page-container">
                 <header className="legal-page-header">
-                    <button onClick={() => navigate('/')} className="legal-back-button"><LeftArrowIcon /></button>
+                    <button onClick={handleNavigate} className="legal-back-button"><LeftArrowIcon /></button>
                     <h1>Contact Us</h1>
                     <p className="subtitle">We'd love to hear from you. Please use the appropriate channel below.</p>
                 </header>
