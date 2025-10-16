@@ -11,7 +11,7 @@ const AboutPage = (): JSX.Element => {
             <title>About Us - WolexChange</title>
             <div className="legal-page-container">
                 <header className="legal-page-header">
-                    <button onClick={() => navigate(-1)} className="legal-back-button"><LeftArrowIcon /></button>
+                    <button onClick={() => navigate('/')} className="legal-back-button"><LeftArrowIcon /></button>
                     <h1>About WolexChange</h1>
                     <p className="subtitle">Connecting You with Real-Time Currency Rates</p>
                 </header>

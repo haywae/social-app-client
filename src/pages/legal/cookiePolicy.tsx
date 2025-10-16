@@ -16,7 +16,7 @@ const cookiePolicy = () => {
             />
             <main className="privacy-policy-container">
                 <header>
-                    <button onClick={() => navigate(-1)} className="legal-back-button"><LeftArrowIcon /></button>
+                    <button onClick={() => navigate('/')} className="legal-back-button"><LeftArrowIcon /></button>
                     <h1>COOKIE POLICY</h1>
                     <p className="last-updated">Last updated October 15, 2025</p>
                 </header>

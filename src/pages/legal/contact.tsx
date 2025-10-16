@@ -56,7 +56,7 @@ const ContactPage = (): JSX.Element => {
             <title>Contact Us - WolexChange</title>
             <div className="legal-page-container">
                 <header className="legal-page-header">
-                    <button onClick={() => navigate(-1)} className="legal-back-button"><LeftArrowIcon /></button>
+                    <button onClick={() => navigate('/')} className="legal-back-button"><LeftArrowIcon /></button>
                     <h1>Contact Us</h1>
                     <p className="subtitle">We'd love to hear from you. Please use the appropriate channel below.</p>
                 </header>
