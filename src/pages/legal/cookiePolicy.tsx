@@ -1,6 +1,10 @@
 import './privacyPolicy.css'
+import { useNavigate } from 'react-router-dom';
+import { LeftArrowIcon } from '../../assets/icons';
+
 
 const cookiePolicy = () => {
+    const navigate = useNavigate();
     return (
         <>
             <title>Cookie Policy - WolexChange</title>
@@ -12,6 +16,7 @@ const cookiePolicy = () => {
             />
             <main className="privacy-policy-container">
                 <header>
+                    <button onClick={() => navigate(-1)} className="legal-back-button"><LeftArrowIcon /></button>
                     <h1>COOKIE POLICY</h1>
                     <p className="last-updated">Last updated October 15, 2025</p>
                 </header>

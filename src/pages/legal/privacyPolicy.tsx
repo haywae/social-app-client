@@ -1,6 +1,10 @@
 import './privacyPolicy.css'
+import { useNavigate } from 'react-router-dom';
+import { LeftArrowIcon } from '../../assets/icons';
+
 
 const PrivacyPolicy = () => {
+  const navigate = useNavigate();
   return (
     <>
       <meta charSet="UTF-8" />
@@ -11,6 +15,7 @@ const PrivacyPolicy = () => {
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
       <main className="privacy-policy-container">
         <header>
+          <button onClick={() => navigate(-1)} className="legal-back-button"><LeftArrowIcon /></button>
           <h1>PRIVACY POLICY</h1>
           <p className="last-updated">Last updated October 15, 2025</p>
         </header>

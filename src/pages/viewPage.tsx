@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../utils/hooks';
 
 import { fetchSinglePost } from '../thunks/postsThunks/fetchSinglePostThunk';
 import { fetchSingleComment } from '../thunks/commentsThunks/fetchSingleCommentThunk';
-import { fetchUserExchangeData } from '../thunks/exchangeThunks/fetchUserExchangeDataThunk'; 
+import { fetchUserExchangeData } from '../thunks/exchangeThunks/fetchUserExchangeDataThunk';
 
 import { clearPosts } from '../slices/posts/postsSlice';
 import { clearComments } from '../slices/comments/commentsSlice';
@@ -29,7 +29,7 @@ const ViewPage = (): JSX.Element => {
     // Select data from all relevant slices
     const { posts, loading: postLoading } = useAppSelector((state) => state.posts);
     const { commentsById, loading: commentLoading } = useAppSelector((state) => state.comments);
-    const { exchangeData, loading: exchangeLoading} = useAppSelector((state) => state.profile); 
+    const { exchangeData, loading: exchangeLoading } = useAppSelector((state) => state.profile);
     const { user: loggedInUser } = useAppSelector((state) => state.auth);
 
 
@@ -50,7 +50,7 @@ const ViewPage = (): JSX.Element => {
             dispatch(clearExchangeData());
         };
     }, [postId, commentId, exchangeUser, dispatch]);
-    
+
     // --- Render Logic ---
     const isLoading = postLoading === 'pending' || commentLoading === 'pending' || exchangeLoading === 'pending';
 
@@ -59,27 +59,29 @@ const ViewPage = (): JSX.Element => {
             return <div className="detail-message">Loading...</div>;
         }
         if (posts.length > 0) {
-            return <Post post={posts[0]} isDetailedView={true} isGateway={true}/>;
+            return <Post post={posts[0]} isDetailedView={true} isGateway={true} />;
         }
         if (commentId && commentsById[commentId]) {
-            return <Comment commentId={commentId} postId={commentsById[commentId].postId} isDetailedView={true} isGateway={true}/>;
+            return <Comment commentId={commentId} postId={commentsById[commentId].postId} isDetailedView={true} isGateway={true} />;
         }
         if (exchangeData) {
             return <LiveRatesTab exchangeData={exchangeData} />;
         }
-        // return <div className="detail-message">Content not found.</div>;
     };
 
     return (
-        <div className="detail-page-container">
-            {loggedInUser && <header className="detail-header">
-                <button onClick={() => navigate(-1)} className="back-button"><LeftArrowIcon /></button>
-                <h2>View</h2>
-            </header>}
-            <div className="detail-scroll-area">
-                {renderContent()}
+        <>
+            <title>{'View - WolexChange'}</title>
+            <div className="detail-page-container">
+                {loggedInUser && <header className="detail-header">
+                    <button onClick={() => navigate(-1)} className="back-button"><LeftArrowIcon /></button>
+                    <h2>View</h2>
+                </header>}
+                <div className="detail-scroll-area">
+                    {renderContent()}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

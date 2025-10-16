@@ -1,7 +1,12 @@
 import './termsAndConditions.css'
+import { useNavigate } from 'react-router-dom';
+import { LeftArrowIcon } from '../../assets/icons';
+
+
 
 
 const TermsAndConditions = () => {
+    const navigate = useNavigate();
     return (
         <>
             <meta charSet="UTF-8" />
@@ -12,6 +17,7 @@ const TermsAndConditions = () => {
             <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
             <main className="terms-and-conditions-container">
                 <header>
+                    <button onClick={() => navigate(-1)} className="legal-back-button"><LeftArrowIcon /></button>
                     <h1>TERMS AND CONDITIONS</h1>
                     <p className="last-updated">Last updated October 15, 2025</p>
                 </header>

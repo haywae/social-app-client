@@ -2,11 +2,12 @@
 
 .legal-page-container {
     max-width: 900px;
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 2rem;
     background-color: var(--primary-bg);
     border-radius: 8px;
     line-height: 1.6;
+    position: relative;
 }
 
 .legal-page-header {
@@ -113,6 +114,21 @@
 address {
     font-style: normal;
     color: var(--grey-2);
+}
+
+.legal-back-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+.legal-back-button:hover {
+    background-color: var(--grey-5);
 }
 
 

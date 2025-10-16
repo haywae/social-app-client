@@ -98,7 +98,7 @@ function App(): JSX.Element {
                             <Outlet />
                         </main>
                     </div>
-                    {!showAppChrome && <AuthFooter />}
+                    <AuthFooter />
                 </div>
             )}
         </>

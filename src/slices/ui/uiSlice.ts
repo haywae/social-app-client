@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { submitContactForm } from "../../thunks/legalThunks/contactFormThunk";
 
 export interface UiState {
     error: string | null;
@@ -8,13 +9,15 @@ export interface UiState {
     | 'CONFIRM_DELETE_POST' | 'CONFIRM_DELETE_COMMENT' | 'EDIT_EXCHANGE_DETAILS'
     | 'CONFIRM_DELETE_ACCOUNT' | null;
     modalProps: Record<string, any>;
+    loading: 'idle' | 'pending' | 'succeeded' | 'failed';
 }
 
 const initialState: UiState = {
     error: null,
     success: null,
     modalType: null,
-    modalProps: {}
+    modalProps: {},
+    loading: 'idle',
 };
 
 const uiSlice = createSlice({
@@ -48,8 +51,29 @@ const uiSlice = createSlice({
             state.modalType = null;
             state.modalProps = {};
         },
+        resetContactState: (state) => {
+            state.loading = 'idle';
+            state.error = null;
+        },
+    },
+    extraReducers: (builder) => {
+        builder
+            // When the form submission starts
+            .addCase(submitContactForm.pending, (state) => {
+                state.loading = 'pending';
+                state.error = null;
+            })
+            // When the submission is successful
+            .addCase(submitContactForm.fulfilled, (state) => {
+                state.loading = 'succeeded';
+            })
+            // When the submission fails
+            .addCase(submitContactForm.rejected, (state, action: PayloadAction<string | undefined>) => {
+                state.loading = 'failed';
+                state.error = action.payload || 'An unknown error occurred.';
+            });
     },
 });
 
-export const { setError, clearError, setSuccess, clearSuccess, openModal, closeModal } = uiSlice.actions;
+export const { setError, clearError, setSuccess, clearSuccess, openModal, closeModal, resetContactState } = uiSlice.actions;
 export default uiSlice.reducer;
