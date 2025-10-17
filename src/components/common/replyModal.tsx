@@ -77,7 +77,6 @@ const ReplyModal = ({ target, postId, onClose, isOpen }: ReplyModalProps) => {
                 content,
                 // If the target is a comment, use its ID as parent_id. Otherwise, it's null.
                 parent_id: isComment(target) ? target.id : null,
-                tags: []
             })).unwrap();
 
             onClose();

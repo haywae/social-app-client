@@ -121,8 +121,6 @@
 
     /* Guest view (e.g., public profile) keeps the top padding on desktop */
     .guest-layout {
-        max-width: var(--breakpoint-md); /* Ensures guest layout doesn't exceed the main layout width */
-        min-width: var(--breakpoint-sm);
         width: auto;
         margin: var(--main-header-height) auto 0 auto;
     }
@@ -158,7 +156,6 @@
         min-width: calc(var(--breakpoint-md) + 200px);
     }
     .guest-layout{
-        max-width: var(--breakpoint-md); /* Ensures guest layout doesn't exceed the main layout width */
         width: 100%; /* Allows content to determine width */
     }
 }
