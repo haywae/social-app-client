@@ -6,6 +6,7 @@ import type { PostData } from "../../types/postType";
 interface CreatePostArgs {
     content: string;
     tags?: string[];
+    postType?: 'REGULAR' | 'RATE_POST';
 }
 
 /**
@@ -18,11 +19,11 @@ export const createPost = createAsyncThunk<
     { rejectValue: string }
 >(
     'posts/createPost',
-    async ({ content, tags }, { rejectWithValue }) => {
+    async ({ content, tags, postType }, { rejectWithValue }) => {
         try {
             const response = await api('/create-post', {
                 method: 'POST',
-                body: JSON.stringify({ content, tags }),
+                body: JSON.stringify({ content, tags, postType: postType}),
             });
 
             if (!response.ok) {

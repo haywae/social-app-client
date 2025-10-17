@@ -43,6 +43,8 @@ export interface PostData {
     isLiked: boolean;
     commentPreviewIds?: string[];
     commentPreview?: ApiComment[];
+    postType: 'REGULAR' | 'RATE_POST';
+    hashtags?: string[];
 }
 
 

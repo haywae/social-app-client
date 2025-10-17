@@ -2,7 +2,6 @@
 // Uses the same Structure and Stylesheet as the edit post Modal
 import { useState, type JSX, useEffect } from 'react';
 import { useAppDispatch } from '../../utils/hooks';
-import { parseTags } from '../../utils/tagsUtils';
 import { updateComment } from '../../thunks/commentsThunks/updateCommentThunk';
 import type { CommentData } from '../../types/commentType';
 import { setError } from '../../slices/ui/uiSlice';
@@ -29,17 +28,24 @@ const EditCommentModal = ({ comment, isOpen, onClose }: EditCommentModalProps): 
 
     const handleUpdate = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Only update if content has actually changed
-        if (editedContent.trim() === comment.content.trim()) {
+        const newContent = editedContent.trim();
+
+        // 1. Check if the content is empty.
+        if (!newContent) {
+            dispatch(setError("Comment cannot be empty."));
+            return;
+        }
+
+        // 2. Check if content has actually changed.
+        if (newContent === comment.content.trim()) {
             onClose(); // Close if no changes
             return;
         }
 
         setIsSubmitting(true);
-        const tags = parseTags(editedContent);
 
         try {
-            await dispatch(updateComment({ commentId: comment.id, content: editedContent, tags })).unwrap();
+            await dispatch(updateComment({ commentId: comment.id, content: editedContent })).unwrap();
             onClose(); // Close on successful update
         } catch (err: any) {
             dispatch(setError(err.message || 'Failed to update post.'));

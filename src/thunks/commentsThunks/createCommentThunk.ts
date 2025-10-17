@@ -7,7 +7,6 @@ interface CreateCommentArgs {
     postId: string;
     content: string;
     parent_id?: string | null; 
-    tags?: string[]; 
 }
 
 export const createComment = createAsyncThunk<
@@ -16,7 +15,7 @@ export const createComment = createAsyncThunk<
     { state: RootState, rejectValue: string }
 >(
     'comments/create',
-    async ({ postId, content, parent_id, tags }, { getState, rejectWithValue }) => {
+    async ({ postId, content, parent_id }, { getState, rejectWithValue }) => {
 
         const { user } = getState().auth;
         if (!user) {
@@ -26,7 +25,7 @@ export const createComment = createAsyncThunk<
         try {
             const response = await api(`/posts/${postId}/comments`, {
                 method: 'POST',
-                body: JSON.stringify({ content, parent_public_id: parent_id, tags }),
+                body: JSON.stringify({ content, parent_public_id: parent_id}),
             });
 
             if (!response.ok) {

@@ -10,7 +10,6 @@
 import { useEffect, type JSX, useState, useRef } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../utils/hooks';
-import { parseTags } from '../utils/tagsUtils';
 import { fetchSinglePost } from '../thunks/postsThunks/fetchSinglePostThunk';
 import { fetchComments } from '../thunks/commentsThunks/fetchCommentsThunk';
 import { createComment } from '../thunks/commentsThunks/createCommentThunk';
@@ -72,14 +71,10 @@ const PostDetailPage = (): JSX.Element => {
         e.preventDefault();
         if (!commentContent.trim() || !postId) return;
 
-        // Extract any @mentions or #hashtags from the comment content.
-        const tags = parseTags(commentContent);
-
         const result = await dispatch(createComment({
             postId,
             content: commentContent,
             parent_id: null, // Will be null if it's not a reply
-            tags: tags
         }));
 
         // If the comment was created successfully, clear the input and reply state.

@@ -6,7 +6,6 @@ import { transformApiComment } from "../../utils/commentUtils";
 interface UpdateCommentArgs {
     commentId: string;
     content: string;
-    tags?: string[]; // For hashtags
 }
 
 /**
@@ -21,12 +20,12 @@ export const updateComment = createAsyncThunk<
     { rejectValue: string }
 >(
     'comments/update',
-    async ({ commentId, content, tags }, { rejectWithValue }) => {
+    async ({ commentId, content }, { rejectWithValue }) => {
         try {
             // 2. Make the request using the 'api' service.
             const response = await api(`/comments/${commentId}`, {
                 method: 'PUT',
-                body: JSON.stringify({ content, tags }),
+                body: JSON.stringify({ content }),
             });
             
             // 3. Handle non-successful responses.

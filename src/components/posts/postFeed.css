@@ -1,49 +1,59 @@
 /* src/components/posts/postFeed.css */
 
 .post-feed-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.post-feed-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .feed-loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 /* A simple and clean 3-dot spinner */
 .feed-loading div {
-    width: 10px;
-    height: 10px;
-    background-color: var(--grey-4);
-    border-radius: 50%;
-    margin: 0 5px;
-    animation: bounce 1.4s infinite ease-in-out both;
+  width: 10px;
+  height: 10px;
+  background-color: var(--grey-4);
+  border-radius: 50%;
+  margin: 0 5px;
+  animation: bounce 1.4s infinite ease-in-out both;
 }
 
-.feed-loading div:nth-child(1) { animation-delay: -0.32s; }
-.feed-loading div:nth-child(2) { animation-delay: -0.16s; }
+.feed-loading div:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.feed-loading div:nth-child(2) {
+  animation-delay: -0.16s;
+}
 
 @keyframes bounce {
-    0%, 80%, 100% { transform: scale(0); }
-    40% { transform: scale(1.0); }
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1.0);
+  }
 }
 
-.feed-error, .feed-message {
-    text-align: center;
-    padding: 2rem;
-    font-weight: 500;
-    color: var(--grey-4);
+.feed-error,
+.feed-message {
+  text-align: center;
+  padding: 2rem;
+  font-weight: 500;
+  color: var(--grey-4);
 }
 
 .feed-error {
-    color: var(--danger);
+  color: var(--danger);
 }
 
 /* --- Dark Theme Overrides --- */

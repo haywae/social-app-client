@@ -2,6 +2,7 @@
 .guest-page-wrapper {
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 /* --- Layout Containers --- */
 /* Base styles for both authenticated and guest views */

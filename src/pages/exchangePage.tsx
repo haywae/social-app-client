@@ -183,11 +183,11 @@ const ExchangePage = (): JSX.Element => {
         const hashtags = uniqueCurrencies.map(c => `#${c}`).join(' ');
 
         // 3. Combine everything into the final post content
-        const postContent = `${exchangeData?.name} - Rates (${baseCurrencyCode}):\n\n${ratesText}\n\n${hashtags}`;
+        const postContent = `${ratesText}`;
 
         try {
             // 4. Dispatch the createPost thunk
-            const result = await dispatch(createPost({ content: postContent, tags: uniqueCurrencies })).unwrap();
+            const result = await dispatch(createPost({ content: postContent, tags: uniqueCurrencies, postType: 'RATE_POST' })).unwrap();
             dispatch(setSuccess("Rates posted successfully!"));
             dispatch(fetchDiscoveryData())
             // 5. Navigate to the new post's detail page

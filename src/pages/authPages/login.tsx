@@ -35,7 +35,7 @@ const Login = ({ redirectPath }: LoginProps): JSX.Element => {
     // If the user is logged in, it redirects them away from the login page.
     useEffect(() => {
         if (isAuthenticated) {
-            navigate(redirectPath || '/home'); // Redirect to the homepage or a specified path
+            navigate(redirectPath || '/'); // Redirect to the homepage or a specified path
         }
     }, [isAuthenticated, navigate, redirectPath]);
 

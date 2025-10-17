@@ -1,6 +1,6 @@
 import { type JSX, useEffect, useState, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../utils/hooks";
-import { parseTags } from "../utils/tagsUtils";
+import {extractAndCleanContent } from "../utils/tagsUtils";
 import { useNavigate } from "react-router-dom";
 import { CloseIcon, EmojiIcon } from "../assets/icons";
 import { createPost } from "../thunks/postsThunks/createPostThunk";
@@ -72,10 +72,15 @@ const CreatePostPage = (): JSX.Element | null => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!createPostContent.trim()) return;
-        const tags = parseTags(createPostContent);
+        const { cleanedContent, tags } = extractAndCleanContent(createPostContent);
+
+        if (!cleanedContent.trim()) {
+            dispatch(setError("Post cannot be empty or contain only hashtags."));
+            return;
+        }
         // The thunk will handle success/failure and update the state
         try {
-            await dispatch(createPost({ content: createPostContent, tags })).unwrap();
+            await dispatch(createPost({ content: cleanedContent, tags, postType: 'REGULAR' })).unwrap();
             dispatch(fetchDiscoveryData())
         } catch (err: any) {
             dispatch(setError(err))

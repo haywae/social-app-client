@@ -13,6 +13,7 @@
     text-align: center;
     width: 90%; /* Use a percentage width for flexibility */
     max-width: 450px; /* Prevent it from becoming too wide on landscape mobile */
+    min-height: calc(100vh - var(--main-header-height) - var(--bottom-nav-height));
 }
 
 .auth-container-title {

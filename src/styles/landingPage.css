@@ -1,0 +1,207 @@
+
+
+.landing-page-container {
+    align-self: center;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary--bg);
+    color: var(--text-primary);
+    font-family: Arial, sans-serif;
+}
+
+.landing-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    gap: 4rem;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    max-width: 600px;
+    text-align: center;
+}
+
+.hero-headline {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-subheadline {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.cta-button-primary,
+.cta-button-secondary {
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.cta-button-primary {
+    background-color: var(--base); 
+    color: var(--background);
+}
+.cta-button-primary:hover {
+    background-color: var(--base-dark);
+}
+
+.cta-button-secondary {
+    background-color: transparent;
+    color: var(--base);
+    border: 1px solid var(--grey-6);
+}
+.cta-button-secondary:hover {
+    background-color: rgba(0, 135, 90, 0.1);
+}
+
+/* --- App Preview Section --- */
+.app-preview-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.app-preview-container {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 16px;
+    background-color: var(--background);
+    border: 1px solid var(--border-color);
+}
+
+.mock-post {
+    background-color: var(--background);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.mock-post-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.mock-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--grey-6);
+    object-fit: cover;
+}
+
+.mock-author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.mock-display-name {
+    font-weight: bold;
+}
+
+.mock-username {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.mock-post-content p {
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+}
+
+.mock-rates p {
+    margin-bottom: 0.75rem;
+    font-family: monospace, sans-serif;
+    font-size: 0.95rem;
+}
+
+.mock-hashtags {
+    color: var(--base)
+}
+
+.via-exchange {
+    font-weight: 600;
+    color: var(--grey-4);
+}
+.from-text {
+    font-size: small;
+    margin-right: 0.25rem;
+    font-style: italic;
+    color: var(--grey-4);
+
+}
+.mock-post-actions {
+    display: flex;
+    align-items: center; /* This is the key for vertical alignment */
+    gap: 2rem;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.mock-action-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem; /* Small space between icon and number */
+}
+
+.mock-post-actions svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* --- Responsive --- */
+@media (min-width: 1024px) {
+    .landing-page-container{
+        max-width: 1000px;
+    }
+    .landing-main-content {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 4rem 2rem;
+    }
+
+    .hero-section {
+        text-align: left;
+    
+    }
+
+    .hero-actions {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    .cta-button-primary,
+    .cta-button-secondary {
+        width: auto;
+    }
+}
+

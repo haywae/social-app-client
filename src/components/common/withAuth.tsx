@@ -1,7 +1,7 @@
 import React, { type JSX } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../utils/hooks';
-import Login from '../../pages/authPages/login';
+import LandingPage from '../../pages/landingPage';
 import type { RootState } from '../../store';
 
 // A simple placeholder for the component being wrapped
@@ -37,7 +37,7 @@ const withAuth = (Component: React.ComponentType<WrappedComponentProps>) => {
         // This will catch both initially unauthenticated users and failed auth checks.
         return (
             <>
-                <Login redirectPath={location.pathname} />
+                <LandingPage redirectPath={location.pathname}/>
             </>
         )
     };

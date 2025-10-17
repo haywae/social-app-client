@@ -1,8 +1,10 @@
 /* src/components/Post/Post.css */
 
 .post-container {
-    padding: 0.5rem;
-    border-bottom: 1px solid var(--grey-6);
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
     background-color: var(--background);
     display: flex;
     flex-direction: column; /* Main layout is now a column of rows */
@@ -93,6 +95,30 @@
     color: var(--grey-2);
     word-wrap: break-word;
     white-space: pre-wrap;
+    margin-bottom: 0.5rem;
+}
+
+
+.rates-from-text {
+    font-size: small;
+    margin-right: 0.25rem;
+    font-style: italic;
+    color: var(--grey-4);
+}
+
+.rates-from-author {
+    font-weight: 600;
+    color: var(--grey-4);
+}
+
+.rates-post-content {
+    margin-bottom: 0.75rem;
+    font-family: monospace, sans-serif;
+    font-size: 0.95rem;
+}
+
+.post-hashtags a{
+    color: var(--base)
 }
 
 .post-detailed-info time {

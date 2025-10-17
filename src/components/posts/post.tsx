@@ -84,6 +84,7 @@ const Post = ({ post, isDetailedView = false, isGateway = false}: PostProps): JS
         }
     };
 
+
     return (
         <>
             <article className={`post-container ${isDetailedView ? 'detailed-view' : ''}`} onClick={handleNavigateToPost}>
@@ -133,7 +134,24 @@ const Post = ({ post, isDetailedView = false, isGateway = false}: PostProps): JS
 
                 {/* --- ROW 2: MAIN CONTENT --- */}
                 <div className="post-content">
-                    <p>{post.content}</p>
+                    {post.postType == 'RATE_POST' && <p className="rates-from">
+                        <span className="rates-from-text">Fresh Rates {/*Post Author's Country*/} By </span>
+                        <span className="rates-from-author">{post.authorName}</span>
+                    </p>}
+                    <p className="rates-post-content">{post.content}</p>
+                    {post.hashtags && post.hashtags.length > 0 && (
+                        <p className="post-hashtags">
+                            {post.hashtags.map((hashtag) => (
+                                <Link
+                                    to={`/search?q=${hashtag}`}
+                                    key={hashtag}
+                                    onClick={(e) => e.stopPropagation()} // Prevent navigating to the post detail page
+                                >
+                                    #{hashtag} &nbsp;
+                                </Link>
+                            ))}
+                        </p>
+                    )}
                 </div>
 
                 {isDetailedView && (
