@@ -180,7 +180,6 @@ const ExchangePage = (): JSX.Element => {
         // 2. Create the hashtags
         const allCurrencies = [baseCurrencyCode, ...validRates.map(r => r.currency)];
         const uniqueCurrencies = [...new Set(allCurrencies)];
-        const hashtags = uniqueCurrencies.map(c => `#${c}`).join(' ');
 
         // 3. Combine everything into the final post content
         const postContent = `${ratesText}`;
