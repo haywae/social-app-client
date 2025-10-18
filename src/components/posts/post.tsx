@@ -84,6 +84,9 @@ const Post = ({ post, isDetailedView = false, isGateway = false}: PostProps): JS
         }
     };
 
+    const isRatePost = post.postType == 'RATE_POST'
+    
+    console.log(post.postType)
 
     return (
         <>
@@ -134,11 +137,11 @@ const Post = ({ post, isDetailedView = false, isGateway = false}: PostProps): JS
 
                 {/* --- ROW 2: MAIN CONTENT --- */}
                 <div className="post-content">
-                    {post.postType == 'RATE_POST' && <p className="rates-from">
+                    {isRatePost && <p className="rates-from">
                         <span className="rates-from-text">Fresh Rates {/*Post Author's Country*/} By </span>
                         <span className="rates-from-author">{post.authorName}</span>
                     </p>}
-                    <p className="rates-post-content">{post.content}</p>
+                    <p className={`${isRatePost ?  'rates-post-content' : ''}`}>{post.content}</p>
                     {post.hashtags && post.hashtags.length > 0 && (
                         <p className="post-hashtags">
                             {post.hashtags.map((hashtag) => (
