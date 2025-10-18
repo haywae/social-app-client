@@ -40,6 +40,8 @@ export interface PostSearchResult {
     isLikedByUser: boolean;
     likeCount: number;
     publicId: string;
+    hashtags?: string[];
+    postType: 'REGULAR' | 'RATE_POST';
 }
 
 interface SearchState {

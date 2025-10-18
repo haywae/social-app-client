@@ -13,25 +13,27 @@ interface SearchResults {
 // Interfaces for the raw API response
 interface ApiUser {
     bio: string;
-    display_name: string;
-    is_following: boolean;
-    profile_picture_url: string;
+    displayName: string;
+    isFollowing: boolean;
+    profilePictureUrl: string;
     username: string;
-    is_self: boolean
+    isSelf: boolean
 }
 
 interface ApiPost {
     author: {
-        display_name: string;
-        profile_picture_url: string;
+        displayName: string;
+        profilePictureUrl: string;
         username: string;
     };
-    comment_count: number;
+    commentCount: number;
     content: string;
-    created_at: string;
-    is_liked_by_user: boolean;
-    like_count: number;
-    public_id: string;
+    createdAt: string;
+    isLikedByUser: boolean;
+    likeCount: number;
+    publicId: string;
+    hashtags: string[];
+    postType: 'REGULAR' | 'RATE_POST';
 }
 
 interface ApiSearchResponse {
@@ -75,32 +77,7 @@ export const fetchSearchResults = createAsyncThunk<
             }
 
             const data: ApiSearchResponse = await response.json();
-            
-            const transformedData: SearchResults = {
-                users: data.users.map(user => ({
-                    bio: user.bio,
-                    displayName: user.display_name,
-                    isFollowing: user.is_following,
-                    profilePictureUrl: user.profile_picture_url,
-                    username: user.username,
-                    isSelf: user.is_self
-                })),
-                posts: data.posts.map(post => ({
-                    author: {
-                        displayName: post.author.display_name,
-                        profilePictureUrl: post.author.profile_picture_url,
-                        username: post.author.username,
-                    },
-                    commentCount: post.comment_count,
-                    content: post.content,
-                    createdAt: post.created_at,
-                    isLikedByUser: post.is_liked_by_user,
-                    likeCount: post.like_count,
-                    publicId: post.public_id,
-                })),
-            };
-
-            return transformedData;
+            return data;
         } catch (error: any) {
             return rejectWithValue(error.message || 'An unknown network error occurred.');
         }

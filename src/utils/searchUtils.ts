@@ -31,5 +31,7 @@ export const transformPostSearchResult = (searchResultPost: PostSearchResult): P
         replyCount: searchResultPost.commentCount,
         likeCount: searchResultPost.likeCount,
         isLiked: searchResultPost.isLikedByUser,
+        hashtags: searchResultPost.hashtags,
+        postType: searchResultPost.postType,
     };
 };
