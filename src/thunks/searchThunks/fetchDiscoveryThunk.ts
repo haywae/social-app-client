@@ -9,23 +9,22 @@ interface DiscoveryData {
     trendingTopics: string[];
 }
 
-// Interfaces for the raw API response
 interface ApiUser {
     bio: string;
-    display_name: string;
-    is_following: boolean;
-    profile_picture_url: string;
+    displayName: string;
+    isFollowing: boolean;
+    profilePictureUrl: string;
     username: string;
-    is_self: boolean
+    isSelf: boolean
 }
 
 interface ApiHashtag {
-    tag_name: string;
+    tagName: string;
 }
 
 interface ApiDiscoveryResponse {
-    suggested_users: ApiUser[];
-    trending_hashtags: ApiHashtag[];
+    suggestedUsers: ApiUser[];
+    trendingTopics: ApiHashtag[];
 }
 
 export const fetchDiscoveryData = createAsyncThunk<
@@ -51,20 +50,13 @@ export const fetchDiscoveryData = createAsyncThunk<
             const loggedInUsername = getState().auth.user?.username;
 
             // 2. Filter the suggested users to exclude the current user.
-            const filteredSuggestedUsers = data.suggested_users.filter(
+            const filteredSuggestedUsers = data.suggestedUsers.filter(
                 user => user.username !== loggedInUsername
             );
 
             const transformedData: DiscoveryData = {
-                suggestedUsers: filteredSuggestedUsers.map(user => ({
-                    bio: user.bio,
-                    displayName: user.display_name,
-                    isFollowing: user.is_following,
-                    profilePictureUrl: user.profile_picture_url,
-                    username: user.username,
-                    isSelf: user.is_self
-                })),
-                trendingTopics: data.trending_hashtags.map(hashtag => hashtag.tag_name),
+                suggestedUsers: filteredSuggestedUsers,
+                trendingTopics: data.trendingTopics.map(hashtag => hashtag.tagName),
             };
             return transformedData;
             
