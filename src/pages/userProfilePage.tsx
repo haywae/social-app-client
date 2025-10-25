@@ -64,7 +64,7 @@ const UserProfilePage = (): JSX.Element => {
         dispatch(openModal({
             modalType: 'VIEW_AVATAR',
             modalProps: {
-                src: profile.avatarUrl || DEFAULT_AVATAR_URL,
+                src: profile.avatarUrl? `${IMAGE_BASE_URL}/${profile.avatarUrl}` : DEFAULT_AVATAR_URL,
                 alt: `${profile.displayName}'s avatar - large view`
             }
         }));

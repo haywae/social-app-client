@@ -102,16 +102,6 @@
     padding: 10px;
 }
 
-.auth-container .success-message {
-    padding: 1rem;
-    background-color: var(--grey-1);
-    color: #108d62;
-    border-radius: 8px;
-    text-align: left;
-    line-height: 1.6;
-    font-weight: 500;
-}
-
 .auth-container .dob-container {
     display: flex;
     gap: 0.5rem;
