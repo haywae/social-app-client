@@ -134,7 +134,7 @@ const ProfileSettingsPage = (): JSX.Element => {
                             <img src={imagePreview} alt="Profile preview" className="user-avatar avatar-xl" />
                             {isUploading && <div className="image-upload-spinner"></div>}
                         </div>
-                        <label htmlFor="profile-picture-input" className="btn-secondary">
+                        <label htmlFor="profile-picture-input" className="btn btn-secondary">
                             Change Photo
                         </label>
                         <input id="profile-picture-input" type="file" accept="image/png, image/jpeg, image/gif" onChange={handleImageChange} />

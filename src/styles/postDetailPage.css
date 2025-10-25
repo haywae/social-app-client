@@ -60,7 +60,7 @@ Description: Styles for the single post view page.
 }
 
 .create-comment-section {
-  padding: 0.75rem 1rem;
+  padding: 0.5rem;
   border-top: 1px solid var(--grey-6);
   position: sticky;
   bottom: 0;
@@ -73,6 +73,7 @@ Description: Styles for the single post view page.
   display: flex;
   flex-direction: column;
   min-height: 0;
+  gap: 0.5rem;
 }
 
 .comment-textarea {

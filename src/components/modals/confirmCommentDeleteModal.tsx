@@ -40,7 +40,7 @@ const ConfirmCommentDeleteModal = ({ comment, postId, isOpen, onClose }: Confirm
         <Modal isOpen={isOpen} onClose={handleCloseModal} title='Delete Comment?'> 
             <p>This can’t be undone and it will be removed permanently.</p>
             <div className="confirm-delete-modal-actions">
-                <button className="btn-secondary" onClick={handleCloseModal} disabled={isSubmitting}>
+                <button className="btn btn-secondary" onClick={handleCloseModal} disabled={isSubmitting}>
                     Cancel
                 </button>
                 <button className="button-danger" onClick={handleDelete} disabled={isSubmitting}>

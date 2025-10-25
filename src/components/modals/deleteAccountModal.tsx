@@ -72,7 +72,7 @@ const DeleteAccountModal = ({ onClose, isOpen }: DeleteAccountModalProps): JSX.E
                         />
                     </div>
                     <div className="delete-modal-actions">
-                        <button type="button" className="btn-secondary" onClick={handleCloseModal} disabled={isDeleting}>
+                        <button type="button" className="btn btn-secondary" onClick={handleCloseModal} disabled={isDeleting}>
                             Cancel
                         </button>
                         <button type="submit" className="btn-danger" disabled={!password || isDeleting}>
