@@ -1,17 +1,28 @@
 import { useState, useRef, useEffect, type ChangeEvent, type FormEvent, type JSX } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
 import { registerUser } from "../../thunks/userThunks/registerThunk"; // Adjust import path
-import { resetRegistrationState } from "../../slices/user/resgitrationSlice"
+import { resetRegistrationState } from "../../slices/user/registrationSlice"
 import { setError } from "../../slices/ui/uiSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { allCountries, type CountryItem } from "../../assets/countries";
-import { CalendarIcon } from "../../assets/icons";
 import CountryDropdown from "../../components/common/countryDropdown";
 import "../../styles/auth-container.css"
+
+// --- Helper Data ---
+const MONTHS = Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, '0'));
+const currentYear = new Date().getFullYear();
+const YEARS = Array.from({ length: 101 }, (_, i) => currentYear - i);
+
+export const getDaysInMonth = (year: string, month: string): number => {
+    const yearNum = parseInt(year, 10);
+    const monthNum = parseInt(month, 10);
+    if (!isNaN(yearNum) && !isNaN(monthNum)) {
+        // new Date(year, monthIndex + 1, 0) gets the last day of the given month
+        return new Date(yearNum, monthNum, 0).getDate();
+    }
+    return 31; 
+};
 /**
  * A functional component for the user registration page.
  * It handles form input, client-side validation, and dispatches the registration thunk.
@@ -20,7 +31,7 @@ import "../../styles/auth-container.css"
 const Signup = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    
+
     //-----Redux State-----
     const { loading } = useAppSelector((state) => state.registration);
     const { isAuthenticated } = useAppSelector((state) => state.auth);
@@ -32,16 +43,23 @@ const Signup = (): JSX.Element => {
         password: '',
         confirmPassword: '',
         email: '',
-        date_of_birth: '',
+        dobMonth: '',
+        dobDay: '',
+        dobYear: '',
         country: ''
     });
 
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
+    const [successEmail, setSuccessEmail] = useState("");
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const selectedCountry = allCountries.find(c => c.name === formData.country) || undefined;
+
+    // --- CHANGED --- Generate dynamic day list based on state
+    const daysInSelectedMonth = getDaysInMonth(formData.dobYear, formData.dobMonth);
+    const DYNAMIC_DAYS = Array.from({ length: daysInSelectedMonth }, (_, i) => i + 1);
 
     // Redirect if already authenticated ---
     useEffect(() => {
@@ -50,26 +68,27 @@ const Signup = (): JSX.Element => {
         }
     }, [isAuthenticated, navigate]);
 
+    // --- CHANGED --- Effect to reset day if it becomes invalid
+    useEffect(() => {
+        if (parseInt(formData.dobDay, 10) > daysInSelectedMonth) {
+            setFormData(prevData => ({
+                ...prevData,
+                dobDay: '' // Reset day if it's no longer valid
+            }));
+        }
+    }, [daysInSelectedMonth, formData.dobDay]);
+
     /**
      * Handles changes in form input fields.
      * @param e - The change event from the input element.
      */
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
-
-    const handleDateChange = (date: Date | null) => {
-        const formattedDate = date ? date.toISOString().split("T")[0] : "";
-        setFormData((prevData) => ({
-            ...prevData,
-            date_of_birth: formattedDate,
-        }));
-    };
-
 
     /**
      * Handles the country selection from the countries' dropdown
@@ -79,11 +98,11 @@ const Signup = (): JSX.Element => {
         setFormData(prev => ({ ...prev, country: country.name }));
     };
 
-    
+
     const toggleShowPassword = () => {
         setShowPassword(prevState => !prevState);
     };
-     
+
     const toggleShowConfirmPassword = () => {
         setShowConfirmPassword(prevState => !prevState);
     };
@@ -93,11 +112,11 @@ const Signup = (): JSX.Element => {
      * @param e - The form submission event.
      */
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
-        const { displayName, username, email, password, confirmPassword, date_of_birth, country } = formData;
-        
-        if (!username || !email || !password) {
+        const { displayName, username, email, password, confirmPassword, dobDay, dobMonth, dobYear, country } = formData;
+
+        if (!username || !email || !password || !confirmPassword || !displayName || !dobDay || !dobMonth || !dobYear || !country) {
             dispatch(setError('All fields are required.'));
             return;
         }
@@ -105,11 +124,14 @@ const Signup = (): JSX.Element => {
             dispatch(setError('Passwords do not match.'));
             return;
         }
-
+        // --- CHANGED --- Format the date_of_birth string right before submission
+        const paddedDay = String(dobDay).padStart(2, '0');
+        const formattedDOB = `${dobYear}-${dobMonth}-${paddedDay}`;
         try {
             // .unwrap() will throw an error if the thunk is rejected
-            await dispatch(registerUser({ displayName, username, email, password, date_of_birth, country })).unwrap();
-            
+            setSuccessEmail(email);
+            await dispatch(registerUser({ displayName, username, email, password, dateOfBirth: formattedDOB, country })).unwrap();
+
             // On success, reset state and navigate
             dispatch(resetRegistrationState());
             setFormData({
@@ -118,10 +140,11 @@ const Signup = (): JSX.Element => {
                 username: '',
                 password: '',
                 confirmPassword: '',
-                date_of_birth: '',
+                email: '',
+                dobDay: '', dobMonth: '', dobYear: '',
                 country: ''
             });
-            setRegistrationSuccess(true); 
+            setRegistrationSuccess(true);
         } catch (err: any) {
             dispatch(setError(err));
             // The error from the rejected thunk is caught here.
@@ -140,11 +163,11 @@ const Signup = (): JSX.Element => {
             <div className="auth-container">
                 <h2 className="auth-container-title">Check Your Email</h2>
                 <p className="auth-container-subtitle">
-                    We've sent a verification link to <strong>{formData.email}</strong>. Please check your inbox and spam folder to complete your registration.
+                    We've sent a verification link to <strong>{successEmail}</strong>. Please check your inbox and spam folder to complete your registration.
                 </p>
-                <button 
-                    type="button" 
-                    className="btn-primary" 
+                <button
+                    type="button"
+                    className="btn-primary"
                     onClick={() => navigate('/login')}
                 >
                     Go to Login
@@ -152,7 +175,6 @@ const Signup = (): JSX.Element => {
             </div>
         );
     }
-
 
     return (
         <div className="auth-container">
@@ -196,29 +218,33 @@ const Signup = (): JSX.Element => {
                 </div>
                 {/* Date of Birth Field */}
                 <div className="form-group">
-                    <label htmlFor="date_of_birth">Date of Birth</label>
-                    <DatePicker
-                        id="date_of_birth"
-                        selected={formData.date_of_birth ? new Date(formData.date_of_birth) : null}
-                        onChange={handleDateChange}
-                        showIcon
-                        toggleCalendarOnIconClick
-                        dateFormat="yyyy-MM-dd"
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        maxDate={new Date()}
-                        placeholderText="Select your birth date"
-                        className="date-picker"
-                        required
-                        icon={<CalendarIcon/>}
-                        calendarIconClassName="calendar-icon"
-                    />
+                    <label>Date of Birth</label>
+                    <p className="form-hint">This will not be shown publicly.</p>
+                    <div className="dob-container">
+                        <select name="dobMonth" value={formData.dobMonth} onChange={handleInputChange} required aria-label="Month of birth">
+                            <option value="" disabled>Month</option>
+                            {MONTHS.map((month) => (
+                                <option key={month} value={month}>{month}</option>
+                            ))}
+                        </select>
+                        <select name="dobDay" value={formData.dobDay} onChange={handleInputChange} required aria-label="Day of birth">
+                            <option value="" disabled>Day</option>
+                            {DYNAMIC_DAYS.map((day) => (
+                                <option key={day} value={day}>{day}</option>
+                            ))}
+                        </select>
+                        <select name="dobYear" value={formData.dobYear} onChange={handleInputChange} requiredaria-label="Year of birth">
+                            <option value="" disabled>Year</option>
+                            {YEARS.map((year) => (
+                                <option key={year} value={year}>{year}</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
                 {/* Country */}
                 <div className="form-group" ref={dropdownRef}>
                     <label htmlFor="country">Country</label>
-                   <CountryDropdown selectedCountry={selectedCountry} onSelect={handleCountrySelect}/> 
+                    <CountryDropdown selectedCountry={selectedCountry} onSelect={handleCountrySelect} />
                 </div>
                 {/* Password Field */}
                 <div className="form-group">
@@ -231,7 +257,7 @@ const Signup = (): JSX.Element => {
                         onChange={handleInputChange}
                         required
                     />
-                    <button type="button" 
+                    <button type="button"
                         onClick={toggleShowPassword}
                         aria-label={showPassword ? "Hide password" : "Show password"}
                     >

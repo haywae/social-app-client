@@ -7,10 +7,14 @@ export interface NotificationPreferences {
 
 export interface UserSettings {
     username: string;
-    display_name: string;
+    displayName: string;
     email: string;
     bio: string;
     country: string;
-    profile_picture_url: string;
-    notification_preferences: NotificationPreferences;
+    avatarUrl: string;
+    notificationPreferences: NotificationPreferences;
+}
+
+export interface CreatePasswordArgs {
+    new_password: string;
 }

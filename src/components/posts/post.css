@@ -1,10 +1,8 @@
 /* src/components/Post/Post.css */
 
 .post-container {
-    margin: 0.5rem 0;
     padding: 1rem;
-    border-radius: 16px;
-    border: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     background-color: var(--background);
     display: flex;
     flex-direction: column; /* Main layout is now a column of rows */
@@ -14,7 +12,7 @@
 }
 
 .post-container:hover {
-    background-color: var(--primary-bg);
+    background-color: var(--grey-7);
 }
 
 /* --- ROW 1: HEADER --- */
@@ -95,7 +93,6 @@
     color: var(--grey-2);
     word-wrap: break-word;
     white-space: pre-wrap;
-    margin-bottom: 0.5rem;
 }
 
 

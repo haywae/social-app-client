@@ -1,10 +1,10 @@
-import { useState, type JSX} from "react";
+import { useState, type JSX } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { EllipseIcon,  HeartIcon, LinkIcon } from "../../assets/icons";
+import { EllipseIcon, HeartIcon, LinkIcon } from "../../assets/icons";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { toggleCommentLike } from "../../thunks/commentsThunks/toggleCommentLikeThunk"
 import CommentOptionsMenu from "./commentOptionsMenu";
-import { DEFAULT_AVATAR_URL } from "../../appConfig";
+import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
 import { formatDetailedTimestamp, formatRelativeTimestamp } from "../../utils/timeformatUtils";
 import { openModal } from "../../slices/ui/uiSlice";
 import "../posts/post.css";
@@ -17,7 +17,7 @@ interface CommentProps {
     isGateway?: boolean;
 }
 
-const Comment = ({ commentId, postId, isDetailedView = false, isGateway = false}: CommentProps): JSX.Element => {
+const Comment = ({ commentId, postId, isDetailedView = false, isGateway = false }: CommentProps): JSX.Element => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
@@ -39,7 +39,7 @@ const Comment = ({ commentId, postId, isDetailedView = false, isGateway = false}
         setIsMenuOpen(false); // Close the popover
         dispatch(openModal({
             modalType: 'EDIT_COMMENT',
-            modalProps: {comment}
+            modalProps: { comment }
         }))
     };
 
@@ -47,14 +47,14 @@ const Comment = ({ commentId, postId, isDetailedView = false, isGateway = false}
         setIsMenuOpen(false); // Close the popover
         dispatch(openModal({
             modalType: 'CONFIRM_DELETE_COMMENT',
-            modalProps: {comment: comment, postId: postId}
+            modalProps: { comment: comment, postId: postId }
         }))
     };
 
     // Navigate users to the post detail page when the 
     const handleNavigateToPost = () => {
         // Only navigate when user is not on a detailed page or the page is a gateway
-        if (isGateway && postId){
+        if (isGateway && postId) {
             navigate(`/post/${postId}?fc=${commentId}`);
         }
     };
@@ -83,11 +83,15 @@ const Comment = ({ commentId, postId, isDetailedView = false, isGateway = false}
     return (
         <>
             <article className="post-container comment-container" onClick={handleNavigateToPost}>
-                    {/* ... header, content, and footer of the comment ... */}
+                {/* ... header, content, and footer of the comment ... */}
                 <header className="post-header">
                     <div className="post-avatar-container">
                         <Link to={`/profile/${comment.authorUsername}`}>
-                            <img src={comment.authorAvatarUrl || DEFAULT_AVATAR_URL} alt={`${comment.authorName}'s avatar`} className="user-avatar avatar-sm" />
+                            <img
+                                src={comment.authorAvatarUrl ? `${IMAGE_BASE_URL}/${comment.authorAvatarUrl}` : DEFAULT_AVATAR_URL}
+                                alt={`${comment.authorName}'s avatar`}
+                                className="user-avatar avatar-sm"
+                            />
                         </Link>
                     </div>
                     <div className="post-author-meta">
@@ -101,18 +105,18 @@ const Comment = ({ commentId, postId, isDetailedView = false, isGateway = false}
                         </div>
                     </div>
                     <div className="post-header-actions options-menu-container">
-                        <button className="icon-action-button" onClick={()=>{setIsMenuOpen(true)}}>
+                        <button className="icon-action-button" onClick={() => { setIsMenuOpen(true) }}>
                             <EllipseIcon />
                         </button>
                         {isMenuOpen && postId && (
-                            <CommentOptionsMenu 
+                            <CommentOptionsMenu
                                 comment={comment}
                                 postId={postId}
                                 isAuthor={isAuthor}
                                 isDetailedView={isDetailedView}
-                                commentUrl = {commentUrl}
-                                onClose={() => setIsMenuOpen(false)}  
-                                onDeleteClick={handleOpenDeleteModal} 
+                                commentUrl={commentUrl}
+                                onClose={() => setIsMenuOpen(false)}
+                                onDeleteClick={handleOpenDeleteModal}
                                 onEditClick={handleOpenEditModal}
                             />
                         )}

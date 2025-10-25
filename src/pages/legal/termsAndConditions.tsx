@@ -2,6 +2,7 @@ import './termsAndConditions.css'
 import { useNavigate } from 'react-router-dom';
 import { LeftArrowIcon } from '../../assets/icons';
 import { useLocation } from 'react-router-dom';
+import { useTitle } from '../../utils/hooks';
 
 
 
@@ -19,14 +20,10 @@ const TermsAndConditions = () => {
             navigate('/'); // The public homepage
         }
     };
+
+    useTitle('Terms and Conditions - WolexChange');
+
     return (
-        <>
-            <meta charSet="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Terms and Conditions - WolexChange</title>
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
             <main className="terms-and-conditions-container">
                 <header>
                     <button onClick={handleNavigate} className="legal-back-button"><LeftArrowIcon /></button>
@@ -386,7 +383,6 @@ const TermsAndConditions = () => {
                 </section>
 
             </main>
-        </>
     );
 };
 

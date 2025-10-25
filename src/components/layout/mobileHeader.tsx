@@ -17,7 +17,7 @@ const routeConfig = [
     { path: "/exchange", title: "Exchange" },
     { path: "/search", title: "Search" },
     { path: "/notifications", title: "Notifications" },
-    { path: "/profile/:username", title: "Profile" } 
+    { path: "/profile/:username", title: "Profile" },
 ];
 
 /** A helper function to find the correct title using matchPath 
@@ -61,14 +61,14 @@ const MobileHeader = ({ showHeader = true }: HeaderProps): JSX.Element | null =>
                     <div className="header-content">
                         <Link to="/"><h1 className="header-title">{pageTitle}</h1></Link>
                         <div className="header-actions">
-                            <Link to="/settings"><SettingsIcon /></Link>
+                            <Link to="/settings" title="Settings Icon"><SettingsIcon /></Link>
                         </div>
                     </div>
                 </header>
             )}
 
             <nav className="bottom-nav">
-                <NavLink to="/" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end><HomeIcon /></NavLink>
+                <NavLink to="/feed" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end><HomeIcon /></NavLink>
                 <NavLink to="/exchange" style={({ isActive }) => isActive ? activeLinkStyle : undefined}><BankNoteIcon /></NavLink>
                 <NavLink to="/search" style={({ isActive }) => isActive ? activeLinkStyle : undefined}><SearchIcon /></NavLink>
                 <NavLink to="/post" style={({ isActive }) => isActive ? activeLinkStyle : undefined}><CreatePostIcon /></NavLink>

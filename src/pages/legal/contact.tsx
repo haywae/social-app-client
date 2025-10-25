@@ -1,11 +1,11 @@
 import { useState, useEffect, type JSX, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+import { useAppDispatch, useAppSelector, useTitle } from '../../utils/hooks';
 import { useLocation } from 'react-router-dom';
 import { submitContactForm } from '../../thunks/legalThunks/contactFormThunk';
 import { resetContactState } from '../../slices/ui/uiSlice';
 import { LeftArrowIcon } from '../../assets/icons';
-import { DEVELOPMENT_MODE } from '../../appConfig';
+import { DEVELOPER_MODE } from '../../appConfig';
 import './legalPages.css';
 
 const ContactPage = (): JSX.Element => {
@@ -60,13 +60,14 @@ const ContactPage = (): JSX.Element => {
         } catch (err) {
             // Errors are already handled in the thunk and slice,
             // so we just need to catch the rejected promise here.
-            DEVELOPMENT_MODE && console.error("Failed to submit contact form:", err);
+            DEVELOPER_MODE && console.error("Failed to submit contact form:", err);
         }
     };
 
+    useTitle('Contact Us - WolexChange');
+
+    // --- Render Logic ---
     return (
-        <>
-            <title>Contact Us - WolexChange</title>
             <div className="legal-page-container">
                 <header className="legal-page-header">
                     <button onClick={handleNavigate} className="legal-back-button"><LeftArrowIcon /></button>
@@ -123,7 +124,6 @@ const ContactPage = (): JSX.Element => {
                     </section>
                 </div>
             </div>
-        </>
     );
 };
 

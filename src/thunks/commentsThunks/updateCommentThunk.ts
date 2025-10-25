@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../apiInterceptor";
 import { type CommentData } from "../../types/commentType";
-import { transformApiComment } from "../../utils/commentUtils";
 
 interface UpdateCommentArgs {
     commentId: string;
@@ -36,7 +35,7 @@ export const updateComment = createAsyncThunk<
 
             const data = await response.json();
             // The transformation logic remains the same.
-            return transformApiComment(data);
+            return data;
 
         } catch (error: any) {
             // This will catch network errors or errors from a failed token refresh.

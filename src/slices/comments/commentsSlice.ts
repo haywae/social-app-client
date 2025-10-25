@@ -8,9 +8,9 @@ import { toggleCommentLike } from "../../thunks/commentsThunks/toggleCommentLike
 import { fetchPosts } from "../../thunks/postsThunks/fetchPostsThunk";
 import { uploadProfilePicture } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
 
-import { transformAndFlattenComments, transformApiComment } from "../../utils/commentUtils";
+import { flattenComments, } from "../../utils/commentUtils";
 import { type DeleteCommentFulfilledPayload } from "../../thunks/commentsThunks/deleteCommentThunk";
-import { type CommentsState, type CommentData, type PaginatedCommentsResponse, type ApiComment } from "../../types/commentType";
+import { type CommentsState, type CommentData, type PaginatedCommentsResponse} from "../../types/commentType";
 
 const initialState: CommentsState = {
     commentsById: {},
@@ -62,7 +62,7 @@ const commentsSlice = createSlice({
             .addCase(fetchComments.fulfilled, (state, action: PayloadAction<PaginatedCommentsResponse>) => {
                 state.loading = 'succeeded';
                 // 1. --- Flatten all comments into a single array
-                const flatCommentList = transformAndFlattenComments(action.payload.comments);
+                const flatCommentList = flattenComments(action.payload.comments);
 
                 // 2. --- Reset comment and replies state for the first page
                 if (action.payload.currentPage === 1) {
@@ -209,10 +209,10 @@ const commentsSlice = createSlice({
                 state.commentsById = {};
                 state.error = null;
             })
-            .addCase(fetchSingleComment.fulfilled, (state, action: PayloadAction<ApiComment>) => {
+            .addCase(fetchSingleComment.fulfilled, (state, action: PayloadAction<CommentData>) => {
                 state.loading = 'succeeded';
-                const transformedComment = transformApiComment(action.payload);
-                state.commentsById[transformedComment.id] = transformedComment
+
+                state.commentsById[action.payload.id] = action.payload;
                 state.error = null;
             })
             .addCase(fetchSingleComment.rejected, (state, action) => {

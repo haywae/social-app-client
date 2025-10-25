@@ -1,11 +1,13 @@
 import { useState, type FormEvent, type JSX } from 'react';
-import { useAppDispatch } from '../../utils/hooks';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { updateUsername } from '../../thunks/settingsThunks/updateUsernameThunk';
 import { setError, setSuccess } from '../../slices/ui/uiSlice';
-
+import CreatePasswordForm from './createPasswordForm';
 
 const ChangeUsernameForm = (): JSX.Element => {
     const dispatch = useAppDispatch();
+    const { user } = useAppSelector((state) => state.auth);
+
     const [new_username, setNewUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -18,17 +20,26 @@ const ChangeUsernameForm = (): JSX.Element => {
 
         if (updateUsername.fulfilled.match(result)) {
             dispatch(setSuccess('Username successfully updated!'));
-            setNewUsername(''); 
+            setNewUsername('');
             setPassword('');
         } else {
             dispatch(setError(result.payload || 'An error occurred.'));
         }
         setLoading(false);
     };
+    if (user && user.hasPassword === false) {
+        // If the user has no password, don't show the password form.
+        return (
+            <div className='settings-form-section'>
+                <h3>Create a Password to Continue</h3>
+                <p>To change your username and perform other sensitive actions, you must first create a password for your WolexChange account.</p>
+                <CreatePasswordForm />
+            </div>
+        );
+    }
 
     return (
         <form onSubmit={handleSubmit} className="settings-form-section">
-            <h3>Change Username</h3>
             <div className="settings-form-group">
                 <label htmlFor="new_username">New Username</label>
                 <input type="text" id="new_username" value={new_username} onChange={(e) => setNewUsername(e.target.value)} required />

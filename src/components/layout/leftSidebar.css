@@ -170,30 +170,6 @@
 
 @media (prefers-color-scheme: dark) {
     @media (min-width: 768px) {
-        .left-sidebar {
-            background-color: var(--background);
-        }
-        .sidebar-nav a {
-            color: var(--grey-1);
-        }
-        .sidebar-nav a:hover {
-            background-color: var(--grey-7);
-        }
-        .notification-indicator {
-            border-color: var(--background); /* Match the new sidebar background */
-        }
-        .sidebar-profile-link {
-            color: var(--grey-1);
-        }
-        .sidebar-profile-link:hover {
-            background-color: var(--grey-7);
-        }
-        .sidebar-profile-info small {
-            color: var(--grey-4);
-        }
-        .sidebar-logout-button {
-            color: var(--grey-2);
-        }
         .sidebar-logout-button:hover {
             background-color: rgba(255, 0, 0, 0.2);
         }

@@ -1,9 +1,9 @@
 import { type JSX, useState, useRef, useEffect } from 'react';
 import { type ExchangeData } from '../../types/exchange';
 import { allCurrencies } from '../../assets/currencies';
-import { DEFAULT_AVATAR_URL } from '../../appConfig';
+import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../../appConfig';
 import { EllipseIcon, LinkIcon } from '../../assets/icons';
-import './liveRatesTab.css'; 
+import './liveRatesTab.css';
 
 interface LiveRatesDisplayProps {
     exchangeData: ExchangeData;
@@ -20,7 +20,7 @@ const LiveRatesTab = ({ exchangeData }: LiveRatesDisplayProps): JSX.Element => {
     const formattedDate = new Date(exchangeData.last_updated).toLocaleString();
     const baseCurrencyFlagCode = allCurrencies.find(c => c.iso3 === exchangeData.base_currency)?.iso2;
     const baseCountryFlag = `https://flagcdn.com/w20/${baseCurrencyFlagCode?.toLowerCase()}.png`;
-    
+
     // The shareable URL can only be constructed if the username is available
     const exchangeUrl = `${window.location.origin}/view?exchange=${exchangeData.username}`;
     useEffect(() => {
@@ -49,10 +49,15 @@ const LiveRatesTab = ({ exchangeData }: LiveRatesDisplayProps): JSX.Element => {
         <div className="live-rates-container">
             <header className="live-rates-header">
                 <div className="live-rates-user-info">
-                        <img src={exchangeData.avatarUrl || DEFAULT_AVATAR_URL} alt="user avatar" className="user-avatar avatar-sm" />
+                    <img
+                        src={exchangeData.avatarUrl ? `${IMAGE_BASE_URL}/${exchangeData.avatarUrl}` : DEFAULT_AVATAR_URL}
+                        alt="user avatar"
+                        className="user-avatar avatar-sm"
+                    />
+
                     <div className="live-rates-details">
                         <h3>{exchangeData.name}</h3>
-                        <p>Base: <strong>{exchangeData.base_currency}</strong> <img src={baseCountryFlag} alt="base-country-flag" className='flag-img'/></p>
+                        <p>Base: <strong>{exchangeData.base_currency}</strong> <img src={baseCountryFlag} alt="base-country-flag" className='flag-img' /></p>
                     </div>
                 </div>
                 <div className="live-rates-actions">
@@ -87,7 +92,7 @@ const LiveRatesTab = ({ exchangeData }: LiveRatesDisplayProps): JSX.Element => {
                             <tr key={rate.currency}>
                                 <td>
                                     <div className='rates-currency'>
-                                        <img src={countryFlag} alt="currency-rate-image" className='flag-img'/>
+                                        <img src={countryFlag} alt="currency-rate-image" className='flag-img' />
                                         <span>{rate.currency}</span>
                                     </div>
                                 </td>

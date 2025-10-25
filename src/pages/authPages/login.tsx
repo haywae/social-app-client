@@ -1,8 +1,12 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent, type JSX } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../utils/hooks"; 
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { loginUser } from "../../thunks/authThunks/loginThunk";
 import { setError } from "../../slices/ui/uiSlice";
+import { GoogleIcon } from "../../assets/icons";
+import { useGoogleLogin } from '@react-oauth/google';
+import { DEVELOPER_MODE } from '../../appConfig';
+import { googleLogin } from '../../thunks/authThunks/googleLoginThunk';
 import "../../styles/auth-container.css"
 
 // Define the type for the component's props
@@ -24,7 +28,7 @@ const Login = ({ redirectPath }: LoginProps): JSX.Element => {
     // Select state from the Redux store using the typed selector
     const { loading, isAuthenticated } = useAppSelector((state) => state.auth);
     const isLoading = loading === 'pending';
-    
+
     // State for form fields and client-side validation
     const [password, setPassword] = useState<string>('');
     const [loginIdentifier, setLoginIdentifier] = useState<string>('');
@@ -66,51 +70,69 @@ const Login = ({ redirectPath }: LoginProps): JSX.Element => {
             dispatch(setError('Please enter both username/email and password.'));
             return;
         }
-        
+
         try {
             // Dispatch the login thunk and use unwrap() to handle the promise
             await dispatch(loginUser({ loginIdentifier, password })).unwrap();
-            
+
         } catch (err: any) {
             dispatch(setError(err));
             setPassword('');
         }
     };
-    
+
+    const googleLoginHook = useGoogleLogin({
+        // We use 'auth-code' flow for the most secure server-side verification
+        flow: 'auth-code',
+
+        // This 'onSuccess' function runs when Google returns the code
+        onSuccess: (codeResponse) => {
+            DEVELOPER_MODE && console.log('Google Auth Code:', codeResponse.code);
+            dispatch(googleLogin(codeResponse.code));
+        },
+        onError: (error) => {
+            DEVELOPER_MODE && console.error('Google Login Failed:', error); 
+            dispatch(setError('Google Login Failed'));
+        },
+    });
+
     return (
         <div className="auth-container">
             <h2 className="auth-container-title">Login</h2>
             <form onSubmit={handleSubmit} noValidate>
                 <div className="form-group">
                     <label htmlFor="loginIdentifier">Username/Email</label>
-                    <input 
-                        type="text" 
-                        id="loginIdentifier" 
-                        name="loginIdentifier" 
-                        value={loginIdentifier} 
-                        onChange={handleIdentifierChange} 
-                        required 
+                    <input
+                        type="text"
+                        id="loginIdentifier"
+                        name="loginIdentifier"
+                        value={loginIdentifier}
+                        onChange={handleIdentifierChange}
+                        required
                         autoComplete="username"
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input 
+                    <input
                         type={showPassword ? "text" : "password"}
-                        id="password" 
-                        name="password" 
-                        value={password} 
-                        onChange={handlePasswordChange} 
-                        required 
+                        id="password"
+                        name="password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                        required
                         autoComplete="current-password"
                     />
                     <button type="button" onClick={() => setShowPassword(!showPassword)}>
                         {showPassword ? "Hide" : "Show"}
-                    </button>   
+                    </button>
                 </div>
                 <button type="submit" className="btn-primary" disabled={isLoading}>
                     {'Log in'}
                 </button>
+                <Link to="#" className='google-signin-button' onClick={googleLoginHook}>
+                    <GoogleIcon /> <span>Sign In with Google</span>
+                </Link>
             </form>
             <div className="links">
                 <Link to="/register" className="signup-link">Sign Up</Link>

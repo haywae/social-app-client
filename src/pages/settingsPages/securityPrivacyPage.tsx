@@ -1,6 +1,5 @@
 import { type JSX } from 'react';
 import { useNavigate } from 'react-router-dom';
-import withAuth from '../../components/common/withAuth';
 
 import { useAppDispatch } from '../../utils/hooks';
 import { openModal } from '../../slices/ui/uiSlice';
@@ -40,4 +39,4 @@ const SecurityPrivacyPage = (): JSX.Element => {
     );
 };
 
-export default withAuth(SecurityPrivacyPage);
+export default SecurityPrivacyPage;

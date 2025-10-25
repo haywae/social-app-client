@@ -43,23 +43,3 @@
         font-size: 0.9rem;
     }
 }
-
-/* --- Dark Theme Adjustments --- */
-@media (prefers-color-scheme: dark) {
-    @media (min-width: 1280px) {
-        .right-sidebar-container {
-            border-color: var(--grey-6);
-            background-color: var(--background);
-        }
-        .sidebar-module {
-            background-color: var(--primary-bg);
-        }
-        .sidebar-module-title {
-            color: var(--grey-1); 
-            border-color: var(--grey-6);
-        }
-        .sidebar-empty-text {
-            color: var(--grey-4);
-        }
-    }
-}

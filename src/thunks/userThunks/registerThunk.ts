@@ -1,23 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_BASE_URL } from "../../appConfig";
-import type { UserData } from "../../types/user";
 import { allCountries } from "../../assets/countries";
 
-
+export interface RegisterSuccessResponse {
+    message: string;
+}
 export interface RegisterCredentials{
     displayName: string;
     username: string;
     email: string;
     password: string;
-    date_of_birth: string;
+    dateOfBirth: string;
     country: string;
 }
 
 //---------------------
 // Registers the user
 //---------------------
-export const registerUser = createAsyncThunk<UserData, RegisterCredentials, {rejectValue: string }>('register/registerUser', 
-    async ({ displayName, username, email, password, date_of_birth, country}, { rejectWithValue }) => {
+export const registerUser = createAsyncThunk<RegisterSuccessResponse, RegisterCredentials, {rejectValue: string }>('register/registerUser', 
+    async ({ displayName, username, email, password, dateOfBirth, country}, { rejectWithValue }) => {
         try{
             //-----Sends a register request to the server-----
             // --- Determine the base currency from the selected country ---
@@ -32,7 +33,7 @@ export const registerUser = createAsyncThunk<UserData, RegisterCredentials, {rej
                     'Content-Type' : 'application/json',
                 },
                 credentials: 'include',
-                body: JSON.stringify({ displayName, username, password, email, date_of_birth, country, baseCurrency})
+                body: JSON.stringify({ displayName, username, password, email, dateOfBirth, country, baseCurrency})
             })
             
             //-----Checks if the request failed-----

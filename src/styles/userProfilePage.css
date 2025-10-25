@@ -1,8 +1,10 @@
 .profile-page-container {
     width: 100%;
+    max-width: 600px;
     margin: 0 auto;
     background-color: var(--background-alpha);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .profile-header {

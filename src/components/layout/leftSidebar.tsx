@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { SearchIcon, NotificationIcon, ProfileIcon, HomeIcon, BankNoteIcon, CreatePostIcon, SignoutIcon, SettingsIcon } from "../../assets/icons";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
-import { DEFAULT_AVATAR_URL } from "../../appConfig";
+import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
 
 import "./leftSidebar.css";
 
@@ -21,7 +21,7 @@ const LeftSidebar = (): JSX.Element => {
         fontWeight: '700',
     };
 
-    const handleLogout = async() => {
+    const handleLogout = async () => {
         await dispatch(logoutUser());
         navigate('/'); // Redirect to home after logout
     };
@@ -35,7 +35,7 @@ const LeftSidebar = (): JSX.Element => {
 
                 {/* --- SECTION 1: Main Navigation --- */}
                 <nav className="sidebar-nav">
-                    <NavLink to="/" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end>
+                    <NavLink to="/feed" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end>
                         <HomeIcon />
                         <span>Home</span>
                     </NavLink>
@@ -77,7 +77,11 @@ const LeftSidebar = (): JSX.Element => {
 
                     <div className="sidebar-user-actions">
                         <Link to={`/profile/${user?.username}`} className="sidebar-profile-link">
-                            <img src={user?.profilePictureUrl || DEFAULT_AVATAR_URL} alt="User avatar" className="user-avatar avatar-sm" />
+                            <img
+                                src={user?.profilePictureUrl ? `${IMAGE_BASE_URL}/${user.profilePictureUrl}` : DEFAULT_AVATAR_URL}
+                                alt="User avatar"
+                                className="user-avatar avatar-sm"
+                            />
                             <div className="sidebar-profile-info">
                                 <span>{user?.displayName}</span>
                                 <small>@{user?.username}</small>

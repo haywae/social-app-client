@@ -28,6 +28,7 @@
     /* glassy background effect */
     background-color: var(--background-alpha);
     backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--grey-6);
 }
 
@@ -147,32 +148,5 @@
     .main-header,
     .bottom-nav {
         display: none;
-    }
-}
-
-/* --- Dark Theme Adjustments --- */
-
-@media (prefers-color-scheme: dark) {
-    .main-header-no-auth,
-    .bottom-nav {
-        background-color: var(--background); /* Use solid dark background */
-        border-color: var(--grey-6);
-    }
-    .main-header {
-        background-color: var(--background-alpha);
-        border-color: var(--grey-6);
-    }
-    .header-title,
-    .header-content-no-auth { /* This includes the logo text */
-        color: var(--grey-1); 
-    }
-    .notification-indicator {
-        border-color: var(--background);
-    }
-    .bottom-nav a {
-        color: var(--grey-4);
-    }
-    .bottom-nav a.active {
-        color: var(--base);
     }
 }

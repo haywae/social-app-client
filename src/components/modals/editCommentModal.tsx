@@ -5,8 +5,8 @@ import { useAppDispatch } from '../../utils/hooks';
 import { updateComment } from '../../thunks/commentsThunks/updateCommentThunk';
 import type { CommentData } from '../../types/commentType';
 import { setError } from '../../slices/ui/uiSlice';
-import Modal from '../common/modal';
-import '../posts/editPostModal.css'; 
+import Modal from '../modals/modal';
+import './editPostModal.css'; 
 
 interface EditCommentModalProps {
     comment: CommentData;

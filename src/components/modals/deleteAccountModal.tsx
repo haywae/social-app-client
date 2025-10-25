@@ -1,9 +1,10 @@
 import { useState, type FormEvent, type JSX } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../utils/hooks';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { deleteAccount } from '../../thunks/settingsThunks/deleteAccountThunk';
 import { setError, setSuccess } from '../../slices/ui/uiSlice';
-import Modal from '../common/modal';
+import Modal from './modal';
+import CreatePasswordForm from '../settings/createPasswordForm';
 import './deleteAccountModal.css';
 
 interface DeleteAccountModalProps {
@@ -13,6 +14,7 @@ interface DeleteAccountModalProps {
 
 const DeleteAccountModal = ({ onClose, isOpen }: DeleteAccountModalProps): JSX.Element => {
     const dispatch = useAppDispatch();
+    const { user } = useAppSelector((state) => state.auth);
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
@@ -27,10 +29,12 @@ const DeleteAccountModal = ({ onClose, isOpen }: DeleteAccountModalProps): JSX.E
             // Navigate to the home page after deletion.
             dispatch(setSuccess('Account successfully deleted!'));
             navigate('/');
+            
         } catch (err: any) {
             dispatch(setError('Account deletion failed.'));
         } finally {
             setIsDeleting(false);
+            onClose();
         }
     };
 
@@ -38,6 +42,18 @@ const DeleteAccountModal = ({ onClose, isOpen }: DeleteAccountModalProps): JSX.E
         if (!isDeleting) onClose();
     }
 
+    if (user && user.hasPassword === false) {
+        // If the user has no password, don't show the password form.
+        return (
+            <Modal isOpen={isOpen} onClose={handleCloseModal}>
+                <div className='delete-account-modal'>
+                    <h2>Create a Password to Continue</h2>
+                    <p>To delete your account and perform other sensitive actions, you must first create a password for your WolexChange account.</p>
+                    <CreatePasswordForm onSuccess={handleCloseModal}/>
+                </div>
+            </Modal>
+        );
+    }
     return (
         <Modal isOpen={isOpen} onClose={handleCloseModal}>
             <div className='delete-account-modal'>

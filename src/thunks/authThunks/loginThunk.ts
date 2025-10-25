@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_BASE_URL } from "../../appConfig";
-import type { UserData } from "../../types/user";
+import type { UserData } from "../../types/userType";
 import { scheduleProactiveRefresh, setLocalStorage } from "../../utils/authUtils";
 import type { AppDispatch, RootState } from "../../store";
 

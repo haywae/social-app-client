@@ -2,6 +2,7 @@ import './privacyPolicy.css'
 import { useNavigate } from 'react-router-dom';
 import { LeftArrowIcon } from '../../assets/icons';
 import { useLocation } from 'react-router-dom';
+import { useTitle } from '../../utils/hooks';
 
 
 const cookiePolicy = () => {
@@ -17,15 +18,10 @@ const cookiePolicy = () => {
             navigate('/'); // The public homepage
         }
     };
+
+    useTitle('Cookie Policy - WolexChange');
+
     return (
-        <>
-            <title>Cookie Policy - WolexChange</title>
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-            <link
-                href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-                rel="stylesheet"
-            />
             <main className="privacy-policy-container">
                 <header>
                     <button onClick={handleNavigate} className="legal-back-button"><LeftArrowIcon /></button>
@@ -298,7 +294,7 @@ const cookiePolicy = () => {
                     </address>
                 </section>
             </main>
-        </>
+
     )
 }
 

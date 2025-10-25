@@ -1,80 +1,75 @@
 /* src/styles/App.css */
-.guest-page-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-}
+
 /* --- Layout Containers --- */
 /* Base styles for both authenticated and guest views */
-.main-layout,
-.guest-layout {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 0; /*Ensures layout starts after the header */
-}
-
-.header-included{
-    margin-top: var(--main-header-height); /*Ensures the page has a margin to give space for the header*/
+.main-layout{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0;
+  /*Ensures layout starts after the header */
 }
 
 /* --- Main Content Feed --- */
-.guest-content, 
 .main-content {
-    width: 100%;
-    max-width: 600px; /* A good width for a central feed */
-    min-height: calc(100vh - 120px);
-
-}
-
-.guest-content {
-    min-height: calc(100vh - var(--main-header-height) - var(--footer-height));
-}
-
-.main-content{
-    margin-bottom: var(--bottom-nav-height); /*Ensures the page has a margin to give space for the bottom nav;*/
+  width: 100%;
+  max-width: 600px;
+  /* A good width for a central feed */
+  min-height: calc(100vh - 120px);
+  margin-bottom: var(--bottom-nav-height);
+  /*Ensures the page has a margin to give space for the bottom nav;*/
 }
 
 .follow-button {
-    padding: 0.5rem 1.25rem; /* A little more horizontal padding */
-    border-radius: 9999px; /* Pill shape */
-    font-size: 0.9rem;
-    font-weight: 700; /* Bolder for better readability */
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    border: 1px solid transparent; /* Start with a transparent border */
+  padding: 0.5rem 1.25rem;
+  /* A little more horizontal padding */
+  border-radius: 9999px;
+  /* Pill shape */
+  font-size: 0.9rem;
+  font-weight: 700;
+  /* Bolder for better readability */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent;
+  /* Start with a transparent border */
 }
 
 /* Default "Follow" state */
 .follow-button {
-    background-color: var(--grey-1);
-    color: var(--background);
+  background-color: var(--grey-1);
+  color: var(--background);
 }
 
 .follow-button:hover {
-    background-color: var(--grey-2); /* A subtle hover effect */
+  background-color: var(--grey-2);
+  /* A subtle hover effect */
 }
 
 /* "Following" state (when the user is already following) */
 .follow-button.following {
-    background-color: transparent;
-    color: var(--grey-2);
-    border-color: var(--grey-6);
+  background-color: transparent;
+  color: var(--grey-2);
+  border-color: var(--grey-6);
 }
 
 /* "Unfollow" hover state */
 .follow-button.following:hover {
-    background-color: var(--danger-fill);
-    color: var(--danger-text);
-    border-color: var(--danger-outline);
+  background-color: var(--danger-fill);
+  color: var(--danger-text);
+  border-color: var(--danger-outline);
 }
+
 /* User avatar */
 
 .user-avatar {
-  border-radius: 50%;      /* Always circular */
-  object-fit: cover;       /* Prevents image distortion */
-  background-color: var(--grey-6); /* Placeholder color */
-  flex-shrink: 0;          /* Prevents shrinking in flex layouts */
+  border-radius: 50%;
+  /* Always circular */
+  object-fit: cover;
+  /* Prevents image distortion */
+  background-color: var(--grey-6);
+  /* Placeholder color */
+  flex-shrink: 0;
+  /* Prevents shrinking in flex layouts */
   object-position: center top;
 }
 
@@ -86,7 +81,8 @@
 
 /* Most common size, for posts and exchange pages */
 .avatar-md {
-  width: 48px; /* Standardizing on 48px */
+  width: 48px;
+  /* Standardizing on 48px */
   height: 48px;
 }
 
@@ -97,40 +93,37 @@
 }
 
 .avatar-xl {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .flag-img {
-    border-radius: 2px;
+  border-radius: 3px;
 }
+
 /* --- Responsive Layout Adjustments --- */
 
 /* For Tablet and larger */
 @media (min-width: 768px) {
-    /* Authenticated view with a left sidebar */
-    .main-layout {
-        padding-top: 0; /* No top padding because of the sidebar */
-        margin-left: calc(var(--left-sidebar-width) ); /* 275px for the left sidebar + 1rem for padding on both sides */
-        justify-content: flex-start; /* Align content to the left of the available space */
-    }
-    /* Header adjustments - On Bigger screens authenticated user has no header - it does not need extra margin */
-    .header-included{
-        margin-top: 0; 
-    }
 
-    /* Guest view (e.g., public profile) keeps the top padding on desktop */
-    .guest-layout {
-        width: auto;
-        margin: var(--main-header-height) auto 0 auto;
-    }
+  /* Authenticated view with a left sidebar */
+  .main-layout {
+    padding-top: 0;
+    /* No top padding because of the sidebar */
+    margin-left: calc(var(--left-sidebar-width));
+    /* 275px for the left sidebar + 1rem for padding on both sides */
+    justify-content: flex-start;
+    /* Align content to the left of the available space */
+  }
 
-    .main-content{
-        min-height: calc(100vh - var(--main-header-height) - 1rem);
-        margin-bottom: 0;
-        border-right: 1px solid var(--grey-6);
-        border-left: 1px solid var(--grey-6);
-    }
+
+  .main-content {
+    min-height: calc(100vh - var(--main-header-height) - 1rem);
+    margin-bottom: 0;
+    border-right: 1px solid var(--grey-6);
+    border-left: 1px solid var(--grey-6);
+  }
+
 
 }
 
@@ -139,25 +132,22 @@
 /* --- WIDE SCREEN ADJUSTMENT --- */
 /* This media query MUST match the one in leftSideBar.css */
 @media (min-width: 1280px) {
-    .main-layout {
-        /*
+  .main-layout {
+    /*
           The new margin is: (the sidebar's 'left' value) + (the sidebar's width).
           left = calc(50% - 600px)
           width = 275px
           So, margin-left = calc(50% - 600px + 275px) = calc(50% - 325px) + global 2rem
         */
-        margin-left: calc( (50% - 600px) + var(--left-sidebar-width));
+    margin-left: calc((50% - 600px) + var(--left-sidebar-width));
 
-        /* 
+    /* 
         We let the content inside 
         (main-content and right-sidebar) determine the width automatically. 
         */
-        width: auto;
-        min-width: calc(var(--breakpoint-md) + 200px);
-    }
-    .guest-layout{
-        width: 100%; /* Allows content to determine width */
-    }
+    width: auto;
+    min-width: calc(var(--breakpoint-md) + 200px);
+  }
 }
 
 /* --- Dark Theme Adjustments --- */
@@ -190,10 +180,4 @@
   .user-avatar {
     background-color: var(--grey-6);
   }
-
-  /* .main-layout,
-  .guest-layout,
-  .header-included {
-    background-color: var(--primary-bg);
-  } */
 }

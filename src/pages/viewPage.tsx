@@ -1,6 +1,6 @@
 import { useEffect, type JSX } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../utils/hooks';
+import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
+import { useAppDispatch, useAppSelector, useTitle } from '../utils/hooks';
 
 import { fetchSinglePost } from '../thunks/postsThunks/fetchSinglePostThunk';
 import { fetchSingleComment } from '../thunks/commentsThunks/fetchSingleCommentThunk';
@@ -19,6 +19,7 @@ import '../styles/postDetailPage.css'; // Uses the same css as the post detail p
 const ViewPage = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
     const [searchParams] = useSearchParams();
 
     // Get the IDs/usernames from the URL query parameters
@@ -32,6 +33,7 @@ const ViewPage = (): JSX.Element => {
     const { exchangeData, loading: exchangeLoading } = useAppSelector((state) => state.profile);
     const { user: loggedInUser } = useAppSelector((state) => state.auth);
 
+    useTitle('View - WolexChange');
 
     useEffect(() => {
         // Dispatch the correct thunk based on the URL parameters
@@ -50,6 +52,16 @@ const ViewPage = (): JSX.Element => {
             dispatch(clearExchangeData());
         };
     }, [postId, commentId, exchangeUser, dispatch]);
+
+    const handleNavigate = () => {
+        // Check if the user was navigated to this page from within the app
+        if (location.key !== 'default') {
+            // If there's a history stack, go back one step
+            navigate(-1);
+        } else {
+            navigate('/'); // The public homepage
+        }
+    };
 
     // --- Render Logic ---
     const isLoading = postLoading === 'pending' || commentLoading === 'pending' || exchangeLoading === 'pending';
@@ -70,19 +82,16 @@ const ViewPage = (): JSX.Element => {
     };
 
     return (
-        <>
-            <title>{'View - WolexChange'}</title>
             <div className="detail-page-container">
                 {loggedInUser && <header className="detail-header">
-                    <button onClick={() => navigate(-1)} className="back-button"><LeftArrowIcon /></button>
+                    <button onClick={handleNavigate} className="back-button"><LeftArrowIcon /></button>
                     <h2>View</h2>
                 </header>}
                 <div className="detail-scroll-area">
                     {renderContent()}
                 </div>
             </div>
-        </>
     );
 };
 
-export default ViewPage; // This page does not need withAuth
+export default ViewPage; 

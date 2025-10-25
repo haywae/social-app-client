@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../apiInterceptor";
 import { type PaginatedCommentsResponse } from "../../types/commentType";
+import { API_BASE_URL } from "../../appConfig";
+import type { RootState } from "../../store";
 
 
 interface FetchCommentsArgs {
@@ -12,10 +14,12 @@ interface FetchCommentsArgs {
 export const fetchComments = createAsyncThunk<
     PaginatedCommentsResponse,
     FetchCommentsArgs,
-    { rejectValue: string }
+    { state: RootState; rejectValue: string }
 >(
     'comments/fetchComments',
-    async ({ postId, page, focusedCommentId }, { rejectWithValue }) => {
+    async ({ postId, page, focusedCommentId }, { getState, rejectWithValue }) => {
+
+        const { isAuthenticated } = getState().auth; // <-- 5. Check auth state
 
         try {
             let apiUrl = `/posts/${postId}/comments?page=${page}&per_page=20`;
@@ -24,10 +28,19 @@ export const fetchComments = createAsyncThunk<
                 apiUrl += `&focused_comment_id=${focusedCommentId}`;
             }
 
-            const response = await api(apiUrl, {
-                method: 'GET',
-            });
-            
+            let response: Response; // <-- 6. Declare response variable
+
+            if (isAuthenticated) {
+                // 7. If logged in, use the secure 'api' interceptor
+                response = await api(apiUrl, {
+                    method: 'GET',
+                });
+            } else {
+                // 8. If logged out, use a standard anonymous fetch
+                response = await fetch(`${API_BASE_URL}${apiUrl}`, {
+                    method: 'GET',
+                });
+            }
             // The interceptor handles 401s, so we only need to check for other errors.
             if (!response.ok) {
                 const errorData = await response.json();

@@ -1,10 +1,8 @@
 .notifications-page-container {
     width: 100%;
     margin: 0 auto;
-    border-left: 1px solid var(--grey-6);
-    border-right: 1px solid var(--grey-6);
     min-height: 100vh;
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - var(--bottom-nav-height) - var(--footer-height));
 }
 
 .notifications-list {
@@ -25,61 +23,17 @@
     color: var(--danger);
 }
 
+/* Add to notificationsPage.css */
+.notifications-actions {
+    padding: 0.5rem 0;
+    text-align: right;
+}
+
 .load-more-container {
     text-align: center;
-    padding: 1rem;
-    border-top: 1px solid var(--grey-6);
+    padding: 1.5rem 1rem;
+    border-top: 1px solid var(--border-color);
 }
-
-.load-more-button {
-    background-color: transparent;
-    border: 1px solid var(--grey-6);
-    color: var(--grey-2);
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 0.5rem 1.25rem;
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.load-more-button:hover:not(:disabled) {
-    background-color: var(--grey-7);
-}
-
-.load-more-button:disabled {
-    color: var(--grey-4);
-    cursor: not-allowed;
-}
-
-/* --- Dark Theme --- */
-@media (prefers-color-scheme: dark) {
-    .notifications-page-container {
-        border-color: var(--grey-3);
-    }
-    .load-more-container {
-        border-color: var(--grey-3);
-    }
-    .load-more-button {
-        border-color: var(--grey-4);
-        color: var(--grey-7);
-    }
-    .load-more-button:hover:not(:disabled) {
-        background-color: var(--grey-2);
-    }
-    .notifications-list {
-        background-color: var(--primary-bg);
-    }
-
-    .notifications-message {
-        color: var(--grey-5);
-    }
-
-    .notifications-message.error {
-        color: var(--danger-text);
-    }
-}
-
 
 
 @media (min-width: 768px) {

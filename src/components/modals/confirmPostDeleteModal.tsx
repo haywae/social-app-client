@@ -3,7 +3,7 @@ import { useState, type JSX } from 'react';
 import { useAppDispatch } from '../../utils/hooks';
 import { deletePost } from '../../thunks/postsThunks/deletePostThunk';
 import type { PostData as Post } from '../../types/postType';
-import Modal from '../common/modal';
+import Modal from '../modals/modal';
 import { setError } from '../../slices/ui/uiSlice';
 import './confirmPostDeleteModal.css';
 

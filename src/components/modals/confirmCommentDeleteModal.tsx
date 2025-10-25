@@ -4,8 +4,8 @@ import { useAppDispatch } from '../../utils/hooks';
 import { deleteComment } from '../../thunks/commentsThunks/deleteCommentThunk';
 import type { CommentData } from '../../types/commentType';
 import { setError } from '../../slices/ui/uiSlice';
-import Modal from '../common/modal';
-import '../posts/confirmPostDeleteModal.css';
+import Modal from '../modals/modal';
+import './confirmPostDeleteModal.css';
 
 interface ConfirmCommentDeleteModalProps {
     comment: CommentData;

@@ -6,7 +6,7 @@ import { type PostData } from '../../types/postType';
 import { type CommentData } from '../../types/commentType';
 import { EmojiIcon } from '../../assets/icons';
 import EmojiPicker, {type EmojiClickData, Theme } from "emoji-picker-react";
-import Modal from './modal';
+import Modal from '../modals/modal';
 import './replyModal.css';
 
 interface ReplyModalProps {

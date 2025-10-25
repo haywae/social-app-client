@@ -1,5 +1,4 @@
 import type { JSX } from "react";
-import withAuth from "../components/common/withAuth";
 import PostFeed from "../components/posts/postFeed";
 import TabbedHeader from "../components/common/tabbedHeader";
 
@@ -17,4 +16,4 @@ const Home = (): JSX.Element => {
     );
 };
 
-export default withAuth(Home);
+export default Home;

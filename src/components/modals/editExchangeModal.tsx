@@ -5,7 +5,7 @@ import { type ExchangeData } from "../../types/exchange";
 import { allCountries, type CountryItem } from "../../assets/countries";
 import CountryDropdown from "../common/countryDropdown";
 import { setError, setSuccess } from "../../slices/ui/uiSlice";
-import Modal from "../common/modal";
+import Modal from "./modal";
 import "./editExchangeModal.css";
 
 interface EditExchangeModalProps {

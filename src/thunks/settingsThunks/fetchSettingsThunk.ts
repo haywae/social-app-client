@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../apiInterceptor";
-import type { UserSettings } from "../../slices/settings/settingsSlice";
+import {type UserSettings } from "../../types/settingsType";
 
 export const fetchSettings = createAsyncThunk<
     UserSettings,

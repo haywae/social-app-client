@@ -1,14 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_BASE_URL } from "../../appConfig";
 import type { RootState } from "../../store";
-import type { ApiComment } from "../../types/commentType";
+import type { CommentData } from "../../types/commentType";
 import api from "../../apiInterceptor";
 /**
  * An async thunk for fetching a single post by its ID.
  * This is optionally authenticated to allow anyone to view a post.
  */
 export const fetchSingleComment = createAsyncThunk<
-    ApiComment,
+    CommentData, // Return type
     { commentId: string },
     { state: RootState, rejectValue: string } 
 >(
@@ -38,7 +38,7 @@ export const fetchSingleComment = createAsyncThunk<
                 return rejectWithValue(errorData.message || 'Failed to fetch comment.');
             }
 
-            const comment: ApiComment = await response.json();
+            const comment: CommentData = await response.json();
             return comment;
 
         } catch (error: any) {

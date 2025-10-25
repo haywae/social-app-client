@@ -1,16 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { type CommentData, type ApiComment} from "../../types/commentType";
+import { type CommentData } from "../../types/commentType";
 import type { RootState } from "../../store";
 import api from "../../apiInterceptor";
 
 interface CreateCommentArgs {
-    postId: string;
+    postId: string; 
     content: string;
     parent_id?: string | null; 
 }
 
 export const createComment = createAsyncThunk<
-    CommentData,
+    CommentData, // Api Response Type
     CreateCommentArgs,
     { state: RootState, rejectValue: string }
 >(
@@ -32,23 +32,9 @@ export const createComment = createAsyncThunk<
                 const errorData = await response.json();
                 return rejectWithValue(errorData.message || 'Failed to post comment.');
             }
-            const apiResponse: ApiComment = await response.json();
+            const apiResponse: CommentData = await response.json();
 
-            // Transform the snake_case API response to our camelCase CommentData
-            const transformedComment: CommentData = {
-                id: apiResponse.id,
-                content: apiResponse.content,
-                createdAt: apiResponse.created_at,
-                parentId: apiResponse.parent_id,
-                isLiked: apiResponse.is_liked || false,
-                likeCount: apiResponse.like_count,
-                replyCount: apiResponse.reply_count,
-                authorName: apiResponse.user.displayName,
-                authorUsername: apiResponse.user.username,
-                authorAvatarUrl: apiResponse.user.profile_picture_url,
-                postId: apiResponse.post_id
-            };
-            return transformedComment;
+            return apiResponse;
             
         } catch (error: any) {
             return rejectWithValue(error.message);

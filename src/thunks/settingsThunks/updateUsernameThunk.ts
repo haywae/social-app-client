@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../apiInterceptor";
-import type { UserData } from "../../types/user";
+import type { UserData } from "../../types/userType";
 
 interface UpdateUsernameArgs {
     new_username: string;

@@ -1,10 +1,12 @@
 import { useState, type FormEvent, type JSX } from 'react';
-import { useAppDispatch } from '../../utils/hooks';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { updatePassword } from '../../thunks/settingsThunks/updatePasswordThunk';
 import { setError, setSuccess } from '../../slices/ui/uiSlice';
+import CreatePasswordForm from './createPasswordForm';
 
 const ChangePasswordForm = (): JSX.Element => {
     const dispatch = useAppDispatch();
+    const { user } = useAppSelector((state) => state.auth);
     const [old_password, setOldPassword] = useState('');
     const [new_password, setNewPassword] = useState('');
     const [confirm_password, setConfirmPassword] = useState('');
@@ -23,7 +25,7 @@ const ChangePasswordForm = (): JSX.Element => {
         try {
             // This will automatically throw an error if the thunk is rejected
             await dispatch(updatePassword({ old_password, new_password })).unwrap();
-            
+
             // This code now only runs on success
             dispatch(setSuccess('Password successfully updated!'));
             setOldPassword('');
@@ -37,10 +39,20 @@ const ChangePasswordForm = (): JSX.Element => {
             // The finally block runs regardless of success or failure
             setLoading(false);
         }
-};
+    };
+
+    if (user && user.hasPassword === false) {
+        // If the user has no password, don't show the password form.
+        return (
+            <div className='settings-form-section'>
+                <h3>Create a Password to Continue</h3>
+                <p>To change your password and perform other sensitive actions, you must first create a password for your WolexChange account.</p>
+                <CreatePasswordForm />
+            </div>
+        );
+    }
     return (
         <form onSubmit={handleSubmit} className="settings-form-section">
-            <h3>Change Password</h3>
             <div className="settings-form-group">
                 <label htmlFor="old_password">Current Password</label>
                 <input type="password" id="old_password" value={old_password} onChange={(e) => setOldPassword(e.target.value)} required />

@@ -2,7 +2,7 @@ import { type JSX } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import type { NotificationData } from '../../slices/notification/notificationSlice';
 import { HeartIcon, ChatIcon, FollowIcon } from '../../assets/icons';
-import { DEFAULT_AVATAR_URL } from '../../appConfig';
+import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../../appConfig';
 import { formatRelativeTimestamp } from '../../utils/timeformatUtils';
 import './notificationItem.css';
 
@@ -17,11 +17,16 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
     if (!fromUser) {
         return null;
     }
+    // Check our new flag from the backend
+    const isDeletedUser = fromUser.isDeleted === true;
 
     const handleUserClick = (e: React.MouseEvent) => {
         e.stopPropagation();
         e.preventDefault();
-        navigate(`/profile/${fromUser.username}`);
+        // Only navigate if the user is not deleted
+        if (isDeletedUser) {
+            navigate(`/profile/${fromUser.username}`);
+        }
     };
 
     const renderIcon = () => {
@@ -35,46 +40,68 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
 
     const renderText = () => {
         const userLink = (
-            <span className="notification-user-link" onClick={handleUserClick}>
-                {fromUser.displayName}
-            </span>
+            // If user is deleted, render plain text. Otherwise, render the link.
+            isDeletedUser ? (
+                <span className="notification-user-link">
+                    {fromUser.displayName}
+                </span>
+            ) : (
+                <span className="notification-user-link" onClick={handleUserClick}>
+                    {fromUser.displayName}
+                </span>
+            )
         );
         switch (type) {
             case 'like':
                 if (comment) return <>{userLink} liked your comment.</>;
                 if (post) return <>{userLink} liked your post.</>;
                 return <>{userLink} liked content that has since been deleted.</>;
-            
+
             case 'comment':
                 return <>{userLink} commented on your post.</>;
-            
+
             case 'follow':
                 return <>{userLink} started following you.</>;
-            
+
             case 'mention':
                 if (comment) return <>{userLink} mentioned you in a comment.</>;
                 if (post) return <>{userLink} mentioned you in a post.</>;
                 return <>{userLink} mentioned you in content that has since been deleted.</>;
-            
+
             default:
                 return 'You have a new notification.';
         }
     };
-        
+
     const linkDestination = () => {
         if (comment && comment.postId) return `/post/${comment.postId}?fc=${comment.id}`;
         if (post && post.id) return `/post/${post.id}`;
-        return `/profile/${fromUser.username}`;
+        // Fallback: only go to profile if user is NOT deleted
+        if (!isDeletedUser) {
+            return `/profile/${fromUser.username}`;
+        }
+        // If user is deleted and there's no post/comment, don't navigate
+        return '#';
+
     };
 
     const contentSnippet = comment?.content || post?.content;
+    const destination = linkDestination();
+    const canNavigate = destination !== '#';
 
     return (
-        <Link to={linkDestination()} className={`notification-item ${!isRead ? 'unread' : ''}`}>
+        <Link
+            to={destination}
+            className={`notification-item ${!isRead ? 'unread' : ''} ${!canNavigate ? 'no-link' : ''}`}
+            onClick={(e) => { if (!canNavigate) e.preventDefault(); }}
+        >
             <div className="notification-icon-container">{renderIcon()}</div>
             <div className="notification-content">
-                <img src={fromUser.avatarUrl || DEFAULT_AVATAR_URL} alt={fromUser.displayName} className="user-avatar avatar-sm" />
-                
+                <img
+                    src={fromUser.avatarUrl ? `${IMAGE_BASE_URL}/${fromUser.avatarUrl}` : DEFAULT_AVATAR_URL}
+                    alt={fromUser.displayName}
+                    className="user-avatar avatar-sm"
+                />
                 {/* The entire text block is now one unit */}
                 <div className="notification-text-content">
                     <p className="notification-text">{renderText()}</p>

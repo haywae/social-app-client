@@ -1,6 +1,6 @@
 import { useEffect, type JSX, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../utils/hooks';
+import { useAppDispatch, useAppSelector, useTitle } from '../utils/hooks';
 import { fetchUserProfile } from '../thunks/userThunks/fetchUserProfile';
 import { followUser } from '../thunks/userThunks/followUserThunk';
 import { fetchUserExchangeData } from '../thunks/exchangeThunks/fetchUserExchangeDataThunk';
@@ -8,7 +8,7 @@ import { clearProfile } from '../slices/user/userProfileSlice';
 import { openModal } from '../slices/ui/uiSlice';
 import PostFeed from '../components/posts/postFeed';
 import LiveRatesDisplay from '../components/userProfile/liveRatesTab';
-import { DEFAULT_AVATAR_URL } from '../appConfig';
+import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../appConfig';
 import { CalendarIcon } from '../assets/icons';
 import PageHeader from '../components/layout/pageHeader';
 import '../styles/userProfilePage.css';
@@ -122,75 +122,76 @@ const UserProfilePage = (): JSX.Element => {
     if (!profile) {
         return <p className="profile-message">User profile not found.</p>;
     }
+
+    useTitle(`${profile.displayName} - WolexChange`);
+
     return (
-        <>
-            <title>{`${profile.username} - WolexChange`}</title>
-            <div className="profile-page-container">
-                {loggedInUser && <PageHeader
-                    title={isMyProfile ? 'Profile' : profile.displayName}
-                    showBackButton={!isMyProfile}
-                />}
-                <header className="profile-header">
-                    <div className="profile-main-info">
-                        <div className="profile-avatar-container">
-                            <img src={profile.avatarUrl || DEFAULT_AVATAR_URL}
-                                alt={`${profile.displayName}'s avatar`}
-                                onClick={handleAvatarClick}
-                                className="user-avatar avatar-lg clickable"
-                            />
+
+        <div className="profile-page-container">
+            {loggedInUser && <PageHeader
+                title={isMyProfile ? 'Profile' : profile.displayName}
+                showBackButton={!isMyProfile}
+            />}
+            <header className="profile-header">
+                <div className="profile-main-info">
+                    <div className="profile-avatar-container">
+                        <img src={profile.avatarUrl ? `${IMAGE_BASE_URL}/${profile.avatarUrl}` : DEFAULT_AVATAR_URL}
+                            alt={`${profile.displayName}'s avatar`}
+                            onClick={handleAvatarClick}
+                            className="user-avatar avatar-lg clickable"
+                        />
+                    </div>
+                    <div className="profile-stats-and-actions">
+                        <div className="profile-stats">
+                            <div className="stat"><strong>{profile.postCount}</strong> Posts</div>
+                            <div className="stat"><strong>{profile.followerCount}</strong> Followers</div>
+                            <div className="stat"><strong>{profile.followingCount}</strong> Following</div>
                         </div>
-                        <div className="profile-stats-and-actions">
-                            <div className="profile-stats">
-                                <div className="stat"><strong>{profile.postCount}</strong> Posts</div>
-                                <div className="stat"><strong>{profile.followerCount}</strong> Followers</div>
-                                <div className="stat"><strong>{profile.followingCount}</strong> Following</div>
-                            </div>
-                            <div className="profile-actions">
-                                {renderActionButton()}
-                            </div>
+                        <div className="profile-actions">
+                            {renderActionButton()}
                         </div>
                     </div>
-
-                    <div className="profile-bio-info">
-                        <h2 className="profile-display-name">{profile.displayName}</h2>
-                        <p className="profile-username">@{profile.username}</p>
-                        <p className="profile-bio">{profile.bio}</p>
-                        <p className="profile-joined-date">
-                            <CalendarIcon />
-                            <span>Joined {formatJoinedDate(profile.joinedDate)}</span>
-                        </p>
-                    </div>
-                </header>
-
-                <div className="profile-tabs">
-                    <button
-                        className={`profile-tab-button ${activeTab === 'posts' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('posts')}
-                    >
-                        Posts
-                    </button>
-                    <button
-                        className={`profile-tab-button ${activeTab === 'liveRates' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('liveRates')}
-                    >
-                        Live Rates
-                    </button>
                 </div>
 
-                <div className="profile-content">
-                    {activeTab === 'posts' && <PostFeed username={profile.username} />}
-                    {activeTab === 'liveRates' && (
-                        <>
-                            {exchangeLoading === 'pending' && <p className="profile-message">Loading rates...</p>}
-                            {exchangeError && <p className="profile-message error">Exchange Rates could not be loaded</p>}
-                            {exchangeLoading === 'succeeded' && exchangeData && (
-                                <LiveRatesDisplay exchangeData={exchangeData} />
-                            )}
-                        </>
-                    )}
+                <div className="profile-bio-info">
+                    <h2 className="profile-display-name">{profile.displayName}</h2>
+                    <p className="profile-username">@{profile.username}</p>
+                    <p className="profile-bio">{profile.bio}</p>
+                    <p className="profile-joined-date">
+                        <CalendarIcon />
+                        <span>Joined {formatJoinedDate(profile.joinedDate)}</span>
+                    </p>
                 </div>
+            </header>
+
+            <div className="profile-tabs">
+                <button
+                    className={`profile-tab-button ${activeTab === 'posts' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('posts')}
+                >
+                    Posts
+                </button>
+                <button
+                    className={`profile-tab-button ${activeTab === 'liveRates' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('liveRates')}
+                >
+                    Live Rates
+                </button>
             </div>
-        </>
+
+            <div className="profile-content">
+                {activeTab === 'posts' && <PostFeed username={profile.username} />}
+                {activeTab === 'liveRates' && (
+                    <>
+                        {exchangeLoading === 'pending' && <p className="profile-message">Loading rates...</p>}
+                        {exchangeError && <p className="profile-message error">Exchange Rates could not be loaded</p>}
+                        {exchangeLoading === 'succeeded' && exchangeData && (
+                            <LiveRatesDisplay exchangeData={exchangeData} />
+                        )}
+                    </>
+                )}
+            </div>
+        </div>
     );
 };
 

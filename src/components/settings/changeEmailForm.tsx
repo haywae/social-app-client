@@ -1,11 +1,13 @@
 import { useState, type FormEvent, type JSX } from 'react';
-import { useAppDispatch } from '../../utils/hooks';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { requestEmailChange } from '../../thunks/settingsThunks/requestEmailChangeThunk';
 import { setError, setSuccess } from '../../slices/ui/uiSlice';
+import CreatePasswordForm from './createPasswordForm';
 
 
 const ChangeEmailForm = (): JSX.Element => {
     const dispatch = useAppDispatch();
+    const { user } = useAppSelector((state) => state.auth);
     const [new_email, setNewEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -26,9 +28,19 @@ const ChangeEmailForm = (): JSX.Element => {
         setLoading(false);
     };
 
+    if (user && user.hasPassword === false) {
+        // If the user has no password, don't show the password form.
+        return (
+            <div className='settings-form-section'>
+                <h3>Create a Password to Continue</h3>
+                <p>To change your email and perform other sensitive actions, you must first create a password for your WolexChange account.</p>
+                <CreatePasswordForm />
+            </div>
+        );
+    }
+
     return (
         <form onSubmit={handleSubmit} className="settings-form-section">
-            <h3>Change Email Address</h3>
             <div className="settings-form-group">
                 <label htmlFor="new_email">New Email Address</label>
                 <input type="email" id="new_email" value={new_email} onChange={(e) => setNewEmail(e.target.value)} required />

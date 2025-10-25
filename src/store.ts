@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/auth/authSlice';
-import registrationReducer from './slices/user/resgitrationSlice';
+import registrationReducer from './slices/user/registrationSlice';
 import passwordResetReducer from './slices/user/passwordResetSlice';
 import postsReducer from './slices/posts/postsSlice';
-import profileReducer from './slices/user/userProfileSlice'; 
+import profileReducer from './slices/user/userProfileSlice';
 import notificationReducer from './slices/notification/notificationSlice';
 import settingsReducer from './slices/settings/settingsSlice';
 import exchangeReducer from './slices/exchange/exchangeSlice';
@@ -22,7 +22,7 @@ const store = configureStore({
         registration: registrationReducer,
         passwordReset: passwordResetReducer,
         posts: postsReducer,
-        profile: profileReducer, 
+        profile: profileReducer,
         settings: settingsReducer,
         exchange: exchangeReducer,
         search: searchReducer,

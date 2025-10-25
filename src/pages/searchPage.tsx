@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../utils/hooks';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector, useTitle } from '../utils/hooks';
 import { useDebounce } from '../utils/searchUtils';
 import { fetchDiscoveryData } from '../thunks/searchThunks/fetchDiscoveryThunk';
 import { fetchSearchResults } from '../thunks/searchThunks/fetchResultsThunk';
@@ -9,7 +9,6 @@ import { SearchResultsContent } from '../components/search/searchResultContent';
 import { SearchOverlay } from '../components/search/searchOverlay';
 import { TabbedResults } from '../components/search/tabbedResultComponent';
 import { CloseIcon, SearchIcon } from '../assets/icons';
-import withAuth from '../components/common/withAuth';
 import '../styles/searchPage.css';
 
 /**
@@ -19,6 +18,8 @@ const SearchPage = () => {
     const dispatch = useAppDispatch();
     const { searchTerm, submittedSearchTerm } = useAppSelector((state) => state.search);
     const navigate = useNavigate();
+    const location = useLocation();
+
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
     const { loading: authLoading } = useAppSelector((state) => state.auth);
@@ -70,31 +71,40 @@ const SearchPage = () => {
         return <SearchResultsContent />;
     };
 
+    const handleNavigate = () => {
+        // Check if the user was navigated to this page from within the app
+        if (location.key !== 'default') {
+            // If there's a history stack, go back one step
+            navigate(-1);
+        } else {
+            navigate('/'); // The public homepage
+        }
+    };
+    // --- Render Logic ---
+    useTitle('Search - WolexChange');
     return (
-        <>
-            <title>Search - WolexChange</title>
-            <div className="search-page-container">
-                <form onSubmit={handleSearchSubmit} className="search-bar">
-                    <div className='search-input-wrapper'>
-                        <SearchIcon className="search-bar-icon" />
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="search-input"
-                            value={searchTerm}
-                            onChange={(e) => dispatch(setSearchTerm(e.target.value))}
-                            autoFocus
-                        />
-                        {searchTerm && <CloseIcon className="search-clear-icon" onClick={() => dispatch(setSearchTerm(''))} />}
-                    </div>
-                    <button type="button" onClick={() => navigate(-1)} className="search-cancel-button">Cancel</button>
-                </form>
-                <div className="search-page-content">
-                    {renderContent()}
+        <div className="search-page-container">
+            <form onSubmit={handleSearchSubmit} className="search-bar">
+                <div className='search-input-wrapper'>
+                    <SearchIcon className="search-bar-icon" />
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="search-input"
+                        value={searchTerm}
+                        onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+                        autoFocus
+                    />
+                    {searchTerm && <CloseIcon className="search-clear-icon" onClick={() => dispatch(setSearchTerm(''))} />}
                 </div>
+                <button type="button" onClick={handleNavigate} className="search-cancel-button">Cancel</button>
+            </form>
+            <div className="search-page-content">
+                {renderContent()}
             </div>
-        </>
+        </div>
+
     );
 };
 
-export default withAuth(SearchPage);
+export default SearchPage;

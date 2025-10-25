@@ -1,4 +1,4 @@
-import { type CommentData, type ApiComment } from "./commentType";
+import { type CommentData } from "./commentType";
 
 /**
  * @interface FetchedPostsPayload
@@ -42,7 +42,7 @@ export interface PostData {
     likeCount: number;
     isLiked: boolean;
     commentPreviewIds?: string[];
-    commentPreview?: ApiComment[];
+    commentPreview?: CommentData[];
     postType: 'REGULAR' | 'RATE_POST';
     hashtags?: string[];
 }

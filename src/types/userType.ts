@@ -8,5 +8,8 @@ export interface UserData {
     displayName: string;
     profilePictureUrl: string;
     isEmailVerified: boolean;
+    country: string | null;
+    dateOfBirth: string | null; // This will be an ISO 8601 date string
+    hasPassword: boolean;
     // Expecting an ISO 8601 date string
 }

@@ -8,14 +8,7 @@ svg {
     width: 20px;
     height: 20px
 }
+
 .settings-icon{
     color: var(--grey-3);
-}
-
-
-/* --- Dark Theme Adjustments --- */
-@media (prefers-color-scheme: dark) {
-    .home-icon, .bank-note-icon, .search-icon, .create-post-icon, .notifications-icon, .profile-icons{
-        color: var(--grey-5);
-    }
 }

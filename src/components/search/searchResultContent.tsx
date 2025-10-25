@@ -46,7 +46,9 @@ export const SearchResultsContent = () => {
             <div>
                 <h2 className="section-title">Suggested Users</h2>
                 <div className="search-results-container">
-                    {suggestedUsers.map(user => <UserResult key={user.username} user={user} />)}
+                    {suggestedUsers.map(user => {
+                        return user.isFollowing || user.isSelf ? null : <UserResult key={user.username} user={user} />
+                    })}
                 </div>
             </div>
         </div>

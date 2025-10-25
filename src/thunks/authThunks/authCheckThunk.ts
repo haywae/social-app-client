@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import type { UserData } from "../../types/user";
+import type { UserData } from "../../types/userType";
 import type { AppDispatch } from "../../store";
 import { scheduleProactiveRefresh } from "../../utils/authUtils";
 import api from "../../apiInterceptor";

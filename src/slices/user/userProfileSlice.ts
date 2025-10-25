@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { fetchUserProfile } from "../../thunks/userThunks/fetchUserProfile";
 import { followUser } from "../../thunks/userThunks/followUserThunk";
 import { fetchUserExchangeData } from "../../thunks/exchangeThunks/fetchUserExchangeDataThunk";
-import type { UserProfileData } from "../../types/userProfile";
+import type { UserProfileData } from "../../types/userProfileType";
 import type { ExchangeData } from "../../types/exchange";
 
 // Define the shape of the data for a user's profile

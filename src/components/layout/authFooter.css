@@ -1,16 +1,12 @@
 /* AuthFooter.css */
-
 .auth-footer {
     width: 100%;
     padding: 0 2rem;
-    background-color: var(--background); /* Using var(--background) as it's common for footers */
     text-align: center;
     margin-top: auto; /* This is the key property that pushes the footer to the bottom */
     box-sizing: border-box;
     flex-shrink: 1; /* Prevents the footer from shrinking if content is too long */
-    height: var(--footer-height); /* Fixed height for the footer */
 }
-
 
 .auth-footer-content {
     max-width: 900px;
@@ -19,11 +15,12 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    margin-top: 30px;
 }
 
 .auth-footer-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 0.75rem;
     justify-content: center;
     flex-wrap: wrap;
 }

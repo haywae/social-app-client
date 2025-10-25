@@ -1,34 +1,3 @@
-/**
- * @interface ApiComment
- * @description Defines the shape of a raw comment object as received from the Thunk. 
- * This interface represents the direct, unprocessed data structure from the backend.\
- * Note: The data has to be transformed by the transformCommentUtil
- * @property {string} id - The unique identifier for the comment.
- * @property {string} content - The text content of the comment.
- * @property {string} created_at - The ISO 8601 timestamp of when the comment was created.
- * @property {number} like_count - The total number of likes the comment has received.
- * @property {number} reply_count - The total number of direct replies to this comment.
- * @property {string | null} parent_id - The ID of the parent comment if this is a reply, otherwise null.
- * @property {object} user - Contains details about the comment's author.
- * @property {boolean} [is_liked] - Indicates if the current user has liked this comment (optional).
- * @property {ApiComment[]} [replies] - An array of nested reply comments (optional).
- */
-export interface ApiComment {
-    id: string;
-    content: string;
-    created_at: string;
-    like_count: number;
-    reply_count: number;
-    parent_id: string | null;
-    user: {
-        profile_picture_url: string;
-        username: string;
-        displayName: string;
-    };
-    is_liked?: boolean;
-    replies?: ApiComment[];
-    post_id: string;
-}
 
 
 /**
@@ -40,7 +9,7 @@ export interface ApiComment {
  * @property {number} totalPages - The total number of pages available.
  */
 export interface PaginatedCommentsResponse {
-    comments: ApiComment[];
+    comments: CommentData[];
     totalItems: number;
     currentPage: number;
     totalPages: number;
@@ -69,6 +38,7 @@ export interface CommentData {
     createdAt: string;
     likeCount: number;
     replyCount: number;
+    replies?: CommentData[];
     isLiked: boolean;
     parentId: string | null;
     postId: string

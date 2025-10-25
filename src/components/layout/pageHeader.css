@@ -10,6 +10,7 @@
     top: 0;
     background-color: var(--background-alpha);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: 10;
 }
 

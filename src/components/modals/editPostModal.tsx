@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../utils/hooks';
 import { extractAndCleanContent } from '../../utils/tagsUtils';
 import { updatePost } from '../../thunks/postsThunks/updatePostThunk';
 import type { PostData as Post } from '../../types/postType';
-import Modal from '../common/modal';
+import Modal from '../modals/modal';
 import { setError } from '../../slices/ui/uiSlice';
 import './editPostModal.css';
 

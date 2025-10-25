@@ -8,8 +8,8 @@
  */
 
 import { useEffect, type JSX, useState, useRef } from 'react';
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../utils/hooks';
+import { useParams, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import { useAppDispatch, useAppSelector, useTitle } from '../utils/hooks';
 import { fetchSinglePost } from '../thunks/postsThunks/fetchSinglePostThunk';
 import { fetchComments } from '../thunks/commentsThunks/fetchCommentsThunk';
 import { createComment } from '../thunks/commentsThunks/createCommentThunk';
@@ -17,13 +17,13 @@ import { clearPosts } from '../slices/posts/postsSlice';
 import { clearComments } from '../slices/comments/commentsSlice';
 import Post from '../components/posts/post';
 import Comment from '../components/comments/comment';
-import withAuth from '../components/common/withAuth';
 import { LeftArrowIcon } from '../assets/icons';
 import '../styles/postDetailPage.css';
 
 const PostDetailPage = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
     const { postId } = useParams<{ postId: string }>();
     const [searchParams] = useSearchParams();
     const focusedCommentId = searchParams.get('fc');
@@ -94,6 +94,16 @@ const PostDetailPage = (): JSX.Element => {
         textAreaRef.current?.focus();
     };
 
+    const handleNavigate = () => {
+        // Check if the user was navigated to this page from within the app
+        if (location.key !== 'default') {
+            // If there's a history stack, go back one step
+            navigate(-1);
+        } else {
+            navigate('/'); // The public homepage
+        }
+    };
+
     // --- Render Logic ---
 
     // Loading state for the main post.
@@ -106,7 +116,7 @@ const PostDetailPage = (): JSX.Element => {
         return (
             <div className="detail-page-container">
                 <header className="detail-header">
-                    <button onClick={() => navigate(-1)} className="back-button"><LeftArrowIcon /></button>
+                    <button onClick={handleNavigate} className="back-button"><LeftArrowIcon /></button>
                     <h2>Post not found</h2>
                 </header>
                 <div className="detail-message">
@@ -116,62 +126,62 @@ const PostDetailPage = (): JSX.Element => {
         );
     }
 
+    useTitle(`Post - WolexChange`);
+
     return (
-        <>
-            <title>Post - WolexChange</title>
-            <div className="detail-page-container">
-                {/* --- Sticky Header --- */}
-                <header className="detail-header">
-                    <button onClick={() => navigate(-1)} className="back-button">{<LeftArrowIcon />}</button>
-                    <h2>Post</h2>
-                </header>
-                {/* --- Main Post Content --- */}
+        <div className="detail-page-container">
+            {/* --- Sticky Header --- */}
+            <header className="detail-header">
+                <button onClick={() => navigate(-1)} className="back-button">{<LeftArrowIcon />}</button>
+                <h2>Post</h2>
+            </header>
+            {/* --- Main Post Content --- */}
 
-                {/* Scrollable Content */}
-                <div className="detail-scroll-area">
-                    <Post post={post} isDetailedView={true} onReplyClick={focusReplyInput} />
-                    {/* --- Comments List --- */}
-                    <div className="comments-list">
-                        <h3 className="comments-header">Comments</h3>
+            {/* Scrollable Content */}
+            <div className="detail-scroll-area">
+                <Post post={post} isDetailedView={true} onReplyClick={focusReplyInput} />
+                {/* --- Comments List --- */}
+                <div className="comments-list">
+                    <h3 className="comments-header">Comments</h3>
 
-                        {/* Map over topLevelCommentIds and pass the ID to the Comment component */}
-                        {topLevelCommentIds.map((commentId) => (
-                            postId && <Comment key={commentId} commentId={commentId} postId={postId} isDetailedView={true} />
-                        ))}
+                    {/* Map over topLevelCommentIds and pass the ID to the Comment component */}
+                    {topLevelCommentIds.map((commentId) => (
+                        postId && <Comment key={commentId} commentId={commentId} postId={postId} isDetailedView={true} />
+                    ))}
 
-                        {/* --- "Load More" button and loading indicator --- */}
-                        {currentPage < totalPages && (
-                            <div className="load-more-container">
-                                <button
-                                    onClick={handleLoadMoreComments}
-                                    disabled={commentsLoading === 'pending'}
-                                    className="load-more-button"
-                                >
-                                    {commentsLoading === 'pending' ? 'Loading...' : 'Load more comments'}
-                                </button>
-                            </div>
-                        )}
-                        {commentsError && <div className="detail-message error">{commentsError}</div>}
-                    </div>
-                </div>
-
-                {/* --- Sticky Comment Creation Form --- */}
-                <div className="create-comment-section">
-                    <div className="comment-input-area">
-                        <textarea
-                            ref={textAreaRef}
-                            className="comment-textarea"
-                            value={commentContent}
-                            onChange={(e) => setCommentContent(e.target.value)}
-                            placeholder="Post your reply"
-                            rows={1}
-                        />
-                        <button onClick={handleCommentSubmit} className="btn-primary comment-submit-btn" disabled={!commentContent.trim()}>Reply</button>
-                    </div>
+                    {/* --- "Load More" button and loading indicator --- */}
+                    {currentPage < totalPages && (
+                        <div className="load-more-container">
+                            <button
+                                onClick={handleLoadMoreComments}
+                                disabled={commentsLoading === 'pending'}
+                                className="load-more-button"
+                            >
+                                {commentsLoading === 'pending' ? 'Loading...' : 'Load more comments'}
+                            </button>
+                        </div>
+                    )}
+                    {commentsError && <div className="detail-message error">{commentsError}</div>}
                 </div>
             </div>
-        </>
+
+            {/* --- Sticky Comment Creation Form --- */}
+            <div className="create-comment-section">
+                <div className="comment-input-area">
+                    <textarea
+                        ref={textAreaRef}
+                        className="comment-textarea"
+                        value={commentContent}
+                        onChange={(e) => setCommentContent(e.target.value)}
+                        placeholder="Post your reply"
+                        rows={1}
+                    />
+                    <button onClick={handleCommentSubmit} className="btn-primary comment-submit-btn" disabled={!commentContent.trim()}>Reply</button>
+                </div>
+            </div>
+        </div>
+
     );
 };
 
-export default withAuth(PostDetailPage);
+export default PostDetailPage;

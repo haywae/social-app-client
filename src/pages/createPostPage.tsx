@@ -1,14 +1,13 @@
 import { type JSX, useEffect, useState, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "../utils/hooks";
-import {extractAndCleanContent } from "../utils/tagsUtils";
-import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector, useTitle } from "../utils/hooks";
+import { extractAndCleanContent } from "../utils/tagsUtils";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CloseIcon, EmojiIcon } from "../assets/icons";
 import { createPost } from "../thunks/postsThunks/createPostThunk";
 import { resetCreatePostStatus, setCreatePostContent } from "../slices/posts/postsSlice";
 import { setError } from "../slices/ui/uiSlice";
 import "../styles/createPostPage.css"
-import withAuth from "../components/common/withAuth";
-import { DEFAULT_AVATAR_URL } from "../appConfig";
+import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../appConfig";
 import EmojiPicker, { type EmojiClickData, Theme } from "emoji-picker-react";
 import { fetchDiscoveryData } from "../thunks/searchThunks/fetchDiscoveryThunk";
 
@@ -28,6 +27,7 @@ const CreatePostPage = (): JSX.Element | null => {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const location = useLocation()
 
     // --- Effect to handle navigation after successful post ---
     useEffect(() => {
@@ -90,61 +90,71 @@ const CreatePostPage = (): JSX.Element | null => {
     const handleCloseButton = () => {
         // Clear content and navigate away
         dispatch(setCreatePostContent(''));
-        navigate(-1); // Go back to the previous page
+        // Check if the user was navigated to this page from within the app
+        if (location.key !== 'default') {
+            // If there's a history stack, go back one step
+            navigate(-1);
+        } else {
+            navigate('/'); // The public homepage
+        }
     }
 
+    useTitle('Create Post - WolexChange');
+
     return (
-        <>
-            <title>Create Post - WolexChange</title>
-            <div className="create-post-container">
-                {/*SECTION 1: HEADER */}
-                <header className="create-post-header">
-                    <CloseIcon onClick={handleCloseButton} />
-                    <h2>Create Post</h2>
-                </header>
-                {/* SECTION 2: BODY (User avatar and text area) */}
-                <div className="create-post-body">
-                    <div className="user-info">
-                        <img src={authUser?.profilePictureUrl || DEFAULT_AVATAR_URL} alt="user's avatar" className="user-avatar avatar-md" />
-                    </div>
-                    <div className="text-content">
-                        <textarea
-                            id="createPost"
-                            name="createPost"
-                            placeholder="Share your thoughts"
-                            value={createPostContent}
-                            onChange={handleContentChange}
-                            required
-                            autoFocus
-                        />
-                    </div>
-                    <div className="create-post-footer">
-                        <div className="post-actions">
-                            <button ref={emojiButtonRef} className="icon-action-button" onClick={() => setShowPicker(val => !val)}>
-                                <EmojiIcon />
-                            </button>
-                            {/* --- The Emoji Picker Component --- */}
-                            {showPicker && (
-                                <div ref={pickerRef} className="emoji-picker-wrapper">
-                                    <EmojiPicker onEmojiClick={handleEmojiClick}
-                                        height={350}
-                                        width={300}
-                                        skinTonesDisabled
-                                        previewConfig={{ showPreview: false }}
-                                        theme={isDarkMode ? Theme.DARK : Theme.LIGHT}
-                                    />
-                                </div>
-                            )}
-                        </div>
-                        <span className="char-counter">{createPostContent.length} Characters</span>
-                        <button onClick={handleSubmit} className="submit-post-button" disabled={loading === 'pending' || !createPostContent.trim()}>
-                            {loading === 'pending' ? 'Posting...' : 'Post'}
+        <div className="create-post-container">
+            {/*SECTION 1: HEADER */}
+            <header className="create-post-header">
+                <CloseIcon onClick={handleCloseButton} />
+                <h2>Create Post</h2>
+            </header>
+            {/* SECTION 2: BODY (User avatar and text area) */}
+            <div className="create-post-body">
+                <div className="user-info">
+                    <img
+                        src={authUser?.profilePictureUrl ? `${IMAGE_BASE_URL}/${authUser.profilePictureUrl}` : DEFAULT_AVATAR_URL}
+                        alt="user's avatar"
+                        className="user-avatar avatar-md"
+                    />
+
+                </div>
+                <div className="text-content">
+                    <textarea
+                        id="createPost"
+                        name="createPost"
+                        placeholder="Share your thoughts"
+                        value={createPostContent}
+                        onChange={handleContentChange}
+                        required
+                        autoFocus
+                    />
+                </div>
+                <div className="create-post-footer">
+                    <div className="post-actions">
+                        <button ref={emojiButtonRef} className="icon-action-button" onClick={() => setShowPicker(val => !val)}>
+                            <EmojiIcon />
                         </button>
+                        {/* --- The Emoji Picker Component --- */}
+                        {showPicker && (
+                            <div ref={pickerRef} className="emoji-picker-wrapper">
+                                <EmojiPicker onEmojiClick={handleEmojiClick}
+                                    height={350}
+                                    width={300}
+                                    skinTonesDisabled
+                                    previewConfig={{ showPreview: false }}
+                                    theme={isDarkMode ? Theme.DARK : Theme.LIGHT}
+                                />
+                            </div>
+                        )}
                     </div>
+                    <span className="char-counter">{createPostContent.length} Characters</span>
+                    <button onClick={handleSubmit} className="submit-post-button" disabled={loading === 'pending' || !createPostContent.trim()}>
+                        {loading === 'pending' ? 'Posting...' : 'Post'}
+                    </button>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
-export default withAuth(CreatePostPage);
+export default CreatePostPage;

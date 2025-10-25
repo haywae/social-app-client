@@ -1,56 +1,61 @@
 /* src/components/common/tabbedHeader.css */
 .tabbed-header {
-    display: none;
+  display: none;
 }
+
 @media (min-width: 768px) {
-    .tabbed-header {
-        display: block;
-        border-bottom: 1px solid var(--border-color);
-        background-color: var(--background-alpha);
-        position: sticky;
-        top: 0; /* Sticks the bar 60px from the top, right below your main header */
-        z-index: 10; /* Ensures it stays on top of the scrolling content */
-        backdrop-filter: blur(24px);
-    }
+  .tabbed-header {
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background-alpha);
+    position: sticky;
+    top: 0;
+    /* Sticks the bar 60px from the top, right below your main header */
+    z-index: 10;
+    /* Ensures it stays on top of the scrolling content */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
 
-    .tab-nav {
-        display: flex;
-    }
+  .tab-nav {
+    display: flex;
+  }
 
-    .tab-link {
-        flex: 1; /* Each tab takes up equal space */
-        padding: 1rem 0;
-        text-align: center;
-        text-decoration: none;
-        color: var(--text-secondary);
-        font-weight: 700;
-        position: relative;
-        transition: background-color 0.2s, color 0.2s;
-    }
+  .tab-link {
+    flex: 1;
+    /* Each tab takes up equal space */
+    padding: 1rem 0;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 700;
+    position: relative;
+    transition: background-color 0.2s, color 0.2s;
+  }
 
-    .tab-link:hover {
-        background-color: var(--primary-bg);
-        color: var(--text-primary);
-    }
+  .tab-link:hover {
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+  }
 
-    .tab-link.active {
-        color: var(--text-primary);
-    }
+  .tab-link.active {
+    color: var(--text-primary);
+  }
 
-    /* The underline for the active tab */
-    .tab-link.active::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        /* Center the element horizontally */
-        left: 50%;
-        transform: translateX(-50%);
-        /* Set an explicit, smaller width */
-        width: 40px; 
-        height: 4px;
-        background-color: var(--base);
-        border-radius: 2px;
-    }
+  /* The underline for the active tab */
+  .tab-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    /* Center the element horizontally */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Set an explicit, smaller width */
+    width: 40px;
+    height: 4px;
+    background-color: var(--base);
+    border-radius: 2px;
+  }
 
 }
 

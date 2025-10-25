@@ -9,6 +9,8 @@ Description: Styles for the user settings page and its components.
     background-color: var(--primary);
     color: var(--grey-1);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;;
 }
 
 .settings-header {
@@ -20,6 +22,7 @@ Description: Styles for the user settings page and its components.
     top: 0;
     background-color: var(--background);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: 10;
 }
 
@@ -43,37 +46,6 @@ Description: Styles for the user settings page and its components.
 .settings-menu {
     display: flex;
     flex-direction: column;
-}
-
-.settings-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--grey-6);
-    text-decoration: none;
-    color: inherit;
-    transition: background-color 0.2s;
-}
-
-.settings-card:hover {
-    background-color: var(--grey-7);
-}
-
-.card-info h3 {
-    margin: 0 0 0.25rem 0;
-    font-size: 1rem;
-}
-
-.card-info p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: var(--grey-4);
-}
-
-.card-arrow {
-    font-size: 1.5rem;
-    color: var(--grey-5);
 }
 
 /* --- Settings Forms --- */

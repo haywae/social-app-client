@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../apiInterceptor";
 import type { RootState } from "../../store";
 import { API_BASE_URL } from "../../appConfig";
-import { type UserProfileData } from "../../types/userProfile";
+import { type UserProfileData } from "../../types/userProfileType";
 
 /**
  * An async thunk for fetching the profile data for a specific user.

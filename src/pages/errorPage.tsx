@@ -1,6 +1,6 @@
 import { type JSX } from 'react';
 import { useRouteError, useNavigate } from 'react-router-dom';
-import '../styles/errorPage.css'; // We'll c
+import '../styles/errorPage.css'; //
 
 const ErrorPage = (): JSX.Element => {
     // This hook catches the error and provides it to your component

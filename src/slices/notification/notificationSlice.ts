@@ -12,6 +12,7 @@ export interface NotificationData {
         username: string;
         displayName: string;
         avatarUrl: string;
+        isDeleted: boolean;
     };
     post?: {
         id: string;

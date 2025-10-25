@@ -2,7 +2,7 @@
 .sidebar-search-bar {
   display: flex;
   align-items: center;
-  background-color: #eff3f4;
+  background-color: var(--grey-7);
   border-radius: 9999px; /* Pill shape */
   padding: 0 12px;
 }

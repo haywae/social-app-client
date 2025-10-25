@@ -1,15 +1,18 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { loginUser, type LoginResponse } from "../../thunks/authThunks/loginThunk";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
+import { googleLogin } from "../../thunks/authThunks/googleLoginThunk";
 import { refreshToken, type RefreshTokenSuccess } from "../../thunks/authThunks/refreshTokenThunk";
 import { checkAuth } from "../../thunks/authThunks/authCheckThunk";
 import { updateUsername } from "../../thunks/settingsThunks/updateUsernameThunk";
 import { updatePassword } from "../../thunks/settingsThunks/updatePasswordThunk";
+import { createPassword } from "../../thunks/settingsThunks/createPasswordThunk";
 import { requestEmailChange } from "../../thunks/settingsThunks/requestEmailChangeThunk";
 import { deleteAccount } from "../../thunks/settingsThunks/deleteAccountThunk";
 import { uploadProfilePicture } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
-import type { UserData } from "../../types/user";
+import type { UserData } from "../../types/userType";
 import type { UploadPayload } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
+import { completeOnboardingThunk, type OnboardingResponse } from "../../thunks/userThunks/completeOnBoardingThunk";
 
 // Interface definitions for AuthState, AuthPayload
 export interface AuthState {
@@ -23,6 +26,7 @@ export interface AuthState {
     accessTokenExp: string | null;
 }
 
+// The type for auth main reducers payload/args
 interface AuthPayload {
     user: UserData;
     csrf_access_token: string;
@@ -100,6 +104,45 @@ const authSlice = createSlice({
                 state.error = action.payload ?? "An unknown login error occurred";
             })
 
+            //----- LOGIN WITH GOOGLE -----
+            .addCase(googleLogin.pending, (state) => {
+                state.loading = 'pending';
+                state.error = null;
+            })
+            .addCase(googleLogin.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
+                state.user = action.payload.user;
+                state.csrfAccessToken = action.payload.csrf_access_token;
+                state.csrfRefreshToken = action.payload.csrf_refresh_token;
+                state.accessTokenExp = action.payload.access_token_exp;
+                state.isAuthenticated = true;
+                state.loading = 'succeeded';
+                state.error = null;
+            })
+            .addCase(googleLogin.rejected, (state, action) => {
+                state.loading = 'failed'; 
+                state.error = action.payload ?? "An unknown login error occurred";
+            })
+
+            //----- COMPLETE ONBOARDING -----
+            .addCase(completeOnboardingThunk.pending, (state) => {
+                // Set loading state to pending while the API call is in progress
+                state.loading = 'pending';
+                state.error = null;
+            })
+            .addCase(completeOnboardingThunk.fulfilled, (state, action: PayloadAction<OnboardingResponse>) => {
+                // When successful, update the user state with the complete user object from the API
+                state.user = action.payload.user;
+                // Ensure auth state is consistent
+                state.isAuthenticated = true;
+                state.loading = 'succeeded';
+                state.error = null;
+            })
+            .addCase(completeOnboardingThunk.rejected, (state, action) => {
+                // If the API call fails, set loading state to failed and store the error message
+                state.loading = 'failed';
+                state.error = action.payload ?? 'Failed to complete profile.';
+            })
+            
             //----- LOG OUT -----
             .addCase(logoutUser.fulfilled, (state) => {
                 // Use the clearAuth reducer's logic for a clean logout
@@ -211,6 +254,11 @@ const authSlice = createSlice({
                 // Check if there is a logged-in user to update
                 if (state.user) {
                     state.user.profilePictureUrl = action.payload.profilePictureUrl;
+                }
+            })
+            .addCase(createPassword.fulfilled, (state) => {
+                if (state.user) {
+                    state.user.hasPassword = true;
                 }
             });
     }

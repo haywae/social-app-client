@@ -2,10 +2,15 @@ import type { JSX } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../utils/hooks';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../utils/hooks';
 import '../styles/landingPage.css';
-import { HeartIcon, ChatIcon, LinkIcon } from '../assets/icons';
+import { HeartIcon, ChatIcon, LinkIcon, GoogleIcon } from '../assets/icons';
 import { useEffect } from 'react';
 import { allCurrencies } from '../assets/currencies';
+import { useGoogleLogin } from '@react-oauth/google';
+import { DEVELOPER_MODE } from '../appConfig';
+import { googleLogin } from '../thunks/authThunks/googleLoginThunk';
+import { setError } from '../slices/ui/uiSlice';
 
 // Define the type for the component's props
 interface LoginProps {
@@ -18,21 +23,36 @@ interface LoginProps {
  */
 const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
 
     // Select state from the Redux store using the typed selector
     const { isAuthenticated } = useAppSelector((state) => state.auth);
-        // Redirect if already authenticated ---
-        // This effect runs when the component mounts or when `isAuthenticated` changes.
-        // If the user is logged in, it redirects them away from the landing page.
-        useEffect(() => {
-            if (isAuthenticated) {
-                navigate(redirectPath || '/'); // Redirect to the homepage or a specified path
-            }
-        }, [isAuthenticated, navigate, redirectPath]);
+    // Redirect if already authenticated ---
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate(redirectPath || '/'); // Redirect to the homepage or a specified path
+        }
+    }, [isAuthenticated, navigate, redirectPath]);
 
-        const USD_SYMBOL = allCurrencies.find(c => c.iso3 === 'USD')?.symbol;
-        const GBP_SYMBOL = allCurrencies.find(c => c.iso3 === 'GBP')?.symbol;
-        const EUR_SYMBOL = allCurrencies.find(c => c.iso3 === 'EUR')?.symbol;
+    const USD_SYMBOL = allCurrencies.find(c => c.iso3 === 'USD')?.symbol;
+    const GBP_SYMBOL = allCurrencies.find(c => c.iso3 === 'GBP')?.symbol;
+    const EUR_SYMBOL = allCurrencies.find(c => c.iso3 === 'EUR')?.symbol;
+
+    const googleLoginHook = useGoogleLogin({
+        // We use 'auth-code' flow for the most secure server-side verification
+        flow: 'auth-code',
+
+        // This 'onSuccess' function runs when Google returns the code
+        onSuccess: (codeResponse) => {
+            DEVELOPER_MODE && console.log('Google Auth Code:', codeResponse.code);
+            dispatch(googleLogin(codeResponse.code));
+        },
+        onError: (error) => {
+            DEVELOPER_MODE && console.error('Google Login Failed:', error); 
+            dispatch(setError('Google Login Failed'));
+        },
+    });
     return (
         <div className="landing-page-container">
             <main className="landing-main-content">
@@ -45,12 +65,19 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
                             WolexChange is the community-driven platform for sharing and discovering real-time exchange rates. See what’s happening in the market, right now.
                         </p>
                         <div className="hero-actions">
-                            <Link to="/register" className="cta-button-primary">
-                                Create Account
-                            </Link>
-                            <Link to="/login" className="cta-button-secondary">
-                                Log In
-                            </Link>
+                            <div className='hero-actions-row'>
+                                <Link to="/register" className="cta-button-primary">
+                                    Create Account
+                                </Link>
+                                <Link to="/login" className="cta-button-secondary">
+                                    Log In
+                                </Link>
+                            </div>
+                            <div className='hero-actions-row'>
+                                <button type='button' className='cta-button-google' onClick={() => googleLoginHook()}>
+                                    <GoogleIcon /> Sign In with Google
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -58,7 +85,7 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
                 {/* --- App Preview Section --- */}
                 <section className="app-preview-section">
                     <div className="app-preview-container">
-                        {/* This is a static mock-up of a post to visually represent the app's core feature */}
+                        {/* Mock Post */}
                         <div className="mock-post">
                             <div className="mock-post-header">
                                 <img src="https://cdn.pixabay.com/photo/2025/10/09/08/14/mushroom-9883036_1280.jpg" alt="" className='mock-avatar' />
@@ -80,10 +107,9 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
                                 <p className="mock-hashtags">#USD #GBP #EUR</p>
                             </div>
                             <div className="mock-post-actions">
-                                {/* Simplified SVG icons for actions */}
-                                <span className='mock-action-item'><ChatIcon/> 12</span>
-                                <span className='mock-action-item'><HeartIcon/> 45</span>
-                                <span className='mock-action-item'><LinkIcon/></span>
+                                <span className='mock-action-item'><ChatIcon /> 12</span>
+                                <span className='mock-action-item'><HeartIcon /> 45</span>
+                                <span className='mock-action-item'><LinkIcon /></span>
                             </div>
                         </div>
                     </div>

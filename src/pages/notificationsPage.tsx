@@ -1,12 +1,11 @@
 import { useEffect, type JSX, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../utils/hooks';
+import { useAppDispatch, useAppSelector, useTitle } from '../utils/hooks';
 import { fetchNotifications } from '../thunks/notificationThunks/notificationListThunk';
 import { markNotificationsAsRead } from '../thunks/notificationThunks/notificationAsReadThunk';
-import withAuth from '../components/common/withAuth';
 import NotificationItem from '../components/notifications/notificationItem';
 import { setError } from '../slices/ui/uiSlice';
 import '../styles/notificationsPage.css';
-import { DEVELOPMENT_MODE } from '../appConfig';
+import { DEVELOPER_MODE } from '../appConfig';
 import TabbedHeader from '../components/common/tabbedHeader';
 
 const NotificationsPage = (): JSX.Element => {
@@ -18,7 +17,6 @@ const NotificationsPage = (): JSX.Element => {
 
     useEffect(() => {
         let readTimer: number;
-
         // Only set the timer if there are unread notifications
         if (unreadCount > 0) {
             readTimer = window.setTimeout(() => {
@@ -34,7 +32,7 @@ const NotificationsPage = (): JSX.Element => {
         return () => {
             if (readTimer) clearTimeout(readTimer);
         };
-    }, [unreadCount, dispatch]);
+    }, [unreadCount, notifications, dispatch]);
 
 
     useEffect(() => {
@@ -51,7 +49,7 @@ const NotificationsPage = (): JSX.Element => {
             await dispatch(markNotificationsAsRead({})).unwrap();
         } catch (err) {
             dispatch(setError("Failed to mark all notifications as read"))
-            DEVELOPMENT_MODE && console.error("Failed to mark all notifications as read:", err);
+            DEVELOPER_MODE && console.error("Failed to mark all notifications as read:", err);
         } finally {
             setIsMarkingRead(false);
         }
@@ -65,65 +63,63 @@ const NotificationsPage = (): JSX.Element => {
                 await dispatch(fetchNotifications({ page: currentPage + 1 })).unwrap();
             } catch (err) {
                 dispatch(setError("Failed to fetch more notifications."))
-                DEVELOPMENT_MODE && console.error("Failed to fetch more notifications:", err);
+                DEVELOPER_MODE && console.error("Failed to fetch more notifications:", err);
             } finally {
                 setIsLoadingMore(false);
             }
         }
     };
 
+    useTitle('Notifications - WolexChange')
     return (
-        <>
-            <title>Notifications - WolexChange</title>
-            <div className={"notifications-page-container"}>
-                <TabbedHeader tabs={[{ path: '/notifications', label: 'All Notifications' }]} />
+        <div className={"notifications-page-container"}>
+            <TabbedHeader tabs={[{ path: '/notifications', label: 'All Notifications' }]} />
 
-                {/* --- THE MARK ALL BUTTON --- */}
-                {unreadCount > 0 && (
-                    <div className="notifications-actions">
+            {/* --- THE MARK ALL BUTTON --- */}
+            {unreadCount > 0 && (
+                <div className="notifications-actions">
+                    <button
+                        onClick={handleMarkAllAsRead}
+                        disabled={isMarkingRead}
+                        className="btn btn-secondary "
+                    >
+                        {isMarkingRead ? 'Marking...' : 'Mark all as read'}
+                    </button>
+                </div>
+            )}
+            <div className="notifications-list">
+                {notifications.map((notification) => (
+                    <NotificationItem
+                        key={notification.id}
+                        notification={notification}
+                    />
+                ))}
+
+                {loading === 'pending' && notifications.length === 0 && (
+                    <p className="notifications-message">Loading...</p>
+                )}
+
+                {loading === 'succeeded' && error && (
+                    <p className="notifications-message error">{error}</p>
+                )}
+
+                {loading === 'succeeded' && !error && notifications.length === 0 && (
+                    <p className="notifications-message">You have no notifications.</p>
+                )}
+                {hasMore && (
+                    <div className="load-more-container">
                         <button
-                            onClick={handleMarkAllAsRead}
-                            disabled={isMarkingRead}
-                            className="mark-all-button btn-secondary"
+                            onClick={handleLoadMore}
+                            disabled={isLoadingMore}
+                            className="btn btn-secondary btn-pill"
                         >
-                            {isMarkingRead ? 'Marking...' : 'Mark all as read'}
+                            {isLoadingMore ? 'Loading...' : 'Load more'}
                         </button>
                     </div>
                 )}
-                <div className="notifications-list">
-                    {notifications.map((notification) => (
-                        <NotificationItem
-                            key={notification.id}
-                            notification={notification}
-                        />
-                    ))}
-
-                    {loading === 'pending' && notifications.length === 0 && (
-                        <p className="notifications-message">Loading...</p>
-                    )}
-
-                    {loading === 'succeeded' && error && (
-                        <p className="notifications-message error">{error}</p>
-                    )}
-
-                    {loading === 'succeeded' && !error && notifications.length === 0 && (
-                        <p className="notifications-message">You have no notifications.</p>
-                    )}
-                    {hasMore && (
-                        <div className="load-more-container">
-                            <button
-                                onClick={handleLoadMore}
-                                disabled={isLoadingMore}
-                                className="load-more-button"
-                            >
-                                {isLoadingMore ? 'Loading...' : 'Load more'}
-                            </button>
-                        </div>
-                    )}
-                </div>
             </div>
-        </>
+        </div>
     );
 };
 
-export default withAuth(NotificationsPage);
+export default NotificationsPage;

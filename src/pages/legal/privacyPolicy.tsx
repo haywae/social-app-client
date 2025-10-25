@@ -2,6 +2,7 @@ import './privacyPolicy.css'
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { LeftArrowIcon } from '../../assets/icons';
+import { useTitle } from '../../utils/hooks';
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
@@ -17,14 +18,9 @@ const PrivacyPolicy = () => {
     }
   };
 
-return (
-  <>
-    <meta charSet="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Privacy Policy - WolexChange</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  useTitle('Privacy Policy');
+
+  return (
     <main className="privacy-policy-container">
       <header>
         <button onClick={handleNavigate} className="legal-back-button"><LeftArrowIcon /></button>
@@ -1537,7 +1533,7 @@ return (
         </p>
       </section>
     </main>
-  </>
-)
+
+  )
 }
 export default PrivacyPolicy

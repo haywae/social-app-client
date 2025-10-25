@@ -1,5 +1,5 @@
 import { type JSX } from 'react';
-import Modal from './modal'; 
+import Modal from '../modals/modal'; 
 import './avatarModal.css'; 
 
 interface AvatarModalProps {

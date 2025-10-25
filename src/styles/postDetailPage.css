@@ -8,198 +8,214 @@ Description: Styles for the single post view page.
 .detail-page-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - var(--bottom-nav-height)); /* Full height */
-  border-left: 1px solid var(--grey-6);
-  border-right: 1px solid var(--grey-6);
+  height: calc(100vh - var(--bottom-nav-height));
+  /* Full height */
+  width: 100%;
+  max-width: 600px;
 }
 
 /* --- Sticky Header --- */
 .detail-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem;
-    border-bottom: 1px solid var(--grey-6);
-    position: sticky;
-    top: 0;
-    background-color: var(--background-alpha); /* Use a semi-transparent background */
-    backdrop-filter: blur(8px);
-    z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--grey-6);
+  position: sticky;
+  top: 0;
+  background-color: var(--background-alpha);
+  /* Use a semi-transparent background */
+  backdrop-filter: blur(8px);
+  z-index: 10;
 }
 
 .detail-header h2 {
-    margin: 0;
-    font-size: 1.2rem;
+  margin: 0;
+  font-size: 1.2rem;
 }
 
 .back-button {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 0.25rem 0.75rem;
-    border-radius: 999px;
-    cursor: pointer;
-    color: var(--grey-1);
-    transition: background-color 0.2s;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--grey-1);
+  transition: background-color 0.2s;
 }
 
 .back-button:hover {
-    background-color: var(--grey-7);
+  background-color: var(--grey-7);
 }
 
 /* --- Create Comment Form (Sticky) --- */
 .detail-scroll-area {
-  flex: 1; /* Takes up remaining space */
-  overflow-y: auto; /* Scrollable content */
+  flex: 1;
+  /* Takes up remaining space */
+  overflow-y: auto;
+  /* Scrollable content */
   background-color: var(--primary-bg);
 }
+
 .create-comment-section {
-    padding: 0.75rem 1rem;
-    border-top: 1px solid var(--grey-6);
-    position: sticky;
-    bottom: 0;
-    background-color: var(--background); /* Needs a solid background to hide content scrolling under it */
-    z-index: 10;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--grey-6);
+  position: sticky;
+  bottom: 0;
+  background-color: var(--background);
+  /* Needs a solid background to hide content scrolling under it */
+  z-index: 10;
 }
 
 .comment-input-area {
-    display: flex;
-    align-items: flex-end; /* Align items to the bottom */
-    gap: 0.75rem;
-     min-height: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .comment-textarea {
-    flex-grow: 1; /* Allow textarea to take available space */
-    min-height: 36px; /* Adjust min-height as needed */
-    max-height: 200px; /* Prevent it from getting too tall */
-    overflow-y: auto;
-    resize: none;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--grey-6);
-    border-radius: 20px; /* More rounded for a modern chat-like feel */
-    background-color: var(--primary-bg);
-    color: var(--grey-1);
-    font-size: 1rem;
-    line-height: 1.4;
-    transition: min-height 0.3s ease;;
+  width: 100%;
+  min-height: 36px;
+  /* Adjust min-height as needed */
+  max-height: 200px;
+  /* Prevent it from getting too tall */
+  overflow-y: auto;
+  resize: none;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--grey-6);
+  border-radius: 20px;
+  /* More rounded for a modern chat-like feel */
+  background-color: var(--primary-bg);
+  color: var(--grey-1);
+  font-size: 1rem;
+  line-height: 1.4;
+  transition: min-height 0.3s ease;
+  box-sizing: border-box;
 }
 
 .comment-textarea:focus {
-    min-height: 80px;
-    outline: none;
-    border-color: var(--base);
-    box-shadow: 0 0 0 1px var(--base);
-    transition: min-height 0.3s ease;
+  min-height: 80px;
+  outline: none;
+  border-color: var(--base);
+  box-shadow: 0 0 0 1px var(--base);
+  transition: min-height 0.3s ease;
 }
 
 .create-comment-section .btn-primary {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.95rem;
-    flex-shrink: 0; /* Prevent the button from shrinking */
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  /* Prevent the button from shrinking */
 }
+
 .comment-submit-btn {
-  flex-shrink: 0;
-  margin-top: 0; /* override global */
-  width: auto;   /* let button size to content */
-  border-radius: 9999px; /* pill style */
+  margin-top: 0;
+  /* override global */
+  width: auto;
+  /* let button size to content */
+  border-radius: 9999px;
+  /* pill style */
 }
 
 /* --- Improved Replying-To Banner --- */
 .replying-to-banner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.85rem;
-    color: var(--grey-3);
-    background-color: var(--grey-7);
-    border-radius: 12px;
-    margin-bottom: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--grey-3);
+  background-color: var(--grey-7);
+  border-radius: 12px;
+  margin-bottom: 0.25rem;
 }
 
 .cancel-reply-button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-    color: var(--grey-4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  color: var(--grey-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
 }
 
 .cancel-reply-button:hover {
-    color: var(--grey-1);
+  color: var(--grey-1);
 }
 
 
 .comments-header {
-    padding: 0.5rem 1rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--grey-2);
-    border-top: 1px solid var(--grey-6);
-    border-bottom: 1px solid var(--grey-6);
-    background-color: var(--background);
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--grey-2);
+  border-top: 1px solid var(--grey-6);
+  border-bottom: 1px solid var(--grey-6);
+  background-color: var(--background);
 }
 
-.comments-list > *:last-child .comment-container {
-    border-bottom: none; /* Remove border from the very last comment */
+.comments-list>*:last-child .comment-container {
+  border-bottom: none;
+  /* Remove border from the very last comment */
 }
 
 /* --- Loading / Error Messages --- */
 .detail-message {
-    padding: 2rem;
-    text-align: center;
-    color: var(--grey-4);
-    font-weight: 500;
+  padding: 2rem;
+  text-align: center;
+  color: var(--grey-4);
+  font-weight: 500;
 }
 
 .detail-message.error {
-    color: var(--danger);
+  color: var(--danger);
 }
 
 .load-more-container {
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .load-more-button {
-    background-color: transparent;
-    border: 1px solid var(--grey-6);
-    color: var(--grey-2);
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px; /* Pill shape */
-    cursor: pointer;
-    transition: background-color 0.2s;
+  background-color: transparent;
+  border: 1px solid var(--grey-6);
+  color: var(--grey-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  /* Pill shape */
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .load-more-button:hover:not(:disabled) {
-    background-color: var(--grey-7);
+  background-color: var(--grey-7);
 }
 
 .load-more-button:disabled {
-    color: var(--grey-4);
-    cursor: not-allowed;
+  color: var(--grey-4);
+  cursor: not-allowed;
 }
 
 /* Container for the "Replying to @" link at the top of a thread */
 .parent-comment-link {
   padding: 12px 16px;
   border-bottom: 1px solid var(--grey-6);
-  background-color: var(--primary-bg); /* Ensures it matches the page background */
+  background-color: var(--primary-bg);
+  /* Ensures it matches the page background */
 }
 
 /* The link itself */
 .parent-comment-link a {
-  color: var(--base); /* Use your app's primary theme color */
+  color: var(--base);
+  /* Use your app's primary theme color */
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -212,79 +228,7 @@ Description: Styles for the single post view page.
 
 
 @media (min-width: 768px) {
-    .detail-page-container{
-        height: 100vh;
-    }
-}
-
-
-/* --- Dark Theme Overrides --- */
-@media (prefers-color-scheme: dark) {
-  .detail-page-container,
-  .detail-scroll-area,
-  .create-comment-section,
-  .parent-comment-link {
-    background-color: var(--primary-bg);
-    border-color: var(--grey-3);
-  }
-
-  .detail-header {
-    background-color: var(--background-alpha);
-    border-bottom-color: var(--grey-3);
-  }
-
-  .back-button {
-    color: var(--grey-1);
-  }
-
-  .back-button:hover {
-    background-color: var(--grey-2);
-  }
-
-  .comment-textarea {
-    background-color: var(--primary-bg);
-    border-color: var(--grey-3);
-    color: var(--grey-1);
-  }
-
-  .replying-to-banner {
-    background-color: var(--grey-2);
-    color: var(--grey-5);
-  }
-
-  .cancel-reply-button {
-    color: var(--grey-5);
-  }
-
-  .cancel-reply-button:hover {
-    color: var(--grey-7);
-  }
-
-  .comments-header {
-    background-color: var(--background);
-    color: var(--grey-2);
-    border-top-color: var(--grey-3);
-    border-bottom-color: var(--grey-3);
-  }
-
-  .detail-message {
-    color: var(--grey-5);
-  }
-
-  .detail-message.error {
-    color: var(--danger-text);
-  }
-
-  .load-more-button {
-    border-color: var(--grey-4);
-    color: var(--grey-1);
-  }
-
-  .load-more-button:hover:not(:disabled) {
-    background-color: var(--grey-2);
-  }
-
-  .load-more-button:disabled {
-    color: var(--grey-5);
+  .detail-page-container {
+    height: 100vh;
   }
 }

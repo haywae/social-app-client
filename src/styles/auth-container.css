@@ -3,17 +3,18 @@
 /* ================================================= */
 .auth-container {
     /* --- Mobile First Styles (Default) --- */
-    margin: 10px auto; /* Center the container */
+    margin: 10px auto;
+    /* Center the container */
     padding: 24px;
     background-color: var(--background);
     border: 1px solid var(--grey-6);
     border-radius: 12px;
     box-sizing: border-box;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px var(--grey-7);
     text-align: center;
-    width: 90%; /* Use a percentage width for flexibility */
-    max-width: 450px; /* Prevent it from becoming too wide on landscape mobile */
-    min-height: calc(100vh - var(--main-header-height) - var(--bottom-nav-height));
+    width: 90%;
+    /* Use a percentage width for flexibility */
+    max-width: 450px;
 }
 
 .auth-container-title {
@@ -50,7 +51,7 @@
 
 .auth-container .form-group input {
     width: 100%;
-    padding: 12px;
+    padding: 8px;
     background-color: var(--grey-7);
     border: 1px solid var(--grey-6);
     border-radius: 8px;
@@ -69,7 +70,7 @@
 /* --- Show/Hide Password Button --- */
 .auth-container .form-group button {
     position: absolute;
-    top: 30px; 
+    top: 30px;
     right: 5px;
     background: transparent;
     border: none;
@@ -78,11 +79,13 @@
     font-weight: 600;
     color: var(--grey-4);
     cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
 }
 
 .auth-container .form-group button:hover {
     color: var(--base);
     border-color: transparent;
+    transition: background-color 0.5s ease-in-out;
 }
 
 .auth-container .fg-danger {
@@ -101,7 +104,7 @@
 
 .auth-container .success-message {
     padding: 1rem;
-    background-color: rgba(29, 206, 136, 0.15);
+    background-color: var(--grey-1);
     color: #108d62;
     border-radius: 8px;
     text-align: left;
@@ -109,54 +112,68 @@
     font-weight: 500;
 }
 
-/*------ The Registration Dropdown -------*/
-
-.react-datepicker-wrapper {
-    width: 100%;
+.auth-container .dob-container {
+    display: flex;
+    gap: 0.5rem;
 }
+
+.auth-container .dob-container select[name="dobMonth"] {
+    flex-basis: 25%;
+    padding: 0.5rem;
+}
+
+.auth-container .dob-container select[name="dobDay"] {
+    flex-basis: 25%;
+    padding: 0.5rem;
+}
+
+.auth-container .dob-container select[name="dobYear"] {
+    padding: 0.5rem;
+    flex-basis: 50%;
+    /* Year is widest */
+}
+
+.auth-container .google-signin-button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 8px;
+}
+
+.auth-container .google-signin-button span {
+    margin-left: 12px;
+    font-weight: 600;
+    color: var(--grey-3);
+}
+
+.auth-container .google-signin-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/*------ The Registration Dropdown -------*/
 .auth-container svg {
     top: 10%;
     right: 1%;
 }
 
-.auth-container .dropdown-selected{
+.auth-container .dropdown-selected {
     padding: 8px;
     border-radius: 8px;
+}
+
+.form-hint {
+    font-size: smaller;
+    color: var(--grey-4);
+    margin: -0.25rem 0 0.5rem;
 }
 
 /* --- Tablet Overrides --- */
 @media (min-width: 768px) {
     .auth-container {
         margin: 50px auto;
-    }
-}
-
-
-/* src/styles/auth-container.css */
-
-/* --- Dark Theme Overrides for Auth Components --- */
-@media (prefers-color-scheme: dark) {
-    .auth-container {
-        background-color: var(--background); /* Use the main dark background */
-        border-color: var(--grey-6);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    }
-    .auth-container-title {
-        color: var(--grey-1); /* Use the primary light text color */
-    }
-    .auth-container .form-group label {
-      color: var(--grey-4); /* A lighter grey for better contrast */
-    }
-    .auth-container .form-group input {
-        background-color: var(--grey-7); /* Use a dark color for the input background */
-        border-color: var(--grey-6);
-        color: var(--grey-1); /* Use a light color for the input text */
-    }
-    .auth-container .form-group input:focus {
-        border-color: var(--base);
-    }
-    .auth-container .success-message {
-        color: var(--base);
-        background-color: rgba(29, 206, 136, 0.1);
     }
 }

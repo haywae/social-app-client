@@ -5,8 +5,7 @@ import { updateSettings } from '../../thunks/settingsThunks/updateSettingsThunk'
 import { uploadProfilePicture } from '../../thunks/settingsThunks/uploadProfilePictureThunk';
 import { fetchSettings } from '../../thunks/settingsThunks/fetchSettingsThunk';
 import { clearSettingsError } from '../../slices/settings/settingsSlice';
-import withAuth from '../../components/common/withAuth';
-import { DEFAULT_AVATAR_URL } from '../../appConfig';
+import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../../appConfig';
 import { LeftArrowIcon } from '../../assets/icons';
 import { setError } from '../../slices/ui/uiSlice';
 import '../../styles/profileSettingsPage.css'; 
@@ -36,10 +35,10 @@ const ProfileSettingsPage = (): JSX.Element => {
     // This effect syncs the local form state AFTER the settings have been loaded.
     useEffect(() => {
         if (settings) {
-            setDisplayName(settings.display_name || '');
+            setDisplayName(settings.displayName || '');
             setBio(settings.bio || '');
             if (!imageFile) {
-                setImagePreview(settings.profile_picture_url || DEFAULT_AVATAR_URL);
+                setImagePreview(settings.avatarUrl ? `${IMAGE_BASE_URL}/${settings.avatarUrl}` : DEFAULT_AVATAR_URL);
             }
         }
         dispatch(clearSettingsError());
@@ -70,7 +69,7 @@ const ProfileSettingsPage = (): JSX.Element => {
 
         try {
             // Start with the existing URL from the settings state.
-            let finalImageUrl = settings?.profile_picture_url || '';
+            let finalImageUrl = settings?.avatarUrl || '';
 
             if (imageFile) {
                 setIsUploading(true); // Start image upload indicator
@@ -80,9 +79,9 @@ const ProfileSettingsPage = (): JSX.Element => {
             }
             
             const settingsData = {
-                display_name: displayName,
+                displayName: displayName,
                 bio: bio,
-                profile_picture_url: finalImageUrl,
+                avataUrl: finalImageUrl,
             };
 
             await dispatch(updateSettings({ settingsData })).unwrap();
@@ -159,4 +158,4 @@ const ProfileSettingsPage = (): JSX.Element => {
     );
 };
 
-export default withAuth(ProfileSettingsPage);
+export default ProfileSettingsPage;

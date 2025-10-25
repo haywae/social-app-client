@@ -2,8 +2,8 @@ import { type JSX } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../utils/hooks';
 import { type UserSearchResult } from '../../slices/search/searchSlice';
-import { followUser } from '../../thunks/userThunks/followUserThunk'; 
-import { DEFAULT_AVATAR_URL } from '../../appConfig';
+import { followUser } from '../../thunks/userThunks/followUserThunk';
+import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../../appConfig';
 import './followSuggestionItem.css';
 
 interface FollowSuggestionItemProps {
@@ -22,14 +22,18 @@ const FollowSuggestionItem = ({ user }: FollowSuggestionItemProps): JSX.Element 
     return (
         <li className="follow-suggestion">
             <Link to={`/profile/${user.username}`} className="follow-suggestion-user-info-nav">
-                <img src={user.profilePictureUrl || DEFAULT_AVATAR_URL} alt={`${user.displayName}'s avatar`} className='user-avatar avatar-sm'/>
+                <img
+                    src={user.profilePictureUrl ? `${IMAGE_BASE_URL}/${user.profilePictureUrl}` : DEFAULT_AVATAR_URL}
+                    alt={`${user.displayName}'s avatar`}
+                    className='user-avatar avatar-sm'
+                />
                 <div>
                     <strong>{user.displayName}</strong>
                     <small>@{user.username}</small>
                 </div>
             </Link>
-            
-            <button 
+
+            <button
                 className={`follow-button ${user.isFollowing ? 'following' : ''}`}
                 onClick={handleFollowClick}
             >

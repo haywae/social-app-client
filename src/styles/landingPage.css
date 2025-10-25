@@ -1,5 +1,3 @@
-
-
 .landing-page-container {
     align-self: center;
     width: 100%;
@@ -18,7 +16,7 @@
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    gap: 4rem;
+    gap: 3rem;
 }
 
 /* --- Hero Section --- */
@@ -48,8 +46,17 @@
     align-items: center;
 }
 
+.hero-actions-row {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+}
+
 .cta-button-primary,
-.cta-button-secondary {
+.cta-button-secondary,
+.cta-button-google {
     display: inline-block;
     width: 100%;
     max-width: 300px;
@@ -63,20 +70,42 @@
 }
 
 .cta-button-primary {
-    background-color: var(--base); 
+    background-color: var(--base);
     color: var(--background);
 }
+
 .cta-button-primary:hover {
     background-color: var(--base-dark);
 }
 
-.cta-button-secondary {
+.cta-button-secondary,
+.cta-button-google {
     background-color: transparent;
     color: var(--base);
     border: 1px solid var(--grey-6);
 }
-.cta-button-secondary:hover {
+
+.cta-button-secondary:hover,
+.cta-button-google:hover {
     background-color: rgba(0, 135, 90, 0.1);
+}
+
+.cta-button-google {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+    /* Google-specific styles */
+    background-color: var(--background);
+    border: 1px solid var(--border-color);
+}
+
+/* Styles the icon inside the button */
+.cta-button-google svg {
+    margin-right: 12px;
 }
 
 /* --- App Preview Section --- */
@@ -149,6 +178,7 @@
     font-weight: 600;
     color: var(--grey-4);
 }
+
 .from-text {
     font-size: small;
     margin-right: 0.25rem;
@@ -156,9 +186,11 @@
     color: var(--grey-4);
 
 }
+
 .mock-post-actions {
     display: flex;
-    align-items: center; /* This is the key for vertical alignment */
+    align-items: center;
+    /* This is the key for vertical alignment */
     gap: 2rem;
     margin-top: 1rem;
     color: var(--text-secondary);
@@ -168,7 +200,8 @@
 .mock-action-item {
     display: flex;
     align-items: center;
-    gap: 0.3rem; /* Small space between icon and number */
+    gap: 0.3rem;
+    /* Small space between icon and number */
 }
 
 .mock-post-actions svg {
@@ -179,9 +212,10 @@
 
 /* --- Responsive --- */
 @media (min-width: 1024px) {
-    .landing-page-container{
+    .landing-page-container {
         max-width: 1000px;
     }
+
     .landing-main-content {
         flex-direction: row;
         justify-content: space-around;
@@ -190,13 +224,14 @@
 
     .hero-section {
         text-align: left;
-    
     }
 
     .hero-actions {
-        flex-direction: row;
         justify-content: flex-start;
-        gap: 1rem;
+    }
+
+    .hero-actions-row {
+        flex-direction: row;
     }
 
     .cta-button-primary,
@@ -204,4 +239,3 @@
         width: auto;
     }
 }
-

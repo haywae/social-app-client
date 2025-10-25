@@ -2,13 +2,13 @@ import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 import { closeModal } from '../../slices/ui/uiSlice';
 import ReplyModal from './replyModal';
 import AvatarModal from './avatarModal';
-import ConfirmPostDeleteModal from '../posts/confirmPostDeleteModal';
-import ConfirmCommentDeleteModal from '../comments/confirmCommentDeleteModal';
-import EditPostModal from '../posts/editPostModal';
-import EditCommentModal from '../comments/editCommentModal';
-import DeleteAccountModal from '../settings/deleteAccountModal';
-import { EditExchangeModal } from '../exchange/editExchangeModal';
-import { DEVELOPMENT_MODE } from '../../appConfig';
+import ConfirmPostDeleteModal from './confirmPostDeleteModal';
+import ConfirmCommentDeleteModal from './confirmCommentDeleteModal';
+import EditPostModal from './editPostModal';
+import EditCommentModal from './editCommentModal';
+import DeleteAccountModal from './deleteAccountModal';
+import { EditExchangeModal } from './editExchangeModal';
+import { DEVELOPER_MODE } from '../../appConfig';
 
 const ModalManager = () => {
   const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ const ModalManager = () => {
           postId={modalProps.postId}
         />;
       }
-      DEVELOPMENT_MODE && console.error('REPLY modal opened without target or postId.');
+      DEVELOPER_MODE && console.error('REPLY modal opened without target or postId.');
       return null;
     }
 
@@ -39,7 +39,7 @@ const ModalManager = () => {
           alt={modalProps.alt}
         />;
       }
-      DEVELOPMENT_MODE && console.error('VIEW_AVATAR modal opened without src or alt.');
+      DEVELOPER_MODE && console.error('VIEW_AVATAR modal opened without src or alt.');
       return null;
     }
 
@@ -51,7 +51,7 @@ const ModalManager = () => {
           post={modalProps.post}
         />;
       }
-      DEVELOPMENT_MODE && console.error('EDIT_POST modal opened without a post prop.');
+      DEVELOPER_MODE && console.error('EDIT_POST modal opened without a post prop.');
       return null;
     }
 
@@ -63,7 +63,7 @@ const ModalManager = () => {
           post={modalProps.post}
         />;
       }
-      DEVELOPMENT_MODE && console.error('CONFIRM_DELETE_POST modal opened without a post prop.');
+      DEVELOPER_MODE && console.error('CONFIRM_DELETE_POST modal opened without a post prop.');
       return null;
     }
 
@@ -75,7 +75,7 @@ const ModalManager = () => {
           comment={modalProps.comment}
         />;
       }
-      DEVELOPMENT_MODE && console.error('EDIT_COMMENT modal opened without a comment prop.');
+      DEVELOPER_MODE && console.error('EDIT_COMMENT modal opened without a comment prop.');
       return null;
     }
 
@@ -88,7 +88,7 @@ const ModalManager = () => {
           postId={modalProps.postId}
         />;
       }
-      DEVELOPMENT_MODE && console.error('CONFIRM_DELETE_COMMENT modal opened without comment or postId.');
+      DEVELOPER_MODE && console.error('CONFIRM_DELETE_COMMENT modal opened without comment or postId.');
       return null;
     }
 
@@ -100,7 +100,7 @@ const ModalManager = () => {
           exchangeData={modalProps.exchangeData}
         />;
       }
-      DEVELOPMENT_MODE && console.error('EDIT_EXCHANGE_DETAILS modal opened without exchangeData.');
+      DEVELOPER_MODE && console.error('EDIT_EXCHANGE_DETAILS modal opened without exchangeData.');
       return null;
     }
 

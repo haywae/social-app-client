@@ -1,14 +1,8 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { fetchSettings } from "../../thunks/settingsThunks/fetchSettingsThunk";
 import { updateSettings } from "../../thunks/settingsThunks/updateSettingsThunk";
+import { type UserSettings } from "../../types/settingsType";
 
-export interface UserSettings {
-    username: string;
-    display_name: string;
-    email: string;
-    bio: string;
-    profile_picture_url: string;
-}
 
 export interface SettingsState {
     settings: UserSettings | null;

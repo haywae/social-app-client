@@ -1,0 +1,61 @@
+/* src/components/layout/authLayout.css */
+.guest-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* --- Layout Containers --- */
+.guest-layout {
+  margin-top: auto;
+  flex-grow: 1; /* Ensures the layout expands to fill available space */
+  width: 100%;
+}
+
+/* This class is added when the mobile header is present */
+.header-included {
+  margin-top: var(--main-header-height);
+  /*Ensures the page has a margin to give space for the header*/
+}
+
+/* --- Main Content Feed --- */
+.guest-content {
+  width: 100%;
+  box-sizing: border-box; /* <-- Ensures padding doesn't break layout */
+  margin: 0 auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  
+  /* This centers the children (your Outlet/HomePage) horizontally */
+  align-items: center;
+  /* A good width for a central feed */
+}
+
+/* --- Responsive Layout Adjustments --- */
+
+/* For Tablet and larger */
+@media (min-width: 768px) {
+
+  /* On desktop, the .header-included class from mobile should NOT add margin */
+  .header-included {
+    margin-top: 0;
+  }
+
+  /* Apply top margin ONLY if header is included */
+  .guest-layout.header-included {
+    margin-top: var(--main-header-height);
+  }
+
+  .guest-content {
+    padding: 1rem 0; /* Keep vertical padding, remove horizontal */
+  }
+}
+
+@media (min-width: 1280px) {
+  .guest-content{
+    max-width: 1200px;
+  }
+}
