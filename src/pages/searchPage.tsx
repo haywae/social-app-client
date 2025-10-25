@@ -49,6 +49,8 @@ const SearchPage = () => {
         }
     }, [debouncedSearchTerm, submittedSearchTerm, dispatch]);
 
+    useTitle('Search - WolexChange');
+
     const handleSearchSubmit = (e: React.FormEvent) => {
         e.preventDefault(); // Prevent page reload
         if (searchTerm.trim()) {
@@ -81,7 +83,6 @@ const SearchPage = () => {
         }
     };
     // --- Render Logic ---
-    useTitle('Search - WolexChange');
     return (
         <div className="search-page-container">
             <form onSubmit={handleSearchSubmit} className="search-bar">

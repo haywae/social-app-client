@@ -63,6 +63,8 @@ const PostDetailPage = (): JSX.Element => {
         };
     }, [postId, dispatch]);
 
+    useTitle(`Post - WolexChange`);
+
     /**
      * Handles the submission of a new comment or reply.
      * It parses tags, dispatches the createComment thunk, and clears the form on success.
@@ -125,8 +127,6 @@ const PostDetailPage = (): JSX.Element => {
             </div>
         );
     }
-
-    useTitle(`Post - WolexChange`);
 
     return (
         <div className="detail-page-container">

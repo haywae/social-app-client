@@ -9,6 +9,8 @@ const cookiePolicy = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    useTitle('Cookie Policy - WolexChange');
+
     const handleNavigate = () => {
         // Check if the user was navigated to this page from within the app
         if (location.key !== 'default') {
@@ -18,8 +20,6 @@ const cookiePolicy = () => {
             navigate('/'); // The public homepage
         }
     };
-
-    useTitle('Cookie Policy - WolexChange');
 
     return (
             <main className="privacy-policy-container">

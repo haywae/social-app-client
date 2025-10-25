@@ -41,6 +41,8 @@ const NotificationsPage = (): JSX.Element => {
         }
     }, [dispatch, notifications.length]);
 
+    useTitle('Notifications - WolexChange')
+
     // --- HANDLES MARKING ALL NOTIFICATIONS AS READ ---
     const handleMarkAllAsRead = async () => {
         setIsMarkingRead(true);
@@ -70,7 +72,6 @@ const NotificationsPage = (): JSX.Element => {
         }
     };
 
-    useTitle('Notifications - WolexChange')
     return (
         <div className={"notifications-page-container"}>
             <TabbedHeader tabs={[{ path: '/notifications', label: 'All Notifications' }]} />

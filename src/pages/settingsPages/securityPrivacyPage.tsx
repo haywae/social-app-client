@@ -28,7 +28,7 @@ const SecurityPrivacyPage = (): JSX.Element => {
                     <p className="section-description">
                         Permanently delete your account and all of its content. This action cannot be undone.
                     </p>
-                    <div className="form-footer">
+                    <div className="settings-form-footer">
                         <button className="btn-danger" onClick={handleOpenDeleteModal}>
                             Delete your account
                         </button>

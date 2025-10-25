@@ -59,6 +59,8 @@ const CreatePostPage = (): JSX.Element | null => {
         };
     }, [showPicker]); // Re-run this effect when showPicker changes
 
+    useTitle('Create Post - WolexChange');
+
     const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(setCreatePostContent(e.target.value));
     };
@@ -98,8 +100,6 @@ const CreatePostPage = (): JSX.Element | null => {
             navigate('/'); // The public homepage
         }
     }
-
-    useTitle('Create Post - WolexChange');
 
     return (
         <div className="create-post-container">

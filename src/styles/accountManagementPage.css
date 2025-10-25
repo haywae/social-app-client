@@ -2,7 +2,7 @@
 .settings-content {
   display: flex;
   flex-direction: column;
-  background-color: var(--primary-bg);
+  background-color: var(--background);
 }
 
 .settings-form-section {
@@ -10,6 +10,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  ;
 }
 
 .settings-form-section h3 {
@@ -20,10 +22,14 @@
   padding-bottom: 1rem;
 }
 
-.form-footer {
+.settings-form-footer {
   display: flex;
-  align-items: center;
   gap: 1rem;
+}
+
+.settings-form-footer button {
+  width: 100%;
+  border-radius: 999px;
 }
 
 .form-success {

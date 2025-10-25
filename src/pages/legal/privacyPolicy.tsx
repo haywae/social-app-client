@@ -7,6 +7,8 @@ import { useTitle } from '../../utils/hooks';
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  
+  useTitle('Privacy Policy');
 
   const handleNavigate = () => {
     // Check if the user was navigated to this page from within the app
@@ -17,8 +19,6 @@ const PrivacyPolicy = () => {
       navigate('/'); // The public homepage
     }
   };
-
-  useTitle('Privacy Policy');
 
   return (
     <main className="privacy-policy-container">

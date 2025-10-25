@@ -38,6 +38,8 @@ const ExchangePage = (): JSX.Element => {
         dispatch(fetchExchangeData());
     }, [dispatch]);
 
+    useTitle('Exchange - WolexChange');
+
     /** The user's base country object obtained with the exchange data's country key or base_currrency key. */
     const baseCountry = useMemo(() =>
         allCountries.find(c => c.name === exchangeData?.country) || null,
@@ -226,8 +228,6 @@ const ExchangePage = (): JSX.Element => {
     const handleResetConverterRow = (index: number) => {
         dispatch(resetConverterRow(index));
     };
-
-    useTitle('Exchange - WolexChange');
 
     return (
         <div className="exchange-page-container">

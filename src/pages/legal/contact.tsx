@@ -39,6 +39,7 @@ const ContactPage = (): JSX.Element => {
         }
     }, [loading, dispatch]);
 
+    useTitle('Contact Us - WolexChange');
 
     const handleNavigate = () => {
         // Check if the user was navigated to this page from within the app
@@ -63,8 +64,6 @@ const ContactPage = (): JSX.Element => {
             DEVELOPER_MODE && console.error("Failed to submit contact form:", err);
         }
     };
-
-    useTitle('Contact Us - WolexChange');
 
     // --- Render Logic ---
     return (

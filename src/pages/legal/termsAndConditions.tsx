@@ -11,6 +11,9 @@ const TermsAndConditions = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    useTitle('Terms and Conditions - WolexChange');
+
+
     const handleNavigate = () => {
         // Check if the user was navigated to this page from within the app
         if (location.key !== 'default') {
@@ -20,8 +23,6 @@ const TermsAndConditions = () => {
             navigate('/'); // The public homepage
         }
     };
-
-    useTitle('Terms and Conditions - WolexChange');
 
     return (
             <main className="terms-and-conditions-container">

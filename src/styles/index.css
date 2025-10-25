@@ -194,6 +194,21 @@ textarea {
   border-radius: 9999px;
 }
 
+.btn-danger {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--danger-outline);
+  background-color: var(--danger);
+  color: var(--background);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: var(--danger);
+  /* A slightly darker red */
+}
+
 /* ================================================= */
 /* THEME & RESPONSIVE STYLES                         */
 /* ================================================= */
@@ -234,5 +249,7 @@ textarea {
     --grey-5: #757575;
     --grey-6: #616161;
     --grey-7: #424242;
+    --btn-danger: #f44336;
+    --btn-danger-dark: #c53030;
   }
 }

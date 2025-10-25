@@ -7,6 +7,7 @@ import { useTitle } from '../../utils/hooks';
 
 
 const AboutPage = (): JSX.Element => {
+    useTitle('About - WolexChange');
     const location = useLocation();
     const navigate = useNavigate();
     const handleNavigate = () => {
@@ -18,8 +19,6 @@ const AboutPage = (): JSX.Element => {
             navigate('/'); // The public homepage
         }
     };
-
-    useTitle('About - WolexChange');
 
     return (
         <div className="legal-page-container">

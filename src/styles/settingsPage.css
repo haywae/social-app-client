@@ -122,52 +122,5 @@ Description: Styles for the user settings page and its components.
     padding-bottom: 1rem;
 }
 
-.btn-danger {
-    padding: 0.6rem 1.2rem;
-    border: 1px solid var(--danger-outline);
-    border-radius: 999px;
-    background-color: var(--danger);
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
 
-.btn-danger:hover {
-    background-color: #c81e2e; /* A slightly darker red */
-}
 
-/* settingsPage.css */
-
-@media (prefers-color-scheme: dark) {
-    .settings-page { 
-        background-color: var(--primary-bg); /* Use dark primary background */
-        color: var(--grey-1); /* Use light primary text color */
-    }
-    .settings-header, .settings-card { 
-        border-color: var(--grey-6); 
-    }
-    .settings-header { 
-        background-color: var(--background); 
-    }
-    .close-button { 
-        color: var(--grey-1); /* Light color for icon */
-    }
-    .settings-card:hover { 
-        background-color: var(--grey-7); /* Dark hover color */
-    }
-    .card-info p { 
-        color: var(--grey-4); 
-    }
-    .settings-form-group label { 
-        color: var(--grey-2); /* Light color for labels */
-    }
-    .settings-form-group input, .settings-form-group textarea { 
-        background-color: var(--grey-7); /* Dark background for inputs */
-        border-color: var(--grey-6); 
-        color: var(--grey-1); /* Light text for inputs */
-    }
-    .settings-form-group input:disabled { 
-        background-color: var(--grey-6); 
-    }
-}

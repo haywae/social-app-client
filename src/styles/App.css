@@ -71,6 +71,8 @@
   flex-shrink: 0;
   /* Prevents shrinking in flex layouts */
   object-position: center top;
+  /*  */
+  display: block;
 }
 
 /* For smaller contexts like search results */

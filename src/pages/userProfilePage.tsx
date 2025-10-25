@@ -57,6 +57,8 @@ const UserProfilePage = (): JSX.Element => {
         };
     }, [username, dispatch]);
 
+    useTitle(`${profile?.displayName} - WolexChange`);
+
     const handleAvatarClick = () => {
         if (!profile) return;
         dispatch(openModal({
@@ -122,8 +124,6 @@ const UserProfilePage = (): JSX.Element => {
     if (!profile) {
         return <p className="profile-message">User profile not found.</p>;
     }
-
-    useTitle(`${profile.displayName} - WolexChange`);
 
     return (
 
