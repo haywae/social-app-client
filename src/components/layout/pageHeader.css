@@ -42,21 +42,3 @@
     height: 20px;
 }
 
-/* --- Dark Theme --- */
-@media (prefers-color-scheme: dark) {
-    .page-header {
-        border-color: var(--grey-3);
-        background-color: var(--background-dark-alpha);
-    }
-    .page-header-back-button {
-        color: var(--grey-7);
-    }
-    .page-header-back-button:hover {
-        background-color: var(--grey-2);
-    }
-}
-@media (prefers-color-scheme: dark) {
-  .page-header-title {
-    color: var(--grey-7);
-  }
-}

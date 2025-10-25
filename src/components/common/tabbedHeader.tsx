@@ -13,6 +13,16 @@ interface TabbedHeaderProps {
     tabs: Tab[];
 }
 
+/**
+ * Renders a header with navigational tabs.
+ * This component takes an array of tab objects, each with a path and a label,
+ * and creates a navigation bar. The active tab is highlighted, and clicking a tab
+ * scrolls the window to the top.
+ *
+ * @param {TabbedHeaderProps} props - The props for the component.
+ * @param {Tab[]} props.tabs - An array of tab objects to be rendered. Each object should have a `path` and `label`.
+ * @returns {JSX.Element} The rendered tabbed header component.
+  */
 const TabbedHeader = ({ tabs }: TabbedHeaderProps): JSX.Element => {
 
     const handleTabClick = () => {

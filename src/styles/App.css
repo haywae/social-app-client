@@ -151,35 +151,3 @@
     min-width: calc(var(--breakpoint-md) + 200px);
   }
 }
-
-/* --- Dark Theme Adjustments --- */
-@media (prefers-color-scheme: dark) {
-  .main-content {
-    border-left: 1px solid var(--grey-6);
-    border-right: 1px solid var(--grey-6);
-  }
-
-  .follow-button {
-    background-color: var(--grey-1);
-    color: var(--background);
-  }
-
-  .follow-button:hover {
-    background-color: var(--grey-2);
-  }
-
-  .follow-button.following {
-    color: var(--grey-2);
-    border-color: var(--grey-6);
-  }
-
-  .follow-button.following:hover {
-    background-color: var(--danger-fill);
-    color: var(--danger-text);
-    border-color: var(--danger-outline);
-  }
-
-  .user-avatar {
-    background-color: var(--grey-6);
-  }
-}

@@ -9,8 +9,6 @@
 
 .profile-header {
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid var(--grey-6);
-    background-color: var(--primary-bg);
 }
 
 /* --- Header Layout --- */
@@ -26,6 +24,7 @@
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
+
 .user-avatar.clickable:hover {
     transform: scale(1.05);
 }
@@ -81,40 +80,93 @@
     flex-direction: column;
 }
 
-.profile-display-name { font-size: 1.1rem; font-weight: 700; color: var(--grey-1); margin: 0; }
-.profile-username { color: var(--grey-4); margin: 0; font-size: 0.95rem; }
-.profile-bio { color: var(--grey-2); margin: 0.5rem 0; }
-.profile-joined-date { display: flex; align-items: center; color: var(--grey-4); font-size: 0.9rem; gap: 0.5rem; }
-.profile-joined-date svg { width: 16px; height: 16px; }
-
-/* --- Tabs --- */
-.profile-tabs { display: flex; border-bottom: 1px solid var(--grey-6); background-color: var(--grey-7);}
-.profile-tab-button { flex: 1; padding: 1rem 0; background-color: var(--primary-bg); border: none; border-radius: 0; color: var(--grey-4); font-weight: 500; font-size: 0.95rem; cursor: pointer; position: relative; transition: background-color 0.2s; }
-.profile-tab-button:hover { background-color: var(--background); }
-.profile-tab-button.active { font-weight: 700; background-color: var(--background);}
-.profile-tab-button.active::after { content: ''; position: absolute; bottom: 0; left: 25%; right: 25%; height: 4px; background-color: var(--base); border-radius: 999px; }
-
-/* --- Messages --- */
-.profile-message { padding: 2rem; text-align: center; color: var(--grey-4); font-weight: 500; }
-.profile-message.error { color: var(--danger); }
-
-/* --- DARK THEME --- */
-@media (prefers-color-scheme: dark) {
-    .profile-page-container, .profile-header, .profile-tabs { border-color: var(--grey-3); }
-    .profile-stats .stat strong { color: var(--grey-1); }
-    .profile-display-name { color: var(--grey-1); }
-    .profile-username, .profile-bio, .profile-joined-date { color: var(--grey-5); }
-    .profile-tab-button { color: var(--grey-5); }
-    .profile-tab-button.active { color: var(--grey-1); }
-    .profile-tab-button:hover { background-color: var(--grey-7); }
-    .edit-profile-button {
-        background-color: var(--base);
-        color: var(--background);
-        border-color: var(--base);
-    }
-    .edit-profile-button:hover {
-        background-color: var(--base-dark);
-        border-color: var(--base-dark);
-    }
+.profile-display-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--grey-1);
+    margin: 0;
 }
 
+.profile-username {
+    color: var(--grey-4);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.profile-bio {
+    color: var(--grey-2);
+    margin: 0.5rem 0;
+}
+
+.profile-joined-date {
+    display: flex;
+    align-items: center;
+    color: var(--grey-4);
+    font-size: 0.9rem;
+    gap: 0.5rem;
+}
+
+.profile-joined-date svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* --- Tabs --- */
+.profile-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background);
+}
+
+.profile-tab-button {
+    flex: 1;
+    padding: 1rem 0;
+    background-color: var(--background);
+    border: none;
+
+    /* Added border-right */
+    border-radius: 0;
+    color: var(--grey-4);
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+/* Remove border from the last tab */
+.profile-tab-button:last-child {
+    border-right: none;
+}
+
+.profile-tab-button.active {
+    font-weight: 700;
+    background-color: var(--background);
+    color: var(--base);
+    /* Active tab text color */
+}
+
+/* Active tab underline with base color */
+.profile-tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    right: 25%;
+    height: 4px;
+    border-radius: 999px;
+    background-color: var(--base);
+    /* Use base color for underline */
+}
+
+/* --- Messages --- */
+.profile-message {
+    padding: 2rem;
+    text-align: center;
+    color: var(--grey-4);
+    font-weight: 500;
+}
+
+.profile-message.error {
+    color: var(--danger);
+}

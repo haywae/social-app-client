@@ -11,10 +11,6 @@
     transition: background-color 0.2s ease;
 }
 
-.post-container:hover {
-    background-color: var(--grey-7);
-}
-
 /* --- ROW 1: HEADER --- */
 .post-header {
     display: flex;
@@ -184,34 +180,6 @@
 /* --- DARK THEME --- */
 
 @media (prefers-color-scheme: dark) {
-    .post-container { 
-        background-color: var(--background); 
-        border-color: var(--grey-6); 
-    }
-    .post-container:hover { 
-        background-color: var(--grey-7);
-    }
-    .author-display-name { 
-        color: var(--grey-1);
-    }
-    .author-username, .post-timestamp { 
-        color: var(--grey-4); 
-    }
-    .post-content p { 
-        color: var(--grey-2);
-    }
-    .icon-action-button { 
-        color: var(--grey-4); 
-    }
-    .post-detailed-info {
-        border-color: var(--grey-6);
-    }
-    .post-detailed-info time {
-        color: var(--grey-4);
-    }
-    .detail-page-container .post-container.detailed-view:hover {
-        background-color: var(--background);
-    }
     .post-header-actions .post-options-button:hover {
         background-color: rgba(29, 155, 240, 0.2);
     }

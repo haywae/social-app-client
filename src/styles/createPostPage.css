@@ -1,93 +1,96 @@
 /* Main container for the pop-up/page */
 .create-post-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: 1px solid var(--grey-7);
-    border-radius: 8px;
-    background-color: var(--primary-bg);
-    min-height: calc(100vh - var(--main-header-height));
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--grey-7);
+  border-radius: 8px;
+  background-color: var(--primary-bg);
+  min-height: calc(100vh - var(--bottom-nav-height));
 }
 
 /* Header: "Close" and "Post" button */
 .create-post-header {
-    display: flex;
-    padding: 10px 15px;
-    border-bottom: 1px solid var(--grey-6);
-    margin-bottom: 10px;
-    background-color: var(--background);
+  display: flex;
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--grey-6);
+  margin-bottom: 10px;
+  background-color: var(--background);
 }
 
-.create-post-header h2{
-    font-size: medium;
-    margin: auto;
+.create-post-header h2 {
+  font-size: medium;
+  margin: auto;
 }
 
 
 /* Body: Avatar and Text Area */
 .create-post-body {
-    padding: 12px;
-    border: solid 1px var(--grey-6);
-    border-radius: 8px;
-    margin: 0 10px;
-    background-color: var(--background);
+  padding: 12px;
+  border: solid 1px var(--grey-6);
+  border-radius: 8px;
+  margin: 0 10px;
+  background-color: var(--background);
 }
 
-.user-info{
-    display: flex;
-    gap: 5px;
-    border-bottom: 1px solid var(--grey-6);
-    padding-bottom: 8px;
-    align-items: center;
+.user-info {
+  display: flex;
+  gap: 5px;
+  border-bottom: 1px solid var(--grey-6);
+  padding-bottom: 8px;
+  align-items: center;
 }
 
 
 .text-content {
-    width: 100%;
+  width: 100%;
 }
 
 .text-content textarea {
-    width: 100%;
-    border: none;
-    resize: none;
-    font-size: 1rem;
-    min-height: 120px;
-    outline: none; /* Removes the focus border */
-    margin-top: 10px;
-    color: var(--grey-4);
-    background-color: var(--background);
-    border-radius: 8px;
-    padding: 8px;
+  width: 100%;
+  border: none;
+  resize: none;
+  font-size: 1rem;
+  min-height: 120px;
+  outline: none;
+  /* Removes the focus border */
+  margin-top: 10px;
+  color: var(--grey-4);
+  background-color: var(--background);
+  border-radius: 8px;
+  padding: 8px;
 }
 
 .text-content textarea::placeholder {
-    font-size: small;
+  font-size: small;
 }
 
 
 .text-content textarea:focus {
-    color: var(--grey-1);
+  color: var(--grey-1);
 }
 
 
 
 /* Shared Dropdown Styles */
-.select-visibility, .select-who-can-reply {
-    position: relative; /* Needed for dropdown positioning */
-    display: inline-block;
-    cursor: pointer;
-    
-    border: 1px solid var(--grey-4);
-    padding: 4px 10px;
-    border-radius: 20px;
-    height: fit-content;
-    margin: auto 0;
+.select-visibility,
+.select-who-can-reply {
+  position: relative;
+  /* Needed for dropdown positioning */
+  display: inline-block;
+  cursor: pointer;
+
+  border: 1px solid var(--grey-4);
+  padding: 4px 10px;
+  border-radius: 20px;
+  height: fit-content;
+  margin: auto 0;
 }
 
 .create-post-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .create-post-footer .post-actions {
@@ -99,100 +102,47 @@
   /* FIX: Use a specific value instead of 100%. 
      45px is a good starting point for the height of an icon button row. 
      You can adjust this value as needed. */
-  top: 90%; 
+  top: 90%;
   left: 1.1rem;
   z-index: 10;
-  
+
   /* Optional but recommended: Add styling to the picker's container */
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  overflow: hidden; /* Ensures the picker respects the border-radius */
+  overflow: hidden;
+  /* Ensures the picker respects the border-radius */
 }
 
 
 .char-counter {
-    font-size: 0.9rem;
-    color: var(--grey-4);
+  font-size: 0.9rem;
+  color: var(--grey-4);
 }
 
 
 .submit-post-button {
-    background-color: var(--grey-1);
-    color: #fff;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  background-color: var(--grey-1);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .submit-post-button:hover {
-    background-color: var(--base);
+  background-color: var(--base);
 }
 
 .submit-post-button:disabled {
-    background-color: var(--base-light);
-    cursor: not-allowed;
+  background-color: var(--base-light);
+  cursor: not-allowed;
 }
 
 @media (min-width: 768px) {
-    .create-post-container {
-        min-height: 100vh;
-    }
-}
-
-
-/* --- Dark Theme Overrides --- */
-@media (prefers-color-scheme: dark) {
   .create-post-container {
-    background-color: var(--primary-bg);
-    border-color: var(--grey-6);
-  }
-
-  .create-post-header {
-    background-color: var(--background);
-    border-bottom-color: var(--grey-6);
-  }
-
-  .create-post-body {
-    background-color: var(--background);
-    border-color: var(--grey-6);
-  }
-
-  .user-info {
-    border-bottom-color: var(--grey-6);
-  }
-
-  .text-content textarea {
-    background-color: var(--background);
-    color: var(--grey-4);
-  }
-
-  .text-content textarea:focus {
-    color: var(--grey-1);
-  }
-
-  .select-visibility,
-  .select-who-can-reply {
-    border-color: var(--grey-4);
-  }
-
-  .char-counter {
-    color: var(--grey-4);
-  }
-
-  .submit-post-button {
-    background-color: var(--grey-1);
-    color: var(--background);
-  }
-
-  .submit-post-button:hover {
-    background-color: var(--base);
-  }
-
-  .submit-post-button:disabled {
-    background-color: var(--base-light);
+    min-height: 100vh;
   }
 }
