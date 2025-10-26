@@ -119,30 +119,4 @@
     background: var(--background);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
   }
-
-  .modal-header {
-    border-bottom-color: var(--grey-6);
-  }
-
-  .modal-title {
-    color: var(--grey-1);
-  }
-
-  .modal-close-button {
-    color: var(--grey-4);
-  }
-
-  .modal-close-button:hover {
-    background-color: var(--grey-7);
-    color: var(--grey-1);
-  }
-
-  .modal-body textarea {
-    background-color: var(--grey-7);
-    color: var(--grey-1);
-  }
-
-  .modal-body textarea:focus {
-    background-color: var(--background);
-  }
 }

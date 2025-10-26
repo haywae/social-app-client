@@ -64,7 +64,7 @@ const UserProfilePage = (): JSX.Element => {
         dispatch(openModal({
             modalType: 'VIEW_AVATAR',
             modalProps: {
-                src: profile.avatarUrl? `${IMAGE_BASE_URL}/${profile.avatarUrl}` : DEFAULT_AVATAR_URL,
+                src: profile.avatarUrl ? `${IMAGE_BASE_URL}/${profile.avatarUrl}` : DEFAULT_AVATAR_URL,
                 alt: `${profile.displayName}'s avatar - large view`
             }
         }));
@@ -118,11 +118,24 @@ const UserProfilePage = (): JSX.Element => {
     }
 
     if (error) {
-        return <p className="profile-message">The requested profile could not be loaded.</p>;
+        return (<>
+            {loggedInUser && <PageHeader
+                title={isMyProfile ? 'Profile' : ''}
+                showBackButton={!isMyProfile}
+            />}
+            <p className="profile-message">The requested profile could not be loaded.</p>
+        </>)
     }
 
     if (!profile) {
-        return <p className="profile-message">User profile not found.</p>;
+        return (
+            <>
+                {loggedInUser && <PageHeader
+                    title={isMyProfile ? 'Profile' : 'User not found'}
+                    showBackButton={!isMyProfile}
+                />}
+                <p className="profile-message">User profile not found.</p>
+            </>)
     }
 
     return (
@@ -143,9 +156,33 @@ const UserProfilePage = (): JSX.Element => {
                     </div>
                     <div className="profile-stats-and-actions">
                         <div className="profile-stats">
-                            <div className="stat"><strong>{profile.postCount}</strong> Posts</div>
-                            <div className="stat"><strong>{profile.followerCount}</strong> Followers</div>
-                            <div className="stat"><strong>{profile.followingCount}</strong> Following</div>
+                            <div className="stat">
+                                <strong>{profile.postCount}</strong> Posts
+                            </div>
+                            <div
+                                className="stat clickable"
+                                onClick={() => dispatch(openModal({
+                                    modalType: 'CONNECTIONS_LIST',
+                                    modalProps: {
+                                        username: profile.username,
+                                        initialTab: 'followers'
+                                    }
+                                }))}
+                            >
+                                <strong>{profile.followerCount}</strong> Followers
+                            </div>
+                            <div
+                                className="stat clickable"
+                                onClick={() => dispatch(openModal({
+                                    modalType: 'CONNECTIONS_LIST',
+                                    modalProps: {
+                                        username: profile.username,
+                                        initialTab: 'following'
+                                    }
+                                }))}
+                            >
+                                <strong>{profile.followingCount}</strong> Following
+                            </div>
                         </div>
                         <div className="profile-actions">
                             {renderActionButton()}

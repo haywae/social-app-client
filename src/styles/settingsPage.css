@@ -17,7 +17,7 @@ Description: Styles for the user settings page and its components.
     display: flex;
     align-items: center;
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid var(--grey-6);
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     background-color: var(--background);
@@ -109,8 +109,9 @@ Description: Styles for the user settings page and its components.
 .settings-link-button{
     display: flex;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     width: 100%;
+    background-color: var(--background);
 }
 
 /* Add these styles to your existing settingsPage.css file */

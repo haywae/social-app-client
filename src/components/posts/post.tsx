@@ -1,4 +1,4 @@
-import { type JSX, useState } from "react";
+import React, { type JSX, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { EllipseIcon, ChatIcon, HeartIcon, LinkIcon } from "../../assets/icons";
 import "./post.css";
@@ -9,9 +9,11 @@ import { useAppSelector, useAppDispatch } from "../../utils/hooks";
 
 import { toggleLike } from "../../thunks/postsThunks/toggleLikeThunk";
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
-
+import { submitSearch } from '../../slices/search/searchSlice';
+import { fetchSearchResults } from '../../thunks/searchThunks/fetchResultsThunk';
 import PostOptionsMenu from "./postOptionsMenu";
 import { openModal } from "../../slices/ui/uiSlice";
+import FormattedContent from "../common/formattedContent";
 
 import { formatRelativeTimestamp, formatDetailedTimestamp } from "../../utils/timeformatUtils";
 
@@ -54,7 +56,8 @@ const Post = ({ post, isDetailedView = false, isGateway = false }: PostProps): J
     };
 
     // Handler for navigating to the post detail page
-    const handleNavigateToPost = () => {
+    const handleNavigateToPost = (e: React.MouseEvent) => {
+        e.stopPropagation();
         if ((isGateway) && post?.id) {
             navigate(`/post/${post.id}`);
         }
@@ -84,9 +87,19 @@ const Post = ({ post, isDetailedView = false, isGateway = false }: PostProps): J
         }
     };
 
+     const handleHashtagClick = (e: React.MouseEvent, topic: string) => {
+            // This is the correct, efficient pattern:
+            // 1. Set both search terms and update the UI state in one action.
+            e.stopPropagation()
+            dispatch(submitSearch(topic));
+            // 2. Immediately fetch the results for that topic.
+            dispatch(fetchSearchResults(topic));
+        };
+
     const isRatePost = post.postType == 'RATE_POST'
 
     return (
+        <>
         <article className={`post-container ${isDetailedView ? 'detailed-view' : ''}`} onClick={handleNavigateToPost}>
             {/* --- ROW 1: HEADER --- */}
             <header className="post-header">
@@ -142,14 +155,16 @@ const Post = ({ post, isDetailedView = false, isGateway = false }: PostProps): J
                     <span className="rates-from-text">Fresh Rates {/*Post Author's Country*/} By </span>
                     <span className="rates-from-author">{post.authorName}</span>
                 </p>}
-                <p className={`${isRatePost ? 'rates-post-content' : ''}`}>{post.content}</p>
+                <p className={`${isRatePost ? 'rates-post-content' : ''}`}>
+                    <FormattedContent content={post.content}/>
+                </p>
                 {post.hashtags && post.hashtags.length > 0 && (
                     <p className="post-hashtags">
                         {post.hashtags.map((hashtag) => (
                             <Link
-                                to={`/search?q=${hashtag}`}
+                                to={`/search`}
                                 key={hashtag}
-                                onClick={(e) => e.stopPropagation()} // Prevent navigating to the post detail page
+                                onClick={(e) => handleHashtagClick(e, hashtag)} // Prevent navigating to the post detail page
                             >
                                 #{hashtag} &nbsp;
                             </Link>
@@ -185,6 +200,7 @@ const Post = ({ post, isDetailedView = false, isGateway = false }: PostProps): J
                 </button>
             </footer>
         </article>
+        </>
     );
 };
 

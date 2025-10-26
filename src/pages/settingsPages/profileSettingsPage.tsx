@@ -81,7 +81,7 @@ const ProfileSettingsPage = (): JSX.Element => {
             const settingsData = {
                 displayName: displayName,
                 bio: bio,
-                avataUrl: finalImageUrl,
+                avatarUrl: finalImageUrl,
             };
 
             await dispatch(updateSettings({ settingsData })).unwrap();
@@ -96,7 +96,7 @@ const ProfileSettingsPage = (): JSX.Element => {
     };
 
     // #2: A loading state to prevent showing an empty form.
-    if (loading === 'pending' || loading === 'idle') {
+    if ((loading === 'pending' || loading === 'idle') && !settings) {
         return (
              <div className="settings-page">
                 <header className="settings-header">
@@ -149,7 +149,7 @@ const ProfileSettingsPage = (): JSX.Element => {
                         <textarea id="bio" rows={4} value={bio} onChange={(e) => setBio(e.target.value)} />
                     </div>
                     
-                    <button type="submit" className="btn-primary" disabled={isSubmitting}>
+                    <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
                         {isSubmitting ? 'Saving...' : 'Save Profile'}
                     </button>
                 </form>

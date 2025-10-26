@@ -119,7 +119,7 @@ const ReplyModal = ({ target, postId, onClose, isOpen }: ReplyModalProps) => {
                         </div>
                     )}
                 </div>
-                <button onClick={handleSubmit} className="btn-primary" disabled={!content.trim() || isSubmitting}>
+                <button onClick={handleSubmit} className="btn btn-primary btn-full-width" disabled={!content.trim() || isSubmitting}>
                     {isSubmitting ? 'Replying...' : 'Reply'}
                 </button>
             </div>

@@ -46,7 +46,12 @@
     font-weight: 700;
     color: var(--grey-1);
 }
-
+.clickable {
+    cursor: pointer;
+}
+.clickable:hover {
+    text-decoration: underline;
+}
 /* --- Buttons --- */
 .edit-profile-button {
     padding: 0.5rem 1.25rem;

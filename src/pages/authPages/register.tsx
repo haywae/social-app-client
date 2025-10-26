@@ -280,7 +280,7 @@ const Signup = (): JSX.Element => {
                     </button>
                 </div>
                 {/* Submit Button */}
-                <button type="submit" className="btn-primary" disabled={loading}>
+                <button type="submit" className="btn btn-primary" disabled={loading}>
                     {'Sign Up'}
                 </button>
             </form>

@@ -1,7 +1,7 @@
 import { type JSX } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import type { NotificationData } from '../../slices/notification/notificationSlice';
-import { HeartIcon, ChatIcon, FollowIcon } from '../../assets/icons';
+import { HeartIcon, ChatIcon, FollowIcon, MentionIcon } from '../../assets/icons';
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../../appConfig';
 import { formatRelativeTimestamp } from '../../utils/timeformatUtils';
 import './notificationItem.css';
@@ -17,7 +17,7 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
     if (!fromUser) {
         return null;
     }
-    // Check our new flag from the backend
+    // Check is deleted flag from the backend
     const isDeletedUser = fromUser.isDeleted === true;
 
     const handleUserClick = (e: React.MouseEvent) => {
@@ -34,6 +34,7 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
             case 'like': return <HeartIcon className="notification-icons like" />;
             case 'comment': return <ChatIcon className="notification-icons reply" />;
             case 'follow': return <FollowIcon className="notification-icons follow" />;
+            case 'mention': return <MentionIcon className="notification-icons mention" />;
             default: return null;
         }
     };
@@ -58,7 +59,9 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
                 return <>{userLink} liked content that has since been deleted.</>;
 
             case 'comment':
-                return <>{userLink} commented on your post.</>;
+                if (comment) return <>{userLink} commented on your comment.</>;
+                if (post) return <>{userLink} commented on your post.</>;
+                return <>{userLink} commented on content that has since been deleted</>;
 
             case 'follow':
                 return <>{userLink} started following you.</>;
@@ -102,13 +105,13 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
                     alt={fromUser.displayName}
                     className="user-avatar avatar-sm"
                 />
-                {/* The entire text block is now one unit */}
+                {/* The entire text block */}
                 <div className="notification-text-content">
                     <p className="notification-text">{renderText()}</p>
                     {contentSnippet && <p className="notification-post-snippet">"{contentSnippet}"</p>}
                 </div>
 
-                {/* The timestamp is now a sibling, pushed to the right by the text content */}
+                {/* The timestamp is pushed to the right by the text content */}
                 <span className="notification-timestamp">{formatRelativeTimestamp(createdAt)}</span>
             </div>
         </Link>

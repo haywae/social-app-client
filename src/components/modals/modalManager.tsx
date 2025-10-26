@@ -7,6 +7,7 @@ import ConfirmCommentDeleteModal from './confirmCommentDeleteModal';
 import EditPostModal from './editPostModal';
 import EditCommentModal from './editCommentModal';
 import DeleteAccountModal from './deleteAccountModal';
+import ConnectionsModal from './connectionsModal';
 import { EditExchangeModal } from './editExchangeModal';
 import { DEVELOPER_MODE } from '../../appConfig';
 
@@ -106,6 +107,19 @@ const ModalManager = () => {
 
     case 'CONFIRM_DELETE_ACCOUNT': {
       return <DeleteAccountModal isOpen={true} onClose={handleClose} />;
+    }
+
+    case 'CONNECTIONS_LIST': {
+      if ('username' in modalProps && 'initialTab' in modalProps) {
+        return <ConnectionsModal
+          isOpen={true}
+          onClose={handleClose}
+          username={modalProps.username}
+          initialTab={modalProps.initialTab as 'followers' | 'following'}
+        />;
+      }
+      DEVELOPER_MODE && console.error('CONNECTIONS_LIST modal opened without username or listType.');
+      return null;
     }
 
     default:

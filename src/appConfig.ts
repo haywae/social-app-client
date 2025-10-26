@@ -11,3 +11,9 @@ export const DEFAULT_AVATAR_URL = defaultAvatar;
 export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 export const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
+
+// Regex to find @username mentions (preceded by a space or start of string)
+// This is updated to NOT capture a trailing period or other punctuation.
+// It matches @, followed by chars, but must end in a letter, number, or hyphen.
+
+export const MENTION_REGEX = /(^|\s)(@[\w.-]*[\w-]+)/g;

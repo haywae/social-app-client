@@ -2,6 +2,8 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { submitSearch } from '../../slices/search/searchSlice';
 import { TabbedResults } from './tabbedResultComponent';
 import { fetchSearchResults } from '../../thunks/searchThunks/fetchResultsThunk';
+import './searchOverlay.css';
+
 
 /**
  * A component for the live search results overlay.

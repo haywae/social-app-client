@@ -1,46 +1,50 @@
 /* --- {L1} Search Tabs, Results Container --- */
 .search-tabs {
-    display: flex;
-    border-bottom: 1px solid #e5e7eb; /* border-b */
-    margin-bottom: 1rem;
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .results-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /* --- {L2} Tab Button, Tab Button Active, No Results Container --- */
 
-.tab-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #6b7280; /* text-gray-500 */
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-    border-bottom: 2px solid transparent;
-    border-radius: 0;
+.search-tabs .tab-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  /* text-gray-500 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  justify-content: center;
 }
 
-.tab-button.active {
-    color: var(--grey-4); /* text-blue-600 */
-    border-bottom-color: var(--base); /* border-blue-600 */
+.search-tabs .tab-button.active {
+  color: var(--grey-4);
+  /* text-blue-600 */
+  border-bottom-color: var(--base);
+  /* border-blue-600 */
 }
 
 
 /* Make the "No results" text smaller in the overlay */
 .no-results-text {
-    padding: 1rem;
-    font-size: 0.9rem;
+  padding: 1rem;
+  font-size: 0.9rem;
 }
+
 .no-results-text.error {
-    color: var(--error-red); 
+  color: var(--error-red);
 }
 
 /* --- Dark Theme Overrides --- */

@@ -1,0 +1,129 @@
+/* src/components/modals/connectionsModal.css */
+
+.connections-modal .modal-body {
+    padding: 0;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* New styles for the tab header */
+.connections-modal-header {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-button {
+    flex: 1; /* Make buttons share space equally */
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent; /* Placeholder for active state */
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.tab-button:hover:not(:disabled) {
+    background-color: var(--primary-bg);
+}
+
+.tab-button.active {
+    color: var(--base); /* Use your app's base color */
+    border-bottom-color: var(--base);
+}
+
+.tab-button:disabled {
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+/* Modify the modal to remove padding from the top */
+.connections-modal .modal-body {
+    padding-top: 0;
+}
+
+.connections-modal-list {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.user-list-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.user-list-item:hover {
+    background-color: var(--primary-bg);
+}
+
+.user-list-item-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+}
+
+.user-list-item-info {
+    flex-grow: 1;
+    margin-right: 12px;
+}
+
+.user-list-item-name {
+    font-weight: 600;
+    font-size: 1rem;
+    display: block;
+}
+
+.user-list-item-username {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.user-list-item-bio {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin: 0;
+    /* Truncate long bios */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px; /* Adjust as needed */
+}
+
+.user-list-item-action {
+    flex-shrink: 0;
+    padding-top: 4px; /* Align with text */
+}
+
+/* Make sure modal buttons use standard styles */
+.user-list-item-action .btn {
+    padding: 0.4em 1em;
+    font-size: 0.9rem;
+}
+
+.connections-modal-footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.modal-message {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 24px;
+}
+
+.modal-message.error {
+    color: var(--danger-text);
+}

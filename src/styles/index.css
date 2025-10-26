@@ -123,6 +123,27 @@ textarea {
   font-family: sans-serif;
 }
 
+/* * ====================================================================
+ * --- PREVENT IOS ZOOM ON INPUT FOCUS ---
+ * iOS Safari zooms in on text inputs if their font-size is < 16px.
+ * Setting it to 16px explicitly prevents this unwanted behavior.
+ * We use 16px instead of 1rem because 1rem might be < 16px
+ * due to the clamp() function on :root.
+ * ====================================================================
+*/
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+  font-size: 16px;
+}
+
+
 /* ================================================= */
 /*               BUTTON STYLES                     */
 /* ================================================= */
@@ -140,6 +161,7 @@ textarea {
   text-decoration: none;
   text-align: center;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  margin-top: 4px;
 }
 
 /* * Accessibility: Adds a focus ring ONLY for keyboard users.
@@ -209,6 +231,23 @@ textarea {
   /* A slightly darker red */
 }
 
+.btn-full-width {
+  width: 100%;
+}
+
+
+
+
+.mention-link {
+  color: var(--base);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mention-link:hover {
+  text-decoration: underline;
+}
 /* ================================================= */
 /* THEME & RESPONSIVE STYLES                         */
 /* ================================================= */

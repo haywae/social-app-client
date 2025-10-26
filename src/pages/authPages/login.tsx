@@ -127,7 +127,7 @@ const Login = ({ redirectPath }: LoginProps): JSX.Element => {
                         {showPassword ? "Hide" : "Show"}
                     </button>
                 </div>
-                <button type="submit" className="btn-primary" disabled={isLoading}>
+                <button type="submit" className="btn btn-primary" disabled={isLoading}>
                     {'Log in'}
                 </button>
                 <Link to="#" className='google-signin-button' onClick={googleLoginHook}>

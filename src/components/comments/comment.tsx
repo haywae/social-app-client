@@ -6,6 +6,7 @@ import { toggleCommentLike } from "../../thunks/commentsThunks/toggleCommentLike
 import CommentOptionsMenu from "./commentOptionsMenu";
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
 import { formatDetailedTimestamp, formatRelativeTimestamp } from "../../utils/timeformatUtils";
+import FormattedContent from "../common/formattedContent";
 import { openModal } from "../../slices/ui/uiSlice";
 import "../posts/post.css";
 import "./comment.css"
@@ -83,7 +84,6 @@ const Comment = ({ commentId, postId, isDetailedView = false, isGateway = false 
     return (
         <>
             <article className="post-container comment-container" onClick={handleNavigateToPost}>
-                {/* ... header, content, and footer of the comment ... */}
                 <header className="post-header">
                     <div className="post-avatar-container">
                         <Link to={`/profile/${comment.authorUsername}`}>
@@ -124,7 +124,9 @@ const Comment = ({ commentId, postId, isDetailedView = false, isGateway = false 
                 </header>
 
                 <div className="post-content">
-                    <p>{comment.content}</p>
+                    <p>
+                        <FormattedContent content={comment.content} />
+                    </p>
                 </div>
                 {/* If isDetailedView is set to True from the caller, the full timestamp will be displayed */}
                 {isDetailedView && (

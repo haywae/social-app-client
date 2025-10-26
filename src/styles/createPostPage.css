@@ -27,7 +27,6 @@
 /* Body: Avatar and Text Area */
 .create-post-body {
   padding: 12px;
-  border: solid 1px var(--grey-6);
   border-radius: 8px;
   margin: 0 10px;
   background-color: var(--background);
@@ -121,8 +120,8 @@
 
 
 .submit-post-button {
-  background-color: var(--grey-1);
-  color: #fff;
+  background-color: var(--base);
+  color: var(--background);
   border: none;
   padding: 0.6rem 1.2rem;
   border-radius: 50px;

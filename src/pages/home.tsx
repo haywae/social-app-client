@@ -1,8 +1,10 @@
 import type { JSX } from "react";
 import PostFeed from "../components/posts/postFeed";
 import TabbedHeader from "../components/common/tabbedHeader";
+import { useTitle } from "../utils/hooks";
 
 const Home = (): JSX.Element => {
+    useTitle("WolexChange");
 
     const homeTabs = [
         { path: "/", label: "For you" },

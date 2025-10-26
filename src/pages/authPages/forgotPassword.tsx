@@ -85,7 +85,7 @@ const ForgotPassword = (): JSX.Element => {
                         />
                     </div>
                     {/* Submit button */}
-                    <button type="submit" className="btn-primary" disabled={loading}>
+                    <button type="submit" className="btn btn-primary" disabled={loading}>
                         {'Send Reset Link'}
                     </button>
                 </form>

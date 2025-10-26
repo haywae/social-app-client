@@ -38,10 +38,10 @@
     transform: scale(1);
   }
 }
-
 /* This is the anchor for the emoji picker */
 .reply-modal-footer .post-actions {
   position: relative;
+  margin-bottom: 0.25rem;
 }
 
 /* --- Dark Theme Overrides --- */

@@ -35,7 +35,7 @@ const VerifyEmailPage = (): JSX.Element => {
             return (
                 <>
                     <p className="auth-container-subtitle">{successMessage}</p>
-                    <Link to="/login" className="btn-primary" style={{ textDecoration: 'none' }}>
+                    <Link to="/login" className="btn btn-primary" style={{ textDecoration: 'none' }}>
                         Proceed to Login
                     </Link>
                 </>

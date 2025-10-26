@@ -10,7 +10,6 @@
     border: 1px solid var(--grey-6);
     border-radius: 12px;
     box-sizing: border-box;
-    box-shadow: 0 4px 15px var(--grey-7);
     text-align: center;
     width: 90%;
     /* Use a percentage width for flexibility */
@@ -124,7 +123,7 @@
 }
 
 .auth-container .google-signin-button {
-    margin-top: 15px;
+    margin-top: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
