@@ -1,0 +1,63 @@
+.user-list-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.user-list-item:hover {
+    background-color: var(--primary-bg);
+}
+
+.user-list-item-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+}
+
+.user-list-item-info {
+    flex-grow: 1;
+    margin-right: 12px;
+}
+
+.user-list-item-name {
+    font-weight: 600;
+    font-size: 1rem;
+    display: block;
+}
+
+.user-list-item-username {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.user-list-item-bio {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin: 0;
+    /* Truncate long bios */
+    white-space: nowrap;
+    line-clamp: 2;
+    -webkit-line-clamp: 3; /* Show a maximum of 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-list-item-action {
+    flex-shrink: 0;
+    padding-top: 4px; /* Align with text */
+}
+
+/* Make sure modal buttons use standard styles */
+.user-list-item-action .btn {
+    padding: 0.4em 1em;
+    font-size: 0.9rem;
+}

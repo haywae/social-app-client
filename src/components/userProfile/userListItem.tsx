@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { followUser } from '../../thunks/userThunks/followUserThunk';
 import { type UserForList } from '../../thunks/userThunks/fetchConnectionsThunk';
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../../appConfig';
+import './userListItem.css'
 
 interface UserListItemProps {
     user: UserForList;
@@ -79,7 +80,7 @@ const UserListItem = ({ user, onCloseModal }: UserListItemProps): JSX.Element =>
             <div className="user-list-item-info">
                 <span className="user-list-item-name">{user.authorName}</span>
                 <span className="user-list-item-username">@{user.username}</span>
-                <p className="user-list-item-bio">{user.bio}</p>
+                {/* <p className="user-list-item-bio">{user.bio}</p> */}
             </div>
             <div className="user-list-item-action">
                 {loggedInUser && renderActionButton()}
