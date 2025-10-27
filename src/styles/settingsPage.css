@@ -74,9 +74,7 @@ Description: Styles for the user settings page and its components.
     border: 1px solid var(--grey-5);
     border-radius: 12px;
     color: var(--grey-4);
-    font-size: 1rem;
     background-color: var(--primary-bg);
-    font-size: smaller;
 }
 
 .settings-form-group input:focus,
@@ -86,7 +84,6 @@ Description: Styles for the user settings page and its components.
     box-shadow: 0 0 0 2px var(--base-alpha);
     color: var(--grey-1);
     background-color: var(--background);
-    font-size: small;
 }
 
 .settings-form-group input:disabled {

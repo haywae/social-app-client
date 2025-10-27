@@ -93,7 +93,6 @@ tbody td .currency-input {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     text-align: end;
-    font-size: 0.95rem;
     color: var(--text-secondary);
 }
 
@@ -245,7 +244,6 @@ tbody tr:last-child td {
     border-radius: 6px;
     border: 1px solid var(--border-color);
     background-color: var(--primary-bg);
-    font-size: 1rem;
     box-sizing: border-box;
     text-align: end;
 }

@@ -1,4 +1,3 @@
-
 /* This is a highly specific selector that will ONLY apply when
    both .modal-content and .avatar-viewer classes are present. */
 .modal-content.avatar-viewer {
@@ -6,10 +5,13 @@
   background: none;
   box-shadow: none;
   padding: 0;
-  max-width: none; /* Let the image define the width */
+  max-width: none;
+  /* Let the image define the width */
   width: auto;
-  overflow: visible; /* Allow the image to be fully visible */
-  border-radius: 16px; /* Apply radius to the container */
+  overflow: visible;
+  /* Allow the image to be fully visible */
+  border-radius: 16px;
+  /* Apply radius to the container */
 }
 
 /* Hide the default header since we don't pass a title */
@@ -19,8 +21,10 @@
 
 .modal-content.avatar-viewer .modal-body {
   padding: 0;
-  overflow: visible; /* Prevents this container from creating a scrollbar */
-  line-height: 0; /* Good practice to remove extra space around the image */
+  overflow: visible;
+  /* Prevents this container from creating a scrollbar */
+  line-height: 0;
+  /* Good practice to remove extra space around the image */
 }
 
 .avatar-modal-content img {
@@ -29,24 +33,32 @@
   max-height: 90vh;
   width: auto;
   height: auto;
-  border-radius: 16px;   
-  cursor: default;   /* Prevent clicking the image from closing the modal */
+  border-radius: 16px;
+  cursor: default;
+  /* Prevent clicking the image from closing the modal */
 }
 
 /* Override the generic close button to be more visible on a dark overlay */
-.avatar-modal-content + .modal-close-button {
-    color: rgba(255, 255, 255, 0.8);
+.avatar-modal-content+.modal-close-button {
+  color: rgba(255, 255, 255, 0.8);
 }
-.avatar-modal-content + .modal-close-button:hover {
-    color: white;
+
+.avatar-modal-content+.modal-close-button:hover {
+  color: white;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
+
 .avatar-modal-content {
-    animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.3s ease-out;
 }
 
 /* --- Dark Theme Overrides --- */
@@ -55,11 +67,11 @@
     background: none;
   }
 
-  .avatar-modal-content + .modal-close-button {
+  .avatar-modal-content+.modal-close-button {
     color: rgba(255, 255, 255, 0.85);
   }
 
-  .avatar-modal-content + .modal-close-button:hover {
+  .avatar-modal-content+.modal-close-button:hover {
     color: #ffffff;
   }
 }

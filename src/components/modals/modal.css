@@ -67,14 +67,14 @@
   border: none;
   color: var(--grey-4);
   cursor: pointer;
-  padding: 0.5rem;
-  margin-left: 1rem;
+  margin-left: auto;
   /* Add some space between title and button */
   border-radius: 50%;
   transition: background-color 0.2s, color 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 1rem;
 }
 
 .modal-close-button:hover {
@@ -91,7 +91,6 @@
   width: 100%;
   border: none;
   resize: none;
-  font-size: 1rem;
   min-height: 120px;
   outline: none;
   /* Removes the focus border */

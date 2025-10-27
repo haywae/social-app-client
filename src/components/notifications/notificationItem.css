@@ -1,105 +1,120 @@
 .notification-item {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--grey-6);
-    text-decoration: none;
-    color: inherit;
-    transition: background-color 0.2s;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--grey-6);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s;
 }
 
 .notification-item:hover {
-    background-color: var(--grey-7);
+  background-color: var(--grey-7);
 }
 
 .notification-item.unread {
-    background-color: var(--background);
-    border-left: 3px solid var(--base);
-    padding-left: calc(1.5rem - 3px); /* Adjust padding to keep content aligned */
+  background-color: var(--background);
+  border-left: 3px solid var(--base);
+  padding-left: calc(1.5rem - 3px);
+  /* Adjust padding to keep content aligned */
 }
 
 .notification-icon-container {
-    width: 30px;
-    flex-shrink: 0;
-    text-align: right;
-    margin-top: 2px;
-    align-content: center;
-    border-right: solid 1px var(--grey-5);
-    padding-right: 0.75rem
+  width: 30px;
+  flex-shrink: 0;
+  text-align: right;
+  margin-top: 2px;
+  align-content: center;
+  border-right: solid 1px var(--grey-5);
+  padding-right: 0.75rem
 }
 
 .notification-icons {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
-.notification-icon.like { fill: var(--like); stroke-width: 0; }
-.notification-icon.reply { color: var(--base); }
-.notification-icon.follow { color: var(--accent-color); }
+
+.notification-icon.like {
+  fill: var(--like);
+  stroke-width: 0;
+}
+
+.notification-icon.reply {
+  color: var(--base);
+}
+
+.notification-icon.follow {
+  color: var(--accent-color);
+}
 
 .notification-content {
-    flex-grow: 1;
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-    /* Prevents flex items from overflowing their container */
-    overflow: hidden; 
+  flex-grow: 1;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  /* Prevents flex items from overflowing their container */
+  overflow: hidden;
 }
 
 .notification-text-content {
-    display: flex;
-    flex-direction: column;
-    /* This is the key: it grows to push the timestamp to the right */
-    flex-grow: 1; 
-    /* This prevents long text from causing layout overflow issues */
-    min-width: 0; 
+  display: flex;
+  flex-direction: column;
+  /* This is the key: it grows to push the timestamp to the right */
+  flex-grow: 1;
+  /* This prevents long text from causing layout overflow issues */
+  min-width: 0;
 }
 
 .notification-text,
 .notification-post-snippet {
-    margin: 0;
-    line-height: 1.5;
-    /* Prevents long, unbroken words from overflowing the container */
-    word-break: break-word;
+  margin: 0;
+  line-height: 1.5;
+  /* Prevents long, unbroken words from overflowing the container */
+  word-break: break-word;
 }
 
 .notification-text {
-    padding: 0;
-    line-height: 1.4; /* Improves readability */
-    color: var(--grey-1);
+  padding: 0;
+  line-height: 1.4;
+  /* Improves readability */
+  color: var(--grey-1);
 }
 
 .notification-user-link {
-    font-weight: 700;
-    color: inherit;
-    text-decoration: none;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
 }
+
 .notification-user-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .notification-post-snippet {
-    font-size: 0.95rem;
-    color: var(--grey-4);
-    padding-left: 0.75rem;
-    border-left: 1px solid var(--grey-5);
-    margin-top: 4px; /* Add a small gap between the main text and snippet */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Show a maximum of 2 lines */
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 0.95rem;
+  color: var(--grey-4);
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--grey-5);
+  margin-top: 4px;
+  /* Add a small gap between the main text and snippet */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* Show a maximum of 2 lines */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* --- Timestamp Styles --- */
 .notification-timestamp {
-    font-size: 0.85rem;
-    color: var(--grey-4);
-    white-space: nowrap;
-    flex-shrink: 0;
-    padding-top: 2px;
-    /* Add padding to ensure it doesn't touch the text block */
-    padding-left: 16px; 
+  font-size: 0.85rem;
+  color: var(--grey-4);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 2px;
+  /* Add padding to ensure it doesn't touch the text block */
+  padding-left: 16px;
 }
 
 
@@ -114,8 +129,8 @@
     background-color: var(--grey-7);
   }
 
-.notification-item.unread {
-    background-color: rgba(29, 155, 240, 0.1); 
+  .notification-item.unread {
+    background-color: rgba(29, 155, 240, 0.1);
   }
 
   .notification-text {
@@ -135,4 +150,3 @@
     border-right-color: var(--grey-6);
   }
 }
-

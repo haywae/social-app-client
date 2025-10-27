@@ -4,7 +4,6 @@
   flex-direction: column;
   width: 100%;
   border: 1px solid var(--grey-7);
-  border-radius: 8px;
   background-color: var(--primary-bg);
   min-height: calc(100vh - var(--bottom-nav-height));
 }
@@ -49,7 +48,6 @@
   width: 100%;
   border: none;
   resize: none;
-  font-size: 1rem;
   min-height: 120px;
   outline: none;
   /* Removes the focus border */

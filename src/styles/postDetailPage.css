@@ -90,7 +90,6 @@ Description: Styles for the single post view page.
   /* More rounded for a modern chat-like feel */
   background-color: var(--primary-bg);
   color: var(--grey-1);
-  font-size: 1rem;
   line-height: 1.4;
   transition: min-height 0.3s ease;
   box-sizing: border-box;

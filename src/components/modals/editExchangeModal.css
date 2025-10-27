@@ -33,75 +33,75 @@
 }
 
 .exchange-edit-modal-body .form-group {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .exchange-edit-modal-body label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #333;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
 }
 
 .exchange-edit-modal-body .form-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--grey-5);
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: var(--primary-bg);
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--grey-5);
+  border-radius: 8px;
+  background-color: var(--primary-bg);
 }
 
 .exchange-edit-modal-body .form-input:focus {
-    outline: none;
-    border-color: var(--base);
-    background-color: var(--background);
+  outline: none;
+  border-color: var(--base);
+  background-color: var(--background);
 }
 
 
-.exchange-edit-modal-body .dropdown-selected{
-    padding: 8px;
-    border-radius: 8px;
+.exchange-edit-modal-body .dropdown-selected {
+  padding: 8px;
+  border-radius: 8px;
 }
 
 .exchange-edit-modal-body .form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .exchange-edit-modal-body .cancel-button,
 .exchange-edit-modal-body .save-button {
-    padding: 0.75rem 1.25rem;
-    border-radius: 9999px; /* Pill shape */
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  /* Pill shape */
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .exchange-edit-modal-body .cancel-button {
-    background-color: transparent;
-    color: var(--grey-2);
-    border-color: var(--grey-5);
+  background-color: transparent;
+  color: var(--grey-2);
+  border-color: var(--grey-5);
 }
 
 .exchange-edit-modal-body .cancel-button:hover {
-    background-color: var(--grey-7);
+  background-color: var(--grey-7);
 }
 
 .exchange-edit-modal-body .save-button {
-    background-color: var(--grey-1);
-    border-color: var(--grey-1);
-    color: var(--background);
+  background-color: var(--grey-1);
+  border-color: var(--grey-1);
+  color: var(--background);
 
 }
 
 .exchange-edit-modal-body .save-button:hover {
-    border-color: var(--base);
-    background-color: var(--base);
+  border-color: var(--base);
+  background-color: var(--base);
 }
 
 /* --- Dark Theme Overrides --- */
