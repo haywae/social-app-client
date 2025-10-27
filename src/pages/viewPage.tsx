@@ -34,13 +34,21 @@ const ViewPage = (): JSX.Element => {
     const { user: loggedInUser } = useAppSelector((state) => state.auth);
 
     const contentUser = () => {
+        // Check for comment data first
         if (commentId) {
-            return `${commentsById[commentId]?.authorName} - Comment`;
-        } else if (postId) {
-            return `${posts[0]?.authorName} - Post`;
-        } else if (exchangeUser) {
-            return `${exchangeData?.name} - Exchange Rates`;
+            const authorName = commentsById[commentId]?.authorName;
+            if (authorName) return `${authorName} - Comment`;
         }
+        else if (postId) {
+            const authorName = posts[0]?.authorName;
+            if (authorName) return `${authorName} - Post`;
+        }
+        // Else, check for exchange data
+        else if (exchangeUser) {
+            const exchangeName = exchangeData?.name;
+            if (exchangeName) return `${exchangeName} - Exchange Rates`;
+        }
+        return null;
     }
 
     const name = contentUser();
