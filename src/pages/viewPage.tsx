@@ -35,16 +35,16 @@ const ViewPage = (): JSX.Element => {
 
     const contentUser = () => {
         if (commentId) {
-            return commentsById[commentId]?.authorName;
+            return `${commentsById[commentId]?.authorName} - Comment`;
         } else if (postId) {
-            return posts[0]?.authorName;
+            return `${posts[0]?.authorName} - Post`;
         } else if (exchangeUser) {
-            return exchangeData?.name;
+            return `${exchangeData?.name} - Exchange Rates`;
         }
     }
 
     const name = contentUser();
-    useTitle(name ? `${name} - WolexChange` : 'WolexChange');
+    useTitle(name ? `${name}` : 'WolexChange');
 
     useEffect(() => {
         // Dispatch the correct thunk based on the URL parameters

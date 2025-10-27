@@ -57,7 +57,8 @@ const UserProfilePage = (): JSX.Element => {
         };
     }, [username, dispatch]);
 
-    useTitle(`${profile?.displayName} - WolexChange`);
+    const name = profile?.displayName;
+    useTitle(name ? `${name} - WolexChange` : 'WolexChange');
 
     const handleAvatarClick = () => {
         if (!profile) return;
