@@ -75,6 +75,10 @@
   display: block;
 }
 
+.avatar-xs{
+  width: 26px;
+  height: 26px;
+}
 /* For smaller contexts like search results */
 .avatar-sm {
   width: 40px;

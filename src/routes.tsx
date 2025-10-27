@@ -15,9 +15,10 @@ import ProtectedRoute from "./components/auth/protectedRoute.tsx";
 import AuthLayout from "./components/layout/authLayout.tsx";
 import CompleteProfilePage from "./pages/completeProfilePage.tsx";
 
-// --- New/Updated Layouts and Pages ---
+// --- Layouts and Pages ---
 import RootLayout from "./components/layout/rootLayout.tsx";
 import HomePage from "./pages/homepageController.tsx";
+import HybridLayout from "./components/layout/hybridLayout.tsx";
 
 // --- Legal & Static Pages ---
 import PrivacyPolicy from './pages/legal/privacyPolicy.tsx';
@@ -100,9 +101,18 @@ export const appRoutes: RouteObject[] = [
                     { path: 'settings/profile', element: <ProfileSettingsPage /> },
                     { path: 'settings/security', element: <SecurityPrivacyPage /> },
                     { path: 'complete-profile', element: <CompleteProfilePage /> },
+                ]
+            },
+             // --- HYBRID ROUTES (AUTH OR GUEST) ---
+            {
+                // This layout handles pages accessible to both auth/guest
+                // It renders <App /> or <AuthLayout /> accordingly
+                element: <HybridLayout />,
+                children: [
                     { path: 'view', element: <ViewPage /> },
                 ]
             },
+
 
             // --- CATCH-ALL 404 ROUTE ---
             { path: '*', element: <NotFoundPage /> },

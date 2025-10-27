@@ -1,7 +1,8 @@
 import { type JSX } from "react";
 import { Link, NavLink, useLocation, matchPath } from "react-router-dom";
-import { SearchIcon, SettingsIcon, HomeIcon, BankNoteIcon, CreatePostIcon, NotificationIcon, ProfileIcon } from "../../assets/icons";
+import { SearchIcon, SettingsIcon, HomeIcon, BankNoteIcon, CreatePostIcon, NotificationIcon} from "../../assets/icons";
 import { useAppSelector } from "../../utils/hooks";
+import { IMAGE_BASE_URL } from "../../appConfig";
 import "./mobileHeader.css";
 
 interface HeaderProps {
@@ -68,10 +69,26 @@ const MobileHeader = ({ showHeader = true }: HeaderProps): JSX.Element | null =>
             )}
 
             <nav className="bottom-nav">
-                <NavLink to="/feed" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end><HomeIcon /></NavLink>
-                <NavLink to="/exchange" style={({ isActive }) => isActive ? activeLinkStyle : undefined}><BankNoteIcon /></NavLink>
-                <NavLink to="/search" style={({ isActive }) => isActive ? activeLinkStyle : undefined}><SearchIcon /></NavLink>
-                <NavLink to="/post" style={({ isActive }) => isActive ? activeLinkStyle : undefined}><CreatePostIcon /></NavLink>
+                <NavLink to="/feed" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end>
+                    <div className="nav-icon-wrapper">
+                        <HomeIcon />
+                    </div>
+                </NavLink>
+                <NavLink to="/exchange" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
+                    <div className="nav-icon-wrapper">
+                        <BankNoteIcon />
+                    </div>
+                </NavLink>
+                <NavLink to="/search" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
+                    <div className="nav-icon-wrapper">
+                        <SearchIcon />
+                    </div>
+                </NavLink>
+                <NavLink to="/post" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
+                    <div className="nav-icon-wrapper">
+                        <CreatePostIcon />
+                    </div>
+                </NavLink>
                 <NavLink to="/notifications" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
                     <div className="nav-icon-wrapper">
                         <NotificationIcon />
@@ -83,7 +100,14 @@ const MobileHeader = ({ showHeader = true }: HeaderProps): JSX.Element | null =>
                         )}
                     </div>
                 </NavLink>
-                <NavLink to={`/profile/${user?.username}`} style={({ isActive }) => isActive ? activeLinkStyle : undefined}><ProfileIcon /></NavLink>
+                <NavLink
+                    to={`/profile/${user?.username}`}
+                    style={({ isActive }) => isActive ? activeLinkStyle : undefined}
+                >
+                    <div className="nav-icon-wrapper">
+                        <img src={`${IMAGE_BASE_URL}/${user?.profilePictureUrl}`} className="user-avatar avatar-xs" alt="User avatar" />
+                    </div>
+                </NavLink>
             </nav>
         </>
     );

@@ -1,3 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  
+  <!-- 
+    This style block will make the SVG responsive to dark mode.
+    It applies styles directly to the <path> elements.
+  -->
+  <style>
+    .avatar-icon-path {
+      /* This is your default (light mode) color.
+        I've picked a standard medium grey.
+      */
+      fill: #666666; 
+    }
+
+    /* This media query automatically runs ONLY 
+      when the user's system is in dark mode.
+    */
+    @media (prefers-color-scheme: dark) {
+      .avatar-icon-path {
+        /* This is your dark mode color.
+          A lighter grey that shows up on dark backgrounds.
+        */
+        fill: #999999; 
+      }
+    }
+  </style>
+
+  <!-- 
+    The 'fill' attribute was removed from the <svg> tag 
+    and a class was added to the <path> tag.
+  -->
+  <path class="avatar-icon-path" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
 </svg>

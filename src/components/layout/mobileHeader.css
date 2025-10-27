@@ -102,6 +102,7 @@
 
 /* A wrapper for icons that might have an indicator */
 .nav-icon-wrapper {
+    display: flex;
     position: relative;
     align-items: center;
 }

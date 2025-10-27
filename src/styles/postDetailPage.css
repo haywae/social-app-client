@@ -8,10 +8,13 @@ Description: Styles for the single post view page.
 .detail-page-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - var(--bottom-nav-height));
   /* Full height */
   width: 100%;
   max-width: 600px;
+}
+
+.main-layout .detail-page-container {
+  height: calc(100vh - var(--bottom-nav-height));
 }
 
 /* --- Sticky Header --- */
@@ -51,7 +54,7 @@ Description: Styles for the single post view page.
 }
 
 /* --- Create Comment Form (Sticky) --- */
-.detail-scroll-area {
+.main-layout .detail-scroll-area {
   flex: 1;
   /* Takes up remaining space */
   overflow-y: auto;
@@ -226,9 +229,22 @@ Description: Styles for the single post view page.
   text-decoration: underline;
 }
 
-
 @media (min-width: 768px) {
-  .detail-page-container {
+
+  /* Apply 100vh height ONLY when inside the main app layout (authenticated) */
+  .main-layout .detail-page-container {
     height: 100vh;
+  }
+
+  /* --- Guest Layout Specifics (Unauthenticated) --- */
+  /*
+    When in guest mode, the sidebars aren't present to create borders.
+    We add borders directly to the container on tablet/desktop
+    where the container isn't full-width.
+  */
+  .guest-layout .detail-page-container {
+    margin-bottom: 1rem;
+    border-radius: 8px; /* Soften the edges */
+    /* Top border is already applied in the mobile-first rule below */
   }
 }

@@ -123,6 +123,12 @@
     font-style: italic;
 }
 
+@media (min-width: 768px) {
+    .guest-layout .live-rates-container {
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+}
 
 /* --- Dark Theme Adjustments --- */
 /* src/components/userProfile/liveRatesTab.css */

@@ -121,9 +121,13 @@
 
 /* --- Adjustments for Post component when on the detail page --- */
 .detail-page-container .post-container.detailed-view {
-    border-bottom: none; /* Avoids a double border with the section below */
     padding-bottom: 0.5rem;
     cursor: default; /* The post is no longer clickable */
+}
+
+/* Only remove the bottom border of the post container on the post detail page when user is authenticated */
+.main-layout .detail-page-container .post-container.detailed-view {
+    border-bottom: 0; /* Avoids double border witht the component below it*/
 }
 
 .detail-page-container .post-container.detailed-view:hover {
@@ -182,5 +186,12 @@
 @media (prefers-color-scheme: dark) {
     .post-header-actions .post-options-button:hover {
         background-color: rgba(29, 155, 240, 0.2);
+    }
+}
+
+@media (min-width: 768px) {
+    .guest-layout .post-container {
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
     }
 }
