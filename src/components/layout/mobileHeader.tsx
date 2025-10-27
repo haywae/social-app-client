@@ -2,7 +2,7 @@ import { type JSX } from "react";
 import { Link, NavLink, useLocation, matchPath } from "react-router-dom";
 import { SearchIcon, SettingsIcon, HomeIcon, BankNoteIcon, CreatePostIcon, NotificationIcon} from "../../assets/icons";
 import { useAppSelector } from "../../utils/hooks";
-import { IMAGE_BASE_URL } from "../../appConfig";
+import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
 import "./mobileHeader.css";
 
 interface HeaderProps {
@@ -105,7 +105,7 @@ const MobileHeader = ({ showHeader = true }: HeaderProps): JSX.Element | null =>
                     style={({ isActive }) => isActive ? activeLinkStyle : undefined}
                 >
                     <div className="nav-icon-wrapper">
-                        <img src={`${IMAGE_BASE_URL}/${user?.profilePictureUrl}`} className="user-avatar avatar-xs" alt="User avatar" />
+                        <img src={user?.profilePictureUrl? `${IMAGE_BASE_URL}/${user.profilePictureUrl}` : DEFAULT_AVATAR_URL}  className="user-avatar avatar-xs" alt="User avatar" />
                     </div>
                 </NavLink>
             </nav>

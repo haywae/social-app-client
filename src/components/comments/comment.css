@@ -45,6 +45,10 @@
   color: var(--grey-2);
 }
 
+.guest-layout .comment-container{
+  border: 1px solid var(--border-color);
+}
+
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   .is-reply {

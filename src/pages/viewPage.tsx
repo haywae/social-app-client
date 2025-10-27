@@ -33,7 +33,18 @@ const ViewPage = (): JSX.Element => {
     const { exchangeData, loading: exchangeLoading } = useAppSelector((state) => state.profile);
     const { user: loggedInUser } = useAppSelector((state) => state.auth);
 
-    useTitle('View - WolexChange');
+    const contentUser = () => {
+        if (commentId) {
+            return commentsById[commentId]?.authorName;
+        } else if (postId) {
+            return posts[0]?.authorName;
+        } else if (exchangeUser) {
+            return exchangeData?.name;
+        }
+    }
+
+    const name = contentUser();
+    useTitle(name ? `${name} - WolexChange` : 'WolexChange');
 
     useEffect(() => {
         // Dispatch the correct thunk based on the URL parameters
