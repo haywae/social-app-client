@@ -75,12 +75,11 @@ const UserListItem = ({ user, onCloseModal }: UserListItemProps): JSX.Element =>
             <img
                 src={user.authorAvatarUrl ? `${IMAGE_BASE_URL}/${user.authorAvatarUrl}` : DEFAULT_AVATAR_URL}
                 alt={`${user.authorName}'s avatar`}
-                className="user-list-item-avatar"
+                className="user-avatar avatar-sm user-list-item-avatar"
             />
             <div className="user-list-item-info">
                 <span className="user-list-item-name">{user.authorName}</span>
                 <span className="user-list-item-username">@{user.username}</span>
-                {/* <p className="user-list-item-bio">{user.bio}</p> */}
             </div>
             <div className="user-list-item-action">
                 {loggedInUser && renderActionButton()}
