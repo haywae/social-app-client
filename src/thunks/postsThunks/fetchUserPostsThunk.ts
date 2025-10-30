@@ -1,8 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_BASE_URL } from "../../appConfig";
-import type { FetchedPostsPayload } from "../../types/postType";
 import api from "../../apiInterceptor";
 import { type RootState } from "../../store";
+import { type FetchedPostsPayload, type PostData } from "../../types/postType";
+import { flattenComments } from '../../utils/commentUtils';
+import { type CommentData } from "../../types/commentType";
 
 // Define the arguments for this specific thunk
 interface FetchUserPostsArgs {
@@ -45,8 +47,21 @@ export const fetchUserPosts = createAsyncThunk<
                 return rejectWithValue(errorData.message || 'Failed to fetch user posts');
             }
 
-            const data: FetchedPostsPayload = await response.json();
-            return data;
+            // 3. Process the data just like you do in fetchPosts
+            const data = await response.json();
+            const postsFromApi: PostData[] = data.posts;
+
+            // 4. Extract and flatten the comment previews
+            const allCommentPreviews: CommentData[] = postsFromApi.flatMap(post => post.commentPreview || []);
+            const comments = flattenComments(allCommentPreviews);
+
+            // 5. Return the correct, normalized payload
+            return {
+                posts: postsFromApi,
+                comments: comments,
+                currentPage: data.currentPage,
+                totalPages: data.totalPages,
+            };
         } catch (error: any) {
             return rejectWithValue(error.message || 'An unexpected network error occurred.');
         }

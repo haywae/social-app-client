@@ -16,7 +16,17 @@
 
 /* Hide the default header since we don't pass a title */
 .modal-content.avatar-viewer .modal-header {
-  display: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  /* Position the header over the content */
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+  /* Push the button to the far right */
+  justify-content: flex-end;
 }
 
 .modal-content.avatar-viewer .modal-body {

@@ -46,9 +46,11 @@ const UserProfilePage = (): JSX.Element => {
 
     /* --- EFFECT 1: Fetches the profile data when the component mounts or the username changes. */
     useEffect(() => {
-        if (username) {
-            dispatch(fetchUserProfile(username));
-            dispatch(fetchUserExchangeData(username));
+        if (authLoading === 'succeeded' || authLoading === 'failed') {
+            if (username) {
+                dispatch(fetchUserProfile(username));
+                dispatch(fetchUserExchangeData(username));
+            }
         }
 
         /* Cleanup: Clear the profile data when the component unmounts */
@@ -74,11 +76,6 @@ const UserProfilePage = (): JSX.Element => {
 
     /** Activates the follow handler */
     const handleFollow = () => {
-        if (!loggedInUser) {
-            navigate('/login');
-            return;
-        }
-
         if (profile) {
             setIsFollowLoading(true);
             dispatch(followUser({
@@ -222,7 +219,7 @@ const UserProfilePage = (): JSX.Element => {
                 {activeTab === 'liveRates' && (
                     <>
                         {exchangeLoading === 'pending' && <p className="profile-message">Loading rates...</p>}
-                        {exchangeError && <p className="profile-message error">Exchange Rates could not be loaded</p>}
+                        {exchangeError && <p className="profile-message">Exchange Rates could not be loaded</p>}
                         {exchangeLoading === 'succeeded' && exchangeData && (
                             <LiveRatesDisplay exchangeData={exchangeData} />
                         )}

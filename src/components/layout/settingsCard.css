@@ -13,6 +13,12 @@
     background-color: var(--grey-7);
 }
 
+.card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .card-info h3 {
     margin: 0 0 0.25rem 0;
     font-size: 1rem;
@@ -22,6 +28,10 @@
     margin: 0;
     font-size: 0.9rem;
     color: var(--grey-4);
+}
+
+.card-info button {
+    margin-top: 0.5rem;
 }
 
 .card-arrow {

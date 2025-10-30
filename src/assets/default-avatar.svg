@@ -4,27 +4,6 @@
     This style block will make the SVG responsive to dark mode.
     It applies styles directly to the <path> elements.
   -->
-  <style>
-    .avatar-icon-path {
-      /* This is your default (light mode) color.
-        I've picked a standard medium grey.
-      */
-      fill: #666666; 
-    }
-
-    /* This media query automatically runs ONLY 
-      when the user's system is in dark mode.
-    */
-    @media (prefers-color-scheme: dark) {
-      .avatar-icon-path {
-        /* This is your dark mode color.
-          A lighter grey that shows up on dark backgrounds.
-        */
-        fill: #999999; 
-      }
-    }
-  </style>
-
   <!-- 
     The 'fill' attribute was removed from the <svg> tag 
     and a class was added to the <path> tag.

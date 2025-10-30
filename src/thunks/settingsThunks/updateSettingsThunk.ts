@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../apiInterceptor";
 import { type UserSettings } from "../../types/settingsType";
+import { updateUser } from "../../slices/auth/authSlice";
+import { type AppDispatch } from "../../store";
 
 interface UpdateSettingsArgs {
     settingsData: Partial<UserSettings>;
@@ -9,10 +11,10 @@ interface UpdateSettingsArgs {
 export const updateSettings = createAsyncThunk<
     UserSettings,
     UpdateSettingsArgs,
-    { rejectValue: string }
+    { dispatch: AppDispatch, rejectValue: string }
 >(
     'settings/updateSettings',
-    async ({ settingsData }, { rejectWithValue }) => {
+    async ({ settingsData }, { dispatch, rejectWithValue }) => {
         try {
             const response = await api('/settings', {
                 method: 'PUT',
@@ -24,6 +26,9 @@ export const updateSettings = createAsyncThunk<
                 return rejectWithValue(errorData.message || 'Failed to update settings.');
             }
             const data = await response.json();
+
+            dispatch(updateUser(data.settings));
+
             return data.settings; // The backend returns the updated settings under a 'settings' key
         } catch (error: any) {
             return rejectWithValue(error.message || 'An unexpected network error occurred.');

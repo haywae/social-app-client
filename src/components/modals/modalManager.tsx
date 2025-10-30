@@ -9,6 +9,7 @@ import EditCommentModal from './editCommentModal';
 import DeleteAccountModal from './deleteAccountModal';
 import ConnectionsModal from './connectionsModal';
 import { EditExchangeModal } from './editExchangeModal';
+import QRCodeModal from './qrCodeModal';
 import { DEVELOPER_MODE } from '../../appConfig';
 
 const ModalManager = () => {
@@ -119,6 +120,20 @@ const ModalManager = () => {
         />;
       }
       DEVELOPER_MODE && console.error('CONNECTIONS_LIST modal opened without username or listType.');
+      return null;
+    }
+
+    case 'VIEW_QR_CODE': {
+      if ('url' in modalProps && 'title' in modalProps) {
+        return <QRCodeModal
+          avatarUrl={modalProps.avatarUrl}
+          url={modalProps.url}
+          title={modalProps.title}
+          isOpen={true}
+          onClose={handleClose}
+        />;
+      }
+      DEVELOPER_MODE && console.error('VIEW_QR_CODE modal opened without url or title.');
       return null;
     }
 

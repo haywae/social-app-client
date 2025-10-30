@@ -22,7 +22,7 @@ import { formatRelativeTimestamp, formatDetailedTimestamp } from "../../utils/ti
  * It includes the author's information, the post content, and action buttons.
  */
 
-const Post = ({ post, isDetailedView = false, isGateway = false }: PostProps): JSX.Element => {
+const Post = ({ post, isDetailedView = false, isGateway = false, onReplyClick }: PostProps): JSX.Element => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [copied, setCopied] = useState(false);
 
@@ -72,7 +72,12 @@ const Post = ({ post, isDetailedView = false, isGateway = false }: PostProps): J
     // Handler for the reply button
     const handleReplyClick = (e: React.MouseEvent) => {
         e.stopPropagation();
-        dispatch(openModal({ modalType: 'REPLY', modalProps: { target: post, postId: post.id } }))
+        if (onReplyClick) {
+            // If the onReplyClick prop is provided (from PostDetailPage), call it.
+            onReplyClick();
+        } else {
+            dispatch(openModal({ modalType: 'REPLY', modalProps: { target: post, postId: post.id } }))
+        }
     };
 
     // Handler for the share/copy link button
@@ -87,119 +92,118 @@ const Post = ({ post, isDetailedView = false, isGateway = false }: PostProps): J
         }
     };
 
-     const handleHashtagClick = (e: React.MouseEvent, topic: string) => {
-            // This is the correct, efficient pattern:
-            // 1. Set both search terms and update the UI state in one action.
-            e.stopPropagation()
-            dispatch(submitSearch(topic));
-            // 2. Immediately fetch the results for that topic.
-            dispatch(fetchSearchResults(topic));
-        };
+    const handleHashtagClick = (e: React.MouseEvent, topic: string) => {
+        // 1. Set both search terms and update the UI state in one action.
+        e.stopPropagation()
+        dispatch(submitSearch(topic));
+        // 2. Immediately fetch the results for that topic.
+        dispatch(fetchSearchResults(topic));
+    };
 
     const isRatePost = post.postType == 'RATE_POST'
 
     return (
         <>
-        <article className={`post-container ${isDetailedView ? 'detailed-view' : ''}`} onClick={handleNavigateToPost}>
-            {/* --- ROW 1: HEADER --- */}
-            <header className="post-header">
-                {/* Col 1: Avatar */}
-                <div className="post-avatar-container">
-                    <Link to={`/profile/${post.authorUsername}`} onClick={(e) => e.stopPropagation()}>
-                        <img
-                            src={post.authorAvatarUrl ? `${IMAGE_BASE_URL}/${post.authorAvatarUrl}` : DEFAULT_AVATAR_URL}
-                            alt={`${post.authorName}'s avatar`}
-                            className="user-avatar avatar-sm"
-                        />
-                    </Link>
-                </div>
-
-                {/* Col 2: Author Meta */}
-                <div className="post-author-meta">
-                    {/* Line 1: Display Name */}
-                    <Link to={`/profile/${post.authorUsername}`} className="author-name-link" onClick={(e) => e.stopPropagation()}>
-                        <span className="author-display-name">{post.authorName}</span>
-                    </Link>
-
-                    {/* Line 2: Username and Timestamp */}
-                    <div className="author-meta-line">
-                        <span className="author-username">@{post.authorUsername}</span>
-                        {!isDetailedView && <span className="post-timestamp">{formatRelativeTimestamp(post.createdAt)}</span>}
+            <article className={`post-container ${isDetailedView ? 'detailed-view' : ''}`} onClick={handleNavigateToPost}>
+                {/* --- ROW 1: HEADER --- */}
+                <header className="post-header">
+                    {/* Col 1: Avatar */}
+                    <div className="post-avatar-container">
+                        <Link to={`/profile/${post.authorUsername}`} onClick={(e) => e.stopPropagation()}>
+                            <img
+                                src={post.authorAvatarUrl ? `${IMAGE_BASE_URL}/${post.authorAvatarUrl}` : DEFAULT_AVATAR_URL}
+                                alt={`${post.authorName}'s avatar`}
+                                className="user-avatar avatar-sm"
+                            />
+                        </Link>
                     </div>
-                </div>
 
-                {/* Col 3: Header Actions */}
-                <div className="post-header-actions">
-                    <button className="icon-action-button post-options-button" onClick={handleOpenMenu}>
-                        <EllipseIcon />
-                    </button>
+                    {/* Col 2: Author Meta */}
+                    <div className="post-author-meta">
+                        {/* Line 1: Display Name */}
+                        <Link to={`/profile/${post.authorUsername}`} className="author-name-link" onClick={(e) => e.stopPropagation()}>
+                            <span className="author-display-name">{post.authorName}</span>
+                        </Link>
 
-                    {/* --- Render the menu modal conditionally --- */}
-                    {isMenuOpen && (
-                        <PostOptionsMenu
-                            isAuthor={isAuthor}
-                            post={post}
-                            isDetailedView={isDetailedView}
-                            postUrl={postUrl}
-                            onClose={() => setIsMenuOpen(false)}
-                            onEditClick={handleOpenEditModal}
-                            onDeleteClick={handleOpenDeleteModal}
-                        />
-                    )}
-                </div>
-            </header>
+                        {/* Line 2: Username and Timestamp */}
+                        <div className="author-meta-line">
+                            <span className="author-username">@{post.authorUsername}</span>
+                            {!isDetailedView && <span className="post-timestamp">{formatRelativeTimestamp(post.createdAt)}</span>}
+                        </div>
+                    </div>
 
-            {/* --- ROW 2: MAIN CONTENT --- */}
-            <div className="post-content">
-                {isRatePost && <p className="rates-from">
-                    <span className="rates-from-text">Fresh Rates {/*Post Author's Country*/} By </span>
-                    <span className="rates-from-author">{post.authorName}</span>
-                </p>}
-                <p className={`${isRatePost ? 'rates-post-content' : ''}`}>
-                    <FormattedContent content={post.content}/>
-                </p>
-                {post.hashtags && post.hashtags.length > 0 && (
-                    <p className="post-hashtags">
-                        {post.hashtags.map((hashtag) => (
-                            <Link
-                                to={`/search`}
-                                key={hashtag}
-                                onClick={(e) => handleHashtagClick(e, hashtag)} // Prevent navigating to the post detail page
-                            >
-                                #{hashtag} &nbsp;
-                            </Link>
-                        ))}
+                    {/* Col 3: Header Actions */}
+                    <div className="post-header-actions">
+                        <button className="icon-action-button post-options-button" onClick={handleOpenMenu}>
+                            <EllipseIcon />
+                        </button>
+
+                        {/* --- Render the menu modal conditionally --- */}
+                        {isMenuOpen && (
+                            <PostOptionsMenu
+                                isAuthor={isAuthor}
+                                post={post}
+                                isDetailedView={isDetailedView}
+                                postUrl={postUrl}
+                                onClose={() => setIsMenuOpen(false)}
+                                onEditClick={handleOpenEditModal}
+                                onDeleteClick={handleOpenDeleteModal}
+                            />
+                        )}
+                    </div>
+                </header>
+
+                {/* --- ROW 2: MAIN CONTENT --- */}
+                <div className="post-content">
+                    {isRatePost && <p className="rates-from">
+                        <span className="rates-from-text">Fresh Rates {/*Post Author's Country*/} By </span>
+                        <span className="rates-from-author">{post.authorName}</span>
+                    </p>}
+                    <p className={`${isRatePost ? 'rates-post-content' : ''}`}>
+                        <FormattedContent content={post.content} />
                     </p>
-                )}
-            </div>
-
-            {isDetailedView && (
-                <div className="post-detailed-info">
-                    <time dateTime={post.createdAt}>
-                        {formatDetailedTimestamp(post.createdAt)}
-                    </time>
-                </div>
-            )}
-
-            {/* --- ROW 3: FOOTER ACTIONS --- */}
-            <footer className="post-actions">
-                <button className="icon-action-button action-reply" onClick={handleReplyClick}>
-                    <ChatIcon />
-                    <span>{post.replyCount}</span>
-                </button>
-                <button className={`icon-action-button action-like ${post.isLiked ? 'liked' : ''}`} onClick={handleLike}>
-                    <HeartIcon filled={post.isLiked ? true : false} />
-                    <span>{post.likeCount}</span>
-                </button>
-                <button className="icon-action-button action-share" onClick={handleShareClick}>
-                    {copied ? (
-                        <span>Copied!</span>
-                    ) : (
-                        <LinkIcon />
+                    {post.hashtags && post.hashtags.length > 0 && (
+                        <p className="post-hashtags">
+                            {post.hashtags.map((hashtag) => (
+                                <Link
+                                    to={`/search`}
+                                    key={hashtag}
+                                    onClick={(e) => handleHashtagClick(e, hashtag)} // Prevent navigating to the post detail page
+                                >
+                                    #{hashtag} &nbsp;
+                                </Link>
+                            ))}
+                        </p>
                     )}
-                </button>
-            </footer>
-        </article>
+                </div>
+
+                {isDetailedView && (
+                    <div className="post-detailed-info">
+                        <time dateTime={post.createdAt}>
+                            {formatDetailedTimestamp(post.createdAt)}
+                        </time>
+                    </div>
+                )}
+
+                {/* --- ROW 3: FOOTER ACTIONS --- */}
+                <footer className="post-actions">
+                    <button className="icon-action-button action-reply" onClick={handleReplyClick}>
+                        <ChatIcon />
+                        <span>{post.replyCount}</span>
+                    </button>
+                    <button className={`icon-action-button action-like ${post.isLiked ? 'liked' : ''}`} onClick={handleLike}>
+                        <HeartIcon filled={post.isLiked ? true : false} />
+                        <span>{post.likeCount}</span>
+                    </button>
+                    <button className="icon-action-button action-share" onClick={handleShareClick}>
+                        {copied ? (
+                            <span>Copied!</span>
+                        ) : (
+                            <LinkIcon />
+                        )}
+                    </button>
+                </footer>
+            </article>
         </>
     );
 };

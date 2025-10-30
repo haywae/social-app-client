@@ -236,9 +236,6 @@ select {
   width: 100%;
 }
 
-
-
-
 .mention-link {
   color: var(--base);
   font-weight: 500;
@@ -249,19 +246,32 @@ select {
 .mention-link:hover {
   text-decoration: underline;
 }
+
+
 /* ================================================= */
 /* THEME & RESPONSIVE STYLES                         */
 /* ================================================= */
+/* In src/styles/index.css */
+
+.avatar-icon-path {
+  /* This is the fix. 
+    It tells the icon to use your --text-secondary variable.
+    - In Light Mode, this is: #65676b (dark grey)
+    - In Dark Mode, this is: #cccccc (light grey)
+  */
+  fill: var(--text-secondary);
+}
+
 
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   :root {
-    color: var(--grey-1);
+    color: var(--text-primary);
     background-color: var(--background);
   }
 
   a:hover {
-    color: var(--grey-1);
+    color: var(--text-primary);
   }
 
   button {
@@ -275,7 +285,7 @@ select {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #121212;
+    --background: #000000;
     --primary-bg: #1e1e1e;
     --text-primary: #f5f5f5;
     --text-secondary: #cccccc;
@@ -291,5 +301,10 @@ select {
     --grey-7: #424242;
     --btn-danger: #f44336;
     --btn-danger-dark: #c53030;
+    --danger-fill: rgba(220, 38, 38, 0.1);  /* Darker fill */
+    --danger-fill-dark: rgba(220, 38, 38, 0.2);
+    --danger-outline: #F87171;
+    --danger-outline-dark: #FCA5A5;
+    --danger-text: #F87171; /* A lighter red for dark BG */
   }
 }

@@ -7,12 +7,14 @@ import { checkAuth } from "../../thunks/authThunks/authCheckThunk";
 import { updateUsername } from "../../thunks/settingsThunks/updateUsernameThunk";
 import { updatePassword } from "../../thunks/settingsThunks/updatePasswordThunk";
 import { createPassword } from "../../thunks/settingsThunks/createPasswordThunk";
+
 import { requestEmailChange } from "../../thunks/settingsThunks/requestEmailChangeThunk";
 import { deleteAccount } from "../../thunks/settingsThunks/deleteAccountThunk";
 import { uploadProfilePicture } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
 import type { UserData } from "../../types/userType";
 import type { UploadPayload } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
 import { completeOnboardingThunk, type OnboardingResponse } from "../../thunks/userThunks/completeOnBoardingThunk";
+import { setLocalStorage } from "../../utils/authUtils";
 
 // Interface definitions for AuthState, AuthPayload
 export interface AuthState {
@@ -69,6 +71,11 @@ const authSlice = createSlice({
             state.csrfAccessToken = action.payload.csrfAccessToken;
             state.csrfRefreshToken = action.payload.csrfRefreshToken;
             state.accessTokenExp = action.payload.accessTokenExp;
+            setLocalStorage(
+                action.payload.accessTokenExp,
+                action.payload.csrfAccessToken,
+                action.payload.csrfRefreshToken
+            );
         },
         clearAuth: (state) => {
             state.user = null;
@@ -80,6 +87,11 @@ const authSlice = createSlice({
         },
         resetUserError: (state) => {
             state.error = null;
+        },
+        updateUser: (state, action: PayloadAction<Partial<UserData>>) => {
+            if (state.user) {
+                state.user = { ...state.user, ...action.payload };
+            }
         },
     },
     extraReducers: (builder) => {
@@ -264,5 +276,5 @@ const authSlice = createSlice({
     }
 });
 
-export const { setAuthUser, clearAuth, resetUserError, setAuthFromSync } = authSlice.actions;
+export const { setAuthUser, clearAuth, resetUserError, setAuthFromSync, updateUser } = authSlice.actions;
 export default authSlice.reducer;

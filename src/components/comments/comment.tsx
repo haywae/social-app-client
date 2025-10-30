@@ -1,4 +1,4 @@
-import { useState, type JSX } from "react";
+import React, { useState, type JSX } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { EllipseIcon, HeartIcon, LinkIcon } from "../../assets/icons";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
@@ -105,7 +105,7 @@ const Comment = ({ commentId, postId, isDetailedView = false, isGateway = false 
                         </div>
                     </div>
                     <div className="post-header-actions options-menu-container">
-                        <button className="icon-action-button" onClick={() => { setIsMenuOpen(true) }}>
+                        <button className="icon-action-button" onClick={(e: React.MouseEvent) => {e.stopPropagation(); setIsMenuOpen(true) }}>
                             <EllipseIcon />
                         </button>
                         {isMenuOpen && postId && (

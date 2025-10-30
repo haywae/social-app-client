@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { useAppSelector, useAppDispatch, useTitle } from "../utils/hooks";
 import { Link, useNavigate } from "react-router-dom";
-import { useMemo, useEffect, useState } from "react";
+import { useMemo, useEffect, useState} from "react";
 import { openModal } from "../slices/ui/uiSlice";
 import Converter from "../components/exchange/converter";
 import RatesTable from "../components/exchange/ratesTable";
@@ -259,10 +259,13 @@ const ExchangePage = (): JSX.Element => {
                                     <EllipseIcon />
                                 </button>
                                 {isMenuOpen && (
-                                    <ExchangeOptionsMenu username={user?.username}
+                                    <ExchangeOptionsMenu 
+                                        username={user?.username}
                                         onClose={() => setIsMenuOpen(false)}
                                         onEditClick={handleOpenEditModal}
                                         onPostRatesClick={handlePostRates}
+                                        exchangeName={exchangeData?.name}
+                                        avatarUrl={user?.profilePictureUrl}
                                     />
                                 )}
                             </div>

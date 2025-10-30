@@ -29,7 +29,9 @@ function App(): JSX.Element {
     useAuthenticatedData();
 
     // --- LOGIC FOR LAYOUT VISIBILITY ---
-    const minimalHeaderRoutes = ['/settings', '/post/:postId', '/settings/:pageName', '/post', '/search', 'profile/:username',
+    const minimalHeaderRoutes = [
+        '/settings', '/post/:postId', '/settings/:pageName', 'settings/:pageName/:subpageName', 
+        '/post', '/search', 'profile/:username',
         '/posts/:postId/thread/:commentId', '/view'
     ];
 

@@ -65,10 +65,11 @@ const PostFeed = ({ username }: PostFeedProps): JSX.Element => {
         }
     }, [dispatch, username]);
 
+    // FOR INITIAL MOUNT
     if (loading === 'pending' && posts.length === 0) {
         return <div className="feed-loading"><div></div><div></div><div></div></div>; // Show spinner on initial load
     }
-
+    // FOR INITIAL MOUNT
     if (loading === 'succeeded' && posts.length === 0) {
         return <div className="feed-message">No posts found.</div>;
     }

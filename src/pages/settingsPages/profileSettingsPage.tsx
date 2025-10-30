@@ -137,7 +137,9 @@ const ProfileSettingsPage = (): JSX.Element => {
                         <label htmlFor="profile-picture-input" className="btn btn-secondary">
                             Change Photo
                         </label>
-                        <input id="profile-picture-input" type="file" accept="image/png, image/jpeg, image/gif" onChange={handleImageChange} />
+                        <input id="profile-picture-input" type="file" accept="image/png, image/jpeg, image/gif" 
+                            onChange={handleImageChange} placeholder='Enter your Display Name'
+                        />
                     </div>
                     
                     <div className="settings-form-group">
@@ -146,7 +148,7 @@ const ProfileSettingsPage = (): JSX.Element => {
                     </div>
                     <div className="settings-form-group">
                         <label htmlFor="bio">Bio</label>
-                        <textarea id="bio" rows={4} value={bio} onChange={(e) => setBio(e.target.value)} />
+                        <textarea id="bio" rows={4} value={bio} onChange={(e) => setBio(e.target.value)} placeholder='Enter your Bio' />
                     </div>
                     
                     <button type="submit" className="btn btn-primary" disabled={isSubmitting}>

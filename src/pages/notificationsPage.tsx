@@ -13,7 +13,7 @@ const NotificationsPage = (): JSX.Element => {
     const { notifications, loading, error, currentPage, hasMore, unreadCount } = useAppSelector((state) => state.notifications);
 
     const [isLoadingMore, setIsLoadingMore] = useState(false);
-    const [isMarkingRead, setIsMarkingRead] = useState(false);
+    // const [isMarkingRead, setIsMarkingRead] = useState(false);
 
     useEffect(() => {
         let readTimer: number;
@@ -44,18 +44,18 @@ const NotificationsPage = (): JSX.Element => {
     useTitle('Notifications - WolexChange')
 
     // --- HANDLES MARKING ALL NOTIFICATIONS AS READ ---
-    const handleMarkAllAsRead = async () => {
-        setIsMarkingRead(true);
-        try {
-            // Dispatch with an empty object to trigger the "mark all" logic
-            await dispatch(markNotificationsAsRead({})).unwrap();
-        } catch (err) {
-            dispatch(setError("Failed to mark all notifications as read"))
-            DEVELOPER_MODE && console.error("Failed to mark all notifications as read:", err);
-        } finally {
-            setIsMarkingRead(false);
-        }
-    };
+    // const handleMarkAllAsRead = async () => {
+    //     setIsMarkingRead(true);
+    //     try {
+    //         // Dispatch with an empty object to trigger the "mark all" logic
+    //         await dispatch(markNotificationsAsRead({})).unwrap();
+    //     } catch (err) {
+    //         dispatch(setError("Failed to mark all notifications as read"))
+    //         DEVELOPER_MODE && console.error("Failed to mark all notifications as read:", err);
+    //     } finally {
+    //         setIsMarkingRead(false);
+    //     }
+    // };
 
     // --- HANDLE LOAD MORE FUNCTION ---
     const handleLoadMore = async () => {
@@ -77,7 +77,7 @@ const NotificationsPage = (): JSX.Element => {
             <TabbedHeader tabs={[{ path: '/notifications', label: 'All Notifications' }]} />
 
             {/* --- THE MARK ALL BUTTON --- */}
-            {unreadCount > 0 && (
+            {/*unreadCount > 0 && (
                 <div className="notifications-actions">
                     <button
                         onClick={handleMarkAllAsRead}
@@ -87,7 +87,7 @@ const NotificationsPage = (): JSX.Element => {
                         {isMarkingRead ? 'Marking...' : 'Mark all as read'}
                     </button>
                 </div>
-            )}
+            )*/}
             <div className="notifications-list">
                 {notifications.map((notification) => (
                     <NotificationItem

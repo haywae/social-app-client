@@ -42,8 +42,8 @@ const CommentOptionsMenu = ({ onClose, onEditClick, onDeleteClick,
         onClose();
     };
 
-    const handleViewPost = () => {
-        navigate(`/post/${postId}`);
+    const handleViewComment = () => {
+        navigate(`/post/${postId}?fc=${comment.id}`);
         onClose();
     };
     // 1. Define one hour in milliseconds for clarity.
@@ -79,9 +79,9 @@ const CommentOptionsMenu = ({ onClose, onEditClick, onDeleteClick,
                 )}
 
                 {/* These options are available for everyone */}
-                {!isDetailedView &&<li className="menu-option-item" onClick={handleViewPost}>
+                {!isDetailedView &&<li className="menu-option-item" onClick={handleViewComment}>
                     <ViewIcon />
-                    <span>View Post</span>
+                    <span>View Comment</span>
                 </li>}
                 <li className="menu-option-item" onClick={handleCopyLink}>
                     <LinkIcon />

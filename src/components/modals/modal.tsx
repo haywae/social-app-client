@@ -8,7 +8,7 @@ interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
   title?: string;
-  className?: string; 
+  className?: string;
 }
 
 const Modal = ({ isOpen, onClose, children, title, className }: ModalProps): JSX.Element | null => {
@@ -36,7 +36,7 @@ const Modal = ({ isOpen, onClose, children, title, className }: ModalProps): JSX
     return null;
   }
 
-    return createPortal(
+  return createPortal(
     <div className="modal-overlay" onClick={onClose}>
       <div className={`modal-content ${className || ''}`} onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
@@ -48,7 +48,6 @@ const Modal = ({ isOpen, onClose, children, title, className }: ModalProps): JSX
         <div className="modal-body">
           {children}
         </div>
-        {/* The old close button is now inside the header */}
       </div>
     </div>,
     modalRoot

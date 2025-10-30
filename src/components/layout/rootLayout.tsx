@@ -17,6 +17,7 @@ const useGlobalAuthEffects = () => {
 
     // Effect for Syncing the Auth State Across Tabs
     useEffect(() => {
+        // Runs whenever browser detects a change to local storage in another tab
         const handleStorageChange = (event: StorageEvent) => {
             if (event.key === 'auth-sync' && event.newValue) {
                 DEVELOPER_MODE && console.log('Auth state synced from another tab.');

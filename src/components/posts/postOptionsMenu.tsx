@@ -20,10 +20,11 @@ const PostOptionsMenu = ({ postUrl, post, isAuthor, isDetailedView, onClose, onE
 
     const navigate = useNavigate();
 
-
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
+            // Check if the click event occurred *outside* the menu component.
             if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                // If it did, call the onClose function to close the menu.
                 onClose();
             }
         };
