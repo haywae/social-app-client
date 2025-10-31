@@ -2,7 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { UserData } from "../../types/userType";
 import type { AppDispatch } from "../../store";
 import { scheduleProactiveRefresh } from "../../utils/authUtils";
+import { type RefreshReject } from "./refreshTokenThunk";
 import api from "../../apiInterceptor";
+import { DEVELOPER_MODE } from "../../appConfig";
 
 // Shape of the expected response from the API
 interface AuthCheckResponse {
@@ -19,7 +21,7 @@ export const checkAuth = createAsyncThunk<
     void,
     {
         dispatch: AppDispatch,
-        rejectValue: string
+        rejectValue: RefreshReject
     }
 >(
     'auth/checkAuth',
@@ -34,7 +36,10 @@ export const checkAuth = createAsyncThunk<
             // 2. Check for non-401 errors.
             if (!response.ok) {
                 const data = await response.json();
-                return rejectWithValue(data.error || 'Authentication check failed.');
+                return rejectWithValue({
+                    type: 'auth',
+                    message: data.error || 'Authentication check failed.'
+                });
             }
 
             // 3. Process the successful response.
@@ -44,13 +49,20 @@ export const checkAuth = createAsyncThunk<
             if (data.access_token_exp) {
                 scheduleProactiveRefresh(dispatch, data.access_token_exp);
             }
-            
+            DEVELOPER_MODE && console.log('checkAuth Thunk: Authentication successful')
             return data;
 
         } catch (error: any) {
             // This catch block will receive errors from failed token refreshes
             // or other network issues handled by the interceptor.
-            return rejectWithValue(error.message || 'An unexpected error occurred.');
+            DEVELOPER_MODE && console.log('Error from checkAuth Thunk, This is the Error type: ', error.type);
+            if (error.type === 'auth') {
+                return rejectWithValue(error);
+            }
+            return rejectWithValue({
+                type: 'network',
+                message: error.message || 'An unexpected error occurred.'
+            });
         }
     }
 );

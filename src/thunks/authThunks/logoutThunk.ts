@@ -8,24 +8,23 @@ import { clearLocalStorage } from '../../utils/authUtils';
 // --------------------------------------------------------
 export const logoutUser = createAsyncThunk(
     'auth/logoutUser',
-    async (_, {rejectWithValue}) => {
+    async (_,) => {
         const csrfAccessToken = localStorage.getItem('csrfAccessToken');
-        if (!csrfAccessToken) {
-            return rejectWithValue('Refresh token is missing. Please log in again.');
-        }
         try {
-            await fetch(`${API_BASE_URL}/logout`, {
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': csrfAccessToken
-                },
-                credentials: 'include',
-            });
+            if (csrfAccessToken) {
+                await fetch(`${API_BASE_URL}/logout`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfAccessToken
+                    },
+                    credentials: 'include',
+                });
+            }
             // The goal is simply to log the user out on the client.
         } catch (error) {
             // Ignore network errors, the goal is to clear the client state
-        } finally{
+        } finally {
             clearLocalStorage()
         }
         return;

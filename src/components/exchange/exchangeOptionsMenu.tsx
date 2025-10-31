@@ -64,7 +64,7 @@ const ExchangeOptionsMenu = ({ username, exchangeName, avatarUrl, onClose, onEdi
                 </li>
                 <li className="menu-option-item" onClick={handleShowQRCode}>
                     <QRIcon />
-                    <span>Show QR Code</span>
+                    <span>Show Rates QR Code</span>
                 </li>
             </ul>
         </div>

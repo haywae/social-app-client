@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { loginUser, type LoginResponse } from "../../thunks/authThunks/loginThunk";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
 import { googleLogin } from "../../thunks/authThunks/googleLoginThunk";
-import { refreshToken, type RefreshTokenSuccess } from "../../thunks/authThunks/refreshTokenThunk";
+import { refreshToken, type RefreshTokenSuccess, type RefreshReject } from "../../thunks/authThunks/refreshTokenThunk";
 import { checkAuth } from "../../thunks/authThunks/authCheckThunk";
 import { updateUsername } from "../../thunks/settingsThunks/updateUsernameThunk";
 import { updatePassword } from "../../thunks/settingsThunks/updatePasswordThunk";
@@ -112,7 +112,7 @@ const authSlice = createSlice({
                 state.error = null;
             })
             .addCase(loginUser.rejected, (state, action) => {
-                state.loading = 'failed'; 
+                state.loading = 'failed';
                 state.error = action.payload ?? "An unknown login error occurred";
             })
 
@@ -131,7 +131,7 @@ const authSlice = createSlice({
                 state.error = null;
             })
             .addCase(googleLogin.rejected, (state, action) => {
-                state.loading = 'failed'; 
+                state.loading = 'failed';
                 state.error = action.payload ?? "An unknown login error occurred";
             })
 
@@ -154,7 +154,7 @@ const authSlice = createSlice({
                 state.loading = 'failed';
                 state.error = action.payload ?? 'Failed to complete profile.';
             })
-            
+
             //----- LOG OUT -----
             .addCase(logoutUser.fulfilled, (state) => {
                 // Use the clearAuth reducer's logic for a clean logout
@@ -171,13 +171,17 @@ const authSlice = createSlice({
                 state.accessTokenExp = action.payload.access_token_exp;
                 state.tokenError = null;
             })
-            .addCase(refreshToken.rejected, (state) => {
-                state.user = null;
-                state.isAuthenticated = false;
-                state.csrfAccessToken = null;
-                state.csrfRefreshToken = null;
-                state.accessTokenExp = null;
-                state.tokenError = 'Session expired. Please log in again.';
+            .addCase(refreshToken.rejected, (state, action: PayloadAction<RefreshReject | undefined>) => {
+                if (action.payload?.type === 'auth') {
+                    state.user = null;
+                    state.isAuthenticated = false;
+                    state.csrfAccessToken = null;
+                    state.csrfRefreshToken = null;
+                    state.accessTokenExp = null;
+                    state.tokenError = 'Session expired. Please log in again.';
+                } else {
+                    state.tokenError = action.payload?.message ?? 'A network error occurred. Please try again.s';
+                }
             })
 
             //----- CHECK AUTH / AUTHENTICATE -----
@@ -193,13 +197,21 @@ const authSlice = createSlice({
                 state.loading = 'succeeded';
                 state.error = null;
             })
-            .addCase(checkAuth.rejected, (state) => {
-                state.user = null;
-                state.isAuthenticated = false;
-                state.csrfAccessToken = null;
-                state.csrfRefreshToken = null;
-                state.accessTokenExp = null;
-                state.loading = 'failed';
+            .addCase(checkAuth.rejected, (state, action: PayloadAction<RefreshReject | undefined>) => {
+                if (action.payload?.type === 'auth') {
+                    state.user = null;
+                    state.isAuthenticated = false;
+                    state.csrfAccessToken = null;
+                    state.csrfRefreshToken = null;
+                    state.accessTokenExp = null;
+                    state.loading = 'failed';
+                }
+                else {
+                    // It was a NETWORK error. DO NOT log the user out.
+                    // The user is still "authenticated" but offline.
+                    state.loading = 'failed';
+                    state.error = action.payload?.message || 'Failed to connect to server.';
+                }
             })
 
             //----- UPDATE USERNAME -----

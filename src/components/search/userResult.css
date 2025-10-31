@@ -4,7 +4,7 @@
     align-items: flex-start;
     gap: 0.75rem;
     padding: 0.5rem 1rem; /* A bit more padding for better spacing */
-    border-bottom: 1px solid var(--grey-6);
+    border-bottom: 1px solid var(--border-color);
     text-decoration: none;
     color: inherit;
     transition: background-color 0.2s;
@@ -45,9 +45,6 @@
 
 /* --- Dark Theme --- */
 @media (prefers-color-scheme: dark) {
-    .user-result-card { 
-        border-color: var(--grey-6); 
-    }
     .user-result-card:hover { 
         background-color: var(--grey-7);
     }

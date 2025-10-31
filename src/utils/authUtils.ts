@@ -1,19 +1,19 @@
 import { refreshToken } from "../thunks/authThunks/refreshTokenThunk";
 import type { AppDispatch } from "../store";
-
+/** Function clears {accessTokenExp, refreshTokenExp, csrfAccessToken, csrfRefreshToken} from local storage */
 export function clearLocalStorage(): void{
-    /** Function clears {accessTokenExp, refreshTokenExp, csrfAccessToken, csrfRefreshToken} from local storage */
     localStorage.removeItem('accessTokenExp');
+    localStorage.removeItem('auth-sync');
     localStorage.removeItem('csrfAccessToken'); 
     localStorage.removeItem('csrfRefreshToken');
 }
 
+/** Function sets {accessTokenExp, refreshTokenExp, csrfAccessToken, csrfRefreshToken} in local storage */
 export function setLocalStorage(
     accessTokenExp: string | null,
     csrfAccessToken: string | null,
     csrfRefreshToken: string | null
 ): void {
-    /** Function sets {accessTokenExp, refreshTokenExp, csrfAccessToken, csrfRefreshToken} in local storage */
     if (accessTokenExp) localStorage.setItem('accessTokenExp', accessTokenExp);
     if (csrfAccessToken) localStorage.setItem('csrfAccessToken', csrfAccessToken);
     if (csrfRefreshToken) localStorage.setItem('csrfRefreshToken', csrfRefreshToken);

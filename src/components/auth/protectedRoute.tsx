@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { type JSX } from 'react';
 import LandingPage from '../../pages/landingPage';
 import FullPageLoader from '../common/fullPageLoader';
+import ConnectionError from './connectionError';
 
 /**
  * A wrapper component that protects routes requiring authentication.
@@ -11,7 +12,7 @@ import FullPageLoader from '../common/fullPageLoader';
  * It also handles the initial loading state to prevent flickering.
  */
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-    const { isAuthenticated, loading } = useAppSelector((state) => state.auth);
+    const { isAuthenticated, loading, error } = useAppSelector((state) => state.auth);
     const location = useLocation();
 
     // While checking the session, show a loading indicator or nothing at all.
@@ -22,6 +23,13 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
             <div>
                 <FullPageLoader />
             </div>
+        );
+    }
+
+    if (loading === 'failed' && error) {
+        // You would create a dedicated component for this
+        return (
+            <ConnectionError />
         );
     }
 

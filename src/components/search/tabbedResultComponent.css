@@ -1,7 +1,7 @@
 /* --- {L1} Search Tabs, Results Container --- */
 .search-tabs {
   display: flex;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .results-container {
@@ -49,9 +49,6 @@
 
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
-  .search-tabs {
-    border-bottom-color: var(--grey-6);
-  }
 
   .tab-button {
     color: var(--grey-4);

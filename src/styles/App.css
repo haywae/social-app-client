@@ -126,8 +126,8 @@
   .main-content {
     min-height: calc(100vh - var(--main-header-height) - 1rem);
     margin-bottom: 0;
-    border-right: 1px solid var(--grey-6);
-    border-left: 1px solid var(--grey-6);
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
   }
 
 

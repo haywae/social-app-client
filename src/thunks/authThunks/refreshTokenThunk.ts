@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { API_BASE_URL } from "../../appConfig";
+import { API_BASE_URL, DEVELOPER_MODE } from "../../appConfig";
 import type { AppDispatch } from "../../store";
 import { scheduleProactiveRefresh, setLocalStorage } from "../../utils/authUtils";
 
@@ -9,16 +9,24 @@ export interface RefreshTokenSuccess {
     csrf_access_token: string;
     csrf_refresh_token: string;
 }
+
+export interface RefreshReject {
+    type: 'auth' | 'network';
+    message: string;
+}
 //-------------------------------
 // Refreshes the access token
 // To avoid infinite loops, it cannot use the interceptor
 //-------------------------------
-export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispatch: AppDispatch, rejectValue: string }>('auth/refreshToken',
+export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispatch: AppDispatch, rejectValue: RefreshReject }>('auth/refreshToken',
     async (_, { dispatch, rejectWithValue }) => {
         const csrfRefreshToken = localStorage.getItem('csrfRefreshToken');
 
         if (!csrfRefreshToken) {
-            return rejectWithValue('Refresh token is missing. Please log in again.');
+            return rejectWithValue({
+                type: 'auth',
+                message: 'Refresh token is missing. Please log in again.'
+            });
         }
 
         try {
@@ -35,11 +43,23 @@ export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispat
             // 2. ----- Checks if the request failed -----
             if (!response.ok) {
                 const data = await response.json();
-                // Consistently return a string message on failure
-                return rejectWithValue(data.error || `Failed to refresh token (Status: ${response.status})`);
+                // This is a "real" auth error. Log the user out.
+                if (response.status === 401 || response.status === 403) {
+                    return rejectWithValue({
+                        type: 'auth',
+                        message: data.error || 'Session expired. Please log in again.'
+                    });
+                }
+
+                // This is a server error (5xx) or other issue. Treat it as a network problem.
+                return rejectWithValue({
+                    type: 'network',
+                    message: data.error || `Failed to refresh token (Status: ${response.status})`
+                });
             }
 
             // 3. ----- Processes the successful response -----
+            DEVELOPER_MODE && console.log('refreshToken Thunk: Token refresh successful')
             const data: RefreshTokenSuccess = await response.json();
 
             // 4. ----- Update localStorage with the new access token -----
@@ -63,7 +83,12 @@ export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispat
 
         } catch (error: any) {
             // Handle network errors and other unexpected issues
-            return rejectWithValue(error.error || 'An unexpected network error occurred.');
+            DEVELOPER_MODE && console.log('Error from refreshToken Thunk, This is the Error type: ', error.type);
+
+            return rejectWithValue({
+                type: 'network',
+                message: error.message || 'Network Error'
+            });
         }
     }
 );

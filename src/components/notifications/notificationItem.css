@@ -2,7 +2,7 @@
   display: flex;
   gap: 1rem;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--grey-6);
+  border-bottom: 1px solid var(--border-color);
   text-decoration: none;
   color: inherit;
   transition: background-color 0.2s;
@@ -121,13 +121,7 @@
 /* --- Dark Theme --- */
 
 @media (prefers-color-scheme: dark) {
-  .notification-item {
-    border-color: var(--grey-6);
-  }
 
-  .notification-item:hover {
-    background-color: var(--grey-7);
-  }
 
   .notification-item.unread {
     background-color: rgba(29, 155, 240, 0.1);

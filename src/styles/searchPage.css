@@ -12,7 +12,7 @@
   /* 12px */
   padding: 0.5rem 1rem;
   /* 8px 16px */
-  border-bottom: 1px solid var(--grey-6);
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   background-color: var(--background);
@@ -106,7 +106,7 @@
 
   .search-bar {
     background-color: var(--background);
-    border-bottom-color: var(--grey-3);
+    border-bottom-color: var(--border-color);
   }
 
   .search-input-wrapper .search-bar-icon,

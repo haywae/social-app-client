@@ -64,7 +64,8 @@
 .modal-close-button {
   position: static;
   /* No longer needs absolute positioning */
-  background: none;
+  background-color: var(--primary-bg);
+  opacity: 0.5;
   border: none;
   color: var(--grey-4);
   cursor: pointer;

@@ -13,7 +13,7 @@
 /* --- Unauthenticated Header --- */
 .main-header-no-auth {
     background-color: var(--background);
-    border-bottom: 2px solid var(--primary-bg);
+    border-bottom: 2px solid var(--border-color);
 }
 
 .header-content-no-auth {
@@ -29,7 +29,7 @@
     background-color: var(--background-alpha);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid var(--grey-6);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header-content {
@@ -84,7 +84,7 @@
     width: 100%;
     height: var(--bottom-nav-height);
     background-color: var(--background);
-    border-top: 1px solid var(--grey-6);
+    border-top: 1px solid var(--border-color);
     z-index: 900;
 }
 

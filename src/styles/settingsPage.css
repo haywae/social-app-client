@@ -8,9 +8,9 @@ Description: Styles for the user settings page and its components.
     margin: 0 auto;
     background-color: var(--primary);
     color: var(--grey-1);
-    min-height: 100vh;
+    min-height: calc(100vh - var(--bottom-nav-height));
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
 }
 
 .settings-header {
@@ -30,7 +30,8 @@ Description: Styles for the user settings page and its components.
     font-size: 1.25rem;
     margin: 0;
     text-align: center;
-    flex-grow: 1; /* Allows the title to center properly */
+    flex-grow: 1;
+    /* Allows the title to center properly */
 }
 
 .close-button {
@@ -108,8 +109,12 @@ Description: Styles for the user settings page and its components.
     text-align: center;
     color: var(--grey-4);
 }
-.settings-message.error { color: var(--danger); }
-.settings-link-button{
+
+.settings-message.error {
+    color: var(--danger);
+}
+
+.settings-link-button {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
@@ -128,3 +133,8 @@ Description: Styles for the user settings page and its components.
 
 
 
+@media (min-width: 768px) {
+    .settings-page {
+        min-height: 100vh;
+    }
+}

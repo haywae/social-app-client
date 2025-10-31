@@ -1,7 +1,7 @@
 import store from './store';
-import { refreshToken } from './thunks/authThunks/refreshTokenThunk';
+import { refreshToken, type RefreshReject } from './thunks/authThunks/refreshTokenThunk';
 import { logoutUser } from './thunks/authThunks/logoutThunk';
-import { API_BASE_URL } from './appConfig';
+import { API_BASE_URL, DEVELOPER_MODE } from './appConfig';
 
 // --- 1. Define the types for your API service ---
 
@@ -20,7 +20,7 @@ type ApiService = {
 
 
 let isRefreshing = false;
-let failedQueue: Array<{ 
+let failedQueue: Array<{
     resolve: (value?: any) => void,
     reject: (reason?: any) => void
 }> = [];
@@ -47,7 +47,7 @@ const processQueue = (error: any, token: string | null = null) => {
  */
 const api: ApiService = async (url: string, options: RequestInit = {}) => {
     // Retrieves the CSRF Access token from local storage
-    let token = localStorage.getItem('csrfAccessToken') 
+    let token = localStorage.getItem('csrfAccessToken')
 
     // Sets up a headers object with the provided options or creates an empty object
     const headers = new Headers(options.headers || {});
@@ -58,14 +58,14 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
     }
 
     // Updates the headers object with the Content type key if its not a medis
-        if (!(options.body instanceof FormData)) {
+    if (!(options.body instanceof FormData)) {
         headers.set('Content-Type', 'application/json');
     }
 
     // Creates an original request options object to be passed to the callers main request
     // Spreads the options provided by the caller such as METHOD, BODY. Headers and credentials are overriden
     const originalRequest = {
-        ...options, 
+        ...options,
         headers,
         credentials: 'include' as RequestCredentials
     };
@@ -78,7 +78,7 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
         // Ensures only the first API call that triggers a 401 triggers a token refresh
         if (!isRefreshing) {
             isRefreshing = true;
-            try{
+            try {
                 // a. --- dispatches the refresh token thunk and gets the new access token
                 const result = await store.dispatch(refreshToken()).unwrap();
                 const newAccessToken = result.csrf_access_token;
@@ -93,11 +93,20 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
                 // d. --- Reattempts the caller's request with updated values
                 return fetch(`${API_BASE_URL}${url}`, originalRequest);
 
-            } catch(err) {
-                // Calls the process queue to reject the promise if the refresh token faled
+            } catch (error: any) {
+                DEVELOPER_MODE && console.log('This is the error received by the API INTERCEPTOR')
+                const err = error as RefreshReject;
+                if (err && err.type === 'network') {
+                    // Calls the process queue to reject the promise if the refresh token failed
+                    // Do not log out if it was a network error
+                    processQueue(err, null);
+                    return Promise.reject(err);
+                }
+
                 processQueue(err, null);
                 store.dispatch(logoutUser());
                 return Promise.reject(err);
+
             } finally {
                 isRefreshing = false;
             }
