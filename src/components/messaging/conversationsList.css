@@ -1,0 +1,195 @@
+/* src/components/messaging/ConversationList.css */
+
+.conversation-list-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Adjust based on parent layout */
+    width: 100%;
+    background-color: var(--primary-bg); /* Use background for main container */
+}
+
+.conversation-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.conversation-list-header h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    border-bottom: none; /* Remove border from h2 */
+}
+
+.new-chat-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.new-chat-btn:hover {
+    color: var(--base);
+}
+
+.conversation-scroll-area {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.conversation-list-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.conversation-list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.conversation-list-item:hover {
+    /* Use a subtle grey for hover */
+    background-color: var(--grey-7); 
+}
+
+/* Use a slightly darker grey for active, distinct from hover */
+.conversation-list-item.active {
+    background-color: var(--grey-6); 
+}
+
+.conversation-avatar {
+    /* Inherits border-radius, object-fit etc from .user-avatar in App.css */
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.conversation-details {
+    flex-grow: 1;
+    overflow: hidden; 
+}
+
+.conversation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.conversation-name {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-primary);
+}
+
+.conversation-time {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+.conversation-preview {
+    font-size: 0.85rem;
+    color: var(--text-secondary); /* Use secondary text color */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.conversation-list-status {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.conversation-list-status.error {
+    color: var(--danger-text); /* Use danger text color */
+}
+
+/* --- ADD THESE NEW STYLES --- */
+
+.conversation-list-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* This makes it fill the available space */
+    flex-grow: 1; 
+    
+    padding: 20px;
+    box-sizing: border-box;
+    color: var(--text-secondary);
+}
+
+.conversation-list-placeholder .placeholder-icon {
+    font-size: 3.5rem; /* Makes the icon large */
+    margin-bottom: 1rem;
+    color: var(--grey-5); /* Muted color */
+}
+
+.conversation-list-placeholder h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.conversation-list-placeholder p {
+    font-size: 0.9rem;
+    margin: 0;
+    max-width: 280px; /* Keeps text readable */
+    line-height: 1.4;
+}
+
+/* Style the icon inside the paragraph */
+.conversation-list-placeholder p svg {
+    display: inline-block;
+    vertical-align: sub; /* Aligns icon with text */
+    width: 1em;
+    height: 1em;
+}
+
+/* --- ADD THIS WRAPPER --- */
+.conversation-preview-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conversation-preview {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    /* Make room for the badge */
+    flex-grow: 1;
+}
+
+/* --- ADD THIS NEW INDICATOR STYLE --- */
+.unread-indicator {
+    background-color: var(--base);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 8px;
+    flex-shrink: 0;
+}

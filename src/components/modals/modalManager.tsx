@@ -10,6 +10,7 @@ import DeleteAccountModal from './deleteAccountModal';
 import ConnectionsModal from './connectionsModal';
 import { EditExchangeModal } from './editExchangeModal';
 import QRCodeModal from './qrCodeModal';
+import NewChatModal from './newChatModal';
 import { DEVELOPER_MODE } from '../../appConfig';
 
 const ModalManager = () => {
@@ -135,6 +136,13 @@ const ModalManager = () => {
       }
       DEVELOPER_MODE && console.error('VIEW_QR_CODE modal opened without url or title.');
       return null;
+    }
+
+    case 'NEW_CHAT': {
+      return <NewChatModal
+        isOpen={true}
+        onClose={handleClose}
+      />;
     }
 
     default:

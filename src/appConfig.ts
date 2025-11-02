@@ -1,16 +1,18 @@
 import defaultAvatar from './assets/default-avatar.svg';
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL
 
-export const DEVELOPER_MODE = import.meta.env.MODE === 'development';
+export const DEVELOPER_MODE: boolean = import.meta.env.MODE === 'development';
 
 export const MINIMUM_RATE_ROWS = 3;
 
 export const DEFAULT_AVATAR_URL = defaultAvatar;
 
-export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+export const SOCKET_URL: string = import.meta.env.VITE_SOCKET_URL || API_BASE_URL || '';
 
-export const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
+export const GOOGLE_CLIENT_ID: string = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+export const IMAGE_BASE_URL: string = import.meta.env.VITE_IMAGE_BASE_URL;
 
 // Regex to find @username mentions (preceded by a space or start of string)
 // This is updated to NOT capture a trailing period or other punctuation.

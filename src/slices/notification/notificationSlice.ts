@@ -49,7 +49,17 @@ const notificationsSlice = createSlice({
     reducers: {
         clearNotifications: (state) => {
             Object.assign(state, initialState);
-        }
+        },
+        // --- 1. Adds a new notification to the top of the list ---
+        addNotification: (state, action: PayloadAction<NotificationData>) => {
+            // Add to the top of the list
+            state.notifications.unshift(action.payload);
+        },
+
+        // --- 2. Increments the unread count ---
+        incrementUnreadCount: (state) => {
+            state.unreadCount = (state.unreadCount || 0) + 1;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -89,5 +99,5 @@ const notificationsSlice = createSlice({
     }
 });
 
-export const { clearNotifications } = notificationsSlice.actions;
+export const { addNotification, clearNotifications, incrementUnreadCount } = notificationsSlice.actions;
 export default notificationsSlice.reducer;

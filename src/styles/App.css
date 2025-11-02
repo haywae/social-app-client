@@ -20,6 +20,10 @@
   /*Ensures the page has a margin to give space for the bottom nav;*/
 }
 
+.expand-main-content{
+  max-width: 1000px;
+}
+
 .follow-button {
   padding: 0.5rem 1.25rem;
   /* A little more horizontal padding */

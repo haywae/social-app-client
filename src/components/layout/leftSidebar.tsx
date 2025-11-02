@@ -1,11 +1,14 @@
 import { type JSX } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { SearchIcon, NotificationIcon, ProfileIcon, HomeIcon, BankNoteIcon, CreatePostIcon, SignoutIcon, SettingsIcon } from "../../assets/icons";
+import { SearchIcon, NotificationIcon, MessageIcon, MessageOpenIcon,
+    HomeIcon, BankNoteIcon, CreatePostIcon, SignoutIcon, SettingsIcon 
+} from "../../assets/icons";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
 
 import "./leftSidebar.css";
+import { useMemo } from "react";
 
 /**
  * Renders the main navigation sidebar for authenticated users on desktop screens.
@@ -13,8 +16,14 @@ import "./leftSidebar.css";
 const LeftSidebar = (): JSX.Element => {
     const { user } = useAppSelector((state) => state.auth);
     const { unreadCount } = useAppSelector((state) => state.notifications);
+    const { conversations } = useAppSelector((state) => state.conversations);
+    
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    const totalUnreadMessages = useMemo(() => {
+        return conversations.reduce((total, convo) => total + (convo.unreadCount || 0), 0);
+    }, [conversations]);
 
     const activeLinkStyle = {
         color: 'var(--base)',
@@ -65,9 +74,14 @@ const LeftSidebar = (): JSX.Element => {
                             </div>
                             <span>Notifications</span>
                         </NavLink>
-                        <NavLink to={`/profile/${user?.username}`} style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
-                            <ProfileIcon />
-                            <span>Profile</span>
+                        <NavLink to={`/messages`} style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
+                            <div className="nav-icon-wrapper">
+                                {totalUnreadMessages > 0 ? <MessageIcon /> : <MessageOpenIcon />}
+                                {totalUnreadMessages > 0 && (
+                                    <span className="notification-indicator">{totalUnreadMessages}</span>
+                                )}
+                            </div>
+                            <span>Messages</span>
                         </NavLink>
                         <NavLink to="/settings" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
                             <SettingsIcon />

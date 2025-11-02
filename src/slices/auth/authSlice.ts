@@ -26,6 +26,7 @@ export interface AuthState {
     csrfAccessToken: string | null;
     csrfRefreshToken: string | null;
     accessTokenExp: string | null;
+    hasInitializedAuth: boolean;
 }
 
 // The type for auth main reducers payload/args
@@ -52,6 +53,7 @@ const initialState: AuthState = {
     csrfAccessToken: null,
     csrfRefreshToken: null,
     accessTokenExp: null,
+    hasInitializedAuth: false,
 };
 
 const authSlice = createSlice({
@@ -108,6 +110,7 @@ const authSlice = createSlice({
                 state.csrfRefreshToken = action.payload.csrf_refresh_token;
                 state.accessTokenExp = action.payload.access_token_exp;
                 state.isAuthenticated = true;
+                state.hasInitializedAuth = true;
                 state.loading = 'succeeded';
                 state.error = null;
             })
@@ -127,6 +130,7 @@ const authSlice = createSlice({
                 state.csrfRefreshToken = action.payload.csrf_refresh_token;
                 state.accessTokenExp = action.payload.access_token_exp;
                 state.isAuthenticated = true;
+                state.hasInitializedAuth = true;
                 state.loading = 'succeeded';
                 state.error = null;
             })
@@ -194,6 +198,7 @@ const authSlice = createSlice({
                 state.csrfRefreshToken = action.payload.csrf_refresh_token;
                 state.accessTokenExp = action.payload.access_token_exp;
                 state.isAuthenticated = true;
+                state.hasInitializedAuth = true;
                 state.loading = 'succeeded';
                 state.error = null;
             })
@@ -212,6 +217,7 @@ const authSlice = createSlice({
                     state.loading = 'failed';
                     state.error = action.payload?.message || 'Failed to connect to server.';
                 }
+                state.hasInitializedAuth = true;
             })
 
             //----- UPDATE USERNAME -----

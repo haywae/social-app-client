@@ -27,7 +27,7 @@ const NotificationsPage = (): JSX.Element => {
                 if (unreadNotificationIds.length > 0) {
                     dispatch(markNotificationsAsRead({ notificationIds: unreadNotificationIds }));
                 }
-            }, 3000);
+            }, 1000);
         }
         return () => {
             if (readTimer) clearTimeout(readTimer);
@@ -36,7 +36,8 @@ const NotificationsPage = (): JSX.Element => {
 
 
     useEffect(() => {
-        if (notifications.length === 0) {
+        // Only fetch if not already loading or succeeded to prevent redundant fetches
+        if (loading === 'idle' && notifications.length === 0) {
             dispatch(fetchNotifications({ page: 1 }));
         }
     }, [dispatch, notifications.length]);

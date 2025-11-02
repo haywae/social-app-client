@@ -84,6 +84,7 @@
   --bottom-nav-height: 40px;
   --main-header-height: 60px;
   --footer-height: 50px;
+  --default-page-height: calc(100vh - var(--main-header-height) - var(--bottom-nav-height))
 }
 
 /* --- Base & Reset Styles --- */
@@ -263,6 +264,7 @@ select {
 }
 
 
+
 /* --- Dark Theme Overrides --- */
 @media (prefers-color-scheme: dark) {
   :root {
@@ -307,4 +309,38 @@ select {
     --danger-outline-dark: #FCA5A5;
     --danger-text: #F87171; /* A lighter red for dark BG */
   }
+}
+
+/* ========================*/
+/* Global Custom Scrollbar */
+/* ========================*/
+
+/* For Firefox */
+html {
+    scrollbar-width: thin;
+    /* thumb-color track-color */
+    scrollbar-color: var(--grey-5) var(--background); 
+}
+
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    height: 8px; /* Height for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+    /* Match the app background */
+    background: var(--background); 
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--grey-6); /* A subtle grey handle */
+    border-radius: 10px; /* Rounded handle */
+    /* Creates padding around thumb */
+    border: 2px solid var(--background); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    /* Darker handle on hover */
+    background-color: var(--grey-5); 
 }

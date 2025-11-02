@@ -30,6 +30,7 @@ import AboutPage from './pages/legal/about.tsx';
 // --- Authenticated App Pages ---
 import CreatePostPage from './pages/createPostPage.tsx';
 import ExchangePage from './pages/exchangePage.tsx';
+import MessagingPage from "./pages/messagingPage.tsx";
 import NotificationsPage from './pages/notificationsPage.tsx';
 import SearchPage from './pages/searchPage.tsx';
 import SettingsPage from './pages/settingsPages/settingsPage.tsx';
@@ -88,6 +89,11 @@ export const appRoutes: RouteObject[] = [
                     // The authenticated "home" is now at /feed
                     { path: 'feed', element: <Home /> },
                     { path: 'exchange', element: <ExchangePage /> },
+                    { path: 'messages', element: <MessagingPage />, 
+                        children: [
+                            { path: ':conversationId', element: <MessagingPage /> } 
+                        ]
+                    },
                     { path: 'notifications', element: <NotificationsPage /> },
                     { path: 'post', element: <CreatePostPage /> },
                     { path: 'post/:postId', element: <PostDetailPage /> },
@@ -101,6 +107,7 @@ export const appRoutes: RouteObject[] = [
                     { path: 'settings/profile', element: <ProfileSettingsPage /> },
                     { path: 'settings/security', element: <SecurityPrivacyPage /> },
                     { path: 'complete-profile', element: <CompleteProfilePage /> },
+
                 ]
             },
              // --- HYBRID ROUTES (AUTH OR GUEST) ---

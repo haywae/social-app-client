@@ -1,0 +1,32 @@
+/* src/components/modals/newChatModal.css */
+.new-chat-container .modal-body {
+    padding: 0; /* Remove default modal body padding */
+}
+
+.new-chat-search-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+}
+.new-chat-search-input:focus {
+    border-bottom-color: var(--base);
+}
+
+.new-chat-results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px; /* Limit height */
+    overflow-y: auto;
+}
+
+.chat-list-status {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+}

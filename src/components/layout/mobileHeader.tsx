@@ -1,6 +1,10 @@
 import { type JSX } from "react";
+import { useMemo } from "react";
 import { Link, NavLink, useLocation, matchPath } from "react-router-dom";
-import { SearchIcon, SettingsIcon, HomeIcon, BankNoteIcon, CreatePostIcon, NotificationIcon} from "../../assets/icons";
+import {
+    SearchIcon, SettingsIcon, HomeIcon, BankNoteIcon,
+    MessageIcon, MessageOpenIcon, CreatePostIcon, NotificationIcon
+} from "../../assets/icons";
 import { useAppSelector } from "../../utils/hooks";
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
 import "./mobileHeader.css";
@@ -19,6 +23,7 @@ const routeConfig = [
     { path: "/search", title: "Search" },
     { path: "/notifications", title: "Notifications" },
     { path: "/profile/:username", title: "Profile" },
+    { path: "/messages", title: "Message" }
 ];
 
 /** A helper function to find the correct title using matchPath 
@@ -40,10 +45,15 @@ const getPageTitle = (pathname: string): string => {
 const MobileHeader = ({ showHeader = true }: HeaderProps): JSX.Element | null => {
     const { isAuthenticated, user } = useAppSelector((state) => state.auth);
     const { unreadCount } = useAppSelector((state) => state.notifications);
+    const { conversations } = useAppSelector((state) => state.conversations);
+
     const location = useLocation();
 
-    
+
     const pageTitle = getPageTitle(location.pathname);
+    const totalUnreadMessages = useMemo(() => {
+        return conversations.reduce((total, convo) => total + (convo.unreadCount || 0), 0);
+    }, [conversations]);
 
     if (!isAuthenticated) {
         return (
@@ -60,9 +70,23 @@ const MobileHeader = ({ showHeader = true }: HeaderProps): JSX.Element | null =>
             {showHeader && (
                 <header className="main-header">
                     <div className="header-content">
-                        <Link to="/"><h1 className="header-title">{pageTitle}</h1></Link>
                         <div className="header-actions">
-                            <Link to="/settings" title="Settings Icon"><SettingsIcon /></Link>
+                            <NavLink to={`/messages`} style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
+                                <div className="nav-icon-wrapper">
+                                    {totalUnreadMessages > 0 ? <MessageIcon /> : <MessageOpenIcon />}
+                                    {totalUnreadMessages > 0 && (
+                                        <span className="notification-indicator">{totalUnreadMessages}</span>
+                                    )}
+                                </div>
+                            </NavLink>
+                        </div>
+                        <h1 className="header-title">{pageTitle}</h1>
+                        <div className="header-actions">
+                            <NavLink to="/settings" title="Settings Icon">
+                                <div className="nav-icon-wrapper">
+                                    <SettingsIcon />
+                                </div>
+                            </NavLink>
                         </div>
                     </div>
                 </header>
@@ -105,7 +129,7 @@ const MobileHeader = ({ showHeader = true }: HeaderProps): JSX.Element | null =>
                     style={({ isActive }) => isActive ? activeLinkStyle : undefined}
                 >
                     <div className="nav-icon-wrapper">
-                        <img src={user?.profilePictureUrl? `${IMAGE_BASE_URL}/${user.profilePictureUrl}` : DEFAULT_AVATAR_URL}  className="user-avatar avatar-xs" alt="User avatar" />
+                        <img src={user?.profilePictureUrl ? `${IMAGE_BASE_URL}/${user.profilePictureUrl}` : DEFAULT_AVATAR_URL} className="user-avatar avatar-xs" alt="User avatar" />
                     </div>
                 </NavLink>
             </nav>
