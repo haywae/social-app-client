@@ -75,7 +75,7 @@ export const fetchMessageHistory = createAsyncThunk<
             }
 
             // Parse the successful JSON response (expecting { messages: [], pagination: {} })
-            const responseData: { messages: MessageData[], pagination: MessagePagination } = await response.json();
+            const responseData: FetchHistoryResponse = await response.json();
             
             // Return the fetched data along with the conversationId
             return { 

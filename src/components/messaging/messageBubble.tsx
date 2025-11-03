@@ -1,13 +1,13 @@
 import type { MessageData } from '../../types/messageType';
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../../appConfig';
-import { formatRelativeTimestamp } from '../../utils/timeformatUtils';
+import { formatChatTimestamp } from '../../utils/timeformatUtils';
 import './messageBubble.css'
 
 // --- Individual Message Bubble Component ---
 const MessageBubble = ({ message, isOwnMessage }: { message: MessageData; isOwnMessage: boolean }) => {
     const { content, sender, createdAt, isDeleted } = message;
 
-    const messageTime = formatRelativeTimestamp(createdAt);
+    const messageTime = formatChatTimestamp(createdAt);
     const messageContent = isDeleted ? <i>Message deleted</i> : content;
 
     return (

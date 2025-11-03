@@ -49,24 +49,6 @@
     margin: 0;
 }
 
-.conversation-list-item {
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.2s ease;
-}
-
-.conversation-list-item:hover {
-    /* Use a subtle grey for hover */
-    background-color: var(--grey-7); 
-}
-
-/* Use a slightly darker grey for active, distinct from hover */
-.conversation-list-item.active {
-    background-color: var(--grey-6); 
-}
 
 .conversation-avatar {
     /* Inherits border-radius, object-fit etc from .user-avatar in App.css */
@@ -120,7 +102,6 @@
     color: var(--danger-text); /* Use danger text color */
 }
 
-/* --- ADD THESE NEW STYLES --- */
 
 .conversation-list-placeholder {
     display: flex;
@@ -164,32 +145,3 @@
     height: 1em;
 }
 
-/* --- ADD THIS WRAPPER --- */
-.conversation-preview-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.conversation-preview {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0;
-    /* Make room for the badge */
-    flex-grow: 1;
-}
-
-/* --- ADD THIS NEW INDICATOR STYLE --- */
-.unread-indicator {
-    background-color: var(--base);
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 10px;
-    margin-left: 8px;
-    flex-shrink: 0;
-}

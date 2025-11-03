@@ -7,7 +7,9 @@ export interface UiState {
     modalType:
     | 'REPLY' | 'VIEW_AVATAR' | 'EDIT_POST' | 'EDIT_COMMENT'
     | 'CONFIRM_DELETE_POST' | 'CONFIRM_DELETE_COMMENT' | 'EDIT_EXCHANGE_DETAILS'
-    | 'CONFIRM_DELETE_ACCOUNT' | 'CONNECTIONS_LIST' | "VIEW_QR_CODE" | 'NEW_CHAT' | null; 
+    | 'CONFIRM_DELETE_ACCOUNT' | 'CONNECTIONS_LIST' | "VIEW_QR_CODE" | 'NEW_CHAT' 
+    | 'CONFIRM_DELETE_CONVERSATION' 
+    | null; 
     modalProps: Record<string, any>;
     loading: 'idle' | 'pending' | 'succeeded' | 'failed';
 }

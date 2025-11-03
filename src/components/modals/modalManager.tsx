@@ -12,6 +12,8 @@ import { EditExchangeModal } from './editExchangeModal';
 import QRCodeModal from './qrCodeModal';
 import NewChatModal from './newChatModal';
 import { DEVELOPER_MODE } from '../../appConfig';
+import ConfirmConversationDeleteModal from './confirmConversationDeleteModal';
+import type { ConversationData } from '../../types/conversationType';
 
 const ModalManager = () => {
   const dispatch = useAppDispatch();
@@ -143,6 +145,17 @@ const ModalManager = () => {
         isOpen={true}
         onClose={handleClose}
       />;
+    }
+    case 'CONFIRM_DELETE_CONVERSATION': {
+      if ('conversation' in modalProps) {
+        return <ConfirmConversationDeleteModal
+          isOpen={true}
+          onClose={handleClose}
+          conversation={modalProps.conversation as ConversationData}
+        />;
+      }
+      DEVELOPER_MODE && console.error('CONFIRM_DELETE_CONVERSATION modal opened without conversation prop.');
+      return null;
     }
 
     default:

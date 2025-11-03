@@ -45,3 +45,27 @@ export const formatDetailedTimestamp = (timestamp: string): string => {
     });
     return `${time} · ${day}`;
 };
+
+import { parseISO, isToday, isYesterday, isThisWeek, format } from 'date-fns';
+
+export const formatChatTimestamp = (timestamp: string): string => {
+    try {
+        const date = parseISO(timestamp); // Converts ISO string to Date object
+
+        if (isToday(date)) {
+            return format(date, 'p'); // 'p' = Locale-aware time (e.Sg., 10:30 AM)
+        }
+        if (isYesterday(date)) {
+            return "Yesterday";
+        }
+        if (isThisWeek(date, { weekStartsOn: 0 })) { // 0 = Sunday
+            return format(date, 'EEEE'); // 'EEEE' = Full day name (e.g., Sunday)
+        }
+        
+        return format(date, 'P'); // 'P' = Locale-aware date (e.g., 11/02/2025)
+
+    } catch (error) {
+        console.error("Error formatting timestamp:", error);
+        return "Invalid Date";
+    }
+};

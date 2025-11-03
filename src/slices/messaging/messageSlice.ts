@@ -79,14 +79,20 @@ const messagesSlice = createSlice({
                 }
             })
             .addCase(fetchMessageHistory.fulfilled, (state, action: PayloadAction<FetchHistoryResponse>) => {
-                // Only update state if the fetched data is for the currently active conversation
                 if (action.payload.conversationId === state.activeConversationId) {
                     state.loading = 'succeeded';
-                    // Prepend older messages fetched via pagination to the start of the array
-                    // Filter out any potential duplicates just in case
+                    
                     const existingIds = new Set(state.messages.map(m => m.id));
+                    
+                    // 1. Filter out duplicates
                     const uniqueNewMessages = action.payload.messages.filter(m => !existingIds.has(m.id));
-                    state.messages = [...uniqueNewMessages, ...state.messages];
+                    
+                    // 2. REVERSE the incoming [Newest...Oldest] array
+                    //    to be [Oldest...Newest] before prepending.
+                    const correctlyOrderedMessages = uniqueNewMessages.reverse();
+
+                    // 3. Prepend the correctly ordered chunk
+                    state.messages = [...correctlyOrderedMessages, ...state.messages];
 
                     state.pagination = action.payload.pagination;
                     state.error = null;

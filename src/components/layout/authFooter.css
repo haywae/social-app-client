@@ -26,8 +26,8 @@
 }
 
 .auth-footer-links a {
-    font-size: 0.9rem;
-    color: var(--grey-4); /* A medium gray for good readability */
+    font-size: 0.75rem;
+    color: var(--text-secondary); /* A medium gray for good readability */
     text-decoration: none;
     transition: color 0.2s ease;
 }

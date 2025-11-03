@@ -6,6 +6,8 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { ConversationData, ConversationsState, LastMessagePreview } from "../../types/conversationType";
 import { fetchConversations } from "../../thunks/messaging/fetchConversationsThunk";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
+import { deleteConversation } from "../../thunks/messaging/deleteConversationThunk";
+import { DEVELOPER_MODE } from "../../appConfig";
 
 interface UpdatePreviewPayload {
     conversationId: string;
@@ -96,6 +98,19 @@ const conversationsSlice = createSlice({
                 state.loading = 'failed';
                 state.error = action.payload ?? 'Failed to fetch conversations.';
             })
+            .addCase(deleteConversation.fulfilled, (state, action) => {
+                // Optimistically remove the conversation from the list
+                const { conversationId } = action.payload;
+                state.conversations = state.conversations.filter(
+                    convo => convo.id !== conversationId
+                );
+            })
+            .addCase(deleteConversation.rejected, (_, action) => {
+                // On failure, we could show an error, but for now we'll just log it.
+                // The conversation will have already been removed from the UI.
+                // It will reappear on the next app refresh/fetch.
+                DEVELOPER_MODE && console.error("Failed to delete conversation:", action.payload);
+            });
             ;
     },
 });

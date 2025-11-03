@@ -1,4 +1,4 @@
-import { useEffect, type JSX } from 'react';
+import { useEffect, useRef, type JSX } from 'react';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { useNavigate } from 'react-router-dom';
 import { fetchConversations } from '../../thunks/messaging/fetchConversationsThunk';
@@ -11,6 +11,7 @@ import './conversationsList.css';
 const ConversationList = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const fetchInitiated = useRef(false); // 2. Add the ref
 
     // Select data from Redux state
     const conversations = useAppSelector((state => state.conversations.conversations));
@@ -19,11 +20,12 @@ const ConversationList = (): JSX.Element => {
 
     // Fetch conversations when the component mounts
     useEffect(() => {
-        // Only fetch if not already loading or succeeded to prevent redundant fetches
-        if (loading === 'idle') {
+        // 3. This check prevents the double-fetch in Strict Mode
+        if (fetchInitiated.current === false) {
+            fetchInitiated.current = true; // Mark as initiated
             dispatch(fetchConversations());
         }
-    }, [dispatch, loading]); // Depend on loading state
+    }, [dispatch]); // This dependency is correct
 
     const handleConversationClick = (conversationId: string) => {
         // Instead of dispatching, we navigate. This makes the URL the source of truth.

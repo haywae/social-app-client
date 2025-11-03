@@ -18,7 +18,7 @@
 }
 
 .chat-header {
-    padding: 10px 15px;
+    padding: 0.5rem;
     border-bottom: 1px solid var(--border-color);
     font-weight: bold;
     color: var(--text-primary);
@@ -94,7 +94,33 @@
     border-top: 1px solid var(--border-color);
     background-color: var(--primary-bg);
     flex-shrink: 0;
+    flex-direction: column;
+    gap: 8px;
     /* Prevent input area from shrinking */
+}
+
+/* New class for the caveat text */
+.chat-caveat {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    /* Use theme variable */
+    text-align: center;
+    width: 100%;
+    padding: 0 10px 4px;
+    /* Space it out */
+    line-height: 1.3;
+    box-sizing: border-box;
+    /* Include padding in width */
+    margin: 0;
+    /* Reset default p margin */
+}
+
+/* New wrapper for the input row */
+.chat-input-row {
+    display: flex;
+    align-items: flex-end;
+    /* Aligns button and textarea bottom */
+    width: 100%;
 }
 
 .chat-input-area textarea {
@@ -165,10 +191,12 @@
     /* Keeps text readable */
     line-height: 1.4;
 }
+
 .chat-input-area textarea:disabled {
     background-color: var(--grey-7);
     cursor: not-allowed;
 }
+
 @media (min-width: 768px) {
 
     /* Hide the back button on desktop */

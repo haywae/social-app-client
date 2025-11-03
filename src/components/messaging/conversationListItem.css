@@ -1,0 +1,143 @@
+.conversation-list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+    position: relative;
+}
+
+.conversation-list-item:hover {
+    /* Use a subtle grey for hover */
+    background-color: var(--grey-7);
+}
+
+/* Use a slightly darker grey for active, distinct from hover */
+.conversation-list-item.active {
+    background-color: var(--grey-6);
+}
+
+/* Container for the preview text and the options group */
+.conversation-preview-wrapper {
+    display: flex;
+    justify-content: space-between;
+    /* Pushes text and options apart */
+    align-items: center;
+    /* Vertically aligns text and options */
+}
+
+/* The preview text on the left */
+.conversation-preview {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    flex-grow: 1;
+    /* Takes up available space */
+    margin-right: 8px;
+    /* Adds space before the options group */
+}
+
+/* This is the container for the indicator and button on the right */
+.conversation-preview-options {
+    position: relative;
+    /* Anchor for the menu */
+    display: flex;
+    align-items: center;
+    /* Vertically aligns indicator and button */
+    gap: 8px;
+    /* Space between indicator and button */
+    flex-shrink: 0;
+    /* Prevents this group from shrinking */
+}
+
+.unread-indicator {
+    background-color: var(--base);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    /* Make it a circle */
+    border-radius: 50%;
+
+    width: 1.6em;
+    height: 1.6em;
+    /* Use flex to center the number */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2px;
+    /* Small padding inside the circle */
+    flex-shrink: 0;
+    /* margin-left: 8px; <-- Remove this, use gap in parent */
+}
+
+/* --- MODIFIED --- */
+.conversation-options-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+
+    /* These two lines make it visible and center the icon */
+    display: flex;
+    align-items: center;
+
+    z-index: 5;
+}
+
+.conversation-options-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+.conversation-options-btn:hover {
+    background-color: var(--grey-7);
+    color: var(--text-primary);
+}
+
+.conversation-options-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    /* Position it just below the options container */
+    right: 0;
+    /* Align to the right edge of the options container */
+    background: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    overflow: hidden;
+    min-width: 150px;
+    /* Gives the menu a set width */
+}
+
+.conversation-delete-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: var(--danger-text);
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.conversation-delete-btn:hover {
+    background-color: var(--danger-bg-hover);
+}
+
+.conversation-delete-btn svg {
+    width: 20px;
+    height: 20px;
+}

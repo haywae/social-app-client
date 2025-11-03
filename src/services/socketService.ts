@@ -2,7 +2,6 @@ import { io, Socket } from "socket.io-client";
 import { SOCKET_URL } from "../appConfig";
 import store from "../store";
 import { addMessage } from "../slices/messaging/messageSlice";
-// import { logoutUser } from "../thunks/authThunks/logoutThunk";
 import { fetchConversations } from "../thunks/messaging/fetchConversationsThunk";
 import { DEVELOPER_MODE } from "../appConfig";
 import { updateConversationPreview } from "../slices/messaging/conversationsSlice";
@@ -23,8 +22,6 @@ interface ServerToClientEvents {
 
 // Define the shape of client-to-server events
 interface ClientToServerEvents {
-    join_conversation: (data: { conversation_id: string }) => void;
-    leave_conversation: (data: { conversation_id: string }) => void;
     send_message: (data: { conversation_id: string; content: string }) => void;
 }
 
@@ -46,6 +43,7 @@ export const connectSocket = (): void => {
     // If a socket instance exists but isn't connected, try disconnecting first
     if (socket) {
         socket.disconnect();
+        socket = null
     }
 
     DEVELOPER_MODE && console.log("Attempting to connect socket...");
@@ -53,10 +51,10 @@ export const connectSocket = (): void => {
     // Initialize connection with URL and auth token
     socket = io(SOCKET_URL, {
         withCredentials: true,
-        // Add reconnection options if desired
         reconnection: true,
         reconnectionAttempts: 5,
         reconnectionDelay: 1000,
+        transports: ['websocket']
     });
 
     // --------------------------------
@@ -80,23 +78,9 @@ export const connectSocket = (): void => {
         }
     });
 
-    socket.on("connect_error", (error) => {
+    socket.on("connect_error", async (error) => {
         DEVELOPER_MODE && console.error("Socket connection error:", error.message, error.stack || '(No data)');
         store.dispatch(setSocketConnected(false));
-        console.log('There was a connection', error);
-
-        // Handle specific authentication errors
-        if (error.message.includes("auth") || error.message.includes("token")) {
-            DEVELOPER_MODE && console.error("Socket Authentication Error. Logging out.");
-            // // Dispatch logout action if connection fails due to auth
-            // store.dispatch(logoutUser());
-            // // Force disconnect if not already disconnected
-            // if (socket?.connected) {
-            //     socket.disconnect();
-            // }
-            // socket = null; // Clear the instance on auth failure
-        }
-        // Handle other connection errors (e.g., server down)
     });
 
     // ------------------------------------------
@@ -167,10 +151,8 @@ export const disconnectSocket = (): void => {
     if (socket) {
         DEVELOPER_MODE && console.log("Disconnecting socket...");
         socket.disconnect();
-
         store.dispatch(setSocketConnected(false));
     }
-
 };
 
 /**
