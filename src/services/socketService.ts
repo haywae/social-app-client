@@ -54,7 +54,6 @@ export const connectSocket = (): void => {
         reconnection: true,
         reconnectionAttempts: 5,
         reconnectionDelay: 1000,
-        transports: ['websocket']
     });
 
     // --------------------------------
