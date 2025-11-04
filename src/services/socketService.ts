@@ -55,7 +55,6 @@ export const connectSocket = (): void => {
         reconnectionAttempts: 5,
         reconnectionDelay: 1000,
         transports: ['websocket'],
-        path: "/api/socket.io/",
     });
 
 

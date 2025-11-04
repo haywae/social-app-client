@@ -8,7 +8,7 @@ export const MINIMUM_RATE_ROWS = 3;
 
 export const DEFAULT_AVATAR_URL = defaultAvatar;
 
-export const SOCKET_URL: string = import.meta.env.VITE_SOCKET_URL || API_BASE_URL || '';
+export const SOCKET_URL: string = import.meta.env.VITE_SOCKET_URL;
 
 export const GOOGLE_CLIENT_ID: string = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
