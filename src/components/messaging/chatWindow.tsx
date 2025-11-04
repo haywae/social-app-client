@@ -9,6 +9,7 @@ import { setActiveConversation } from '../../slices/messaging/messageSlice';
 import './chatWindow.css';
 import { DEFAULT_AVATAR_URL, DEVELOPER_MODE, IMAGE_BASE_URL } from '../../appConfig';
 import { markConversationRead } from '../../thunks/messaging/markConversationReadThunk';
+import Spinner from '../common/spinner';
 
 // --- Main Chat Window Component ---
 const ChatWindow = (): JSX.Element => {
@@ -133,6 +134,8 @@ const ChatWindow = (): JSX.Element => {
     }
 
     const isInputDisabled = !isSocketConnected || !newMessageContent.trim();
+    // Check for the initial loading state
+    const isInitialLoading = loading === 'pending' && messages.length === 0;
 
     return (
         <div className="chat-window-container">
@@ -149,7 +152,10 @@ const ChatWindow = (): JSX.Element => {
                     {isSocketConnected ? (
                         <span className="chat-header-name">{chatPartnerName}</span>
                     ) : (
-                        <span className="chat-header-status">Connecting...</span>
+                        <div className="chat-header-status-wrapper">
+                            <Spinner />
+                            <span className="chat-header-status">Connecting...</span>
+                        </div>
                     )}
                 </div>
             </header>
@@ -162,13 +168,17 @@ const ChatWindow = (): JSX.Element => {
                     </button>
                 )}
 
-                {/* 5. Display the actual error message --- */}
+                {/* Display the actual error message --- */}
                 {loading === 'failed' && <div className="chat-status"> Messages could not be loaded</div>}
 
-                {loading === 'pending' && <div className="chat-status">Loading messages...</div>}
+                {isInitialLoading && (
+                    <div className="chat-loader-container">
+                        <Spinner />
+                    </div>
+                )}
 
                 {/* Render Messages */}
-                {messages.map((msg) => (
+                {!isInitialLoading && messages.map((msg) => (
                     <MessageBubble
                         key={msg.id}
                         message={msg}

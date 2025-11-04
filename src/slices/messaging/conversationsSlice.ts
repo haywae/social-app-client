@@ -21,6 +21,7 @@ const initialState: ConversationsState = {
     conversations: [],
     loading: 'idle',
     error: null,
+    totalUnreadMessages: 0,
 };
 
 const conversationsSlice = createSlice({
@@ -33,6 +34,7 @@ const conversationsSlice = createSlice({
             state.conversations = [];
             state.loading = 'idle';
             state.error = null;
+            state.totalUnreadMessages = 0;
         },
         updateConversationPreview: (state, action: PayloadAction<UpdatePreviewPayload>) => {
             const { conversationId, message, isNewUnreadMessage } = action.payload;
@@ -54,6 +56,7 @@ const conversationsSlice = createSlice({
                 // If it's a new unread message, increment the count
                 if (isNewUnreadMessage) {
                     convo.unreadCount = (convo.unreadCount || 0) + 1;
+                    state.totalUnreadMessages = (state.totalUnreadMessages || 0) + 1;
                 }
 
                 // Move the updated conversation to the top
@@ -67,6 +70,8 @@ const conversationsSlice = createSlice({
             const conversationId = action.payload;
             const convo = state.conversations.find(c => c.id === conversationId);
             if (convo) {
+                const oldUnreadCount = convo.unreadCount || 0;
+                state.totalUnreadMessages -= oldUnreadCount
                 convo.unreadCount = 0;
             }
         },
@@ -80,6 +85,7 @@ const conversationsSlice = createSlice({
                 state.conversations = [];
                 state.loading = 'idle';
                 state.error = null;
+                state.totalUnreadMessages = 0;
             })
 
             .addCase(createConversation.fulfilled, (state, action: PayloadAction<ConversationData>) => {
@@ -110,10 +116,17 @@ const conversationsSlice = createSlice({
             })
             .addCase(fetchConversations.fulfilled, (state, action: PayloadAction<ConversationData[]>) => {
                 state.loading = 'succeeded';
-                state.conversations = action.payload.map(convo => ({
+                const conversations = action.payload.map(convo => ({
                     ...convo,
                     unreadCount: convo.unreadCount || 0 // Ensure it's never undefined
                 }));
+
+                state.conversations = conversations
+
+                state.totalUnreadMessages = conversations.reduce(
+                    (total, convo) => total + (convo.unreadCount || 0),
+                    0
+                );
                 state.error = null;
             })
             .addCase(fetchConversations.rejected, (state, action) => {

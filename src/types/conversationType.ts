@@ -26,6 +26,7 @@ export interface ConversationsState {
     conversations: ConversationData[]; // Array holding the conversation list
     loading: 'idle' | 'pending' | 'succeeded' | 'failed'; // Status of fetching conversations
     error: string | null; // Error message if fetching fails
+    totalUnreadMessages: number;
     // Optional: Add pagination state if conversation list becomes very long
     // currentPage?: number;
     // totalPages?: number;
