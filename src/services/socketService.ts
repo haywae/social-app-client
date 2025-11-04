@@ -55,6 +55,7 @@ export const connectSocket = (): void => {
         reconnectionAttempts: 5,
         reconnectionDelay: 1000,
         transports: ['websocket'],
+        path: "api.wolexchange.com"
     });
 
     console.log(SOCKET_URL)
