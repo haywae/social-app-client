@@ -1,7 +1,7 @@
 /* {L1} --- Main Container --- */
 .search-page-container {
   background-color: #ffffff;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* {L2} --- Search Bar, Search Page Content ---  */

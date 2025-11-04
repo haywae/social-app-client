@@ -8,7 +8,7 @@ Description: Styles for the user settings page and its components.
     margin: 0 auto;
     background-color: var(--primary);
     color: var(--grey-1);
-    min-height: calc(100vh - var(--bottom-nav-height));
+    min-height: calc(100dvh - var(--bottom-nav-height));
     display: flex;
     flex-direction: column;
 }
@@ -135,6 +135,6 @@ Description: Styles for the user settings page and its components.
 
 @media (min-width: 768px) {
     .settings-page {
-        min-height: 100vh;
+        min-height: 100dvh;
     }
 }

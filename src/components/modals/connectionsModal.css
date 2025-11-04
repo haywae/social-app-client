@@ -2,7 +2,7 @@
 
 .connections-modal .modal-body {
     padding: 0;
-    height: 70vh;
+    height: 70dvh;
     display: flex;
     flex-direction: column;
 }

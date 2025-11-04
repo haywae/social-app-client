@@ -84,7 +84,7 @@
   --bottom-nav-height: 40px;
   --main-header-height: 60px;
   --footer-height: 50px;
-  --default-page-height: calc(100vh - var(--main-header-height) - var(--bottom-nav-height))
+  --default-page-height: calc(100dvh - var(--main-header-height) - var(--bottom-nav-height))
 }
 
 /* --- Base & Reset Styles --- */
@@ -95,7 +95,7 @@ body {
 #root {
   box-sizing: border-box;
   display: flex;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 a {

@@ -4,7 +4,9 @@
  */
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { MessageData, MessagesState } from "../../types/messageType"
+import type { ConversationData } from "../../types/conversationType";
 import { fetchMessageHistory, type FetchHistoryResponse } from "../../thunks/messaging/fetchMessageHistoryThunk";
+import { createConversation } from "../../thunks/messaging/createConversationThunk";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
 
 // Define the initial state
@@ -104,12 +106,20 @@ const messagesSlice = createSlice({
                     state.loading = 'failed';
                     state.error = action.payload ?? 'Failed to fetch messages.';
                 }
+            })
+            .addCase(createConversation.fulfilled, (state, action: PayloadAction<ConversationData>) => {
+                // Set this new conversation as the active one
+                state.activeConversationId = action.payload.id;
+                // Clear out any messages from the previously viewed chat
+                state.messages = [];
+                state.pagination = null;
+                state.loading = 'idle';
+                state.error = null;
             });
     },
 });
 
-// Export actions
+
 export const { setActiveConversation, addMessage, clearMessages } = messagesSlice.actions;
 
-// Export the reducer
 export default messagesSlice.reducer;

@@ -5,8 +5,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../apiInterceptor";
 import type { RootState } from "../../store";
 import type { ConversationData } from "../../types/conversationType";
-import { setActiveConversation } from "../../slices/messaging/messageSlice";
-import { fetchConversations } from "./fetchConversationsThunk";
 
 interface CreateConvoArgs {
     username: string;
@@ -26,7 +24,7 @@ export const createConversation = createAsyncThunk<
     }
 >(
     'conversations/create',
-    async ({ username }, { rejectWithValue, dispatch }) => {
+    async ({ username }, { rejectWithValue }) => {
         try {
             const response = await api('/conversations', {
                 method: 'POST',
@@ -40,13 +38,6 @@ export const createConversation = createAsyncThunk<
             }
 
             const newConversation: ConversationData = await response.json();
-            
-            // --- Success ---
-            // 1. Refresh the entire conversation list to include the new chat
-            dispatch(fetchConversations()); 
-
-            // 2. Immediately set this new conversation as active
-            dispatch(setActiveConversation(newConversation.id));
 
             return newConversation;
 

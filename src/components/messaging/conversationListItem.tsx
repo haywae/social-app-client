@@ -69,10 +69,10 @@ const ConversationListItem = ({ conversation, isActive, onClick }: ConversationL
     return (
         <li
             className={`conversation-list-item ${isActive ? 'active' : ''}`}
-            onClick={() => { if (!menuOpen) onClick() }} // Only navigate if the menu isn't open
-            role="button" // Accessibility
-            tabIndex={0} // Accessibility
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick(); }} // Accessibility
+            onClick={() => { if (!menuOpen) onClick() }}
+            role="button" 
+            tabIndex={0} 
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick(); }}
         >
             <img
                 src={imageUrl ? `${IMAGE_BASE_URL}/${imageUrl}` : DEFAULT_AVATAR_URL}
@@ -99,7 +99,7 @@ const ConversationListItem = ({ conversation, isActive, onClick }: ConversationL
                         {menuOpen && (
                             <div className="conversation-options-menu" onClick={e => e.stopPropagation()} ref={menuRef}>
                                 <button className="conversation-delete-btn" onClick={handleDeleteClick}>
-                                    <TrashIcon /> Hide Chat
+                                    <TrashIcon /> Remove Chat
                                 </button>
                             </div>
                         )}

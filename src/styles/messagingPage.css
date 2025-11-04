@@ -40,11 +40,11 @@
 
 /* --- DESKTOP STYLES (min-width) --- */
 @media(min-width: 768px) {
-    .messaging-page-layout { height: 100vh;}    
+    .messaging-page-layout { height: 100dvh;}    
 }
 @media (min-width: 1200px) {
 
-    .messaging-page-layout{ height: 100vh;}
+    .messaging-page-layout{ height: 100dvh;}
     
     .messaging-sidebar {
         width: 320px;

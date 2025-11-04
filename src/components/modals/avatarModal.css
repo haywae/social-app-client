@@ -39,8 +39,8 @@
 
 .avatar-modal-content img {
   /* Ensure the image is large but doesn't exceed the viewport */
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 90dvw;
+  max-height: 90dvh;
   width: auto;
   height: auto;
   border-radius: 16px;

@@ -7,6 +7,7 @@ import type { ConversationData, ConversationsState, LastMessagePreview } from ".
 import { fetchConversations } from "../../thunks/messaging/fetchConversationsThunk";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
 import { deleteConversation } from "../../thunks/messaging/deleteConversationThunk";
+import { createConversation } from "../../thunks/messaging/createConversationThunk";
 import { DEVELOPER_MODE } from "../../appConfig";
 
 interface UpdatePreviewPayload {
@@ -79,6 +80,27 @@ const conversationsSlice = createSlice({
                 state.conversations = [];
                 state.loading = 'idle';
                 state.error = null;
+            })
+
+            .addCase(createConversation.fulfilled, (state, action: PayloadAction<ConversationData>) => {
+                const newConversation = action.payload;
+
+                // Check if the conversation already exists in our list
+                const existingIndex = state.conversations.findIndex(
+                    convo => convo.id === newConversation.id
+                );
+
+                if (existingIndex !== -1) {
+                    // It already exists, just move it to the top
+                    const existingConvo = state.conversations.splice(existingIndex, 1)[0];
+                    state.conversations.unshift(existingConvo);
+                } else {
+                    // It's a brand new conversation, add it to the top
+                    state.conversations.unshift(newConversation);
+                }
+                
+                // Ensure loading state is set to 'succeeded'
+                state.loading = 'succeeded';
             })
 
             // --- Handle fetching conversations ---

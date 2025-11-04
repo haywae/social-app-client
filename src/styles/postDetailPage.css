@@ -14,7 +14,7 @@ Description: Styles for the single post view page.
 }
 
 .main-layout .detail-page-container {
-  height: calc(100vh - var(--bottom-nav-height));
+  height: calc(100dvh - var(--bottom-nav-height));
 }
 
 /* --- Sticky Header --- */
@@ -231,9 +231,9 @@ Description: Styles for the single post view page.
 
 @media (min-width: 768px) {
 
-  /* Apply 100vh height ONLY when inside the main app layout (authenticated) */
+  /* Apply 100dvh height ONLY when inside the main app layout (authenticated) */
   .main-layout .detail-page-container {
-    height: 100vh;
+    height: 100dvh;
   }
 
   /* --- Guest Layout Specifics (Unauthenticated) --- */

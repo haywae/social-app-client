@@ -63,8 +63,8 @@
     /* Make it a circle */
     border-radius: 50%;
 
-    width: 1.6em;
-    height: 1.6em;
+        height: 20px;
+        min-width: 20px;
     /* Use flex to center the number */
     display: flex;
     align-items: center;

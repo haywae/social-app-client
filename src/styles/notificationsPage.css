@@ -1,8 +1,8 @@
 .notifications-page-container {
     width: 100%;
     margin: 0 auto;
-    min-height: 100vh;
-    min-height: calc(100vh - var(--bottom-nav-height) - var(--footer-height));
+    min-height: 100dvh;
+    min-height: calc(100dvh - var(--bottom-nav-height) - var(--footer-height));
 }
 
 .notifications-list {
@@ -38,6 +38,6 @@
 
 @media (min-width: 768px) {
     .notifications-page-container {
-        min-height: 100vh;
+        min-height: 100dvh;
     }
 }

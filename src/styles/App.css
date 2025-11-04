@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 600px;
   /* A good width for a central feed */
-  min-height: calc(100vh - 120px);
+  min-height: calc(100dvh - 120px);
   margin-bottom: var(--bottom-nav-height);
   /*Ensures the page has a margin to give space for the bottom nav;*/
 }
@@ -128,7 +128,7 @@
 
 
   .main-content {
-    min-height: calc(100vh - var(--main-header-height) - 1rem);
+    min-height: calc(100dvh - var(--main-header-height) - 1rem);
     margin-bottom: 0;
     border-right: 1px solid var(--border-color);
     border-left: 1px solid var(--border-color);

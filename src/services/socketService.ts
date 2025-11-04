@@ -57,10 +57,6 @@ export const connectSocket = (): void => {
         transports: ['websocket'],
     });
 
-    console.log(SOCKET_URL)
-
-
-
     // --------------------------------
     // --- STANDARD EVENT LISTENERS ---
     // --------------------------------

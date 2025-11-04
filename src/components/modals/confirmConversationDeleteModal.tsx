@@ -31,12 +31,11 @@ const ConfirmConversationDeleteModal = ({ isOpen, onClose, conversation }: Confi
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} title='Remove Conversation'>
             {/* You can reuse styles from deleteAccountModal.css or create new ones */}
             <div className="delete-account-modal">
-                <h2>Hide Conversation</h2>
                 <p>
-                    Are you sure you want to hide this conversation with <strong>{conversation.name}</strong>?
+                    Are you sure you want to remove this conversation with <strong>{conversation.name}</strong>?
                     <br /><br />
                     You will no longer see it in your chat list.
                 </p>

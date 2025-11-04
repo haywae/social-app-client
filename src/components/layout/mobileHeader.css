@@ -108,7 +108,7 @@
 }
 
 /* The style for the notification indicator */
-.notification-indicator {
+.main-header .notification-indicator {
     position: absolute;
     top: -4px;
     right: -6px;

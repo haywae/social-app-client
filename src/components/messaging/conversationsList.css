@@ -58,7 +58,6 @@
 
 .conversation-details {
     flex-grow: 1;
-    overflow: hidden; 
 }
 
 .conversation-header {

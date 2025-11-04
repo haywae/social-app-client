@@ -29,7 +29,7 @@
   max-width: 450px;
   border: 1px solid var(--border-color);
   /* A bit wider for better layout */
-  max-height: 90vh;
+  max-height: 90dvh;
   display: flex;
   /* Use flexbox to structure header, body, footer */
   flex-direction: column;

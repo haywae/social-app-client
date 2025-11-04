@@ -20,7 +20,6 @@
 .chat-header {
     padding: 0.5rem;
     border-bottom: 1px solid var(--border-color);
-    font-weight: bold;
     color: var(--text-primary);
     flex-shrink: 0;
     display: flex;
@@ -28,7 +27,11 @@
     gap: 10px;
     /* Controls space between avatar and name */
 }
-
+.chat-header-info {
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+}
 .message-list {
     flex-grow: 1;
     overflow-y: auto;
@@ -70,16 +73,13 @@
     background-color: var(--primary-bg);
 }
 
-.chat-status {
+.chat-header-status {
     text-align: center;
     color: var(--text-secondary);
-    padding: 10px;
     font-size: 0.9rem;
+    line-height: 1;
 }
 
-.chat-status.error {
-    color: var(--danger-text);
-}
 
 .message-avatar {
     /* Uses .avatar-xs from App.css */

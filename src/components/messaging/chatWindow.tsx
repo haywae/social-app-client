@@ -24,7 +24,7 @@ const ChatWindow = (): JSX.Element => {
     const { messages, pagination, loading, activeConversationId } = useAppSelector((state) => state.messages)
     const isSocketConnected = useAppSelector((state) => state.socket.isConnected);
     const { conversations: allConversations } = useAppSelector((state) => state.conversations);
-    
+
     const currentUserId = user?.id;
 
     // Find the specific conversation we're in
@@ -143,9 +143,15 @@ const ChatWindow = (): JSX.Element => {
                 <img
                     src={chatPartnerImage ? `${IMAGE_BASE_URL}/${chatPartnerImage}` : DEFAULT_AVATAR_URL}
                     alt={`${chatPartnerName}'s avatar`}
-                    className="chat-header-avatar user-avatar avatar-sm" // Use avatar class
+                    className="chat-header-avatar user-avatar avatar-sm"
                 />
-                <span className="chat-header-name">{chatPartnerName}</span>
+                <div className="chat-header-info">
+                    {isSocketConnected ? (
+                        <span className="chat-header-name">{chatPartnerName}</span>
+                    ) : (
+                        <span className="chat-header-status">Connecting...</span>
+                    )}
+                </div>
             </header>
 
             {/* Message Display Area */}
@@ -154,12 +160,6 @@ const ChatWindow = (): JSX.Element => {
                     <button onClick={handleLoadMoreMessages} className="load-more-messages-btn">
                         Load Older Messages
                     </button>
-                )}
-
-                {!isSocketConnected && loading !== 'pending' && (
-                    <div className="chat-status">
-                        Reconnecting...
-                    </div>
                 )}
 
                 {/* 5. Display the actual error message --- */}
