@@ -66,6 +66,8 @@ export const connectSocket = (): void => {
         path: "/api/socket.io/",
     });
 
+    
+
     // --------------------------------
     // --- STANDARD EVENT LISTENERS ---
     // --------------------------------
