@@ -48,6 +48,15 @@ export const connectSocket = (): void => {
 
     DEVELOPER_MODE && console.log("Attempting to connect socket...");
 
+    console.log("Connecting socket with SOCKET_URL:", SOCKET_URL);
+    console.log("Full options object:", JSON.stringify({
+        withCredentials: true,
+        reconnection: true,
+        reconnectionAttempts: 5,
+        reconnectionDelay: 1000,
+        path: "/api/socket.io/",
+    }));
+
     // Initialize connection with URL and auth token
     socket = io(SOCKET_URL, {
         withCredentials: true,
