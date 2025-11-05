@@ -3,14 +3,15 @@
  */
 import { useState, useEffect, type JSX } from 'react';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import { useDebounce } from '../../utils/searchUtils'; // Assuming you have this
+import { useDebounce } from '../../utils/searchUtils';
 import { fetchSearchResults } from '../../thunks/searchThunks/fetchResultsThunk';
 import { clearSearchResults } from '../../slices/search/searchSlice';
 import { createConversation } from '../../thunks/messaging/createConversationThunk';
 import Modal from '../modals/modal';
-import NewChatUserResult from '../messaging/newChatUserResult'; // We will create this
+import { useNavigate } from 'react-router-dom';
+import NewChatUserResult from '../messaging/newChatUserResult'; 
 import type { UserSearchResult } from '../../slices/search/searchSlice';
-import './newChatModal.css'; // We will create this
+import './newChatModal.css'; 
 
 interface NewChatModalProps {
     isOpen: boolean;
@@ -18,6 +19,7 @@ interface NewChatModalProps {
 }
 
 const NewChatModal = ({ isOpen, onClose }: NewChatModalProps): JSX.Element => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [searchTerm, setSearchTerm] = useState('');
     const debouncedSearchTerm = useDebounce(searchTerm, 300);
@@ -41,9 +43,25 @@ const NewChatModal = ({ isOpen, onClose }: NewChatModalProps): JSX.Element => {
         }
     }, [isOpen, dispatch]);
 
-    const handleUserSelect = (user: UserSearchResult) => {
-        dispatch(createConversation({ username: user.username }));
-        onClose(); // Close the modal
+    const handleUserSelect = async (user: UserSearchResult) => {
+        try {
+            // 1. Make the function async
+            // 2. Await the promise from .unwrap()
+            const newConversation = await dispatch(
+                createConversation({ username: user.username })
+            ).unwrap();
+
+            // 3. Check the payload and navigate
+            if (newConversation && newConversation.id) {
+                navigate(`/messages/${newConversation.id}`);
+                onClose(); 
+            } else {
+                console.error("Conversation created, but no ID was returned.");
+            }
+        } catch (error) {
+            // 4. Add error handling
+            console.error("Failed to create conversation:", error);
+        }
     };
 
     return (

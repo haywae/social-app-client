@@ -234,7 +234,7 @@
     cursor: not-allowed;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
 
     /* Hide the back button on desktop */
     .chat-header-back-btn {

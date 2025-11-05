@@ -44,7 +44,7 @@ export const fetchConversations = createAsyncThunk<
             // --- 3. Parse the successful JSON response (expecting an array)
             const conversations: ConversationData[] = await response.json();
             
-            // --- 4. sReturn the fetched conversations
+            // --- 4. Returns the fetched conversations
             return conversations;
 
         } catch (error: any) {

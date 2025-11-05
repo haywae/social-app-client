@@ -52,8 +52,9 @@ export const connectSocket = (): void => {
     socket = io(SOCKET_URL, {
         withCredentials: true,
         reconnection: true,
-        reconnectionAttempts: 5,
+        reconnectionAttempts: Infinity,
         reconnectionDelay: 1000,
+        reconnectionDelayMax: 10000,
         transports: ['websocket'],
     });
 

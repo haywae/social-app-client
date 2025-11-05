@@ -4,12 +4,13 @@ import { useAppDispatch, useAppSelector, useTitle } from '../utils/hooks';
 import { fetchUserProfile } from '../thunks/userThunks/fetchUserProfile';
 import { followUser } from '../thunks/userThunks/followUserThunk';
 import { fetchUserExchangeData } from '../thunks/exchangeThunks/fetchUserExchangeDataThunk';
+import { createConversation } from '../thunks/messaging/createConversationThunk';
 import { clearProfile } from '../slices/user/userProfileSlice';
 import { openModal } from '../slices/ui/uiSlice';
 import PostFeed from '../components/posts/postFeed';
 import LiveRatesDisplay from '../components/userProfile/liveRatesTab';
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../appConfig';
-import { CalendarIcon } from '../assets/icons';
+import { CalendarIcon, MessageIcon } from '../assets/icons';
 import PageHeader from '../components/layout/pageHeader';
 import '../styles/userProfilePage.css';
 
@@ -40,6 +41,7 @@ const UserProfilePage = (): JSX.Element => {
 
     /* Local loading state specifically for the follow button */
     const [isFollowLoading, setIsFollowLoading] = useState(false);
+    const [isMessageLoading, setIsMessageLoading] = useState(false);
     const [activeTab, setActiveTab] = useState<ProfileTab>('posts');
 
     const isMyProfile = loggedInUser?.username === profile?.username;
@@ -87,6 +89,30 @@ const UserProfilePage = (): JSX.Element => {
         }
     };
 
+    // 👇 **3. The handler function for starting a message**
+    const handleStartMessage = async () => {
+        if (!profile) return;
+
+        setIsMessageLoading(true);
+        try {
+            // Call the thunk to get or create the conversation
+            const newConversation = await dispatch(
+                createConversation({ username: profile.username })
+            ).unwrap();
+
+            // Navigate to the messages page for that conversation
+            if (newConversation && newConversation.id) {
+                navigate(`/messages/${newConversation.id}`);
+            }
+        } catch (error) {
+            console.error("Failed to start conversation:", error);
+            // Optionally: dispatch an error notification
+        } finally {
+            // This might not run if navigation is successful, but it's good practice
+            setIsMessageLoading(false);
+        }
+    };
+
     /**  A dedicated function for rendering the action button */
     const renderActionButton = () => {
         if (isMyProfile) {
@@ -95,13 +121,23 @@ const UserProfilePage = (): JSX.Element => {
         }
         // --- A logged-in user viewing another profile sees the dynamic Follow/Following button ---
         return (
-            <button
-                onClick={handleFollow}
-                disabled={isFollowLoading}
-                className={`follow-button ${profile?.isFollowing ? 'following' : ''}`}
-            >
-                {isFollowLoading ? '...' : (profile?.isFollowing ? 'Following' : 'Follow')}
-            </button>
+            <>
+                <button
+                    onClick={handleFollow}
+                    disabled={isFollowLoading}
+                    className={`follow-button ${profile?.isFollowing ? 'following' : ''}`}
+                >
+                    {isFollowLoading ? '...' : (profile?.isFollowing ? 'Following' : 'Follow')}
+                </button>
+                <button
+                    className="message-button"
+                    title="Start chat"
+                    onClick={handleStartMessage}
+                    disabled={isMessageLoading}
+                >
+                    { <MessageIcon />}
+                </button>
+            </>
         );
     };
 

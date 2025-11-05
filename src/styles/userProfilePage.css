@@ -73,10 +73,54 @@
     border-color: var(--base-dark);
 }
 
-.profile-actions .edit-profile-button,
-.profile-actions .follow-button {
+.profile-actions .edit-profile-button {
     width: 100%;
     max-width: 200px;
+}
+
+/* --- UPDATED: Container for follow/message buttons --- */
+.profile-actions {
+    display: flex;
+    gap: 0.5rem; /* Adds space between the buttons */
+    width: 100%;
+    max-width: 250px; /* Adjust as needed */
+}
+
+/* --- UPDATED: Follow button shares space --- */
+.profile-actions .follow-button {
+    width: 100%;
+    flex-grow: 1; /* Allows follow button to take up more space */
+}
+
+/* --- NEW: Message button styles --- */
+.message-button {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    flex-shrink: 0; /* Prevents the button from shrinking */
+    
+    /* Using styles similar to follow button for consistency */
+    background-color: var(--background);
+    color: var(--base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-button svg {
+    width: 28px;
+    height: 28px;
+}
+
+.message-button:hover {
+    background-color: var(--background-light);
+    border-color: var(--base-light);
+}
+
+.message-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 /* --- User Bio Info --- */
