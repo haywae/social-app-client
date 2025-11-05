@@ -44,7 +44,15 @@
 }
 @media (min-width: 1024px) {
 
-    .messaging-page-layout{ height: 100dvh;}
+    .messaging-page-layout{ 
+        height: 100dvh;
+        max-width: calc(100dvw - var(--left-sidebar-width)); 
+        /* Center the component on the page */
+        margin: 0 auto; 
+        /* Add outer borders to frame the component */
+        border-left: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+    }
     
     .messaging-sidebar {
         width: 38%;
@@ -56,9 +64,9 @@
     }
 
     .messaging-main-content {
+        width: 62%;
         display: flex; /* Always show */
         flex-grow: 1;
-        border-left: 1px solid var(--border-color);
         height: auto;
         padding: 0;
         overflow-y: hidden;
@@ -67,6 +75,6 @@
     /* On desktop, the .chat-active class does nothing */
     .chat-active .messaging-sidebar,
     .chat-active .messaging-main-content {
-        display: flex;
+        display: block;
     }
 }

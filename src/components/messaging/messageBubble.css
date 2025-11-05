@@ -2,15 +2,18 @@
     display: flex;
     margin-bottom: 10px;
     max-width: 75%;
+    min-width: 0;
     /* Limit bubble width */
 }
 
 .message-content {
     padding: 0.25rem 1rem;
     border-radius: 18px;
+    overflow-wrap: break-word;
+    hyphens: auto;
     word-wrap: break-word;
-    word-break: break-all;
     /* Allow long words to break */
+    min-width: 0;
 }
 
 .message-sender-name {

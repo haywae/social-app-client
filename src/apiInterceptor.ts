@@ -2,6 +2,7 @@ import store from './store';
 import { refreshToken, type RefreshReject } from './thunks/authThunks/refreshTokenThunk';
 import { logoutUser } from './thunks/authThunks/logoutThunk';
 import { API_BASE_URL, DEVELOPER_MODE } from './appConfig';
+import { connectSocket } from './services/socketService';
 
 // --- 1. Define the types for your API service ---
 
@@ -90,7 +91,11 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
 
                 // c. --- updates the users original request options object with the new acces token
                 originalRequest.headers.set('X-CSRF-TOKEN', newAccessToken);
-                // d. --- Reattempts the caller's request with updated values
+
+                // d. --- Now that we have a new, valid token, force a socket connection.
+                connectSocket();
+
+                // e. --- Reattempts the caller's request with updated values
                 return fetch(`${API_BASE_URL}${url}`, originalRequest);
 
             } catch (error: any) {

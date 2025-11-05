@@ -52,9 +52,7 @@ export const connectSocket = (): void => {
     socket = io(SOCKET_URL, {
         withCredentials: true,
         reconnection: true,
-        reconnectionAttempts: Infinity,
-        reconnectionDelay: 1000,
-        reconnectionDelayMax: 10000,
+
     });
 
     // --------------------------------

@@ -11,6 +11,7 @@ import { connectSocket, disconnectSocket, getSocket } from "./services/socketSer
 import "./styles/App.css";
 import { DEVELOPER_MODE } from "./appConfig";
 import { fetchConversations } from "./thunks/messaging/fetchConversationsThunk";
+import { checkAuth } from "./thunks/authThunks/authCheckThunk";
 
 /** * This custom hook now only fetches data for an already authenticated user.
  * The initial auth check is handled at a higher level in RootLayout.
@@ -30,6 +31,7 @@ const useAuthenticatedData = () => {
 
 function App(): JSX.Element {
     const location = useLocation();
+    const dispatch = useAppDispatch();
     useAuthenticatedData();
 
     // --- Add Socket Connection Logic ---
@@ -40,10 +42,10 @@ function App(): JSX.Element {
         const handleVisibilityChange = () => {
             if (document.visibilityState === 'visible') {
                 const socket = getSocket(); // Get the current socket instance
-                // If we have a socket but it's not connected, force a reconnect
+                // Trigger a full auth check, if the socket it is dead. This is the "smart" way to reconnect.
                 if (socket && !socket.connected) {
-                    DEVELOPER_MODE && console.log("Tab is visible, forcing socket reconnect...");
-                    socket.connect(); // This triggers the client's reconnect logic
+                    DEVELOPER_MODE && console.log("Tab visible and socket disconnected, running auth check...");
+                    dispatch(checkAuth());
                 }
             }
         };
