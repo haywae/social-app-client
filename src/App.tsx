@@ -7,7 +7,7 @@ import MobileHeader from "./components/layout/mobileHeader";
 import RightSidebar from "./components/layout/rightSidebar";
 import LeftSidebar from "./components/layout/leftSidebar";
 import { OnboardingCheck } from "./components/auth/onBoardingCheck";
-import { connectSocket, disconnectSocket } from "./services/socketService";
+import { connectSocket, disconnectSocket, getSocket } from "./services/socketService";
 import "./styles/App.css";
 import { DEVELOPER_MODE } from "./appConfig";
 import { fetchConversations } from "./thunks/messaging/fetchConversationsThunk";
@@ -34,6 +34,28 @@ function App(): JSX.Element {
 
     // --- Add Socket Connection Logic ---
     const { isAuthenticated, hasInitializedAuth } = useAppSelector((state) => state.auth);
+
+    useEffect(() => {
+        // This function will run when the tab becomes visible again
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                const socket = getSocket(); // Get the current socket instance
+                // If we have a socket but it's not connected, force a reconnect
+                if (socket && !socket.connected) {
+                    DEVELOPER_MODE && console.log("Tab is visible, forcing socket reconnect...");
+                    socket.connect(); // This triggers the client's reconnect logic
+                }
+            }
+        };
+
+        // Add the event listener
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        // Clean up the listener
+        return () => {
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+        };
+    }, []); // Empty array means this runs once on mount
 
     useEffect(() => {
         // --- 1. Connect socket When user is authenticated AND has a token ---
