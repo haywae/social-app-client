@@ -40,9 +40,9 @@
 
 /* --- DESKTOP STYLES (min-width) --- */
 @media(min-width: 768px) {
-    .messaging-page-layout { height: 100dvh;}    
+    .messaging-page-layout { height: 100dvh;} 
 }
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
 
     .messaging-page-layout{ height: 100dvh;}
     

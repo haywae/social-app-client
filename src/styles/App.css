@@ -25,21 +25,14 @@
 }
 
 .follow-button {
-  padding: 0.5rem 1.25rem;
-  /* A little more horizontal padding */
+  padding: 0;
   border-radius: 9999px;
   /* Pill shape */
   font-size: 0.9rem;
   font-weight: 700;
-  /* Bolder for better readability */
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   border: 1px solid transparent;
-  /* Start with a transparent border */
-}
-
-/* Default "Follow" state */
-.follow-button {
   background-color: var(--grey-1);
   color: var(--background);
 }

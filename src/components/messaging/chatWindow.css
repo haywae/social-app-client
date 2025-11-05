@@ -113,6 +113,10 @@
     border-radius: 15px;
 }
 
+.chat-status{
+    text-align: center;
+}
+
 .load-more-messages-btn:hover {
     background-color: var(--primary-bg);
 }
@@ -234,7 +238,7 @@
     cursor: not-allowed;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
 
     /* Hide the back button on desktop */
     .chat-header-back-btn {
