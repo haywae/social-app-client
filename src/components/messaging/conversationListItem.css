@@ -36,6 +36,7 @@
     text-overflow: ellipsis;
     margin: 0;
     flex-grow: 1;
+    min-width: 0;
     /* Takes up available space */
     margin-right: 8px;
     /* Adds space before the options group */

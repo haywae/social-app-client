@@ -47,7 +47,7 @@
     .messaging-page-layout{ height: 100dvh;}
     
     .messaging-sidebar {
-        width: 320px;
+        width: 38%;
         display: block; /* Always show */
         border-right: 1px solid var(--border-color);
         height: auto;
