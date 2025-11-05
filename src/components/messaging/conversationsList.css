@@ -83,14 +83,6 @@
     margin-left: 8px;
 }
 
-.conversation-preview {
-    font-size: 0.85rem;
-    color: var(--text-secondary); /* Use secondary text color */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0;
-}
 
 .conversation-list-status {
     padding: 20px;
