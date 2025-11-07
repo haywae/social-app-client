@@ -3,10 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { loginUser } from "../../thunks/authThunks/loginThunk";
 import { setError, setSuccess } from "../../slices/ui/uiSlice";
-import { GoogleIcon } from "../../assets/icons";
-import { useGoogleLogin } from '@react-oauth/google';
-import { DEVELOPER_MODE } from '../../appConfig';
-import { googleLogin } from '../../thunks/authThunks/googleLoginThunk';
 import "../../styles/auth-container.css"
 
 // Define the type for the component's props
@@ -81,21 +77,6 @@ const Login = ({ redirectPath }: LoginProps): JSX.Element => {
         }
     };
 
-    const googleLoginHook = useGoogleLogin({
-        // We use 'auth-code' flow for the most secure server-side verification
-        flow: 'auth-code',
-
-        // This 'onSuccess' function runs when Google returns the code
-        onSuccess: (codeResponse) => {
-            DEVELOPER_MODE && console.log('Google Auth Code:', codeResponse.code);
-            dispatch(googleLogin(codeResponse.code));
-        },
-        onError: (error) => {
-            DEVELOPER_MODE && console.error('Google Login Failed:', error); 
-            dispatch(setError('Google Login Failed'));
-        },
-    });
-
     return (
         <div className="auth-container">
             <h2 className="auth-container-title">Login</h2>
@@ -130,9 +111,6 @@ const Login = ({ redirectPath }: LoginProps): JSX.Element => {
                 <button type="submit" className="btn btn-primary" disabled={isLoading}>
                     {'Log in'}
                 </button>
-                <Link to="#" className='google-signin-button' onClick={googleLoginHook}>
-                    <GoogleIcon /> <span>Sign In with Google</span>
-                </Link>
             </form>
             <div className="links">
                 <Link to="/register" className="signup-link">Sign Up</Link>

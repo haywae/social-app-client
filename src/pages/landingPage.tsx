@@ -2,14 +2,8 @@ import type { JSX } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../utils/hooks';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../utils/hooks';
 import '../styles/landingPage.css';
-import { GoogleIcon } from '../assets/icons';
 import { useEffect } from 'react';
-import { useGoogleLogin } from '@react-oauth/google';
-import { DEVELOPER_MODE } from '../appConfig';
-import { googleLogin } from '../thunks/authThunks/googleLoginThunk';
-import { setError } from '../slices/ui/uiSlice';
 
 // Define the type for the component's props
 interface LoginProps {
@@ -22,8 +16,6 @@ interface LoginProps {
  */
 const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-
 
     // Select state from the Redux store using the typed selector
     const { isAuthenticated } = useAppSelector((state) => state.auth);
@@ -34,20 +26,6 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
         }
     }, [isAuthenticated, navigate, redirectPath]);
 
-    const googleLoginHook = useGoogleLogin({
-        // We use 'auth-code' flow for the most secure server-side verification
-        flow: 'auth-code',
-
-        // This 'onSuccess' function runs when Google returns the code
-        onSuccess: (codeResponse) => {
-            DEVELOPER_MODE && console.log('Google Auth Code:', codeResponse.code);
-            dispatch(googleLogin(codeResponse.code));
-        },
-        onError: (error) => {
-            DEVELOPER_MODE && console.error('Google Login Failed:', error);
-            dispatch(setError('Google Login Failed'));
-        },
-    });
     return (
         <div className="landing-page-container">
             <main className="landing-main-content">
@@ -70,11 +48,6 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
                                 <Link to="/login" className="cta-button-secondary">
                                     Log In
                                 </Link>
-                            </div>
-                            <div className='hero-actions-row'>
-                                <button type='button' className='cta-button-google' onClick={() => googleLoginHook()}>
-                                    <GoogleIcon /> Sign In with Google
-                                </button>
                             </div>
                         </div>
                     </div>

@@ -121,27 +121,6 @@
     /* Year is widest */
 }
 
-.auth-container .google-signin-button {
-    margin-top: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    padding: 8px;
-}
-
-.auth-container .google-signin-button span {
-    margin-left: 12px;
-    font-weight: 600;
-    color: var(--grey-3);
-}
-
-.auth-container .google-signin-button svg {
-    width: 20px;
-    height: 20px;
-}
-
 /*------ The Registration Dropdown -------*/
 .auth-container svg {
     top: 10%;

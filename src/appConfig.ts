@@ -10,8 +10,6 @@ export const DEFAULT_AVATAR_URL = defaultAvatar;
 
 export const SOCKET_URL: string = import.meta.env.VITE_SOCKET_URL;
 
-export const GOOGLE_CLIENT_ID: string = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
 export const IMAGE_BASE_URL: string = import.meta.env.VITE_IMAGE_BASE_URL;
 
 // Regex to find @username mentions (preceded by a space or start of string)

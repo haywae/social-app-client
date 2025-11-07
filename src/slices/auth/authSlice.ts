@@ -1,7 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { loginUser, type LoginResponse } from "../../thunks/authThunks/loginThunk";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
-import { googleLogin } from "../../thunks/authThunks/googleLoginThunk";
 import { refreshToken, type RefreshTokenSuccess, type RefreshReject } from "../../thunks/authThunks/refreshTokenThunk";
 import { checkAuth } from "../../thunks/authThunks/authCheckThunk";
 import { updateUsername } from "../../thunks/settingsThunks/updateUsernameThunk";
@@ -118,27 +117,6 @@ const authSlice = createSlice({
                 state.loading = 'failed';
                 state.error = action.payload ?? "An unknown login error occurred";
             })
-
-            //----- LOGIN WITH GOOGLE -----
-            .addCase(googleLogin.pending, (state) => {
-                state.loading = 'pending';
-                state.error = null;
-            })
-            .addCase(googleLogin.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
-                state.user = action.payload.user;
-                state.csrfAccessToken = action.payload.csrf_access_token;
-                state.csrfRefreshToken = action.payload.csrf_refresh_token;
-                state.accessTokenExp = action.payload.access_token_exp;
-                state.isAuthenticated = true;
-                state.hasInitializedAuth = true;
-                state.loading = 'succeeded';
-                state.error = null;
-            })
-            .addCase(googleLogin.rejected, (state, action) => {
-                state.loading = 'failed';
-                state.error = action.payload ?? "An unknown login error occurred";
-            })
-
             //----- COMPLETE ONBOARDING -----
             .addCase(completeOnboardingThunk.pending, (state) => {
                 // Set loading state to pending while the API call is in progress

@@ -55,8 +55,7 @@
 }
 
 .cta-button-primary,
-.cta-button-secondary,
-.cta-button-google {
+.cta-button-secondary {
     display: inline-block;
     width: 100%;
     max-width: 300px;
@@ -78,34 +77,14 @@
     background-color: var(--base-dark);
 }
 
-.cta-button-secondary,
-.cta-button-google {
+.cta-button-secondary {
     background-color: transparent;
     color: var(--base);
     border: 1px solid var(--grey-6);
 }
 
-.cta-button-secondary:hover,
-.cta-button-google:hover {
+.cta-button-secondary:hover {
     background-color: rgba(0, 135, 90, 0.1);
-}
-
-.cta-button-google {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
-
-    /* Google-specific styles */
-    background-color: var(--background);
-    border: 1px solid var(--border-color);
-}
-
-/* Styles the icon inside the button */
-.cta-button-google svg {
-    margin-right: 12px;
 }
 
 /* Add this to your landingPage.css */
