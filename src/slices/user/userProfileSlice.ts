@@ -2,7 +2,6 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { fetchUserProfile } from "../../thunks/userThunks/fetchUserProfile";
 import { followUser } from "../../thunks/userThunks/followUserThunk";
 import type { UserProfileData } from "../../types/userProfileType";
-import type { ExchangeData } from "../../types/exchange";
 
 /**
  * Defines the shape of the state for managing a user's profile.
@@ -11,9 +10,6 @@ interface ProfileState {
     profile: UserProfileData | null;
     loading: 'idle' | 'pending' | 'succeeded' | 'failed';
     error: string | null;
-    exchangeData: ExchangeData | null;
-    exchangeLoading: 'idle' | 'pending' | 'succeeded' | 'failed';
-    exchangeError: string | null;
 }
 
 /**
@@ -23,9 +19,6 @@ const initialState: ProfileState = {
     profile: null,
     loading: 'idle',
     error: null,
-    exchangeData: null,
-    exchangeLoading: 'idle',
-    exchangeError: null,
 };
 
 const profileSlice = createSlice({
@@ -37,9 +30,6 @@ const profileSlice = createSlice({
             state.profile = null;
             state.loading = 'idle';
             state.error = null;
-            state.exchangeData = null;
-            state.exchangeLoading = 'idle';
-            state.exchangeError = null;
         }
     },
     extraReducers: (builder) => {

@@ -156,28 +156,10 @@ const UserProfilePage = (): JSX.Element => {
                             <div className="stat">
                                 <strong>{profile.postCount}</strong> Posts
                             </div>
-                            <div
-                                className="stat clickable"
-                                onClick={() => dispatch(openModal({
-                                    modalType: 'CONNECTIONS_LIST',
-                                    modalProps: {
-                                        username: profile.username,
-                                        initialTab: 'followers'
-                                    }
-                                }))}
-                            >
+                            <div>
                                 <strong>{profile.followerCount}</strong> Followers
                             </div>
-                            <div
-                                className="stat clickable"
-                                onClick={() => dispatch(openModal({
-                                    modalType: 'CONNECTIONS_LIST',
-                                    modalProps: {
-                                        username: profile.username,
-                                        initialTab: 'following'
-                                    }
-                                }))}
-                            >
+                            <div>
                                 <strong>{profile.followingCount}</strong> Following
                             </div>
                         </div>
