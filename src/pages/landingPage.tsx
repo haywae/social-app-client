@@ -4,9 +4,8 @@ import { useAppSelector } from '../utils/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../utils/hooks';
 import '../styles/landingPage.css';
-import { HeartIcon, ChatIcon, LinkIcon, GoogleIcon } from '../assets/icons';
+import { GoogleIcon } from '../assets/icons';
 import { useEffect } from 'react';
-import { allCurrencies } from '../assets/currencies';
 import { useGoogleLogin } from '@react-oauth/google';
 import { DEVELOPER_MODE } from '../appConfig';
 import { googleLogin } from '../thunks/authThunks/googleLoginThunk';
@@ -35,10 +34,6 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
         }
     }, [isAuthenticated, navigate, redirectPath]);
 
-    const USD_SYMBOL = allCurrencies.find(c => c.iso3 === 'USD')?.symbol;
-    const GBP_SYMBOL = allCurrencies.find(c => c.iso3 === 'GBP')?.symbol;
-    const EUR_SYMBOL = allCurrencies.find(c => c.iso3 === 'EUR')?.symbol;
-
     const googleLoginHook = useGoogleLogin({
         // We use 'auth-code' flow for the most secure server-side verification
         flow: 'auth-code',
@@ -49,7 +44,7 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
             dispatch(googleLogin(codeResponse.code));
         },
         onError: (error) => {
-            DEVELOPER_MODE && console.error('Google Login Failed:', error); 
+            DEVELOPER_MODE && console.error('Google Login Failed:', error);
             dispatch(setError('Google Login Failed'));
         },
     });
@@ -60,10 +55,13 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
                 {/* --- Hero Section --- */}
                 <section className="hero-section">
                     <div className="hero-content">
-                        <h1 className="hero-headline">Join the Conversation on Currency.</h1>
+                        <h1 className="hero-headline">Hello, I'm Ayowole Badejo.</h1>
                         <p className="hero-subheadline">
-                            WolexChange is the community-driven platform for sharing and discovering real-time exchange rates. See what’s happening in the market, right now.
+                            Welcome to my project showcase. You're looking at a live,
+                            interactive demo of "WolexChange," a full-stack social
+                            application I built from the ground up.
                         </p>
+
                         <div className="hero-actions">
                             <div className='hero-actions-row'>
                                 <Link to="/register" className="cta-button-primary">
@@ -84,35 +82,16 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
 
                 {/* --- App Preview Section --- */}
                 <section className="app-preview-section">
-                    <div className="app-preview-container">
-                        {/* Mock Post */}
-                        <div className="mock-post">
-                            <div className="mock-post-header">
-                                <img src="https://cdn.pixabay.com/photo/2025/10/09/08/14/mushroom-9883036_1280.jpg" alt="" className='mock-avatar' />
-                                <div className="mock-author-info">
-                                    <span className="mock-display-name">Diamond Finance</span>
-                                    <span className="mock-username">@diamondexchange</span>
-                                </div>
-                            </div>
-                            <div className="mock-post-content">
-                                <p>
-                                    <span className='from-text'>Fresh rates from Nigeria by</span>
-                                    <span className='via-exchange'>Diamond Finance</span>
-                                </p>
-                                <div className="mock-rates">
-                                    <p>{USD_SYMBOL} USD<br />Buy: 1450.00 | Sell: 1465.00</p>
-                                    <p>{GBP_SYMBOL} GBP<br />Buy: 1820.00 | Sell: 1840.00</p>
-                                    <p>{EUR_SYMBOL} EUR<br />Buy: 1550.00 | Sell: 1570.00</p>
-                                </div>
-                                <p className="mock-hashtags">#USD #GBP #EUR</p>
-                            </div>
-                            <div className="mock-post-actions">
-                                <span className='mock-action-item'><ChatIcon /> 12</span>
-                                <span className='mock-action-item'><HeartIcon /> 45</span>
-                                <span className='mock-action-item'><LinkIcon /></span>
-                            </div>
+                        <div className="demo-credentials">
+                            <strong>To explore the app:</strong>
+                            <p>Log in with the pre-built demo account:</p>
+                            <ul>
+                                <li><strong>Username:</strong> `iamRecruiter`</li>
+                                <li><strong>Password:</strong> `password123`</li>
+                            </ul>
+                            <p>...or feel free to create your own account.</p>
                         </div>
-                    </div>
+                    
                 </section>
 
             </main>

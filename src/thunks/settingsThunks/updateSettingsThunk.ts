@@ -29,7 +29,7 @@ export const updateSettings = createAsyncThunk<
 
             dispatch(updateUser(data.settings));
 
-            return data.settings; // The backend returns the updated settings under a 'settings' key
+            return data.settings;
         } catch (error: any) {
             return rejectWithValue(error.message || 'An unexpected network error occurred.');
         }

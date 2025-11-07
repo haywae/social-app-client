@@ -95,7 +95,7 @@ const ProfileSettingsPage = (): JSX.Element => {
         }
     };
 
-    // #2: A loading state to prevent showing an empty form.
+    // A loading state to prevent showing an empty form.
     if ((loading === 'pending' || loading === 'idle') && !settings) {
         return (
              <div className="settings-page">

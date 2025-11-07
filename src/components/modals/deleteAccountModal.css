@@ -1,81 +1,49 @@
-/* deleteAccountModal.css */
-
-/* --- Namespaced styles for elements INSIDE this specific modal --- */
-
 .delete-account-modal h2 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.2rem;
-    color: var(--grey-1);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--grey-1);
 }
 
 .delete-account-modal p {
-    margin: 0 0 1.5rem 0;
-    line-height: 1.5;
-    color: var(--grey-4);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+  color: var(--grey-4);
 }
 
 .delete-account-modal .form-group label {
-    display: block;
-    margin-bottom: 4px;
-    font-weight: 600;
-    font-size: 1em;
-    color: var(--grey-3);
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 1em;
+  color: var(--grey-3);
 }
 
 .delete-account-modal .form-group input {
-    width: 100%;
-    padding: 12px;
-    background-color: var(--grey-7);
-    border: 1px solid var(--grey-6);
-    border-radius: 8px;
-    font-size: 1rem;
-    color: var(--grey-3);
-    box-sizing: border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--grey-7);
+  border: 1px solid var(--grey-6);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--grey-3);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .delete-account-modal .form-group input:focus {
-    background-color: var(--background);
+  background-color: var(--background);
 }
 
 .delete-account-modal .form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .delete-account-modal .delete-modal-actions {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
-
-/* --- Dark Theme overrides for this specific modal's content --- */
-/* src/components/settings/deleteAccountModal.css */
-
-@media (prefers-color-scheme: dark) {
-  .delete-account-modal h2 {
-    color: var(--grey-1);
-  }
-
-  .delete-account-modal p {
-    color: var(--grey-4);
-  }
-
-  .delete-account-modal .form-group label {
-    color: var(--grey-2);
-  }
-
-  .delete-account-modal .form-group input {
-    background-color: var(--grey-7);
-    border-color: var(--grey-6);
-    color: var(--grey-1);
-  }
-
-  .delete-account-modal .form-group input:focus {
-    background-color: var(--background);
-  }
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }

@@ -37,16 +37,6 @@ const SettingsPage = (): JSX.Element => {
                     description="Change username, password, and email address"
                     to="/settings/account"
                 />
-                {/* <SettingsCard
-                    title="Preferences"
-                    description="Country, language, and post visibility"
-                    to="/settings/preferences"
-                />
-                <SettingsCard
-                    title="Notification Settings"
-                    description="Mute notifications, manage email alerts"
-                    to="/settings/notifications"
-                /> */}
                 <SettingsCard
                     title="Security and Privacy"
                     description="Blocked users, delete account"

@@ -10,7 +10,6 @@ import { OnboardingCheck } from "./components/auth/onBoardingCheck";
 import { connectSocket, disconnectSocket, getSocket } from "./services/socketService";
 import "./styles/App.css";
 import { DEVELOPER_MODE } from "./appConfig";
-import { fetchConversations } from "./thunks/messaging/fetchConversationsThunk";
 import { checkAuth } from "./thunks/authThunks/authCheckThunk";
 
 /** * This custom hook now only fetches data for an already authenticated user.
@@ -24,7 +23,6 @@ const useAuthenticatedData = () => {
         if (isAuthenticated) {
             dispatch(fetchNotifications({ page: 1 }));
             dispatch(fetchSettings());
-            dispatch(fetchConversations());
         }
     }, [isAuthenticated, dispatch]);
 };
@@ -57,7 +55,7 @@ function App(): JSX.Element {
         return () => {
             document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
-    }, []); // Empty array means this runs once on mount
+    }, [dispatch]); // Empty array means this runs once on mount
 
     useEffect(() => {
         // --- 1. Connect socket When user is authenticated AND has a token ---

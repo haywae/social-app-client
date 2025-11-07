@@ -51,7 +51,6 @@ export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispat
                     });
                 }
 
-                // This is a server error (5xx) or other issue. Treat it as a network problem.
                 return rejectWithValue({
                     type: 'network',
                     message: data.error || `Failed to refresh token (Status: ${response.status})`

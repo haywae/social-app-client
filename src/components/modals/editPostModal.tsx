@@ -98,7 +98,7 @@ const EditPostModal = ({ post, isOpen, onClose }: EditPostModalProps): JSX.Eleme
                     <button
                         type="submit"
                         className="edit-post-btn-primary"
-                        disabled={isSubmitting || editedContent.trim() === initialContent.trim()} // <-- Compare to initial state
+                        disabled={isSubmitting || editedContent.trim() === initialContent.trim()}
                     >
                         {isSubmitting ? 'Saving...' : 'Save Changes'}
                     </button>

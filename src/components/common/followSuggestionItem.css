@@ -1,64 +1,49 @@
 .follow-suggestion {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.2s;
 }
 
 .follow-suggestion:hover {
-    background-color: var(--grey-7);
+  background-color: var(--grey-7);
 }
 
 .follow-suggestion-user-info-nav {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-    color: inherit;
-    flex-grow: 1;
-    overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .follow-suggestion-user-info-nav div {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .follow-suggestion-user-info-nav strong {
-    font-weight: 700;
-    color: var(--grey-1);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block; 
+  font-weight: 700;
+  color: var(--grey-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 .follow-suggestion-user-info-nav small {
-    color: var(--grey-4);
-    font-size: 0.9rem;
+  color: var(--grey-4);
+  font-size: 0.9rem;
 }
 
 .follow-suggestion .follow-button {
-    flex-shrink: 0; /* Prevents the button from shrinking */
-    padding: 0.4rem 1rem; /* Smaller button for the sidebar */
-    font-size: 0.85rem;
-}
-
-/* --- Dark Theme Overrides --- */
-/* src/components/rightSidebar/followSuggestionItem.css */
-
-@media (prefers-color-scheme: dark) {
-  .follow-suggestion:hover {
-    background-color: var(--grey-7);
-  }
-
-  .follow-suggestion-user-info-nav strong {
-    color: var(--grey-1);
-  }
-
-  .follow-suggestion-user-info-nav small {
-    color: var(--grey-4);
-  }
+  flex-shrink: 0;
+  /* Prevents the button from shrinking */
+  padding: 0.4rem 1rem;
+  /* Smaller button for the sidebar */
+  font-size: 0.85rem;
 }

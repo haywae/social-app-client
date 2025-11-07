@@ -10,7 +10,6 @@ export interface LoginCredentials {
     password: string;
 }
 
-// Shape of the successful API response.
 // This matches the AuthPayload in the authSlice.
 export interface LoginResponse {
     user: UserData;

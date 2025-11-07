@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../apiInterceptor";
 
 // This type is based on the 'serialize_user_for_list' helper
-// from our backend plan.
 export interface UserForList {
     username: string;
     authorName: string;

@@ -20,19 +20,10 @@ import RootLayout from "./components/layout/rootLayout.tsx";
 import HomePage from "./pages/homepageController.tsx";
 import HybridLayout from "./components/layout/hybridLayout.tsx";
 
-// --- Legal & Static Pages ---
-import PrivacyPolicy from './pages/legal/privacyPolicy.tsx';
-import TermsAndConditions from './pages/legal/termsAndConditions.tsx';
-import CookiePolicy from './pages/legal/cookiePolicy.tsx';
-import ContactPage from './pages/legal/contact.tsx';
-import AboutPage from './pages/legal/about.tsx';
 
 // --- Authenticated App Pages ---
 import CreatePostPage from './pages/createPostPage.tsx';
-import ExchangePage from './pages/exchangePage.tsx';
-import MessagingPage from "./pages/messagingPage.tsx";
 import NotificationsPage from './pages/notificationsPage.tsx';
-import SearchPage from './pages/searchPage.tsx';
 import SettingsPage from './pages/settingsPages/settingsPage.tsx';
 import PostDetailPage from './pages/postDetailPage.tsx';
 import UserProfilePage from './pages/userProfilePage.tsx';
@@ -44,7 +35,6 @@ import ChangeEmailPage from "./pages/settingsPages/changeEmailPage.tsx";
 import ChangePasswordPage from "./pages/settingsPages/changePasswordPage.tsx";
 import ChangeUsernamePage from "./pages/settingsPages/changeUsernamePage.tsx";
 
-import ViewPage from './pages/viewPage.tsx';
 
 export const appRoutes: RouteObject[] = [
     {
@@ -67,14 +57,7 @@ export const appRoutes: RouteObject[] = [
                     { path: 'forgot-password', element: <ForgotPassword /> },
                     { path: 'reset-password', element: <ResetPassword /> },
                     { path: 'verify-email', element: <VerifyEmailPage /> },
-                    { path: 'confirm-email-change', element: <ConfirmEmailChangePage /> },
-                    // --- Other public static pages ---
-                    { path: 'privacy-policy', element: <PrivacyPolicy /> },
-                    { path: 'terms-and-conditions', element: <TermsAndConditions /> },
-                    { path: 'cookie-policy', element: <CookiePolicy /> },
-                    { path: 'contact', element: <ContactPage /> },
-                    { path: 'about', element: <AboutPage /> },
-
+                    { path: 'confirm-email-change', element: <ConfirmEmailChangePage /> }
                 ]
             },
             // --- PROTECTED ROUTES (THE MAIN APP) ---
@@ -88,17 +71,10 @@ export const appRoutes: RouteObject[] = [
                 children: [
                     // The authenticated "home" is now at /feed
                     { path: 'feed', element: <Home /> },
-                    { path: 'exchange', element: <ExchangePage /> },
-                    { path: 'messages', element: <MessagingPage />, 
-                        children: [
-                            { path: ':conversationId', element: <MessagingPage /> } 
-                        ]
-                    },
                     { path: 'notifications', element: <NotificationsPage /> },
                     { path: 'post', element: <CreatePostPage /> },
                     { path: 'post/:postId', element: <PostDetailPage /> },
                     { path: 'profile/:username', element: <UserProfilePage /> },
-                    { path: 'search', element: <SearchPage /> },
                     { path: 'settings', element: <SettingsPage /> },
                     { path: 'settings/account', element: <AccountManagementPage /> },
                     { path: 'settings/account/username', element: <ChangeUsernamePage /> },
@@ -115,9 +91,6 @@ export const appRoutes: RouteObject[] = [
                 // This layout handles pages accessible to both auth/guest
                 // It renders <App /> or <AuthLayout /> accordingly
                 element: <HybridLayout />,
-                children: [
-                    { path: 'view', element: <ViewPage /> },
-                ]
             },
 
 

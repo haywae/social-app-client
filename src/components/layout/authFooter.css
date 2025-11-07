@@ -18,27 +18,7 @@
     margin-top: 30px;
 }
 
-.auth-footer-links {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.auth-footer-links a {
-    font-size: 0.75rem;
-    color: var(--text-secondary); /* A medium gray for good readability */
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.auth-footer-links a:hover {
-    color: var(--base);
-    text-decoration: underline;
-}
-
 .auth-footer-copyright {
     font-size: 0.85rem;
     color: var(--grey-3); /* A lighter gray for the copyright text */
 }
-

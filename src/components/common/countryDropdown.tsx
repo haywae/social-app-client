@@ -1,15 +1,9 @@
 import { useState, useMemo, type JSX, type ReactNode } from "react";
-import {
-  useFloating,
-  useClick,
-  useDismiss,
-  useInteractions,
-  FloatingFocusManager,
-  FloatingPortal,
-  offset,
-  size,
+import { 
+  useFloating, useClick, useDismiss, useInteractions, 
+  FloatingFocusManager, FloatingPortal, offset, size,
 } from "@floating-ui/react";
-import "./cDropdown.css";
+import "./countryDropdown.css";
 import { allCountries, type CountryItem } from "../../assets/countries";
 
 interface CountryDropdownProps {
@@ -47,7 +41,7 @@ const CountryDropdown = ({ selectedCountry, onSelect }: CountryDropdownProps): J
   // --- Data Filtering ---
   const filteredCountries = useMemo(() =>
     allCountries.filter(c =>
-      c.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       c.currencyCode.toLowerCase().includes(searchTerm.toLowerCase())
     ), [searchTerm]);
 

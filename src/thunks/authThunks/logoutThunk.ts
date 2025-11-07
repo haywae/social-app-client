@@ -21,9 +21,8 @@ export const logoutUser = createAsyncThunk(
                     credentials: 'include',
                 });
             }
-            // The goal is simply to log the user out on the client.
         } catch (error) {
-            // Ignore network errors, the goal is to clear the client state
+
         } finally {
             clearLocalStorage()
         }

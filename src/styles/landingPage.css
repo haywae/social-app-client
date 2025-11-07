@@ -108,6 +108,55 @@
     margin-right: 12px;
 }
 
+/* Add this to your landingPage.css */
+
+.demo-credentials {
+  background-color: #f4f4f4; /* A light, clean background */
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+  text-align: left;
+  border: 1px solid #ddd;
+  max-width: 400px; /* Or adjust as needed */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.demo-credentials strong {
+  font-size: 1.1rem;
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.demo-credentials p {
+  margin: 4px 0 12px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.demo-credentials ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.demo-credentials li {
+  font-family: 'Courier New', Courier, monospace; /* Good for code-like text */
+  background-color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  border: 1px solid #eee;
+}
+
+.demo-credentials li strong {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #000;
+  display: inline;
+}
+
 /* --- App Preview Section --- */
 .app-preview-section {
     width: 100%;

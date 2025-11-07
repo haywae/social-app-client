@@ -7,7 +7,7 @@ import { type CreatePasswordArgs } from "../../types/settingsType";
  * This calls the new POST /settings/create-password endpoint.
  */
 export const createPassword = createAsyncThunk<
-    string, // Return type on success (e.g., a success message)
+    string, // Return type on success
     CreatePasswordArgs,
     { rejectValue: string }
 >(
@@ -26,7 +26,7 @@ export const createPassword = createAsyncThunk<
                 return rejectWithValue(data.message || 'Failed to create password.');
             }
             
-            // On success, return the success message (e.g., "Password created successfully.")
+            // On success, return the success message 
             return data.message; 
         } catch (error: any) {
             return rejectWithValue(error.message || 'An unexpected network error occurred.');

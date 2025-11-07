@@ -41,7 +41,7 @@
     /* Truncate long bios */
     white-space: nowrap;
     line-clamp: 2;
-    -webkit-line-clamp: 3; /* Show a maximum of 2 lines */
+    -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -52,7 +52,6 @@
     padding-top: 4px; /* Align with text */
 }
 
-/* Make sure modal buttons use standard styles */
 .user-list-item-action .btn {
     padding: 0.4em 1em;
     font-size: 0.9rem;

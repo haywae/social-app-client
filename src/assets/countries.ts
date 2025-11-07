@@ -17,7 +17,6 @@ interface RawCountry {
   iso2: string;
   iso3: string;
   currency: string;
-  // other fields omitted
 }
 
 

@@ -1,5 +1,3 @@
-/* This is a highly specific selector that will ONLY apply when
-   both .modal-content and .avatar-viewer classes are present. */
 .modal-content.avatar-viewer {
   /* Override the default modal styles */
   background: none;
@@ -19,7 +17,6 @@
   background: transparent;
   border: none;
   padding: 0;
-  /* Position the header over the content */
   position: absolute;
   top: 0;
   right: 0;
@@ -32,9 +29,7 @@
 .modal-content.avatar-viewer .modal-body {
   padding: 0;
   overflow: visible;
-  /* Prevents this container from creating a scrollbar */
   line-height: 0;
-  /* Good practice to remove extra space around the image */
 }
 
 .avatar-modal-content img {

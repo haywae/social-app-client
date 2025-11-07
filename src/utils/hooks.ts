@@ -9,14 +9,13 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export function useTitle(title: string) {
   const unreadNotifications = useAppSelector((state) => (state.notifications.unreadCount))
-  const unreadMessages = useAppSelector((state) => (state.conversations.totalUnreadMessages))
   useEffect(() => {
-    const totalUnreadCount = unreadMessages + unreadNotifications;
+    const totalUnreadCount = unreadNotifications;
 
     if (totalUnreadCount > 0) {
       document.title = `(${totalUnreadCount}) ${title}`
     } else {
       document.title = title;
     }
-  }, [title, unreadMessages, unreadNotifications]);
+  }, [title, unreadNotifications]);
 }

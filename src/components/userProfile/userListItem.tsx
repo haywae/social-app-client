@@ -1,5 +1,3 @@
-// src/components/modals/UserListItem.tsx
-
 import { type JSX, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
@@ -18,12 +16,11 @@ const UserListItem = ({ user, onCloseModal }: UserListItemProps): JSX.Element =>
     const navigate = useNavigate();
     const [isFollowLoading, setIsFollowLoading] = useState(false);
 
-    // We need the logged-in user to know if we can follow/unfollow
     const loggedInUser = useAppSelector((state) => state.auth.user);
 
     const handleFollow = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Stop the link navigation
-        e.preventDefault();  // Stop the link navigation
+        e.stopPropagation();
+        e.preventDefault();
 
         if (!loggedInUser) {
             navigate('/login');
@@ -37,9 +34,6 @@ const UserListItem = ({ user, onCloseModal }: UserListItemProps): JSX.Element =>
             isFollowing: user.isFollowing
         })).finally(() => {
             setIsFollowLoading(false);
-            // Note: In a real app, you'd dispatch an update to the user
-            // in the modal's state here, but for now this thunk
-            // should update the profile state, which is fine.
         });
     };
 

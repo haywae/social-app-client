@@ -1,16 +1,13 @@
-import { type CommentData } from "./commentType";
 
 /**
  * @interface FetchedPostsPayload
  * @description The definitive payload shape returned by post-fetching thunks. It bundles the posts for the current page, all associated comment previews for normalization, and the necessary pagination metadata.
  * @property {PostData[]} posts - An array of processed post data for the current page.
- * @property {CommentData[]} comments - A flattened array of all comments associated with the fetched posts.
  * @property {number} currentPage - The current page number of the paginated post list.
  * @property {number} totalPages - The total number of pages available for the posts.
  */
 export interface FetchedPostsPayload {
     posts: PostData[];
-    comments: CommentData[];
     currentPage: number;
     totalPages: number;
 }
@@ -25,11 +22,8 @@ export interface FetchedPostsPayload {
  * @property {string} authorAvatarUrl - The URL for the author's profile avatar.
  * @property {string} content - The text content of the post.
  * @property {string} createdAt - The creation timestamp, potentially formatted for display.
- * @property {number} replyCount - The total number of replies (comments) on the post.
  * @property {number} likeCount - The total number of likes on the post.
  * @property {boolean} isLiked - Indicates if the current user has liked the post.
- * @property {string[]} [commentPreviewIds] - An optional array of comment IDs for displaying previews in a feed.
- * @property {ApiComment[]} [commentPreview] - An optional array holding raw comment preview data from the API before it is processed and normalized.
  */
 export interface PostData {
     id: string;
@@ -41,8 +35,6 @@ export interface PostData {
     replyCount: number;
     likeCount: number;
     isLiked: boolean;
-    commentPreviewIds?: string[];
-    commentPreview?: CommentData[];
     postType: 'REGULAR' | 'RATE_POST';
     hashtags?: string[];
 }
@@ -62,5 +54,4 @@ export interface PostProps{
     post: PostData;
     isDetailedView?: boolean;
     isGateway?: boolean;
-    onReplyClick?: () => void;
 }

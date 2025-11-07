@@ -6,8 +6,6 @@ import { fetchPosts} from "../../thunks/postsThunks/fetchPostsThunk";
 import { fetchSinglePost } from "../../thunks/postsThunks/fetchSinglePostThunk";
 import { fetchUserPosts } from "../../thunks/postsThunks/fetchUserPostsThunk";
 import { toggleLike } from "../../thunks/postsThunks/toggleLikeThunk";
-import { createComment } from "../../thunks/commentsThunks/createCommentThunk";
-import { deleteComment } from "../../thunks/commentsThunks/deleteCommentThunk";
 import { uploadProfilePicture } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
 import { type PostData, type FetchedPostsPayload } from "../../types/postType";
 import { type UploadPayload } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
@@ -100,21 +98,6 @@ const postsSlice = createSlice({
                 state.error = action.payload ?? 'Could not create post.';
                 state.createPostStatus = 'failed';
             })
-            .addCase(createComment.fulfilled, (state, action) => { 
-                const isTopLevelComment = !action.payload.parentId;
-
-                // --- 1. If the new comment is a top level comment
-                if (isTopLevelComment) {
-                    // --- a. Retrieve the post id from the argument used to call the create comment action and find the post
-                    const postId = action.meta.arg.postId;
-                    const post = state.posts.find(p => p.id === postId);
-
-                    // --- b. If the a post is retrieved, increment its reply count by 1
-                    if (post) {
-                        post.replyCount += 1;
-                    }
-                }
-            })
             // =================================
             // === Cases for Deleting a Post ===
             // =================================
@@ -126,20 +109,6 @@ const postsSlice = createSlice({
             .addCase(deletePost.rejected, (state, action) => {
                 state.loading = 'failed';
                 state.error = action.payload ?? 'Could not delete post.';
-            })
-            // === LISTENER for comment deletion ===
-            .addCase(deleteComment.fulfilled, (state, action) => {
-                // Checks if the comment was a top level comment
-                const wasTopLevelComment = !action.payload.parentId;
-
-                // If it was a top level comment, we decrease the post reply count
-                if (wasTopLevelComment) {
-                    const postId = action.meta.arg.postId;
-                    const post = state.posts.find(p => p.id === postId);
-                    if (post) {
-                        post.replyCount -= 1;
-                    }
-                }
             })
             // ================================
             // === Case for Updating a Post ===
@@ -216,9 +185,8 @@ const postsSlice = createSlice({
                 state.loading = 'succeeded';
                 // --- 1. Process incoming posts to extract comment preview IDs ---
                 const incomingPosts = action.payload.posts.map(post => {
-                    const commentPreviewIds = (post.commentPreview || []).map(comment => comment.id);
-                    // --- a. Return the post object with the new comment_preview_ids array
-                    return { ...post, comment_preview_ids: commentPreviewIds };
+                    // --- a. Return the post object
+                    return { ...post };
                 });
 
                 // --- 2. If it's the first page, REPLACE the posts array.

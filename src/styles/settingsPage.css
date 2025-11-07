@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------------------------
-Description: Styles for the user settings page and its components.
+Styles for the user settings page and its components.
 -----------------------------------------------------------------------------
 */
 
@@ -122,16 +122,12 @@ Description: Styles for the user settings page and its components.
     background-color: var(--background);
 }
 
-/* Add these styles to your existing settingsPage.css file */
-
 .settings-content .section-description {
     color: var(--grey-4);
     font-size: 0.95rem;
     margin: 0;
     padding-bottom: 1rem;
 }
-
-
 
 @media (min-width: 768px) {
     .settings-page {

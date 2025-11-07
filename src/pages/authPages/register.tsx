@@ -57,18 +57,18 @@ const Signup = (): JSX.Element => {
 
     const selectedCountry = allCountries.find(c => c.name === formData.country) || undefined;
 
-    // --- CHANGED --- Generate dynamic day list based on state
+    // --- Generate dynamic day list based on state
     const daysInSelectedMonth = getDaysInMonth(formData.dobYear, formData.dobMonth);
     const DYNAMIC_DAYS = Array.from({ length: daysInSelectedMonth }, (_, i) => i + 1);
 
-    // Redirect if already authenticated ---
+    // Redirect if already authenticated
     useEffect(() => {
         if (isAuthenticated) {
             navigate('/'); // Redirect to the homepage
         }
     }, [isAuthenticated, navigate]);
 
-    // --- CHANGED --- Effect to reset day if it becomes invalid
+    // Effect to reset day if it becomes invalid
     useEffect(() => {
         if (parseInt(formData.dobDay, 10) > daysInSelectedMonth) {
             setFormData(prevData => ({
@@ -124,11 +124,10 @@ const Signup = (): JSX.Element => {
             dispatch(setError('Passwords do not match.'));
             return;
         }
-        // --- CHANGED --- Format the date_of_birth string right before submission
+        // Format the date_of_birth string right before submission
         const paddedDay = String(dobDay).padStart(2, '0');
         const formattedDOB = `${dobYear}-${dobMonth}-${paddedDay}`;
         try {
-            // .unwrap() will throw an error if the thunk is rejected
             setSuccessEmail(email);
             await dispatch(registerUser({ displayName, username, email, password, dateOfBirth: formattedDOB, country })).unwrap();
 

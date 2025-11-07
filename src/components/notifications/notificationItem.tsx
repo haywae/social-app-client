@@ -1,7 +1,7 @@
 import { type JSX } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import type { NotificationData } from '../../slices/notification/notificationSlice';
-import { HeartIcon, ChatIcon, FollowIcon, MentionIcon } from '../../assets/icons';
+import { HeartIcon, FollowIcon, MentionIcon } from '../../assets/icons';
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from '../../appConfig';
 import { formatRelativeTimestamp } from '../../utils/timeformatUtils';
 import './notificationItem.css';
@@ -11,7 +11,7 @@ interface NotificationItemProps {
 }
 
 const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element | null => {
-    const { type, fromUser, post, isRead, comment, createdAt } = notification;
+    const { type, fromUser, post, isRead, createdAt } = notification;
     const navigate = useNavigate();
 
     if (!fromUser) {
@@ -32,7 +32,6 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
     const renderIcon = () => {
         switch (type) {
             case 'like': return <HeartIcon className="notification-icons like" />;
-            case 'comment': return <ChatIcon className="notification-icons reply" />;
             case 'follow': return <FollowIcon className="notification-icons follow" />;
             case 'mention': return <MentionIcon className="notification-icons mention" />;
             default: return null;
@@ -54,20 +53,13 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
         );
         switch (type) {
             case 'like':
-                if (comment) return <>{userLink} liked your comment.</>;
                 if (post) return <>{userLink} liked your post.</>;
                 return <>{userLink} liked content that has since been deleted.</>;
-
-            case 'comment':
-                if (comment) return <>{userLink} commented on your comment.</>;
-                if (post) return <>{userLink} commented on your post.</>;
-                return <>{userLink} commented on content that has since been deleted</>;
 
             case 'follow':
                 return <>{userLink} started following you.</>;
 
             case 'mention':
-                if (comment) return <>{userLink} mentioned you in a comment.</>;
                 if (post) return <>{userLink} mentioned you in a post.</>;
                 return <>{userLink} mentioned you in content that has since been deleted.</>;
 
@@ -77,7 +69,6 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
     };
 
     const linkDestination = () => {
-        if (comment && comment.postId) return `/post/${comment.postId}?fc=${comment.id}`;
         if (post && post.id) return `/post/${post.id}`;
         // Fallback: only go to profile if user is NOT deleted
         if (!isDeletedUser) {
@@ -88,7 +79,7 @@ const NotificationItem = ({ notification }: NotificationItemProps): JSX.Element 
 
     };
 
-    const contentSnippet = comment?.content || post?.content;
+    const contentSnippet = post?.content;
     const destination = linkDestination();
     const canNavigate = destination !== '#';
 

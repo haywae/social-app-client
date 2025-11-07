@@ -78,49 +78,18 @@
     max-width: 200px;
 }
 
-/* --- UPDATED: Container for follow/message buttons --- */
+/* --- Container for follow/message buttons --- */
 .profile-actions {
     display: flex;
-    gap: 0.5rem; /* Adds space between the buttons */
+    gap: 0.5rem;
     width: 100%;
-    max-width: 250px; /* Adjust as needed */
+    max-width: 250px; 
 }
 
-/* --- UPDATED: Follow button shares space --- */
+/* --- Follow button shares space --- */
 .profile-actions .follow-button {
     width: 100%;
     flex-grow: 1; /* Allows follow button to take up more space */
-}
-
-/* --- NEW: Message button styles --- */
-.message-button {
-    padding: 0.5rem;
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    flex-shrink: 0; /* Prevents the button from shrinking */
-    
-    /* Using styles similar to follow button for consistency */
-    background-color: var(--background);
-    color: var(--base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.message-button svg {
-    width: 20px;
-    height: 20px;
-}
-
-.message-button:hover {
-    background-color: var(--background-light);
-    border-color: var(--base-light);
-}
-
-.message-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
 }
 
 /* --- User Bio Info --- */
@@ -172,8 +141,6 @@
     padding: 1rem 0;
     background-color: var(--background);
     border: none;
-
-    /* Added border-right */
     border-radius: 0;
     color: var(--grey-4);
     font-weight: 500;
@@ -192,7 +159,6 @@
     font-weight: 700;
     background-color: var(--background);
     color: var(--base);
-    /* Active tab text color */
 }
 
 /* Active tab underline with base color */
@@ -205,10 +171,8 @@
     height: 4px;
     border-radius: 999px;
     background-color: var(--base);
-    /* Use base color for underline */
 }
 
-/* --- Messages --- */
 .profile-message {
     padding: 2rem;
     text-align: center;

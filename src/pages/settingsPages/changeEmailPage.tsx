@@ -18,7 +18,6 @@ const ChangeEmailPage = (): JSX.Element => {
             </header>
             
             <main className="settings-content">
-                {/* This page does one thing: shows the username form */}
                 <ChangeEmailForm />
             </main>
         </div>

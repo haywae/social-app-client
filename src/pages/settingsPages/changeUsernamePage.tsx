@@ -10,7 +10,6 @@ const ChangeUsernamePage = (): JSX.Element => {
     return (
         <div className="settings-page">
             <header className="settings-header">
-                {/* This button now goes back to the Account menu */}
                 <button onClick={() => navigate('/settings/account')} className="close-button">
                     <LeftArrowIcon />
                 </button>
@@ -18,7 +17,6 @@ const ChangeUsernamePage = (): JSX.Element => {
             </header>
             
             <main className="settings-content">
-                {/* This page does one thing: shows the username form */}
                 <ChangeUsernameForm />
             </main>
         </div>

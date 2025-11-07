@@ -3,17 +3,10 @@
   /* Positioning to cover the entire screen */
   position: fixed;
   inset: 0;
-  /* A modern shorthand for top, right, bottom, left = 0 */
-
-  /* Stacking on top of all other content */
   z-index: 1000;
-
-  /* Centering the modal content box */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* The dark, semi-transparent background color */
   background-color: rgba(91, 112, 131, 0.4);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -28,10 +21,8 @@
   width: 90%;
   max-width: 450px;
   border: 1px solid var(--border-color);
-  /* A bit wider for better layout */
   max-height: 90dvh;
   display: flex;
-  /* Use flexbox to structure header, body, footer */
   flex-direction: column;
   overflow: hidden;
   /* Hide overflow and rely on internal scrolling */
@@ -63,14 +54,12 @@
 
 .modal-close-button {
   position: static;
-  /* No longer needs absolute positioning */
   background-color: var(--primary-bg);
   opacity: 0.5;
   border: none;
   color: var(--grey-4);
   cursor: pointer;
   margin-left: auto;
-  /* Add some space between title and button */
   border-radius: 50%;
   transition: background-color 0.2s, color 0.2s;
   display: flex;
@@ -95,7 +84,6 @@
   resize: none;
   min-height: 120px;
   outline: none;
-  /* Removes the focus border */
   color: var(--grey-4);
   background-color: var(--primary-bg);
   border-radius: 8px;

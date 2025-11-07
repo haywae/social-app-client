@@ -3,8 +3,6 @@ import { API_BASE_URL } from "../../appConfig";
 import api from "../../apiInterceptor";
 import { type RootState } from "../../store";
 import { type FetchedPostsPayload, type PostData } from "../../types/postType";
-import { flattenComments } from '../../utils/commentUtils';
-import { type CommentData } from "../../types/commentType";
 
 // Define the arguments for this specific thunk
 interface FetchUserPostsArgs {
@@ -51,14 +49,9 @@ export const fetchUserPosts = createAsyncThunk<
             const data = await response.json();
             const postsFromApi: PostData[] = data.posts;
 
-            // 4. Extract and flatten the comment previews
-            const allCommentPreviews: CommentData[] = postsFromApi.flatMap(post => post.commentPreview || []);
-            const comments = flattenComments(allCommentPreviews);
-
-            // 5. Return the correct, normalized payload
+            // 4. Return the correct, normalized payload
             return {
                 posts: postsFromApi,
-                comments: comments,
                 currentPage: data.currentPage,
                 totalPages: data.totalPages,
             };

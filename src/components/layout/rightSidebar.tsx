@@ -1,10 +1,5 @@
-import { useEffect, type JSX } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import { fetchDiscoveryData } from '../../thunks/searchThunks/fetchDiscoveryThunk';
-import { SidebarSearch } from './sidebarSearch';
-import { TrendsList } from '../common/trendsList';
-import { FollowSuggestions } from '../common/followSuggestions';
+import { type JSX } from 'react';
+
 import './rightSidebar.css';
 
 /**
@@ -12,30 +7,30 @@ import './rightSidebar.css';
  * It displays a search bar, trending topics, and user suggestions.
  */
 const RightSidebar = (): JSX.Element => {
-    const dispatch = useAppDispatch();
-    const location = useLocation();
-    const { suggestedUsers, trendingTopics } = useAppSelector((state) => state.search);
-    const onSearchPage = location.pathname === '/search';
-
-    // Fetch discovery data (trends and suggestions) when the component mounts.
-    useEffect(() => {
-        // We only fetch if the data isn't already present to avoid redundant API calls.
-        if (suggestedUsers.length === 0 && trendingTopics.length === 0) {
-            dispatch(fetchDiscoveryData());
-        }
-    }, [dispatch, suggestedUsers.length, trendingTopics.length]);
-
     return (
         <aside className="right-sidebar-container">
-            {/* The search bar is only rendered on pages other than the main search page */}
-            {!onSearchPage && <SidebarSearch />}
-
             <div className="sidebar-module">
-                <TrendsList topics={trendingTopics} />
-            </div>
-
-            <div className="sidebar-module">
-                <FollowSuggestions users={suggestedUsers} />
+                <h3 className='sidebar-module-title'>About the Developer</h3>
+                <p className="sidebar-module-text">
+                    Hi, I'm Ayowole Badejo. I'm a full-stack developer passionate 
+                    about building secure, scalable, and user-friendly web applications. 
+                    This entire site, from the React frontend to the Python/Flask API, 
+                    was built by me.
+                </p>
+                
+                <div className="contact-info">
+                    <h4>Get in Touch</h4>
+                    <div className="contact-item">
+                        <span role="img" aria-label="email">📧</span>
+                        <a href="mailto:haywae35@gmail.com">
+                            haywae35@gmail.com
+                        </a>
+                    </div>
+                    <div className="contact-item">
+                        <span role="img" aria-label="phone">📞</span>
+                        <span>+90 (533) 8614114</span>
+                    </div>
+                </div>
             </div>
         </aside>
     );

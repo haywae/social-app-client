@@ -1,11 +1,8 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { fetchUserProfile } from "../../thunks/userThunks/fetchUserProfile";
 import { followUser } from "../../thunks/userThunks/followUserThunk";
-import { fetchUserExchangeData } from "../../thunks/exchangeThunks/fetchUserExchangeDataThunk";
 import type { UserProfileData } from "../../types/userProfileType";
 import type { ExchangeData } from "../../types/exchange";
-
-// Define the shape of the data for a user's profile
 
 /**
  * Defines the shape of the state for managing a user's profile.
@@ -75,19 +72,6 @@ const profileSlice = createSlice({
                     state.profile.followerCount += state.profile.isFollowing ? 1 : -1;
                 }
             })
-            .addCase(fetchUserExchangeData.pending, (state) => {
-                state.exchangeLoading = 'pending';
-                state.exchangeError = null;
-                state.exchangeData = null;
-            })
-            .addCase(fetchUserExchangeData.fulfilled, (state, action: PayloadAction<ExchangeData>) => {
-                state.exchangeLoading = 'succeeded';
-                state.exchangeData = action.payload;
-            })
-            .addCase(fetchUserExchangeData.rejected, (state, action) => {
-                state.exchangeLoading = 'failed';
-                state.exchangeError = action.payload || 'Failed to fetch rates.';
-            });
     }
 });
 

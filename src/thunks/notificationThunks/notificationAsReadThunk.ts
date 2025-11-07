@@ -19,7 +19,6 @@ export const markNotificationsAsRead = createAsyncThunk<
     'notifications/markAsRead',
     async (args, { rejectWithValue }) => {
         try {
-            // 2. The 'api' service, which handles authentication automatically.
             const response = await api('/notifications/mark-as-read', {
                 method: 'PUT',
                 // The body is only included if specific IDs are provided

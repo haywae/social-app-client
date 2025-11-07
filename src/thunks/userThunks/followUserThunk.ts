@@ -3,7 +3,6 @@ import api from '../../apiInterceptor';
 
 interface FollowUserArgs {
     username: string;
-    // We pass the current status to decide if we are following or unfollowing
     isFollowing: boolean; 
 }
 

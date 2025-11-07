@@ -20,16 +20,15 @@ const ForgotPassword = (): JSX.Element => {
         return () => {
             dispatch(resetPasswordResetState());
         };
-    }, [dispatch]); // The dependency array ensures this effect is set up once
+    }, [dispatch]);
 
-    // Use the typed selector to get state and infer types automatically
     const { isEmailSent, loading } = useAppSelector((state) => state.passwordReset);
     const { isAuthenticated } = useAppSelector((state) => state.auth);
 
     // Redirect if already authenticated ---
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/'); // Redirect to the homepage
+            navigate('/');
         }
     }, [isAuthenticated, navigate]);
 

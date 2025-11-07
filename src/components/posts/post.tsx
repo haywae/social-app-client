@@ -1,16 +1,11 @@
 import React, { type JSX, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { EllipseIcon, ChatIcon, HeartIcon, LinkIcon } from "../../assets/icons";
+import { EllipseIcon, HeartIcon, LinkIcon } from "../../assets/icons";
 import "./post.css";
-
 import type { PostProps } from "../../types/postType";
-
 import { useAppSelector, useAppDispatch } from "../../utils/hooks";
-
 import { toggleLike } from "../../thunks/postsThunks/toggleLikeThunk";
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
-import { submitSearch } from '../../slices/search/searchSlice';
-import { fetchSearchResults } from '../../thunks/searchThunks/fetchResultsThunk';
 import PostOptionsMenu from "./postOptionsMenu";
 import { openModal } from "../../slices/ui/uiSlice";
 import FormattedContent from "../common/formattedContent";
@@ -21,8 +16,7 @@ import { formatRelativeTimestamp, formatDetailedTimestamp } from "../../utils/ti
  * A component that displays a single post in a feed.
  * It includes the author's information, the post content, and action buttons.
  */
-
-const Post = ({ post, isDetailedView = false, isGateway = false, onReplyClick }: PostProps): JSX.Element => {
+const Post = ({ post, isDetailedView = false, isGateway = false }: PostProps): JSX.Element => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [copied, setCopied] = useState(false);
 
@@ -69,16 +63,6 @@ const Post = ({ post, isDetailedView = false, isGateway = false, onReplyClick }:
         dispatch(toggleLike({ postId: post.id, isLiked: post.isLiked }));
     };
 
-    // Handler for the reply button
-    const handleReplyClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        if (onReplyClick) {
-            // If the onReplyClick prop is provided (from PostDetailPage), call it.
-            onReplyClick();
-        } else {
-            dispatch(openModal({ modalType: 'REPLY', modalProps: { target: post, postId: post.id } }))
-        }
-    };
 
     // Handler for the share/copy link button
     const handleShareClick = async (e: React.MouseEvent) => {
@@ -90,14 +74,6 @@ const Post = ({ post, isDetailedView = false, isGateway = false, onReplyClick }:
         } catch (err) {
             console.error("Failed to copy link: ", err);
         }
-    };
-
-    const handleHashtagClick = (e: React.MouseEvent, topic: string) => {
-        // 1. Set both search terms and update the UI state in one action.
-        e.stopPropagation()
-        dispatch(submitSearch(topic));
-        // 2. Immediately fetch the results for that topic.
-        dispatch(fetchSearchResults(topic));
     };
 
     const isRatePost = post.postType == 'RATE_POST'
@@ -162,19 +138,6 @@ const Post = ({ post, isDetailedView = false, isGateway = false, onReplyClick }:
                     <p className={`${isRatePost ? 'rates-post-content' : ''}`}>
                         <FormattedContent content={post.content} />
                     </p>
-                    {post.hashtags && post.hashtags.length > 0 && (
-                        <p className="post-hashtags">
-                            {post.hashtags.map((hashtag) => (
-                                <Link
-                                    to={`/search`}
-                                    key={hashtag}
-                                    onClick={(e) => handleHashtagClick(e, hashtag)} // Prevent navigating to the post detail page
-                                >
-                                    #{hashtag} &nbsp;
-                                </Link>
-                            ))}
-                        </p>
-                    )}
                 </div>
 
                 {isDetailedView && (
@@ -187,10 +150,6 @@ const Post = ({ post, isDetailedView = false, isGateway = false, onReplyClick }:
 
                 {/* --- ROW 3: FOOTER ACTIONS --- */}
                 <footer className="post-actions">
-                    <button className="icon-action-button action-reply" onClick={handleReplyClick}>
-                        <ChatIcon />
-                        <span>{post.replyCount}</span>
-                    </button>
                     <button className={`icon-action-button action-like ${post.isLiked ? 'liked' : ''}`} onClick={handleLike}>
                         <HeartIcon filled={post.isLiked ? true : false} />
                         <span>{post.likeCount}</span>

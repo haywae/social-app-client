@@ -10,7 +10,7 @@ const VerifyEmailPage = (): JSX.Element => {
     const { loading, error, successMessage } = useAppSelector((state) => state.verifyEmail);
 
     useEffect(() => {
-        // Extract the token from the URL query parameters (e.g., ?token=...)
+        // Extract the token from the URL query parameters
         const params = new URLSearchParams(location.search);
         const token = params.get('token');
 

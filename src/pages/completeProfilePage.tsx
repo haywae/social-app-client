@@ -17,6 +17,7 @@ const YEARS = Array.from({ length: 101 }, (_, i) => currentYear - i);
 /**
  * A functional component for the mandatory user onboarding page.
  * It collects Date of Birth, Country, and Base Currency.
+ * This component is only shown when onboarding is required.
  */
 const CompleteProfilePage = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -99,7 +100,6 @@ const CompleteProfilePage = (): JSX.Element => {
             dispatch(setError(err)); 
         }
     };
-    // The component is only shown when onboarding is required.
 
     return (
         <div className="auth-container">

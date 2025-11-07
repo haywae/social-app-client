@@ -9,7 +9,6 @@ import { setError } from "../slices/ui/uiSlice";
 import "../styles/createPostPage.css"
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../appConfig";
 import EmojiPicker, { type EmojiClickData, Theme } from "emoji-picker-react";
-import { fetchDiscoveryData } from "../thunks/searchThunks/fetchDiscoveryThunk";
 
 const CreatePostPage = (): JSX.Element | null => {
 
@@ -83,7 +82,6 @@ const CreatePostPage = (): JSX.Element | null => {
         // The thunk will handle success/failure and update the state
         try {
             await dispatch(createPost({ content: cleanedContent, tags, postType: 'REGULAR' })).unwrap();
-            dispatch(fetchDiscoveryData())
         } catch (err: any) {
             dispatch(setError(err))
         }

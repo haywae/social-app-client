@@ -303,11 +303,13 @@ select {
     --grey-7: #424242;
     --btn-danger: #f44336;
     --btn-danger-dark: #c53030;
-    --danger-fill: rgba(220, 38, 38, 0.1);  /* Darker fill */
+    --danger-fill: rgba(220, 38, 38, 0.1);
+    /* Darker fill */
     --danger-fill-dark: rgba(220, 38, 38, 0.2);
     --danger-outline: #F87171;
     --danger-outline-dark: #FCA5A5;
-    --danger-text: #F87171; /* A lighter red for dark BG */
+    --danger-text: #F87171;
+    /* A lighter red for dark BG */
   }
 }
 
@@ -317,30 +319,34 @@ select {
 
 /* For Firefox */
 html {
-    scrollbar-width: thin;
-    /* thumb-color track-color */
-    scrollbar-color: var(--grey-5) var(--background); 
+  scrollbar-width: thin;
+  /* thumb-color track-color */
+  scrollbar-color: var(--grey-5) var(--background);
 }
 
 /* For Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
-    height: 8px; /* Height for horizontal scrollbars */
+  width: 8px;
+  /* Width of the scrollbar */
+  height: 8px;
+  /* Height for horizontal scrollbars */
 }
 
 ::-webkit-scrollbar-track {
-    /* Match the app background */
-    background: var(--background); 
+  /* Match the app background */
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--grey-6); /* A subtle grey handle */
-    border-radius: 10px; /* Rounded handle */
-    /* Creates padding around thumb */
-    border: 2px solid var(--background); 
+  background-color: var(--grey-6);
+  /* A subtle grey handle */
+  border-radius: 10px;
+  /* Rounded handle */
+  /* Creates padding around thumb */
+  border: 2px solid var(--background);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    /* Darker handle on hover */
-    background-color: var(--grey-5); 
+  /* Darker handle on hover */
+  background-color: var(--grey-5);
 }

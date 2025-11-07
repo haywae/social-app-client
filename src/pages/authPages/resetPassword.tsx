@@ -75,7 +75,6 @@ const ResetPassword = (): JSX.Element => {
             await dispatch(resetPassword(credentials)).unwrap();
             
             // On success, the useEffect below will handle redirection.
-
         } catch (err: any) {
 
             dispatch(setError(err || 'Password reset failed. Please try again.'));

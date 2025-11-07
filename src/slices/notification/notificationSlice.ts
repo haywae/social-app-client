@@ -2,7 +2,6 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { fetchNotifications, type PaginatedNotificationsResponse } from "../../thunks/notificationThunks/notificationListThunk";
 import { markNotificationsAsRead } from "../../thunks/notificationThunks/notificationAsReadThunk";
 
-// This interface now perfectly matches your backend's serialized object
 export interface NotificationData {
     id: string;
     type: 'like' | 'comment' | 'follow' | 'mention';

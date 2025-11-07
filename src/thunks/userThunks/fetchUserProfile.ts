@@ -10,11 +10,10 @@ import { type UserProfileData } from "../../types/userProfileType";
 export const fetchUserProfile = createAsyncThunk<
     UserProfileData,
     string,
-    { state: RootState, rejectValue: string } // Added RootState for getState
+    { state: RootState, rejectValue: string }
 >(
     'profile/fetchUserProfile',
     async (username, { getState, rejectWithValue }) => {
-        // Use the Redux state as the source of truth for authentication
         const { isAuthenticated } = getState().auth;
 
         try {
@@ -22,7 +21,6 @@ export const fetchUserProfile = createAsyncThunk<
 
             if (isAuthenticated) {
                 // If the user is logged in, use the 'api' service for an authenticated request.
-                // This handles tokens and credentials automatically.
                 response = await api(`/users/${username}`, {
                     method: 'GET',
                 });

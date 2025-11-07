@@ -16,7 +16,6 @@ const SecurityPrivacyPage = (): JSX.Element => {
     };
 
     return (
-        // The <> fragment is no longer needed
         <div className="settings-page">
             <header className="settings-header">
                 <button onClick={() => navigate('/settings')} className="close-button"><LeftArrowIcon /></button>

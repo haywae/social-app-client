@@ -3,11 +3,11 @@ import { useRouteError, useNavigate } from 'react-router-dom';
 import '../styles/errorPage.css'; //
 
 const ErrorPage = (): JSX.Element => {
-    // This hook catches the error and provides it to your component
+    // This hook catches the error and provides it to the component
     const error = useRouteError() as Error;
     const navigate = useNavigate();
 
-    console.error(error); // It's still a good idea to log the full error
+    console.error(error);
 
     return (
         <div className="error-page-container">

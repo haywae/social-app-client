@@ -23,7 +23,6 @@
     color: var(--danger);
 }
 
-/* Add to notificationsPage.css */
 .notifications-actions {
     padding: 0.5rem 0;
     text-align: right;

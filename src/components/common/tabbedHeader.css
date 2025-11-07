@@ -58,30 +58,3 @@
   }
 
 }
-
-/* --- Dark Theme Overrides --- */
-
-@media (prefers-color-scheme: dark) {
-  .tabbed-header {
-    background-color: var(--background-alpha);
-    border-bottom-color: var(--grey-6);
-  }
-
-  .tab-link {
-    color: var(--grey-4);
-  }
-
-  .tab-link:hover {
-    background-color: var(--grey-7);
-    color: var(--grey-1);
-  }
-
-  .tab-link.active {
-    color: var(--grey-1);
-  }
-}
-
-/* Important Note: For position: sticky to work correctly, 
-    none of its parent containers (like .main-content or .main-layout) 
-    can have an overflow property set to hidden, scroll, or auto.   
- */

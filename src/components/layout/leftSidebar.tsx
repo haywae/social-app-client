@@ -1,14 +1,10 @@
 import { type JSX } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { SearchIcon, NotificationIcon, MessageIcon, MessageOpenIcon,
-    HomeIcon, BankNoteIcon, CreatePostIcon, SignoutIcon, SettingsIcon 
-} from "../../assets/icons";
+import { NotificationIcon, HomeIcon, CreatePostIcon, SignoutIcon, SettingsIcon} from "../../assets/icons";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
-
 import "./leftSidebar.css";
-import { useMemo } from "react";
 
 /**
  * Renders the main navigation sidebar for authenticated users on desktop screens.
@@ -16,14 +12,9 @@ import { useMemo } from "react";
 const LeftSidebar = (): JSX.Element => {
     const { user } = useAppSelector((state) => state.auth);
     const { unreadCount } = useAppSelector((state) => state.notifications);
-    const { conversations } = useAppSelector((state) => state.conversations);
     
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
-    const totalUnreadMessages = useMemo(() => {
-        return conversations.reduce((total, convo) => total + (convo.unreadCount || 0), 0);
-    }, [conversations]);
 
     const activeLinkStyle = {
         color: 'var(--base)',
@@ -39,7 +30,7 @@ const LeftSidebar = (): JSX.Element => {
         <aside className="left-sidebar">
             <div className="sidebar-content">
                 <Link to="/" className="sidebar-logo">
-                    WolexChange
+                    Social App
                 </Link>
 
                 {/* --- SECTION 1: Main Navigation --- */}
@@ -47,14 +38,6 @@ const LeftSidebar = (): JSX.Element => {
                     <NavLink to="/feed" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end>
                         <HomeIcon />
                         <span>Home</span>
-                    </NavLink>
-                    <NavLink to="/exchange" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
-                        <BankNoteIcon />
-                        <span>Exchange</span>
-                    </NavLink>
-                    <NavLink to="/search" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
-                        <SearchIcon />
-                        <span>Search</span>
                     </NavLink>
                     <NavLink to="/post" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
                         <CreatePostIcon />
@@ -73,15 +56,6 @@ const LeftSidebar = (): JSX.Element => {
                                 )}
                             </div>
                             <span>Notifications</span>
-                        </NavLink>
-                        <NavLink to={`/messages`} style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
-                            <div className="nav-icon-wrapper">
-                                {totalUnreadMessages > 0 ? <MessageIcon /> : <MessageOpenIcon />}
-                                {totalUnreadMessages > 0 && (
-                                    <span className="notification-indicator">{totalUnreadMessages}</span>
-                                )}
-                            </div>
-                            <span>Messages</span>
                         </NavLink>
                         <NavLink to="/settings" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
                             <SettingsIcon />

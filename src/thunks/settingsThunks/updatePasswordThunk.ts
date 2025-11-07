@@ -7,7 +7,7 @@ interface UpdatePasswordArgs {
 }
 
 export const updatePassword = createAsyncThunk<
-    { message: string }, // API returns a success message
+    { message: string },
     UpdatePasswordArgs,
     { rejectValue: string }
 >(

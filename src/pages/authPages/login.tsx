@@ -2,7 +2,7 @@ import { useEffect, useState, type ChangeEvent, type FormEvent, type JSX } from 
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { loginUser } from "../../thunks/authThunks/loginThunk";
-import { setError } from "../../slices/ui/uiSlice";
+import { setError, setSuccess } from "../../slices/ui/uiSlice";
 import { GoogleIcon } from "../../assets/icons";
 import { useGoogleLogin } from '@react-oauth/google';
 import { DEVELOPER_MODE } from '../../appConfig';
@@ -74,7 +74,7 @@ const Login = ({ redirectPath }: LoginProps): JSX.Element => {
         try {
             // Dispatch the login thunk and use unwrap() to handle the promise
             await dispatch(loginUser({ loginIdentifier, password })).unwrap();
-
+            dispatch(setSuccess('Welcome dear recruiter, thanks for checking out my application'))
         } catch (err: any) {
             dispatch(setError(err));
             setPassword('');

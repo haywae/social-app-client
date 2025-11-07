@@ -7,8 +7,8 @@ import "./authLayout.css"
 
 // The Layout for unauthenticated users
 const AuthLayout = () => {
-    const location = useLocation(); // <-- Get the current location
-    const isLandingPage = location.pathname === '/'; // <-- Check if it's the landing page
+    const location = useLocation();
+    const isLandingPage = location.pathname === '/';
     return (
         <div className="guest-page-wrapper">
             {/* Include shared components like toasts if needed on public pages */}

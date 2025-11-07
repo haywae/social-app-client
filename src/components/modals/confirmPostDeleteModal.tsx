@@ -36,7 +36,7 @@ const ConfirmPostDeleteModal = ({ post, isOpen, onClose }: ConfirmDeleteModalPro
 
     return (
         <Modal isOpen={isOpen} onClose={handleCloseModal} title='Delete Post'>
-            <p>This can’t be undone and it will be removed from your profile, the timeline of any accounts that follow you, and from search results.</p>
+            <p>This can't be undone and it will be removed from your profile, the timeline of any accounts that follow you, and from search results.</p>
             <div className="confirm-delete-modal-actions">
                 <button className="btn btn-secondary btn-pill" onClick={handleCloseModal} disabled={isSubmitting}>
                     Cancel

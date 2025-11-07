@@ -1,8 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../apiInterceptor";
 import { type FetchedPostsPayload, type PostData } from "../../types/postType";
-import { flattenComments } from '../../utils/commentUtils'; 
-import { type CommentData } from "../../types/commentType";
 
 interface FetchPostsArgs {
     page: number;
@@ -30,12 +28,8 @@ export const fetchPosts = createAsyncThunk<
             const data = await response.json();
             const postsFromApi: PostData[] = data.posts;
 
-            const allCommentPreviews: CommentData[] = postsFromApi.flatMap(post => post.commentPreview || []);
-            const comments = flattenComments(allCommentPreviews);
-
             return {
                 posts: postsFromApi,
-                comments: comments,
                 currentPage: data.currentPage,
                 totalPages: data.totalPages,
             };
