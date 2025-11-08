@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { registerUser } from "../../thunks/userThunks/registerThunk"; // Adjust import path
+import { registerUser } from "../../thunks/userThunks/registerThunk";
 
 /**
  * Defines the shape of the registration process state.

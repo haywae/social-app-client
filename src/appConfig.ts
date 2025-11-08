@@ -13,7 +13,7 @@ export const SOCKET_URL: string = import.meta.env.VITE_SOCKET_URL;
 export const IMAGE_BASE_URL: string = import.meta.env.VITE_IMAGE_BASE_URL;
 
 // Regex to find @username mentions (preceded by a space or start of string)
-// This is updated to NOT capture a trailing period or other punctuation.
+// Does NOT capture a trailing period or other punctuation.
 // It matches @, followed by chars, but must end in a letter, number, or hyphen.
 
 export const MENTION_REGEX = /(^|\s)(@[\w.-]*[\w-]+)/g;

@@ -16,7 +16,6 @@
   background-color: var(--background);
   border-left: 3px solid var(--base);
   padding-left: calc(1.5rem - 3px);
-  /* Adjust padding to keep content aligned */
 }
 
 .notification-icon-container {

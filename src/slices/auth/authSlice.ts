@@ -77,6 +77,11 @@ const authSlice = createSlice({
                 action.payload.csrfAccessToken,
                 action.payload.csrfRefreshToken
             );
+            localStorage.setItem('auth-sync', JSON.stringify({
+                csrfAccessToken: action.payload.csrfAccessToken,
+                csrfRefreshToken: action.payload.csrfRefreshToken,
+                accessTokenExp: action.payload.accessTokenExp,
+            }));
         },
         clearAuth: (state) => {
             state.user = null;

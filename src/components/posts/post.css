@@ -5,7 +5,7 @@
     border-bottom: 1px solid var(--border-color);
     background-color: var(--background);
     display: flex;
-    flex-direction: column; /* Main layout is now a column of rows */
+    flex-direction: column;
     gap: 0.25rem; /* Vertical space between rows */
     cursor: pointer;
     transition: background-color 0.2s ease;

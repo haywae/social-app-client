@@ -165,9 +165,6 @@
     }
 }
 
-/* --- Dark Theme Adjustments --- */
-/* src/components/layout/leftSidebar.css */
-
 @media (prefers-color-scheme: dark) {
     @media (min-width: 768px) {
         .sidebar-logout-button:hover {

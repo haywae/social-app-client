@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, type ChangeEvent, type FormEvent, type JSX } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { registerUser } from "../../thunks/userThunks/registerThunk"; // Adjust import path
+import { registerUser } from "../../thunks/userThunks/registerThunk";
 import { resetRegistrationState } from "../../slices/user/registrationSlice"
 import { setError } from "../../slices/ui/uiSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";

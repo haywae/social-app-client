@@ -64,9 +64,7 @@ export const connectSocket = (): void => {
     socket.on("disconnect", (reason) => {
         DEVELOPER_MODE && console.log("Socket disconnected:", reason);
         store.dispatch(setSocketConnected(false));
-        // Handle disconnect reasons, e.g., 'io server disconnect' might mean forceful disconnect
         if (reason === "io server disconnect") {
-            // Potentially handle as logout or show message
         }
     });
 

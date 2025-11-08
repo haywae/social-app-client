@@ -255,7 +255,7 @@ select {
 /* In src/styles/index.css */
 
 .avatar-icon-path {
-  /* This is the fix. 
+  /* 
     It tells the icon to use your --text-secondary variable.
     - In Light Mode, this is: #65676b (dark grey)
     - In Dark Mode, this is: #cccccc (light grey)

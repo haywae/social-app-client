@@ -24,7 +24,7 @@ export const verifyEmail = createAsyncThunk<
                 return rejectWithValue(data.message || 'Verification failed.');
             }
             
-            return data.message; // e.g., "Your email has been successfully verified."
+            return data.message; 
 
         } catch (error: any) {
             return rejectWithValue(error.message || 'An unexpected network error occurred.');

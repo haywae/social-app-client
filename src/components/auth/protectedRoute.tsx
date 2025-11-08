@@ -18,7 +18,6 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     // While checking the session, show a loading indicator or nothing at all.
     // This prevents a brief flash of the landing page for authenticated users.
     if (loading === 'pending' || loading === 'idle') {
-        // You can replace this with a dedicated loading spinner component
         return (
             <div>
                 <FullPageLoader />
@@ -27,7 +26,6 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     }
 
     if (loading === 'failed' && error) {
-        // You would create a dedicated component for this
         return (
             <ConnectionError />
         );

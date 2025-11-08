@@ -4,8 +4,6 @@ import { logoutUser } from './thunks/authThunks/logoutThunk';
 import { API_BASE_URL, DEVELOPER_MODE } from './appConfig';
 import { connectSocket } from './services/socketService';
 
-// --- 1. Define the types for your API service ---
-
 // The shape of the 'defaults' property
 interface ApiDefaults {
     headers: {
