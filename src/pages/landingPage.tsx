@@ -11,7 +11,7 @@ interface LoginProps {
 }
 
 /**
- * A landing page for WolexChange.
+ * A landing page.
  * It focuses on a clean, social media feel with a clear call to action.
  */
 const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
@@ -33,12 +33,27 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
                 {/* --- Hero Section --- */}
                 <section className="hero-section">
                     <div className="hero-content">
-                        <h1 className="hero-headline">Hello, I'm Ayowole Badejo.</h1>
+                        <h1 className="hero-headline">Hello, <br /> I'm Ayowole Badejo.</h1>
                         <p className="hero-subheadline">
-                            Welcome to my project showcase. You're looking at a live,
-                            interactive demo of "WolexChange," a full-stack social
-                            application I built from the ground up.
+                            Welcome to my project showcase. You are viewing a live,
+                            interactive <strong>lite-version</strong> of my full-stack
+                            application, "WolexChange".
                         </p>
+                        <p className="hero-subheadline">
+                            I built this entire platform—from the <strong> React/Redux </strong> frontend to the
+                            <strong> Python/Flask API </strong> with WebSockets—to demonstrate my skills.
+                            The full, production version is live at:
+                            <br />
+                            <a
+                                href="https://www.wolexchange.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hero-prod-link"
+                            >
+                                www.wolexchange.com
+                            </a>
+                        </p>
+
 
                         <div className="hero-actions">
                             <div className='hero-actions-row'>
@@ -48,25 +63,30 @@ const LandingPage = ({ redirectPath }: LoginProps): JSX.Element => {
                                 <Link to="/login" className="cta-button-secondary">
                                     Log In
                                 </Link>
+                                <a 
+                                    href="https://www.wolexchange.com" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="cta-button-secondary"
+                                >
+                                    View Full Site
+                                </a>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* --- App Preview Section --- */}
-                <section className="app-preview-section">
-                        <div className="demo-credentials">
-                            <strong>To explore the app:</strong>
-                            <p>Log in with the pre-built demo account:</p>
-                            <ul>
-                                <li><strong>Username:</strong> `iamRecruiter`</li>
-                                <li><strong>Password:</strong> `password123`</li>
-                            </ul>
-                            <p>...or feel free to create your own account.</p>
-                        </div>
-                    
-                </section>
-
+                <div className="demo-credentials">
+                    <strong>To explore the demo:</strong>
+                    <p>Log in with any demo account <br /> (password: <code>User*123</code>)</p>
+                    <ul className="demo-accounts-list-landing">
+                        <li><code>username: user1</code></li>
+                        <li><code>username: user2</code></li>
+                        <li><code>username: user3</code></li>
+                    </ul>
+                    <p>...or feel free to create your own account.</p>
+                </div>
             </main>
         </div>
     );

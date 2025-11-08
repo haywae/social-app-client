@@ -1,6 +1,6 @@
 import { type JSX } from "react";
 import { Link, NavLink, useLocation, matchPath } from "react-router-dom";
-import { SettingsIcon, HomeIcon, CreatePostIcon, NotificationIcon } from "../../assets/icons";
+import { SettingsIcon, HomeIcon, CreatePostIcon, NotificationIcon, InfoIcon } from "../../assets/icons";
 import { useAppSelector } from "../../utils/hooks";
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
 import "./mobileHeader.css";
@@ -14,9 +14,7 @@ const activeLinkStyle = { color: 'var(--base)', fontWeight: '700' };
 
 // Config for page titles that supports dynamic paths
 const routeConfig = [
-    { path: "/", title: "WolexChange", exact: true },
-    { path: "/exchange", title: "Exchange" },
-    { path: "/search", title: "Search" },
+    { path: "/", title: "Ayo's Social App", exact: true },
     { path: "/notifications", title: "Notifications" },
     { path: "/profile/:username", title: "Profile" },
 ];
@@ -33,7 +31,7 @@ const getPageTitle = (pathname: string): string => {
             return route.title;
         }
     }
-    return 'Wolexchange';
+    return "Ayo's Social App";
 };
 
 
@@ -48,7 +46,7 @@ const MobileHeader = ({ showHeader = true }: HeaderProps): JSX.Element | null =>
         return (
             <header className="main-header-no-auth">
                 <div className="header-content-no-auth">
-                    <Link to="/" className="header-logo">WolexChange</Link>
+                    <Link to="/" className="header-logo">Ayo's Social App</Link>
                 </div>
             </header>
         );
@@ -75,6 +73,11 @@ const MobileHeader = ({ showHeader = true }: HeaderProps): JSX.Element | null =>
                 <NavLink to="/feed" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end>
                     <div className="nav-icon-wrapper">
                         <HomeIcon />
+                    </div>
+                </NavLink>
+                <NavLink to="/info" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end>
+                    <div className="nav-icon-wrapper">
+                        <InfoIcon />
                     </div>
                 </NavLink>
                 <NavLink to="/post" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>

@@ -13,9 +13,9 @@ export function useTitle(title: string) {
     const totalUnreadCount = unreadNotifications;
 
     if (totalUnreadCount > 0) {
-      document.title = `(${totalUnreadCount}) ${title}`
+      document.title = `(${totalUnreadCount}) | ${title} - Ayo's Social App `
     } else {
-      document.title = title;
+      document.title = `${title} - Ayo's Social App`;
     }
   }, [title, unreadNotifications]);
 }

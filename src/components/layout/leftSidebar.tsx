@@ -1,6 +1,6 @@
 import { type JSX } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { NotificationIcon, HomeIcon, CreatePostIcon, SignoutIcon, SettingsIcon} from "../../assets/icons";
+import { NotificationIcon, HomeIcon, CreatePostIcon, SignoutIcon, SettingsIcon, InfoIcon } from "../../assets/icons";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
 import { DEFAULT_AVATAR_URL, IMAGE_BASE_URL } from "../../appConfig";
@@ -12,7 +12,7 @@ import "./leftSidebar.css";
 const LeftSidebar = (): JSX.Element => {
     const { user } = useAppSelector((state) => state.auth);
     const { unreadCount } = useAppSelector((state) => state.notifications);
-    
+
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -38,6 +38,10 @@ const LeftSidebar = (): JSX.Element => {
                     <NavLink to="/feed" style={({ isActive }) => isActive ? activeLinkStyle : undefined} end>
                         <HomeIcon />
                         <span>Home</span>
+                    </NavLink>
+                    <NavLink to="/info" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
+                        <InfoIcon />
+                        <span>Info</span>
                     </NavLink>
                     <NavLink to="/post" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>
                         <CreatePostIcon />

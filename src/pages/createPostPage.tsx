@@ -58,7 +58,7 @@ const CreatePostPage = (): JSX.Element | null => {
         };
     }, [showPicker]); // Re-run this effect when showPicker changes
 
-    useTitle('Create Post - WolexChange');
+    useTitle('Create Post');
 
     const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(setCreatePostContent(e.target.value));

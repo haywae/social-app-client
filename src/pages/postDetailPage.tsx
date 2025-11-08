@@ -34,7 +34,7 @@ const PostDetailPage = (): JSX.Element => {
         };
     }, [postId, dispatch]);
 
-    useTitle(`Post - WolexChange`);
+    useTitle("Post");
 
 
     const handleNavigate = () => {

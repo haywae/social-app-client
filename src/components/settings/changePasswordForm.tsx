@@ -46,7 +46,7 @@ const ChangePasswordForm = (): JSX.Element => {
         return (
             <div className='settings-form-section'>
                 <h3>Create a Password to Continue</h3>
-                <p>To change your password and perform other sensitive actions, you must first create a password for your WolexChange account.</p>
+                <p>To change your password and perform other sensitive actions, you must first create a password for your account.</p>
                 <CreatePasswordForm />
             </div>
         );

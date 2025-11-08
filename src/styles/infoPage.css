@@ -1,0 +1,90 @@
+/* Styles for the InfoPage component */
+
+.infoPage-container {
+    max-width: 800px;
+    padding: 1rem 2rem;
+    background-color: var(--background,);
+    border-radius: 16px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.info-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.info-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.info-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.contact-item span[role="img"] {
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
+
+.contact-item a {
+    color: var(--primary-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+.demo-accounts-list {
+    list-style: disc;
+    padding-left: 25px;
+    margin-top: 0.5rem;
+}
+
+.demo-accounts-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* Style for <code> tags */
+code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--primary-bg );
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: var(--text-code)
+}
+
+.info-back-link {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-accent);
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+.info-back-link:hover {
+    text-decoration: underline;
+}

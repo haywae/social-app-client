@@ -26,15 +26,15 @@
 }
 
 .hero-headline {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 1.5rem;
 }
 
 .hero-subheadline {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
+    font-size: 1rem;
+    color: var(--text-primary);
     margin-bottom: 2.5rem;
     line-height: 1.5;
 }
@@ -52,6 +52,60 @@
     gap: 1rem;
     flex-direction: column;
     align-items: center;
+}
+
+/* --- App Preview Section --- */
+.app-preview-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.app-preview-container {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 16px;
+    background-color: var(--background);
+    border: 1px solid var(--border-color);
+}
+
+.demo-credentials {
+  background-color: var(--primary--bg);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+  text-align: left;
+  border: 1px solid var(--border-color);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.demo-credentials strong {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.demo-credentials p {
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.demo-credentials ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.demo-credentials li {
+  font-family: 'Courier New', Courier, monospace; /* Good for code-like text */
+  background-color: var(--background);
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  border: 1px solid var(--border-color);
 }
 
 .cta-button-primary,
@@ -86,157 +140,6 @@
 .cta-button-secondary:hover {
     background-color: rgba(0, 135, 90, 0.1);
 }
-
-/* Add this to your landingPage.css */
-
-.demo-credentials {
-  background-color: #f4f4f4; /* A light, clean background */
-  border-radius: 8px;
-  padding: 16px 20px;
-  margin: 24px 0;
-  text-align: left;
-  border: 1px solid #ddd;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.demo-credentials strong {
-  font-size: 1.1rem;
-  color: #333;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.demo-credentials p {
-  margin: 4px 0 12px;
-  color: #555;
-  line-height: 1.5;
-}
-
-.demo-credentials ul {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0;
-}
-
-.demo-credentials li {
-  font-family: 'Courier New', Courier, monospace; /* Good for code-like text */
-  background-color: #fff;
-  padding: 6px 10px;
-  border-radius: 4px;
-  margin-bottom: 6px;
-  border: 1px solid #eee;
-}
-
-.demo-credentials li strong {
-  font-family: inherit;
-  font-size: 0.95rem;
-  color: #000;
-  display: inline;
-}
-
-/* --- App Preview Section --- */
-.app-preview-section {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.app-preview-container {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 16px;
-    background-color: var(--background);
-    border: 1px solid var(--border-color);
-}
-
-.mock-post {
-    background-color: var(--background);
-    border-radius: 12px;
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-}
-
-.mock-post-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-}
-
-.mock-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background-color: var(--grey-6);
-    object-fit: cover;
-}
-
-.mock-author-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.mock-display-name {
-    font-weight: bold;
-}
-
-.mock-username {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.mock-post-content p {
-    margin: 0 0 1rem 0;
-    line-height: 1.4;
-}
-
-.mock-rates p {
-    margin-bottom: 0.75rem;
-    font-family: monospace, sans-serif;
-    font-size: 0.95rem;
-}
-
-.mock-hashtags {
-    color: var(--base)
-}
-
-.via-exchange {
-    font-weight: 600;
-    color: var(--grey-4);
-}
-
-.from-text {
-    font-size: small;
-    margin-right: 0.25rem;
-    font-style: italic;
-    color: var(--grey-4);
-
-}
-
-.mock-post-actions {
-    display: flex;
-    align-items: center;
-    /* This is the key for vertical alignment */
-    gap: 2rem;
-    margin-top: 1rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.mock-action-item {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    /* Small space between icon and number */
-}
-
-.mock-post-actions svg {
-    width: 20px;
-    height: 20px;
-}
-
 
 /* --- Responsive --- */
 @media (min-width: 1024px) {

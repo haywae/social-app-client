@@ -1,6 +1,6 @@
 import { useState, useEffect, type ChangeEvent, type FormEvent, type JSX } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../utils/hooks";
+import { useAppSelector, useAppDispatch, useTitle } from "../../utils/hooks";
 import { requestPasswordReset } from "../../thunks/userThunks/requestPasswordResetThunk";
 import { resetPasswordResetState } from "../../slices/user/passwordResetSlice";
 import { setError } from "../../slices/ui/uiSlice";
@@ -60,10 +60,9 @@ const ForgotPassword = (): JSX.Element => {
             dispatch(setError('There was a problem sending the password reset link. Please try again. Error: ' + err));
         }
     }
-
+    useTitle('Forgot Password')
     return (
         <>
-        <title>Forgot Password - WolexChange</title>
         <div className="auth-container">
             <h2 className="auth-container-title">Forgot Password</h2>
             {isEmailSent ? (

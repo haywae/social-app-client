@@ -41,7 +41,7 @@ const NotificationsPage = (): JSX.Element => {
         }
     }, [dispatch, notifications.length]);
 
-    useTitle('Notifications - WolexChange')
+    useTitle("Notifications")
 
     // --- HANDLE LOAD MORE FUNCTION ---
     const handleLoadMore = async () => {

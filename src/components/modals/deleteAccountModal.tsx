@@ -48,7 +48,7 @@ const DeleteAccountModal = ({ onClose, isOpen }: DeleteAccountModalProps): JSX.E
             <Modal isOpen={isOpen} onClose={handleCloseModal}>
                 <div className='delete-account-modal'>
                     <h2>Create a Password to Continue</h2>
-                    <p>To delete your account and perform other sensitive actions, you must first create a password for your WolexChange account.</p>
+                    <p>To delete your account and perform other sensitive actions, you must first create a password for your account.</p>
                     <CreatePasswordForm onSuccess={handleCloseModal}/>
                 </div>
             </Modal>

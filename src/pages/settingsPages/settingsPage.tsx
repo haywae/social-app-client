@@ -4,7 +4,7 @@ Description: The main page component for user settings.
 */
 import { type JSX } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../utils/hooks';
+import { useAppDispatch, useTitle } from '../../utils/hooks';
 import { logoutUser } from "../../thunks/authThunks/logoutThunk";
 import { LeftArrowIcon } from '../../assets/icons';
 import SettingsCard from '../../components/layout/settingsCard';
@@ -19,7 +19,7 @@ const SettingsPage = (): JSX.Element => {
         await dispatch(logoutUser());
         navigate('/');
     };
-
+    useTitle('Settings')
     return (
         <div className="settings-page">
             <header className="settings-header">

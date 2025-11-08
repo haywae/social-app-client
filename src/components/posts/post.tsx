@@ -25,7 +25,7 @@ const Post = ({ post, isDetailedView = false, isGateway = false }: PostProps): J
     const navigate = useNavigate();
     const isAuthor = post.authorUsername === loggedInUsername;
 
-    const postUrl = `${window.location.origin}/view?post=${post.id}`;
+    const postUrl = `${window.location.origin}/post/${post.id}`;
 
     // --- Handlers for Modals ---
     const handleOpenMenu = (e: React.MouseEvent) => {

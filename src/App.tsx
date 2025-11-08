@@ -76,14 +76,13 @@ function App(): JSX.Element {
     // --- LOGIC FOR LAYOUT VISIBILITY ---
     const minimalHeaderRoutes = [
         '/settings', '/post/:postId', '/settings/:pageName', 'settings/:pageName/:subpageName',
-        '/post', '/search', 'profile/:username',
-        '/posts/:postId/thread/:commentId', '/view',
+        '/post', 'profile/:username',
     ];
 
     const showMainHeader = !minimalHeaderRoutes.some(route => matchPath(route, location.pathname));
 
     const hideRightSidebarRoutes = [
-        '/search', '/messages', '/messages/:public_id'
+        '/info'
     ];
 
     const showRightSidebar = !hideRightSidebarRoutes.some(route => matchPath(route, location.pathname));

@@ -22,6 +22,7 @@ import HybridLayout from "./components/layout/hybridLayout.tsx";
 
 
 // --- Authenticated App Pages ---
+import InfoPage from "./pages/infoPage.tsx";
 import CreatePostPage from './pages/createPostPage.tsx';
 import NotificationsPage from './pages/notificationsPage.tsx';
 import SettingsPage from './pages/settingsPages/settingsPage.tsx';
@@ -71,6 +72,7 @@ export const appRoutes: RouteObject[] = [
                 children: [
                     // The authenticated "home" is now at /feed
                     { path: 'feed', element: <Home /> },
+                    { path: 'info', element: <InfoPage/>},
                     { path: 'notifications', element: <NotificationsPage /> },
                     { path: 'post', element: <CreatePostPage /> },
                     { path: 'post/:postId', element: <PostDetailPage /> },
