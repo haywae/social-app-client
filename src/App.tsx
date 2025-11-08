@@ -6,7 +6,6 @@ import { useAppSelector, useAppDispatch } from "./utils/hooks";
 import MobileHeader from "./components/layout/mobileHeader";
 import RightSidebar from "./components/layout/rightSidebar";
 import LeftSidebar from "./components/layout/leftSidebar";
-import { OnboardingCheck } from "./components/auth/onBoardingCheck";
 import { connectSocket, disconnectSocket, getSocket } from "./services/socketService";
 import "./styles/App.css";
 import { DEVELOPER_MODE } from "./appConfig";
@@ -33,16 +32,23 @@ function App(): JSX.Element {
     useAuthenticatedData();
 
     // --- Add Socket Connection Logic ---
-    const { isAuthenticated, hasInitializedAuth } = useAppSelector((state) => state.auth);
+    const { isAuthenticated, hasInitializedAuth, loading, error } = useAppSelector((state) => state.auth);
 
     useEffect(() => {
         // This function will run when the tab becomes visible again
         const handleVisibilityChange = () => {
             if (document.visibilityState === 'visible') {
                 const socket = getSocket(); // Get the current socket instance
-                // Trigger a full auth check, if the socket it is dead. This is the "smart" way to reconnect.
-                if (socket && !socket.connected) {
-                    DEVELOPER_MODE && console.log("Tab visible and socket disconnected, running auth check...");
+                // Condition 1: The socket is disconnected (your original logic)
+                const socketIsDead = socket && !socket.connected;
+
+                // Condition 2: We are in the "offline" error state from Scenario A
+                // (Authenticated, but the last check failed with a network error)
+                const authIsInErrorState = isAuthenticated && loading === 'failed' && error;
+
+                // If either condition is true, we must run checkAuth
+                if (socketIsDead || authIsInErrorState) {
+                    DEVELOPER_MODE && console.log("Tab visible and auth needs check, running auth check...");
                     dispatch(checkAuth());
                 }
             }
@@ -94,9 +100,7 @@ function App(): JSX.Element {
             <LeftSidebar />
             <div className={`main-layout ${showMainHeader ? "header-included" : ""}`}>
                 <main className={`main-content ${!showRightSidebar ? "expand-main-content" : ""}`}>
-                    <OnboardingCheck>
-                        <Outlet />
-                    </OnboardingCheck>
+                    <Outlet />
                 </main>
                 {showRightSidebar && <RightSidebar />}
             </div>

@@ -13,7 +13,6 @@ import ConfirmEmailChangePage from './pages/authPages/confirmNewEmailChangePage.
 import NotFoundPage from './pages/notFound.tsx';
 import ProtectedRoute from "./components/auth/protectedRoute.tsx";
 import AuthLayout from "./components/layout/authLayout.tsx";
-import CompleteProfilePage from "./pages/completeProfilePage.tsx";
 
 // --- Layouts and Pages ---
 import RootLayout from "./components/layout/rootLayout.tsx";
@@ -84,8 +83,6 @@ export const appRoutes: RouteObject[] = [
                     { path: 'settings/account/email', element: <ChangeEmailPage /> },
                     { path: 'settings/profile', element: <ProfileSettingsPage /> },
                     { path: 'settings/security', element: <SecurityPrivacyPage /> },
-                    { path: 'complete-profile', element: <CompleteProfilePage /> },
-
                 ]
             },
              // --- HYBRID ROUTES (AUTH OR GUEST) ---

@@ -12,7 +12,6 @@ import { deleteAccount } from "../../thunks/settingsThunks/deleteAccountThunk";
 import { uploadProfilePicture } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
 import type { UserData } from "../../types/userType";
 import type { UploadPayload } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
-import { completeOnboardingThunk, type OnboardingResponse } from "../../thunks/userThunks/completeOnBoardingThunk";
 import { setLocalStorage } from "../../utils/authUtils";
 
 // Interface definitions for AuthState, AuthPayload
@@ -122,25 +121,6 @@ const authSlice = createSlice({
                 state.loading = 'failed';
                 state.error = action.payload ?? "An unknown login error occurred";
             })
-            //----- COMPLETE ONBOARDING -----
-            .addCase(completeOnboardingThunk.pending, (state) => {
-                // Set loading state to pending while the API call is in progress
-                state.loading = 'pending';
-                state.error = null;
-            })
-            .addCase(completeOnboardingThunk.fulfilled, (state, action: PayloadAction<OnboardingResponse>) => {
-                // When successful, update the user state with the complete user object from the API
-                state.user = action.payload.user;
-                // Ensure auth state is consistent
-                state.isAuthenticated = true;
-                state.loading = 'succeeded';
-                state.error = null;
-            })
-            .addCase(completeOnboardingThunk.rejected, (state, action) => {
-                // If the API call fails, set loading state to failed and store the error message
-                state.loading = 'failed';
-                state.error = action.payload ?? 'Failed to complete profile.';
-            })
 
             //----- LOG OUT -----
             .addCase(logoutUser.fulfilled, (state) => {
@@ -174,6 +154,7 @@ const authSlice = createSlice({
             //----- CHECK AUTH / AUTHENTICATE -----
             .addCase(checkAuth.pending, (state) => {
                 state.loading = 'pending';
+                state.error = null
             })
             .addCase(checkAuth.fulfilled, (state, action) => {
                 state.user = action.payload.user;
