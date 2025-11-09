@@ -74,7 +74,7 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
 
     // --- 2. If the fetch main request is unauthorized, it attempts to refresh the token ---
     if (response.status === 401) {
-        // Ensures only the first API call that triggers a 401 triggers a token refresh
+        // Ensures only the first API call that triggers a 401, triggers a token refresh
         if (!isRefreshing) {
             isRefreshing = true;
             try {

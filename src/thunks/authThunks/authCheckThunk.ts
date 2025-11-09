@@ -37,7 +37,7 @@ export const checkAuth = createAsyncThunk<
             if (!response.ok) {
                 const data = await response.json();
                 return rejectWithValue({
-                    type: 'auth',
+                    type: 'network',
                     message: data.error || 'Authentication check failed.'
                 });
             }
