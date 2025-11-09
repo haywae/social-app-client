@@ -46,7 +46,7 @@ const processQueue = (error: any, token: string | null = null) => {
  */
 const api: ApiService = async (url: string, options: RequestInit = {}) => {
     // Retrieves the CSRF Access token from local storage
-    let token = localStorage.getItem('csrfAccessToken')
+    let token = store.getState().auth.csrfAccessToken;
 
     // Sets up a headers object with the provided options or creates an empty object
     const headers = new Headers(options.headers || {});

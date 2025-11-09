@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_BASE_URL, DEVELOPER_MODE } from "../../appConfig";
-import type { AppDispatch } from "../../store";
+import type { AppDispatch, RootState } from "../../store";
 import { scheduleProactiveRefresh, setLocalStorage } from "../../utils/authUtils";
 
 export interface RefreshTokenSuccess {
@@ -18,9 +18,9 @@ export interface RefreshReject {
 // Refreshes the access token
 // To avoid infinite loops, it cannot use the interceptor
 //-------------------------------
-export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispatch: AppDispatch, rejectValue: RefreshReject }>('auth/refreshToken',
-    async (_, { dispatch, rejectWithValue }) => {
-        const csrfRefreshToken = localStorage.getItem('csrfRefreshToken');
+export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispatch: AppDispatch, state: RootState , rejectValue: RefreshReject }>('auth/refreshToken',
+    async (_, { dispatch, getState, rejectWithValue }) => {
+const { csrfRefreshToken } = getState().auth;
 
         if (!csrfRefreshToken) {
             return rejectWithValue({
