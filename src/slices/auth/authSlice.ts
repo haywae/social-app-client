@@ -12,7 +12,6 @@ import { deleteAccount } from "../../thunks/settingsThunks/deleteAccountThunk";
 import { uploadProfilePicture } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
 import type { UserData } from "../../types/userType";
 import type { UploadPayload } from "../../thunks/settingsThunks/uploadProfilePictureThunk";
-import { setLocalStorage } from "../../utils/authUtils";
 
 // Interface definitions for AuthState, AuthPayload
 export interface AuthState {
@@ -25,6 +24,7 @@ export interface AuthState {
     csrfRefreshToken: string | null;
     accessTokenExp: string | null;
     hasInitializedAuth: boolean;
+    isRefreshing: boolean;
 }
 
 // The type for auth main reducers payload/args
@@ -33,13 +33,6 @@ interface AuthPayload {
     csrf_access_token: string;
     csrf_refresh_token: string;
     access_token_exp: string;
-}
-
-// Define a type for the sync payload
-interface AuthSyncPayload {
-    csrfAccessToken: string;
-    csrfRefreshToken: string;
-    accessTokenExp: string;
 }
 
 const initialState: AuthState = {
@@ -52,6 +45,7 @@ const initialState: AuthState = {
     csrfRefreshToken: null,
     accessTokenExp: null,
     hasInitializedAuth: false,
+    isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -66,21 +60,6 @@ const authSlice = createSlice({
             state.isAuthenticated = true;
             state.loading = 'succeeded';
             state.error = null;
-        },
-        setAuthFromSync: (state, action: PayloadAction<AuthSyncPayload>) => {
-            state.csrfAccessToken = action.payload.csrfAccessToken;
-            state.csrfRefreshToken = action.payload.csrfRefreshToken;
-            state.accessTokenExp = action.payload.accessTokenExp;
-            setLocalStorage(
-                action.payload.accessTokenExp,
-                action.payload.csrfAccessToken,
-                action.payload.csrfRefreshToken
-            );
-            localStorage.setItem('auth-sync', JSON.stringify({
-                csrfAccessToken: action.payload.csrfAccessToken,
-                csrfRefreshToken: action.payload.csrfRefreshToken,
-                accessTokenExp: action.payload.accessTokenExp,
-            }));
         },
         clearAuth: (state) => {
             state.user = null;
@@ -129,16 +108,25 @@ const authSlice = createSlice({
                 state.isAuthenticated = false;
                 state.loading = 'succeeded'; // Set loading to 'succeeded'
                 state.error = null;
+                state.tokenError = null;
+                state.csrfAccessToken = null;
+                state.csrfRefreshToken = null;
+                state.accessTokenExp = null;
             })
 
             //----- REFRESH TOKEN -----
+            .addCase(refreshToken.pending, (state) => {
+                state.isRefreshing = true;
+            })
             .addCase(refreshToken.fulfilled, (state, action: PayloadAction<RefreshTokenSuccess>) => {
+                state.isRefreshing = false;
                 state.csrfAccessToken = action.payload.csrf_access_token;
                 state.csrfRefreshToken = action.payload.csrf_refresh_token;
                 state.accessTokenExp = action.payload.access_token_exp;
                 state.tokenError = null;
             })
             .addCase(refreshToken.rejected, (state, action: PayloadAction<RefreshReject | undefined>) => {
+                state.isRefreshing = false;
                 if (action.payload?.type === 'auth') {
                     state.user = null;
                     state.isAuthenticated = false;
@@ -154,12 +142,11 @@ const authSlice = createSlice({
             //----- CHECK AUTH / AUTHENTICATE -----
             .addCase(checkAuth.pending, (state) => {
                 state.loading = 'pending';
-                state.error = null
+                state.error = null;
             })
             .addCase(checkAuth.fulfilled, (state, action) => {
                 state.user = action.payload.user;
                 state.csrfAccessToken = action.payload.csrf_access_token;
-                state.csrfRefreshToken = action.payload.csrf_refresh_token;
                 state.accessTokenExp = action.payload.access_token_exp;
                 state.isAuthenticated = true;
                 state.hasInitializedAuth = true;
@@ -239,6 +226,10 @@ const authSlice = createSlice({
                 state.isAuthenticated = false;
                 state.loading = 'succeeded'; // Set loading to 'succeeded'
                 state.error = null;
+                state.tokenError = null;
+                state.csrfAccessToken = null;
+                state.csrfRefreshToken = null;
+                state.accessTokenExp = null;
             })
             .addCase(deleteAccount.rejected, (state, action) => {
                 state.loading = 'failed';
@@ -258,5 +249,5 @@ const authSlice = createSlice({
     }
 });
 
-export const { setAuthUser, clearAuth, resetUserError, setAuthFromSync, updateUser } = authSlice.actions;
+export const { setAuthUser, clearAuth, resetUserError, updateUser } = authSlice.actions;
 export default authSlice.reducer;

@@ -4,21 +4,16 @@ import { logoutUser } from './thunks/authThunks/logoutThunk';
 import { API_BASE_URL, DEVELOPER_MODE } from './appConfig';
 import { connectSocket } from './services/socketService';
 
-// The shape of the 'defaults' property
-interface ApiDefaults {
-    headers: {
-        'X-CSRF-TOKEN': string | null;
-    };
-}
+// --- 1. Define the types for your API service ---
 
 // The complete shape of the 'api' object: a callable function AND an object with properties
 type ApiService = {
     (url: string, options?: RequestInit): Promise<Response>; // It's a function
-    defaults: ApiDefaults; // It also has a 'defaults' property
 };
 
 
-let isRefreshing = false;
+
+
 let failedQueue: Array<{
     resolve: (value?: any) => void,
     reject: (reason?: any) => void
@@ -45,24 +40,24 @@ const processQueue = (error: any, token: string | null = null) => {
  * Headers and Credentials are already overriden in the function 
  */
 const api: ApiService = async (url: string, options: RequestInit = {}) => {
-    // Retrieves the CSRF Access token from local storage
-    let token = store.getState().auth.csrfAccessToken;
+    // --- Retrieves the CSRF Access token from local storage
 
-    // Sets up a headers object with the provided options or creates an empty object
+    let token = store.getState().auth.csrfAccessToken || localStorage.getItem('csrfAccessToken');
+    // --- Sets up a headers object with the provided options or creates an empty object
     const headers = new Headers(options.headers || {});
 
-    // Updates the headers object with the retrieved token
+    // --- Updates the headers object with the retrieved token
     if (token) {
         headers.set('X-CSRF-TOKEN', token)
     }
 
-    // Updates the headers object with the Content type key if its not a medis
+    // --- Updates the headers object with the Content type key if its not a medis
     if (!(options.body instanceof FormData)) {
         headers.set('Content-Type', 'application/json');
     }
 
-    // Creates an original request options object to be passed to the callers main request
-    // Spreads the options provided by the caller such as METHOD, BODY. Headers and credentials are overriden
+    // --- Creates an original request options object to be passed to the callers main request
+    // --- Spreads the options provided by the caller such as METHOD, BODY. Headers and credentials are overriden
     const originalRequest = {
         ...options,
         headers,
@@ -74,17 +69,13 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
 
     // --- 2. If the fetch main request is unauthorized, it attempts to refresh the token ---
     if (response.status === 401) {
-        // Ensures only the first API call that triggers a 401, triggers a token refresh
-        if (!isRefreshing) {
-            isRefreshing = true;
+        // Ensures only the first API call that triggers a 401 triggers a token refresh
+        if (!store.getState().auth.isRefreshing) {
             try {
                 // a. --- dispatches the refresh token thunk and gets the new access token
                 const result = await store.dispatch(refreshToken()).unwrap();
                 const newAccessToken = result.csrf_access_token;
 
-                // b. --- adds the new CSRF Token to the api object's default.headers 
-                // Calls the process queue function to resolve the pending promise on the queue with the new csrf token
-                api.defaults.headers['X-CSRF-TOKEN'] = newAccessToken;
                 processQueue(null, newAccessToken);
 
                 // c. --- updates the users original request options object with the new acces token
@@ -97,21 +88,20 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
                 return fetch(`${API_BASE_URL}${url}`, originalRequest);
 
             } catch (error: any) {
-                DEVELOPER_MODE && console.log('This is the error received by the API INTERCEPTOR')
+                DEVELOPER_MODE && console.log('This is the error received by the API INTERCEPTOR', error)
                 const err = error as RefreshReject;
-                if (err && err.type === 'network') {
+                
+                if (err && err.type === 'auth') {
                     // Calls the process queue to reject the promise if the refresh token failed
                     // Do not log out if it was a network error
                     processQueue(err, null);
+                    store.dispatch(logoutUser());
                     return Promise.reject(err);
                 }
 
                 processQueue(err, null);
-                store.dispatch(logoutUser());
                 return Promise.reject(err);
 
-            } finally {
-                isRefreshing = false;
             }
         }
         // If there is another request caught by the interceptor while one is being executed, 
@@ -127,11 +117,5 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
 
     return response
 }
-// Creates a defaults property for the API object
-api.defaults = {
-    headers: {
-        'X-CSRF-TOKEN': null
-    }
-};
 
 export default api

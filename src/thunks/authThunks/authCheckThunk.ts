@@ -10,7 +10,6 @@ import { DEVELOPER_MODE } from "../../appConfig";
 interface AuthCheckResponse {
     user: UserData;
     csrf_access_token: string;
-    csrf_refresh_token: string;
     access_token_exp: string;
 }
 //----------------------

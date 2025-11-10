@@ -18,11 +18,12 @@ export interface RefreshReject {
 // Refreshes the access token
 // To avoid infinite loops, it cannot use the interceptor
 //-------------------------------
-export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispatch: AppDispatch, state: RootState , rejectValue: RefreshReject }>('auth/refreshToken',
-    async (_, { dispatch, getState, rejectWithValue }) => {
-const { csrfRefreshToken } = getState().auth;
+export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispatch: AppDispatch, state: RootState, rejectValue: RefreshReject }>('auth/refreshToken',
+    async (_, { dispatch, rejectWithValue }) => {
+        const csrfRefreshToken = localStorage.getItem('csrfRefreshToken') ;
 
         if (!csrfRefreshToken) {
+            DEVELOPER_MODE && console.log('csrfRefreshToken was not retrieved from local storage')
             return rejectWithValue({
                 type: 'auth',
                 message: 'Refresh token is missing. Please log in again.'
@@ -45,12 +46,14 @@ const { csrfRefreshToken } = getState().auth;
                 const data = await response.json();
                 // This is a "real" auth error. Log the user out.
                 if (response.status === 401 || response.status === 403) {
+                    DEVELOPER_MODE && console.log('401 or 403 error from the refresh thunk. Error object: ', data)
                     return rejectWithValue({
                         type: 'auth',
                         message: data.error || 'Session expired. Please log in again.'
                     });
                 }
-
+                DEVELOPER_MODE && console.log('General Error from refresh thunk likely a network problem. Error object: ', data)
+                // This is a server error (5xx) or other issue. Treat it as a network problem.
                 return rejectWithValue({
                     type: 'network',
                     message: data.error || `Failed to refresh token (Status: ${response.status})`
@@ -67,12 +70,7 @@ const { csrfRefreshToken } = getState().auth;
                 data.csrf_access_token,
                 data.csrf_refresh_token
             );
-
-            localStorage.setItem('auth-sync', JSON.stringify({
-                csrfAccessToken: data.csrf_access_token,
-                csrfRefreshToken: data.csrf_refresh_token,
-                accessTokenExp: data.access_token_exp,
-            }));
+            DEVELOPER_MODE && console.log('tokens set in local storage', data)
 
             // 5. ----- After a successful refresh, schedule the next one using the new expiration time. -----
             if (data.access_token_exp) {
@@ -82,10 +80,10 @@ const { csrfRefreshToken } = getState().auth;
 
         } catch (error: any) {
             // Handle network errors and other unexpected issues
-            DEVELOPER_MODE && console.log('Error from refreshToken Thunk, This is the Error type: ', error.type);
+            DEVELOPER_MODE && console.log('Error from refreshToken Thunk, This is the Error type: ', error.type || error);
 
             return rejectWithValue({
-                type: 'network',
+                type: error.type || 'network',
                 message: error.message || 'Network Error'
             });
         }
