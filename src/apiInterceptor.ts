@@ -11,9 +11,6 @@ type ApiService = {
     (url: string, options?: RequestInit): Promise<Response>; // It's a function
 };
 
-
-
-
 let failedQueue: Array<{
     resolve: (value?: any) => void,
     reject: (reason?: any) => void
@@ -31,7 +28,7 @@ const processQueue = (error: any, token: string | null = null) => {
     failedQueue = []
 }
 
-
+const localTime = new Date().toLocaleTimeString()
 /**
  * An API Interceptor that refreshes the refresh tokens if the original request failed due authentication(401 Error) \
  *  To avoid infinte loops, thunks used by the Api Interceptor cannot use interceptor
@@ -69,11 +66,16 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
 
     // --- 2. If the fetch main request is unauthorized, it attempts to refresh the token ---
     if (response.status === 401) {
+        DEVELOPER_MODE && console.log('@API_INTERCEPTOR ==>\nJust made an auth request for the AUTH THUNK and received an error.', await response.json(), localTime)
+
         // Ensures only the first API call that triggers a 401 triggers a token refresh
         if (!store.getState().auth.isRefreshing) {
+            DEVELOPER_MODE && console.log('@API_INTERCEPTOR ==>\nThere is no refresh going on, now calling REFRESH THUNK', localTime)
             try {
                 // a. --- dispatches the refresh token thunk and gets the new access token
                 const result = await store.dispatch(refreshToken()).unwrap();
+                DEVELOPER_MODE && console.log('@API_INTERCEPTOR ==>\nJust triggered a refresh request with this result', result, localTime)
+
                 const newAccessToken = result.csrf_access_token;
 
                 processQueue(null, newAccessToken);
@@ -85,10 +87,11 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
                 connectSocket();
 
                 // e. --- Reattempts the caller's request with updated values
+                DEVELOPER_MODE && console.log('@API_INTERCEPTOR ==>\n Attempting a new auth request for the auth-check Thunk', localTime)
                 return fetch(`${API_BASE_URL}${url}`, originalRequest);
 
             } catch (error: any) {
-                DEVELOPER_MODE && console.log('This is the error received by the API INTERCEPTOR', error)
+                DEVELOPER_MODE && console.log('@API_INTERCEPTOR ==>\n Just caught this error from my Try Block', error)
                 const err = error as RefreshReject;
                 
                 if (err && err.type === 'auth') {
@@ -107,6 +110,7 @@ const api: ApiService = async (url: string, options: RequestInit = {}) => {
         // If there is another request caught by the interceptor while one is being executed, 
         // it creates a promise object and resolve or reject callback functions
         // calling the callback functions allows the then block to execute
+        DEVELOPER_MODE && console.log('@API_Interceptor ===>\nThere was a refresh going on\nNow returning the promise to the API THUNK', localTime)
         return new Promise((resolve, reject) => {
             failedQueue.push({ resolve, reject });
         }).then(newAccessToken => {

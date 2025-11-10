@@ -1,9 +1,9 @@
 import { refreshToken } from "../thunks/authThunks/refreshTokenThunk";
 import type { AppDispatch } from "../store";
+import { DEVELOPER_MODE } from "../appConfig";
 /** Function clears {accessTokenExp, refreshTokenExp, csrfAccessToken, csrfRefreshToken} from local storage */
 export function clearLocalStorage(): void{
     localStorage.removeItem('accessTokenExp');
-    localStorage.removeItem('auth-sync');
     localStorage.removeItem('csrfAccessToken'); 
     localStorage.removeItem('csrfRefreshToken');
 }
@@ -19,7 +19,23 @@ export function setLocalStorage(
     if (csrfRefreshToken) localStorage.setItem('csrfRefreshToken', csrfRefreshToken);
 }
 
+function formatMilliseconds(ms: number) {
+  // 1. Get total seconds
+  const totalSeconds = Math.floor(ms / 1000);
 
+  // 2. Get the seconds part (remainder)
+  const seconds = totalSeconds % 60;
+
+  // 3. Get total minutes
+  const minutes = Math.floor(totalSeconds / 60);
+
+  // 4. Pad the seconds with a '0' if it's a single digit
+  const paddedSeconds = seconds.toString().padStart(2, '0');
+
+  return `${minutes}:${paddedSeconds}`;
+}
+
+const localTime = new Date().toLocaleTimeString()
 /**
  * Schedules a proactive token refresh, combining robustness and modern practices.
  * It calculates the delay until the token is about to expire, handles edge cases,
@@ -66,7 +82,12 @@ export const scheduleProactiveRefresh = (dispatch: AppDispatch, accessTokenExpIn
     // --- 6. Schedule the refresh ---
     const timeToRefreshMs = timeLeftMs - SAFETY_MARGIN_MS;
 
+// 2. Create a new Date object
+    const expiryObject = new Date(expirationTimeMs).toLocaleString();
+
+    DEVELOPER_MODE && console.log(`@SCHEDULE_PROACTIVE_REFRESH: Token set to expire in ${expiryObject}\nScheduled the refresh to fire in (${formatMilliseconds(timeToRefreshMs)})`, localTime)
     const timeoutId = setTimeout(() => {
+        DEVELOPER_MODE && console.log('@SCHEDULE_PROACTIVE_REFRESH: dispatching the REFRESH_THUNK', localTime)
         dispatch(refreshToken());
         localStorage.removeItem('refreshTokenTimeoutId'); 
     }, timeToRefreshMs);
