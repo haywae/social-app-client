@@ -15,7 +15,7 @@ interface AuthCheckResponse {
     csrf_access_token: string;
 }
 
-const localTime = new Date().toLocaleTimeString()
+const localTime = () => new Date().toLocaleTimeString()
 //----------------------
 // Authenticates the user
 //---------------------
@@ -32,7 +32,7 @@ export const checkAuth = createAsyncThunk<
         try {
             // 1. Make the request using the api service.
             // The interceptor will automatically handle 401s and token refreshing.
-            DEVELOPER_MODE && console.log('@AUTH_THUNK: Calling the interceptor for an auth-check.', localTime)
+            DEVELOPER_MODE && console.log(localTime(), '- @AUTH_THUNK: Calling the interceptor for an auth-check.')
             const response = await api('/auth-check', {
                 method: 'GET'
             });
@@ -44,7 +44,7 @@ export const checkAuth = createAsyncThunk<
 
                 // Treat 500s or other errors as network/server problems.
                 // DO NOT log the user out.
-                DEVELOPER_MODE && console.log('@AUTH_THUNK: Received an error. Treating it as network error: ', data, localTime)
+                DEVELOPER_MODE && console.log(localTime(), '- @AUTH_THUNK: Received an error. Treating it as network error: ', data)
                 return rejectWithValue({
                     type: 'network',
                     message: data.error || `Server error (Status: ${response.status})`
@@ -57,20 +57,20 @@ export const checkAuth = createAsyncThunk<
 
             // Schedule the next proactive refresh.
             if (data.access_token_exp) {
-                DEVELOPER_MODE && console.log('@AUTH_THUNK: An access token expiry value was returened.\nNow calling @SCHEDULE_PROACTIVE_TOKEN', localTime)
+                DEVELOPER_MODE && console.log(localTime(), '- @AUTH_THUNK: An access token expiry value was returened.\nNow calling @SCHEDULE_PROACTIVE_TOKEN')
                 scheduleProactiveRefresh(dispatch, data.access_token_exp);
             }
 
             dispatch(fetchNotifications({ page: 1 }));
             dispatch(fetchSettings());
-            
-            DEVELOPER_MODE && console.log('@AUTH_THUNK: Authentication successful', data, localTime)
+
+            DEVELOPER_MODE && console.log(localTime(), '- @AUTH_THUNK: Authentication successful', data)
             return data;
 
         } catch (error: any) {
             // This catch block will receive errors from failed token refreshes
             // or other network issues handled by the interceptor.
-            DEVELOPER_MODE && console.log('@AUTH_THUNK: Just received an error. This is the Error object:', error, localTime);
+            DEVELOPER_MODE && console.log(localTime(), '- @AUTH_THUNK: Just received an error. This is the Error object:', error);
             if (error.type === 'auth') {
                 return rejectWithValue({
                     type: 'auth',

@@ -35,7 +35,7 @@ function formatMilliseconds(ms: number) {
   return `${minutes}:${paddedSeconds}`;
 }
 
-const localTime = new Date().toLocaleTimeString()
+const localTime = () => new Date().toLocaleTimeString()
 /**
  * Schedules a proactive token refresh, combining robustness and modern practices.
  * It calculates the delay until the token is about to expire, handles edge cases,
@@ -85,9 +85,9 @@ export const scheduleProactiveRefresh = (dispatch: AppDispatch, accessTokenExpIn
 // 2. Create a new Date object
     const expiryObject = new Date(expirationTimeMs).toLocaleString();
 
-    DEVELOPER_MODE && console.log(`@SCHEDULE_PROACTIVE_REFRESH: Token set to expire in ${expiryObject}\nScheduled the refresh to fire in (${formatMilliseconds(timeToRefreshMs)})`, localTime)
+    DEVELOPER_MODE && console.log(localTime(), `- @SCHEDULE_PROACTIVE_REFRESH: Token set to expire in ${expiryObject}\nScheduled the refresh to fire in (${formatMilliseconds(timeToRefreshMs)})`)
     const timeoutId = setTimeout(() => {
-        DEVELOPER_MODE && console.log('@SCHEDULE_PROACTIVE_REFRESH: dispatching the REFRESH_THUNK', localTime)
+        DEVELOPER_MODE && console.log(localTime(), '- @SCHEDULE_PROACTIVE_REFRESH: dispatching the REFRESH_THUNK')
         dispatch(refreshToken());
         localStorage.removeItem('refreshTokenTimeoutId'); 
     }, timeToRefreshMs);

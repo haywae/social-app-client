@@ -14,7 +14,7 @@ export interface RefreshReject {
     type: 'auth' | 'network';
     message: string;
 }
-const localTime = new Date().toLocaleTimeString()
+const localTime = () => new Date().toLocaleTimeString()
 const REFRESH_TIMEOUT_MS = 9000; // 9 seconds
 //-------------------------------
 // Refreshes the access token
@@ -25,7 +25,7 @@ export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispat
         const csrfRefreshToken = localStorage.getItem('csrfRefreshToken');
 
         if (!csrfRefreshToken) {
-            DEVELOPER_MODE && console.log('@REFRESH_THUNK: csrfRefreshToken was not retrieved from local storage', localTime)
+            DEVELOPER_MODE && console.log(localTime(), '- @REFRESH_THUNK: csrfRefreshToken was not retrieved from local storage')
             return rejectWithValue({
                 type: 'auth',
                 message: 'Refresh token is missing. Please log in again.'
@@ -36,14 +36,14 @@ export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispat
         const signal = controller.signal
 
         const timeoutId = setTimeout(() => {
-            DEVELOPER_MODE && console.log('@REFRESH_THUNK: Request timed out after 9s. Aborting.', localTime);
+            DEVELOPER_MODE && console.log(localTime(), '- @REFRESH_THUNK: Request timed out after 9s. Aborting.');
             controller.abort();
         }, REFRESH_TIMEOUT_MS);
 
         try {
             // 1. ----- Sends a refresh token request to the server -----
             DEVELOPER_MODE && console.log(
-                `@REFRESH_THUNK: This is the CSRF  REFRESH THUNK Retrieved from local storage: ${csrfRefreshToken} \nAttempting a refresh with it}`, localTime
+               localTime(), `- @REFRESH_THUNK: This is the CSRF  REFRESH THUNK Retrieved from local storage: ${csrfRefreshToken} \nAttempting a refresh with it}`
             )
 
             const response = await fetch(`${API_BASE_URL}/refresh-token`, {
@@ -63,13 +63,13 @@ export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispat
                 const data = await response.json();
                 // This is a "real" auth error. Log the user out.
                 if (response.status === 401 || response.status === 403) {
-                    DEVELOPER_MODE && console.log('@REFRESH_THUNK: 401 or 403 error from the refresh thunk. Error object: ', data, localTime)
+                    DEVELOPER_MODE && console.log(localTime(),'- @REFRESH_THUNK: 401 or 403 error from the refresh thunk. Error object: ', data)
                     return rejectWithValue({
                         type: 'auth',
                         message: data.error || 'Session expired. Please log in again.'
                     });
                 }
-                DEVELOPER_MODE && console.log('@REFRESH_THUNK: Received an error likely a network problem. Error object: ', data, localTime)
+                DEVELOPER_MODE && console.log(localTime(),'- @REFRESH_THUNK: Received an error likely a network problem. Error object: ', data)
                 // This is a server error (5xx) or other issue. Treat it as a network problem.
                 return rejectWithValue({
                     type: 'network',
@@ -78,7 +78,7 @@ export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispat
             }
 
             // 3. ----- Processes the successful response -----
-            DEVELOPER_MODE && console.log('@REFRESH_THUNK: Token refresh successful', localTime)
+            DEVELOPER_MODE && console.log(localTime(), '- @REFRESH_THUNK: Token refresh successful')
             const data: RefreshTokenSuccess = await response.json();
 
             // 4. ----- Update localStorage with the new access token -----
@@ -87,7 +87,7 @@ export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispat
                 data.csrf_access_token,
                 data.csrf_refresh_token
             );
-            DEVELOPER_MODE && console.log(`@REFRESH_THUNK: Setting these tokens in local storage`, data, localTime)
+            DEVELOPER_MODE && console.log(localTime(), `- @REFRESH_THUNK: Setting these tokens in local storage`, data)
 
             // 5. ----- After a successful refresh, schedule the next one using the new expiration time. -----
             if (data.access_token_exp) {
@@ -99,7 +99,7 @@ export const refreshToken = createAsyncThunk<RefreshTokenSuccess, void, { dispat
             clearTimeout(timeoutId);
 
             // Handle network errors and other unexpected issues
-            DEVELOPER_MODE && console.log('@REFRESH_THUNK: Just caught an error.\nThis is the Error object: ', error, localTime);
+            DEVELOPER_MODE && console.log(localTime(), '- @REFRESH_THUNK: Just caught an error.\nThis is the Error object: ', error);
 
             return rejectWithValue({
                 type: error.type || 'network',
